@@ -21,17 +21,26 @@ public class LoadingManager : MonoBehaviour
         Common.Log.Init("Unity");
         Common.Log.Info("LoadingManager start");
 
+        // 展示健康游戏忠告
         UIGameTips.SetActive(true);
         UILoading.SetActive(false);
         UILogin.SetActive(false);
         yield return new WaitForSeconds(2f);
+        // 展示加载页面
         UILoading.SetActive(true);
         UIGameTips.SetActive(false);
+        // 模拟进度条加载
+        for (float i = 0;i < 100;)
+        {
+            i += Random.Range(0.5f, 1.5f);
+            progressBar.value = i;
+            progressNumber.text = i.ToString("0") + "%";
+            yield return new WaitForEndOfFrame();
+        }
         yield return new WaitForSeconds(1f);
+        // 展示登录页面
         UILogin.SetActive(true);
         UILoading.SetActive(false);
-
-
         yield return null;
     }
 
