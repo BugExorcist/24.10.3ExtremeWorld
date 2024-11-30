@@ -1,3 +1,4 @@
+using Services;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -10,14 +11,14 @@ public class UILogin : MonoBehaviour
     public TMP_InputField password;
     public Button buttonLogin;
     public Button buttonResister;
+    public Toggle remember;
+    public Toggle agree;
     
-    // Start is called before the first frame update
     void Start()
     {
-        
+        UserService.Instance.OnLogin = this.OnLogin;
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -35,5 +36,16 @@ public class UILogin : MonoBehaviour
             MessageBox.Show("请输入密码");
             return;
         }
+        if (!this.agree.isOn)
+        {
+            MessageBox.Show("请同意服务条款");
+            return;
+        }
+        UserService.Instance.SendLogin(username.text, password.text);
+    }
+
+    public void OnLogin(SkillBridge.Message.Result result, string msg)
+    {
+        MessageBox.Show(string.Format("{0}: {1}", result, msg));
     }
 }

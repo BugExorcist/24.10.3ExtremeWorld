@@ -12,16 +12,11 @@ public class UIRegister : MonoBehaviour
     public TMP_InputField repassword;
     public Button buttonLogin;
     public Button buttonBack;
-    public Toggle toggle;
+    public Toggle agree;
 
     void Start()
     {
         UserService.Instance.OnRegister = this.OnRegister;
-    }
-
-    void OnRegister(SkillBridge.Message.Result result, string msg)
-    {
-        MessageBox.Show(string.Format("{0}: {1}",result, msg));
     }
 
     void Update()
@@ -51,11 +46,16 @@ public class UIRegister : MonoBehaviour
             MessageBox.Show("两次密码不一致");
             return;
         }
-        if (!this.toggle.isOn)
+        if (!this.agree.isOn)
         {
             MessageBox.Show("请同意服务条款");
             return;
         }
         UserService.Instance.SendRegister(this.username.text, this.password.text);
+    }
+
+    void OnRegister(SkillBridge.Message.Result result, string msg)
+    {
+        MessageBox.Show(string.Format("{0}: {1}", result, msg));
     }
 }
