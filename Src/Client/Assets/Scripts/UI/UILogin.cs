@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using SkillBridge.Message;
 
 public class UILogin : MonoBehaviour
 {
@@ -44,8 +45,17 @@ public class UILogin : MonoBehaviour
         UserService.Instance.SendLogin(username.text, password.text);
     }
 
-    public void OnLogin(SkillBridge.Message.Result result, string msg)
+    public void OnLogin(Result result, string msg)
     {
-        MessageBox.Show(string.Format("{0}: {1}", result, msg));
+        if (result == Result.Success)
+        {
+            //MessageBox.Show(string.Format("{0}: {1}", result, msg));
+            // 登录成功，进入角色选择场景
+            SceneManager.Instance.LoadScene("CharSelect");
+        }
+        else  
+        {
+            MessageBox.Show(msg, "错误", MessageBoxType.Error);
+        }
     }
 }

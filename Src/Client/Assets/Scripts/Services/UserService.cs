@@ -121,6 +121,10 @@ namespace Services
         void OnUserLogin(object sender, UserLoginResponse response)
         {
             Debug.LogFormat("OnUserLogin:{0} [{1}]", response.Result, response.Errormsg);
+            if (response.Result == Result.Success)
+            {//登录成功，保存用户信息
+                Models.User.Instance.SetupUserInfo(response.Userinfo);
+            }
             if (this.OnLogin != null)
             {
                 this.OnLogin(response.Result, response.Errormsg);

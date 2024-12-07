@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Services;
+using SkillBridge.Message;
 
 public class UIRegister : MonoBehaviour
 {
@@ -54,7 +55,7 @@ public class UIRegister : MonoBehaviour
         UserService.Instance.SendRegister(this.username.text, this.password.text);
     }
 
-    void OnRegister(SkillBridge.Message.Result result, string msg)
+    void OnRegister(Result result, string msg)
     {
         MessageBox.Show(string.Format("{0}: {1}", result, msg));
     }

@@ -29,6 +29,9 @@ public class LoadingManager : MonoBehaviour
         // 展示加载页面
         UILoading.SetActive(true);
         UIGameTips.SetActive(false);
+        // 加载数据
+        yield return DataManager.Instance.LoadDate();
+
         // 模拟进度条加载
         for (float i = 0;i < 100;)
         {
