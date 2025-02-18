@@ -27,7 +27,7 @@ public static class UnityLogger
                 log.DebugFormat("{0}\r\n{1}", condition, stackTrace.Replace("\n", "\r\n"));
                 break;
             case LogType.Exception:
-                log.FatalFormat("{0\r\n{1}", condition, stackTrace.Replace("\n", "\r\n"));
+                log.FatalFormat("{0}\r\n{1}", condition, stackTrace.Replace("\n", "\r\n"));
                 break;
             case LogType.Warning:
                 log.WarnFormat("{0}\r\n{1}", condition, stackTrace.Replace("\n", "\r\n"));

@@ -418,7 +418,14 @@ namespace Network
 
         void ProceeMessage()
         {
-            MessageDistributer.Instance.Distribute();
+            if (MessageDistributer.Instance != null)
+            {
+                MessageDistributer.Instance.Distribute();
+            }
+            else
+            {
+                Debug.LogError("MessageDistributer.Instance is null");
+            }
         }
 
         //Update need called once per frame

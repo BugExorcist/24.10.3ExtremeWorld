@@ -17,8 +17,10 @@ namespace GameServer.Services
         {
             MessageDistributer<NetConnection<NetSession>>.Instance.Subscribe<UserLoginRequest>(this.OnLogin);
             MessageDistributer<NetConnection<NetSession>>.Instance.Subscribe<UserRegisterRequest>(this.OnRegister);
+            MessageDistributer<NetConnection<NetSession>>.Instance.Subscribe<UserCreateCharacterRequest>(this.OnCreateCharacter);
             
         }
+
 
         public void Init()
         {
@@ -40,6 +42,8 @@ namespace GameServer.Services
             }
             else
             {
+                sender.Session.User = user;
+
                 message.Response.userLogin.Result = Result.Success;
                 message.Response.userLogin.Errormsg = "成功登录.";
 
@@ -84,6 +88,35 @@ namespace GameServer.Services
                 message.Response.userRegister.Result = Result.Success;
                 message.Response.userRegister.Errormsg = "注册成功！";
             }
+
+            byte[] data = PackageHandler.PackMessage(message);
+            sender.SendData(data, 0, data.Length);
+        }
+
+        private void OnCreateCharacter(NetConnection<NetSession> sender, UserCreateCharacterRequest request)
+        {
+            Log.InfoFormat("UserCreateCharacterRequest: Name:{0}  Class:{1}", request.Name, request.Class);
+
+            TCharacter character = new TCharacter()
+            {
+                Name = request.Name,
+                Class = (int)request.Class,
+                TID = (int)request.Class,
+                MapID = 1,
+                MapPosX = 5000,
+                MapPosY = 4000,
+                MapPosZ = 820,
+            };
+
+            DBService.Instance.Entities.Characters.Add(character);
+            sender.Session.User.Player.Characters.Add(character);
+            DBService.Instance.Entities.SaveChanges();
+
+            NetMessage message = new NetMessage();
+            message.Response = new NetMessageResponse();
+            message.Response.createChar = new UserCreateCharacterResponse();
+            message.Response.createChar.Result = Result.Success;
+            message.Response.createChar.Errormsg = "None";
 
             byte[] data = PackageHandler.PackMessage(message);
             sender.SendData(data, 0, data.Length);
