@@ -1,3 +1,4 @@
+using Services;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -31,6 +32,11 @@ public class LoadingManager : MonoBehaviour
         UIGameTips.SetActive(false);
         // 加载数据
         yield return DataManager.Instance.LoadDate();
+
+        //初始化服务
+        MapService.Instance.Init();
+        UserService.Instance.Init();
+
 
         // 模拟进度条加载
         for (float i = 50;i < 100;)

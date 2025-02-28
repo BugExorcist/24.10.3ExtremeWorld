@@ -250,13 +250,13 @@ namespace Services
 
         }
 
-        private void OnCharacterEnter(object sender, MapCharacterEnterResponse message)
+        private void OnCharacterEnter(object sender, MapCharacterEnterResponse response)
         {
-            Debug.LogFormat("OnMapCharacterEnter:{0}", message.mapId);
+            Debug.LogFormat("OnMapCharacterEnter:{0}", response.mapId);
 
-            NCharacterInfo info = message.Characters[0];
+            NCharacterInfo info = response.Characters[0];
             User.Instance.CurrentCharacter = info;
-            SceneManager.Instance.LoadScene(DataManager.Instance.Maps[message.mapId].Resource);
+            SceneManager.Instance.LoadScene(DataManager.Instance.Maps[response.mapId].Resource);
         }
     }
 }

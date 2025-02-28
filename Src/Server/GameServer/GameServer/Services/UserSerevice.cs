@@ -107,7 +107,7 @@ namespace GameServer.Services
                 MapID = 1,
                 MapPosX = 5000,
                 MapPosY = 4000,
-                MapPosZ = 820,
+                MapPosZ = 810,
             };
 
             DBService.Instance.Entities.Characters.Add(character);
