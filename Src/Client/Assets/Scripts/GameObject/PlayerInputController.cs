@@ -57,7 +57,7 @@ public class PlayerInputController : MonoBehaviour
             }
             this.rb.velocity = this.rb.velocity.y * Vector3.up + GameObjectTool.LogicToWorld(character.direction) * (this.character.speed + 9.81f) / 100f;
         }
-        if (v < -0.01)
+        else if (v < -0.01)
         {
             if (state != CharacterState.Move)
             {
@@ -80,6 +80,7 @@ public class PlayerInputController : MonoBehaviour
         {
             this.SendEntityEvent(EntityEvent.Jump);
         }
+
         float h = Input.GetAxis("Horizontal");
         if (h < - 0.1 || h > 0.1)
         {
