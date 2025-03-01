@@ -33,7 +33,7 @@ public class UINameBar : MonoBehaviour
     {
         if(this.character != null)
         {
-            string name = this.character.Name + "Lv." + this.character.Info.Level;
+            string name = this.character.Name + " Lv." + this.character.Info.Level;
             if(name != this.avaverName.text)
             {
                 this.avaverName.text = name;

@@ -61,7 +61,7 @@ public class EntityController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(this.entity != null)
+        if(this.entity == null)
             return;
 
         this.entity.OnUpdate(Time.fixedDeltaTime);
