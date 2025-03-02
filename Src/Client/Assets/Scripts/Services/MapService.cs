@@ -2,12 +2,9 @@
 using Network;
 using SkillBridge.Message;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using Common.Data;
+using Managers;
 
 namespace Services
 {
@@ -62,6 +59,7 @@ namespace Services
             if (DataManager.Instance.Maps.ContainsKey(mapId))
             {
                 MapDefine map = DataManager.Instance.Maps[mapId];
+                User.Instance.CurrentMapData = map;
                 SceneManager.Instance.LoadScene(map.Resource);
             }
             else

@@ -1,5 +1,6 @@
 ﻿using Entities;
-using Services;
+using Managers;
+using Models;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -66,6 +67,7 @@ public class GameObjectManager : MonoBehaviour
             {
                 if(character.Info.Id == Models.User.Instance.CurrentCharacter.Id)
                 {
+                    User.Instance.currentCharacterObject = go;
                     MainPlayerCamera.Instance.player = go;
                     pc.enabled = true;
                     pc.character = character;
