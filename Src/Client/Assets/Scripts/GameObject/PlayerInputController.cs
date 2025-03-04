@@ -98,7 +98,7 @@ public class PlayerInputController : MonoBehaviour
         }
     }
     Vector3 lastPos;
-    float lastSync = 0;
+    //float lastSync = 0;
     private void LateUpdate()
     {
         Vector3 offset = this.rb.transform.position - lastPos;

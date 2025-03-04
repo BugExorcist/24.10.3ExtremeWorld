@@ -27,7 +27,7 @@ namespace Models
 
         public SkillBridge.Message.NCharacterInfo CurrentCharacter { get; set; }
 
-        public GameObject currentCharacterObject { get; set; }
+        public GameObject CurrentCharacterObject { get; set; }
 
     }
 }

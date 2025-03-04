@@ -49,9 +49,13 @@ namespace Services
             }
         }
 
-        private void OnMapCharacterLeave(object sender, MapCharacterLeaveResponse message)
+        private void OnMapCharacterLeave(object sender, MapCharacterLeaveResponse response)
         {
-            throw new NotImplementedException();
+            Debug.LogFormat("OnMapCharacterLeave: CharID:{0}", response.characterId);
+            if (response.characterId != User.Instance.CurrentCharacter.Id)
+                CharacterManager.Instance.RemoveCharacter(response.characterId);
+            else
+                CharacterManager.Instance.Clear();
         }
 
         private void EnterMap(int mapId)

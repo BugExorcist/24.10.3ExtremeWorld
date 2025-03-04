@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Common;
 using Network;
 using UnityEngine;
 
 using SkillBridge.Message;
 using Models;
-using static UnityEditor.PlayerSettings;
 
 namespace Services
 {
@@ -30,7 +26,7 @@ namespace Services
             MessageDistributer.Instance.Subscribe<UserCreateCharacterResponse>(this.OnUserCharacterCreate);
             MessageDistributer.Instance.Subscribe<UserGameEnterResponse>(this.OnGameEnter);
             MessageDistributer.Instance.Subscribe<UserGameLeaveResponse>(this.OnGameLeave);
-            MessageDistributer.Instance.Subscribe<MapCharacterEnterResponse>(this.OnCharacterEnter);
+            //MessageDistributer.Instance.Subscribe<MapCharacterEnterResponse>(this.OnCharacterEnter);
 
 
         }
@@ -44,7 +40,7 @@ namespace Services
             MessageDistributer.Instance.Unsubscribe<UserCreateCharacterResponse>(this.OnUserCharacterCreate);
             MessageDistributer.Instance.Unsubscribe<UserGameEnterResponse>(this.OnGameEnter);
             MessageDistributer.Instance.Unsubscribe<UserGameLeaveResponse>(this.OnGameLeave);
-            MessageDistributer.Instance.Unsubscribe<MapCharacterEnterResponse>(this.OnCharacterEnter);
+            //MessageDistributer.Instance.Unsubscribe<MapCharacterEnterResponse>(this.OnCharacterEnter);
             NetClient.Instance.OnConnect -= OnGameServerConnect;
             NetClient.Instance.OnDisconnect -= OnGameServerDisconnect;
         }
@@ -229,10 +225,6 @@ namespace Services
         public void OnGameEnter(object sender, UserGameEnterResponse response)
         {
             Debug.LogFormat("OnUserGameEnter:{0} [{1}]", response.Result, response.Errormsg);
-            if (response.Result == Result.Success)
-            {
-
-            }
         }
 
         public void SendGameLeave()
@@ -247,16 +239,15 @@ namespace Services
         public void OnGameLeave(object sender, UserGameLeaveResponse response)
         {
             Debug.LogFormat("OnUserGameLeave:{0} [{1}]", response.Result, response.Errormsg);
-
         }
 
-        private void OnCharacterEnter(object sender, MapCharacterEnterResponse response)
-        {
-            Debug.LogFormat("OnMapCharacterEnter:{0}", response.mapId);
+        //private void OnCharacterEnter(object sender, MapCharacterEnterResponse response)
+        //{
+        //    Debug.LogFormat("OnMapCharacterEnter:{0}", response.mapId);
 
-            NCharacterInfo info = response.Characters[0];
-            User.Instance.CurrentCharacter = info;
-            SceneManager.Instance.LoadScene(DataManager.Instance.Maps[response.mapId].Resource);
-        }
+        //    NCharacterInfo info = response.Characters[0];
+        //    //User.Instance.CurrentCharacter = info;
+        //    SceneManager.Instance.LoadScene(DataManager.Instance.Maps[response.mapId].Resource);
+        //}
     }
 }

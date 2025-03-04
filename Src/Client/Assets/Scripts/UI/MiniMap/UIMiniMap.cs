@@ -29,11 +29,12 @@ public class UIMiniMap : MonoBehaviour
         this.miniMap.SetNativeSize();
         this.miniMap.transform.localPosition = Vector3.zero;
         //获取角色位置
-        this.playerTransforme = User.Instance.currentCharacterObject.transform;
+        this.playerTransforme = User.Instance.CurrentCharacterObject.transform;
     }
 
     void Update()
     {   //更新小地图
+        if (miniMapBoudingBox == null || playerTransforme == null) return;
         float realWidth = miniMapBoudingBox.bounds.size.x;
         float realHeight = miniMapBoudingBox.bounds.size.z;
         //玩家相对真实地图的坐标
