@@ -4,6 +4,7 @@ using UnityEngine;
 using Entities;
 using SkillBridge.Message;
 using System;
+using Services;
 
 public class PlayerInputController : MonoBehaviour
 {
@@ -98,7 +99,7 @@ public class PlayerInputController : MonoBehaviour
         }
     }
     Vector3 lastPos;
-    //float lastSync = 0;
+    float lastSync = 0;
     private void LateUpdate()
     {
         Vector3 offset = this.rb.transform.position - lastPos;
@@ -118,6 +119,7 @@ public class PlayerInputController : MonoBehaviour
         if(entityController != null)
         {
             entityController.OnEntityEvent(enetityEvent);
+            MapService.Instance.SendMapEntitySync(enetityEvent, this.character.EntityData);
         }
     }
 }

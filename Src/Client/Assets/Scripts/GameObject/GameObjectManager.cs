@@ -22,15 +22,11 @@ public class GameObjectManager : MonoSingleton<GameObjectManager>
         CharacterManager.Instance.OnCharacterLeave -= OnCharacterLeave;
     }
 
-    void Update()
-    {
-        
-    }
 
     void OnCharacterEnter(Character cha)
     {
         CreateCharacterObject(cha);
-    }  
+    }
     
     void OnCharacterLeave(Character cha)
     {
@@ -70,10 +66,10 @@ public class GameObjectManager : MonoSingleton<GameObjectManager>
 
             UIWorldElementManager.Instance.AddCharacterNameBar(go.transform, character);
         }
-        this.InitGameObect(Characters[character.entityId], character);
+        this.InitGameObject(Characters[character.entityId], character);
     }
 
-    private void InitGameObect(GameObject go, Character character)
+    private void InitGameObject(GameObject go, Character character)
     {
         go.transform.position = GameObjectTool.LogicToWorld(character.position);
         go.transform.forward = GameObjectTool.LogicToWorld(character.direction);
