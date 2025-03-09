@@ -18,7 +18,8 @@ namespace GameServer.Managers
         public void AddEntity(int mapId, Entity entity)
         {
             AllEntities.Add(entity);
-            //加入管理器生成唯一ID
+            //加入管理器生成唯一ID 
+            //因为角色和怪物都属于entity需要被加载到地图中，但是只有每个角色有DB ID，怪物没有，所以使用EntityID
             entity.EntityData.Id = ++this.idx;
 
             List<Entity> entities = null;

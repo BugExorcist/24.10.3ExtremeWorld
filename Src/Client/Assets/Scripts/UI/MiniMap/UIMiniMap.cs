@@ -28,12 +28,16 @@ public class UIMiniMap : MonoBehaviour
             this.miniMap.overrideSprite = MiniMapManager.Instance.LoadCurrentMiniMap();
         this.miniMap.SetNativeSize();
         this.miniMap.transform.localPosition = Vector3.zero;
-        //获取角色位置
-        this.playerTransforme = User.Instance.CurrentCharacterObject.transform;
     }
 
     void Update()
-    {   //更新小地图
+    {   
+        if (playerTransforme == null)
+        {
+            //获取角色位置
+            playerTransforme = MiniMapManager.Instance.PlayerTransform;
+        }
+        //更新小地图
         if (miniMapBoudingBox == null || playerTransforme == null) return;
         float realWidth = miniMapBoudingBox.bounds.size.x;
         float realHeight = miniMapBoudingBox.bounds.size.z;

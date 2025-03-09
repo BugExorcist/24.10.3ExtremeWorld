@@ -75,7 +75,7 @@ namespace GameServer.Models
             conn.SendData(data, 0, data.Length);
         }
 
-        internal void CharacterLeave(NCharacterInfo cha)
+        internal void CharacterLeave(Character cha)
         {
             Log.InfoFormat("CharacterLeave: Map:{0} characterId:{1}", this.Define.ID, cha.Id);
 
@@ -83,7 +83,7 @@ namespace GameServer.Models
             {
                 this.SendCharacterLeaveMap(kv.Value.connection, cha);
             }
-            this.MapCharacters.Remove(cha.Entity.Id);
+            this.MapCharacters.Remove(cha.Id);
         }
 
         void SendCharacterEnterMap(NetConnection<NetSession> conn, NCharacterInfo character)
@@ -99,7 +99,7 @@ namespace GameServer.Models
             conn.SendData(data, 0, data.Length);
         }
         
-        void SendCharacterLeaveMap(NetConnection<NetSession> conn, NCharacterInfo character)
+        void SendCharacterLeaveMap(NetConnection<NetSession> conn, Character character)
         {
             NetMessage message = new NetMessage();
             message.Response = new NetMessageResponse();
