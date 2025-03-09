@@ -12,14 +12,10 @@ public class MainPlayerCamera : MonoSingleton<MainPlayerCamera>
 
     private void LateUpdate()
     {
-        if(camera == null)
-        {
-            return;
-        }
-        if (player == null && User.Instance.CurrentCharacterObject != null)
-        {
+        if(camera == null) return;
+        if (player == null && User.Instance.CurrentCharacterObject == null)return;
+        else if(player == null && User.Instance.CurrentCharacterObject != null)
             player = User.Instance.CurrentCharacterObject;
-        }
 
         this.transform.position = player.transform.position;
         this.transform.rotation = player.transform.rotation;

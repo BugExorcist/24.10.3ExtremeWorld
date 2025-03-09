@@ -83,7 +83,7 @@ namespace GameServer.Models
             {
                 this.SendCharacterLeaveMap(kv.Value.connection, cha);
             }
-            this.MapCharacters.Remove(cha.Id);
+            this.MapCharacters.Remove(cha.Entity.Id);
         }
 
         void SendCharacterEnterMap(NetConnection<NetSession> conn, NCharacterInfo character)
