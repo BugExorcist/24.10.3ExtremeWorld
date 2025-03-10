@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class UIMainCity : MonoBehaviour
+public class UIMainCity : MonoSingleton<UIMainCity>
 {
     public TMP_Text avaterName;
     public TMP_Text avaterLevel;
     public TMP_Text id;
 
-    void Start()
+    protected override void OnStart()
     {
         this.id.text = string.Format("ID:{0}", User.Instance.CurrentCharacter.Id);
         UpdataUIAvatar();

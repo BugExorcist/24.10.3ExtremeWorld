@@ -74,7 +74,7 @@ namespace Services
 
         public void SendMapEntitySync(EntityEvent entityEvent, NEntity entity)
         {
-            Debug.LogFormat("MapEntityUpdateRequest ID:{0} Position:{1} Direction:{2} Speed:{3}", entity.Id, entity.Position.ToString(), entity.Direction.ToString(), entity.Speed);
+            Debug.LogFormat("MapEntityUpdateRequest ID:{0} Position:{1} Direction:{2} Speed:{3}", entity.Id, entity.Position.String(), entity.Direction.String(), entity.Speed);
             NetMessage message = new NetMessage();
             message.Request = new NetMessageRequest();
             message.Request.mapEntitySync = new MapEntitySyncRequest();

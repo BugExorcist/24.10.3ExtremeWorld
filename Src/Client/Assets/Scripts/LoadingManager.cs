@@ -41,7 +41,7 @@ public class LoadingManager : MonoBehaviour
         // 模拟进度条加载
         for (float i = 50;i < 100;)
         {
-            i += Random.Range(1.0f, 2.0f);
+            i += Random.Range(0.5f, 1.0f);
             progressBar.value = i;
             progressNumber.text = i.ToString("0") + "%";
             yield return new WaitForEndOfFrame();

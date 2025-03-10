@@ -25,7 +25,7 @@ namespace GameServer.Services
         private void OnMapEntitySync(NetConnection<NetSession> sender, MapEntitySyncRequest request)
         {
             Character character = sender.Session.Character;
-            Log.InfoFormat("OnMapEntitySync: CharacterID:{0} : {1} Entity.Id: {2} Evt:{3} Entity:{4}", character.Id, character.Info.Name, request.entitySync.Id, request.entitySync.Event,request.entitySync.Entity.ToString());
+            Log.InfoFormat("OnMapEntitySync: CharacterID:{0} : {1} Entity.Id: {2} Evt:{3} Entity:{4}", character.Id, character.Info.Name, request.entitySync.Id, request.entitySync.Event,request.entitySync.Entity.String());
 
             MapManager.Instance[character.Info.mapId].UpdateEntity(request.entitySync);
         }
@@ -44,7 +44,7 @@ namespace GameServer.Services
         private void OnMapTeleporter(NetConnection<NetSession> sender, MapTeleportRequest request)
         {
             Character character = sender.Session.Character;
-            Log.InfoFormat("OnMapTeleporter: CharacterID:{0}:{1} TeleporterID:{2}", character.Id, character.Data, request.teleporterId);
+            Log.InfoFormat("OnMapTeleporter: CharacterID:{0}:{1} TeleporterID:{2}", character.Id, character.Info.Name, request.teleporterId);
 
             if(!DataManager.Instance.Teleporters.ContainsKey(request.teleporterId))
             {
