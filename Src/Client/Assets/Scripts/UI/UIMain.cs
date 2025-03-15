@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class UIMainCity : MonoSingleton<UIMainCity>
+public class UIMain : MonoSingleton<UIMain>
 {
     public TMP_Text avaterName;
     public TMP_Text avaterLevel;
@@ -32,5 +32,10 @@ public class UIMainCity : MonoSingleton<UIMainCity>
     {
         SceneManager.Instance.LoadScene("CharSelect");
         Services.UserService.Instance.SendGameLeave();
+    }
+
+    public void OnClickTest()
+    {
+        UIManager.Instance.Show<UITest>();
     }
 }

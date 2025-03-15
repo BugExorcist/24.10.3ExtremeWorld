@@ -17,17 +17,20 @@ public class UIMiniMap : MonoBehaviour
 
     void Start()
     {
-        InitMap();
+        MiniMapManager.Instance.minimap = this;
+        UpdateMap();
     }
 
-    void InitMap()
+    public void UpdateMap()
     {
         //≥ı ºªØ√‘ƒ„µÿÕº
         this.mapName.text = User.Instance.CurrentMapData.Name;
-        if(this.miniMap.overrideSprite == null)
-            this.miniMap.overrideSprite = MiniMapManager.Instance.LoadCurrentMiniMap();
+        this.miniMap.overrideSprite = MiniMapManager.Instance.LoadCurrentMiniMap();
         this.miniMap.SetNativeSize();
         this.miniMap.transform.localPosition = Vector3.zero;
+
+        this.miniMapBoudingBox = MiniMapManager.Instance.MinimapBoundingBox;
+        this.playerTransforme = null;
     }
 
     void Update()
