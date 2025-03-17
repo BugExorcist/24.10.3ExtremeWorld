@@ -46,7 +46,6 @@ public class PlayerInputController : MonoBehaviour
     {
         if (character == null)
             return;
-
         float v = Input.GetAxis("Vertical");
         if (v > 0.1)
         {
@@ -56,8 +55,9 @@ public class PlayerInputController : MonoBehaviour
                 this.character.MoveForward();
                 this.SendEntityEvent(EntityEvent.MoveFwd);
             }
+            //垂直方向速度 + 角色面向方向的速度
             this.rb.velocity = this.rb.velocity.y * Vector3.up + GameObjectTool.LogicToWorld(character.direction) * (this.character.speed + 9.81f) / 100f;
-        }
+        }   
         else if (v < -0.1)
         {
             if (state != CharacterState.Move)
@@ -99,7 +99,7 @@ public class PlayerInputController : MonoBehaviour
         }
     }
     Vector3 lastPos;
-    float lastSync = 0;
+
     private void LateUpdate()
     {
         Vector3 offset = this.rb.transform.position - lastPos;

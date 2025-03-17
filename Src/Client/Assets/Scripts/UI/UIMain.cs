@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using static UIWindow;
 
 public class UIMain : MonoSingleton<UIMain>
 {
@@ -34,8 +35,14 @@ public class UIMain : MonoSingleton<UIMain>
         Services.UserService.Instance.SendGameLeave();
     }
 
-    public void OnClickTest()
-    {
-        UIManager.Instance.Show<UITest>();
-    }
+    //public void OnClickTest()
+    //{
+    //    UITest test = UIManager.Instance.Show<UITest>();
+    //    test.OnClose += Test_OnClose;
+    //}
+
+    //private void Test_OnClose(UIWindow sender, WindowResult result)
+    //{
+
+    //}
 }
