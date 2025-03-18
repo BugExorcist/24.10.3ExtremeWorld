@@ -1,3 +1,4 @@
+using Managers;
 using Services;
 using System.Collections;
 using System.Collections.Generic;
@@ -37,6 +38,7 @@ public class LoadingManager : MonoBehaviour
         MapService.Instance.Init();
         UserService.Instance.Init();
 
+        TestManager.Instance.Init();
 
         // 模拟进度条加载
         for (float i = 50;i < 100;)

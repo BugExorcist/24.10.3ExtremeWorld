@@ -9,7 +9,7 @@ namespace Common.Data
     public enum NpcType
     {
         None = 0,
-        Function,
+        Functional,
         Task,
     }
 
