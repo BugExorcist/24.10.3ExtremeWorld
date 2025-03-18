@@ -151,6 +151,24 @@ namespace GameServer.Services
             message.Response.gameEnter.Result = Result.Success;
             message.Response.gameEnter.Errormsg = "None";
 
+            message.Response.gameEnter.Character = character.Info;
+
+            //道具系统测试===============
+            int itemId = 2;
+            bool HasItem = character.ItemManager.HasItem(itemId);
+            Log.InfoFormat("HasItem:[{0}],{1}", itemId, HasItem);
+            if (HasItem)
+            {
+                character.ItemManager.RemoveItem(itemId, 1);
+            }
+            else
+            {
+                character.ItemManager.AddItem(itemId, 5);
+            }
+            Models.Item item = character.ItemManager.GetItem(itemId);
+            Log.InfoFormat("Item[{0}][{1}]", itemId, item);
+            //道具系统测试===============
+
             byte[] data = PackageHandler.PackMessage(message);
             sender.SendData(data, 0, data.Length);
             //角色进入

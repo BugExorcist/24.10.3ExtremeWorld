@@ -13,7 +13,7 @@ public class UIMain : MonoSingleton<UIMain>
 
     protected override void OnStart()
     {
-        this.id.text = string.Format("ID:{0}", User.Instance.CurrentCharacter.Id);
+        this.id.text = string.Format("ID:{0}", User.Instance.CurrentCharacter.Tid);
         UpdataUIAvatar();
     }
 
@@ -23,11 +23,6 @@ public class UIMain : MonoSingleton<UIMain>
         this.avaterLevel.text = User.Instance.CurrentCharacter.Level.ToString();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void BackToCharacterSelect()
     {

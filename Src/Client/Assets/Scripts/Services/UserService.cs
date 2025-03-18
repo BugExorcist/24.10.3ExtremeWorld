@@ -225,6 +225,10 @@ namespace Services
         public void OnGameEnter(object sender, UserGameEnterResponse response)
         {
             Debug.LogFormat("OnUserGameEnter:{0} [{1}]", response.Result, response.Errormsg);
+            if (response.Result == Result.Success)
+            {
+                ItemManager.Instance.Init(response.Character.Items);
+            }
         }
 
         public void SendGameLeave()
