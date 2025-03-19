@@ -29,6 +29,8 @@ namespace Common.Data
         public float UseCD { get; set; }
         public int Prise { get; set; }
         public int SellPrise { get; set; }
+        public int StackLimit { get; set; }//堆叠限制
+        public string Icon { get; set; }
         public ItemFunction Function { get; set; }
         public int Param { get; set; }
         public List<int> Params { get; set; }
