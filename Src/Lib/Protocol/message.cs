@@ -71,7 +71,7 @@ namespace SkillBridge.Message
         [global::ProtoBuf.ProtoMember(10)]
         public global::System.Collections.Generic.List<NItemInfo> Items { get; } = new global::System.Collections.Generic.List<NItemInfo>();
 
-        [global::ProtoBuf.ProtoMember(11, Name = @"bag")]
+        [global::ProtoBuf.ProtoMember(11)]
         public NBagInfo Bag { get; set; }
 
     }
@@ -502,8 +502,8 @@ namespace SkillBridge.Message
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"bag")]
-        public NBagInfo Bag { get; set; }
+        [global::ProtoBuf.ProtoMember(1)]
+        public NBagInfo BagInfo { get; set; }
 
     }
 
@@ -581,10 +581,10 @@ namespace SkillBridge.Message
     [global::ProtoBuf.ProtoContract(Name = @"ITEM_TYPE")]
     public enum ItemType
     {
-        [global::ProtoBuf.ProtoEnum(Name = @"NONE")]
-        None = 0,
-        [global::ProtoBuf.ProtoEnum(Name = @"MORMAL")]
-        Mormal = 1,
+        [global::ProtoBuf.ProtoEnum(Name = @"NORMAL")]
+        Normal = 0,
+        [global::ProtoBuf.ProtoEnum(Name = @"MATERIAL")]
+        Material = 1,
         [global::ProtoBuf.ProtoEnum(Name = @"TSAK")]
         Tsak = 2,
     }

@@ -48,8 +48,8 @@ enum ENTITY_EVENT
 
 enum ITEM_TYPE
 {
-	NONE = 0;
-	MORMAL = 1;
+	NORMAL = 0;
+	MATERIAL = 1;
 	TSAK = 2;//任务道具
 }
 
@@ -74,7 +74,7 @@ message NCharacterInfo {
 	NEntity entity = 8;
 
 	repeated NItemInfo Items = 10;//repeated 相当于定义了一个数组
-	NBagInfo bag = 11;
+	NBagInfo Bag = 11;
 }
 
 message NItemInfo
@@ -258,7 +258,7 @@ message MapTeleportRequest
 //背包保存
 message BagSaveRequest
 {
-	NBagInfo bag = 1;
+	NBagInfo BagInfo = 1;
 }
 
 message BagSaveResponse

@@ -113,6 +113,12 @@ namespace GameServer.Services
                 MapPosY = 4000,
                 MapPosZ = 810,
             };
+            //背包初始化
+            var bag = new TCharacterBag();
+            bag.Owner = character;
+            bag.Items = new byte[0];
+            bag.Unlocked = 20;
+            character.Bag = DBService.Instance.Entities.TCharacterBags.Add(bag);
 
             character = DBService.Instance.Entities.Characters.Add(character);
             sender.Session.User.Player.Characters.Add(character);
@@ -154,20 +160,27 @@ namespace GameServer.Services
             message.Response.gameEnter.Character = character.Info;
 
             //道具系统测试===============
-            int itemId = 2;
+            int itemId = 1;
             bool HasItem = character.ItemManager.HasItem(itemId);
             Log.InfoFormat("HasItem:[{0}],{1}", itemId, HasItem);
             if (HasItem)
             {
-                character.ItemManager.RemoveItem(itemId, 1);
+                //character.ItemManager.RemoveItem(itemId, 1);
+
             }
             else
             {
-                character.ItemManager.AddItem(itemId, 5);
+                character.ItemManager.AddItem(1, 200);
+                character.ItemManager.AddItem(2, 100);
+                character.ItemManager.AddItem(3, 30);
+                character.ItemManager.AddItem(4, 120);
             }
             Models.Item item = character.ItemManager.GetItem(itemId);
             Log.InfoFormat("Item[{0}][{1}]", itemId, item);
-            //道具系统测试===============
+
+            DBService.Instance.Save();
+
+
 
             byte[] data = PackageHandler.PackMessage(message);
             sender.SendData(data, 0, data.Length);

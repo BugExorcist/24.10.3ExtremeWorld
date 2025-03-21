@@ -8,9 +8,9 @@ public class UIManager : Singleton<UIManager>
     //Class
     class UIElement 
     {
-        public string Resources;
+        public string Resources;//资源路径
         public bool Cache;
-        public GameObject Instance;
+        public GameObject Instance;//预制体
     }
 
     private Dictionary<Type, UIElement> UIResources = new Dictionary<Type, UIElement>();
@@ -18,6 +18,7 @@ public class UIManager : Singleton<UIManager>
     public UIManager()
     {
         this.UIResources.Add(typeof(UITest), new UIElement() { Resources = "UI/UITest", Cache = true });
+        this.UIResources.Add(typeof(UIBag), new UIElement() { Resources = "UI/UIBag", Cache = true });
     }
 
     ~UIManager()
