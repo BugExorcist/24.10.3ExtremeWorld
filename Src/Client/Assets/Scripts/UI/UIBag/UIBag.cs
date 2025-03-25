@@ -9,11 +9,13 @@ using UnityEngine.UI;
 
 public class UIBag : UIWindow
 {
+    public TMP_Text title;
+
     public TMP_Text money;
 
     public Transform[] pages;
 
-    public GameObject bagItems;//UIItem的预制体
+    public GameObject bagItems;//UIBagItem的预制体
 
     List<Image> slots;//每个格子的Image
 
@@ -50,10 +52,6 @@ public class UIBag : UIWindow
         yield return null;
     }
 
-    public void SetTitle(string title)
-    {
-        this.money.text = User.Instance.CurrentCharacter.Id.ToString();
-    }
 
     public void OnReset()
     {

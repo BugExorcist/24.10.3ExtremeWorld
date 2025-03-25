@@ -72,7 +72,7 @@ message NCharacterInfo {
 	int32 level = 6;
 	int32 mapId = 7;
 	NEntity entity = 8;
-
+	int64 gold = 9;//金钱
 	repeated NItemInfo Items = 10;//repeated 相当于定义了一个数组
 	NBagInfo Bag = 11;
 }
@@ -142,7 +142,7 @@ message NetMessageRequest{
 	MapEntitySyncRequest mapEntitySync = 8;
 	MapTeleportRequest mapTeleport = 9;
 
-	FirstTestRequest firsRequest = 10;
+	ItemBuyRequest itemBuy = 10;
 }
 
 message NetMessageResponse{
@@ -156,6 +156,8 @@ message NetMessageResponse{
 	MapCharacterLeaveResponse mapCharacterLeave = 7;
 
 	MapEntitySyncResponse mapEntitySync = 8;
+
+	ItemBuyResponce itemBuy = 10;
 	
 }
 
@@ -253,6 +255,18 @@ message MapEntitySyncResponse
 message MapTeleportRequest
 {
 	int32 teleporterId = 1;
+}
+
+message ItemBuyRequest
+{
+	int32 shopId = 1;
+	int32 shopItemId = 2;
+}
+
+message ItemBuyResponce
+{
+	RESULT result = 1;
+	string errormsg = 2;
 }
 
 //背包保存

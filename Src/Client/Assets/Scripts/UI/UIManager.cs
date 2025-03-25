@@ -9,7 +9,7 @@ public class UIManager : Singleton<UIManager>
     class UIElement 
     {
         public string Resources;//资源路径
-        public bool Cache;
+        public bool Cache;//true:UI关闭时不会被销毁，只会隐藏  false：关闭时候会被销毁
         public GameObject Instance;//预制体
     }
 
@@ -18,7 +18,8 @@ public class UIManager : Singleton<UIManager>
     public UIManager()
     {
         this.UIResources.Add(typeof(UITest), new UIElement() { Resources = "UI/UITest", Cache = true });
-        this.UIResources.Add(typeof(UIBag), new UIElement() { Resources = "UI/UIBag", Cache = true });
+        this.UIResources.Add(typeof(UIBag), new UIElement() { Resources = "UI/UIBag", Cache = false });
+        //this.UIResources.Add(typeof(UIShop), new UIElement() { Resources = "UI/UIShop", Cache = false });
     }
 
     ~UIManager()
