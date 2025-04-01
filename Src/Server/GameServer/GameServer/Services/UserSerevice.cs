@@ -109,9 +109,10 @@ namespace GameServer.Services
                 Class = (int)request.Class,
                 TID = (int)request.Class,
                 MapID = 1,
-                MapPosX = 5000,
+                MapPosX = 5000,//初始出生位置
                 MapPosY = 4000,
                 MapPosZ = 810,
+                Gold = 100000,//初始金币10w
             };
             //背包初始化
             var bag = new TCharacterBag();

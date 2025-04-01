@@ -64,5 +64,9 @@ public class UIShop : UIWindow
             MessageBox.Show("请选择要购买的道具", "购买提示");
             return;
         }
+        if (!ShopManager.Instance.BuyItem(this.shop.ID, this.selectedItem.ShopItemID))
+        {
+
+        }
     }
 }

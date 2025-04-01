@@ -37,8 +37,8 @@ public class LoadingManager : MonoBehaviour
         //初始化服务
         MapService.Instance.Init();
         UserService.Instance.Init();
-
-        TestManager.Instance.Init();
+        //TestManager.Instance.Init();
+        ShopManager.Instance.Init();
 
         // 模拟进度条加载
         for (float i = 50;i < 100;)
