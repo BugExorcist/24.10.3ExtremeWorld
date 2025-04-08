@@ -21,6 +21,10 @@ public class UIBag : UIWindow
 
     private void Start()
     {
+        //¼àÌýUI¸üÐÂ
+        User.Instance.OnUpdataGold += UpdataGold;
+        BagManager.Instance.OnUpdateItems += UpdateItems;
+
         if (slots == null)
         {
             slots = new List<Image>();
@@ -41,7 +45,7 @@ public class UIBag : UIWindow
             if (item.ItemId > 0)
             {
                 GameObject go = Instantiate(bagItems, slots[i].transform);
-                var ui = go.GetComponent<UIIconItem>();
+                UIIconItem ui = go.GetComponent<UIIconItem>();
                 var def = ItemManager.Instance.Items[item.ItemId].Define;
                 ui.SetMainIcon(def.Icon, item.Count.ToString());
             }
@@ -53,9 +57,44 @@ public class UIBag : UIWindow
         yield return null;
     }
 
-
     public void OnReset()
     {
         BagManager.Instance.Reset();
+    }
+
+    private void UpdataGold()
+    {
+        this.money.text = User.Instance.CurrentCharacter.Gold.ToString();
+    }
+
+    private void UpdateItems()
+    {
+        for (int i = 0; i < BagManager.Instance.Items.Length; i++)
+        {
+            var item = BagManager.Instance.Items[i];
+            UIIconItem ui = slots[i].transform.GetComponentInChildren<UIIconItem>();
+            if (item.ItemId <= 0 && ui != null)
+            {
+                foreach (Transform chile in slots[i].transform)
+                {
+                    Destroy(chile);
+                }
+            }
+            else if (item.ItemId > 0)
+            {
+                if (ui != null)
+                {
+                    var def = ItemManager.Instance.Items[item.ItemId].Define;
+                    ui.SetMainIcon(def.Icon, item.Count.ToString());
+                }
+                else
+                {
+                    GameObject go = Instantiate(bagItems, slots[i].transform);
+                    ui = go.GetComponent<UIIconItem>();
+                    var def = ItemManager.Instance.Items[item.ItemId].Define;
+                    ui.SetMainIcon(def.Icon, item.Count.ToString());
+                }
+            }
+        }
     }
 }

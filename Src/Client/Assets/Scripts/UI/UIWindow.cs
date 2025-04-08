@@ -84,4 +84,6 @@ public abstract class UIWindow : MonoBehaviour, IBeginDragHandler, IDragHandler
         }
         return false;
     }
+
+    public virtual void FlashUI() { }
 }

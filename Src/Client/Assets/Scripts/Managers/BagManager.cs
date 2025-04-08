@@ -16,6 +16,8 @@ namespace Managers
 
         NBagInfo Info;
 
+        public event Action OnUpdateItems;
+
         unsafe public void Init(NBagInfo info)
         {
             this.Info = info;
@@ -82,6 +84,60 @@ namespace Managers
                 }
             }
             return this.Info;
+        }
+
+        public void AddItem(int itemId, int count)
+        {
+            ushort addCount = (ushort)count;
+            for(int i = 0; i < Items.Length; i++)
+            {
+                if (this.Items[i].ItemId == itemId)
+                {
+                    ushort canAdd = (ushort)(DataManager.Instance.Items[itemId].StackLimit - this.Items[i].Count);
+                    if (canAdd > addCount)
+                    {
+                        this.Items[i].Count += addCount;
+                        addCount = 0;
+                        break;
+                    }
+                    else
+                    {
+                        this.Items[i].Count += canAdd;
+                        addCount -= canAdd;
+                    }
+                }
+            }
+            if (addCount > 0)
+            {
+                for(int i = 0; i < Items.Length; i++)
+                {
+                    if (this.Items[i].ItemId == 0)
+                    {
+                        this.Items[i].ItemId = (ushort)itemId;
+                        if (DataManager.Instance.Items[itemId].StackLimit >= addCount)
+                        {
+                            this.Items[i].Count = addCount;
+                            addCount = 0;
+                            break;
+                        }
+                        else
+                        {
+                            this.Items[i].Count = (ushort)DataManager.Instance.Items[itemId].StackLimit;
+                            addCount -= (ushort)DataManager.Instance.Items[itemId].StackLimit;
+                        }
+                    }
+                }
+                if (addCount > 0)
+                {
+                    MessageBox.Show("无法拿下更多东西", "提示", MessageBoxType.Error, "确定");
+                }
+            }
+            //通知UI更新
+            OnUpdateItems?.Invoke();
+        }
+        public void RemoveItem(int itemId, int count)
+        {
+            throw new NotImplementedException();
         }
     }
 }

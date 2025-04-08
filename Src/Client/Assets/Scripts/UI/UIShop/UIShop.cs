@@ -22,6 +22,9 @@ public class UIShop : UIWindow
 
     private void Start()
     {
+        //¼àÌýUI¸üÐÂ
+        User.Instance.OnUpdataGold += UpdataGold;
+
         StartCoroutine(InitItems());
     }
 
@@ -66,7 +69,12 @@ public class UIShop : UIWindow
         }
         if (!ShopManager.Instance.BuyItem(this.shop.ID, this.selectedItem.ShopItemID))
         {
-
+            MessageBox.Show("¹ºÂòÊ§°Ü");
         }
+    }
+
+    private void UpdataGold()
+    {
+        this.money.text = User.Instance.CurrentCharacter.Gold.ToString();
     }
 }

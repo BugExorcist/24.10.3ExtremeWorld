@@ -11,6 +11,7 @@ namespace Models
     {
         SkillBridge.Message.NUserInfo userInfo;
 
+        public event Action OnUpdataGold;
 
         public SkillBridge.Message.NUserInfo Info
         {
@@ -21,6 +22,13 @@ namespace Models
         public void SetupUserInfo(SkillBridge.Message.NUserInfo info)
         {
             this.userInfo = info;
+        }
+
+        public void AddGold(int value)
+        {
+            this.CurrentCharacter.Gold += value;
+            //通知UI刷新
+            OnUpdataGold?.Invoke();
         }
 
         public MapDefine CurrentMapData { get; set; }

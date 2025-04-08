@@ -20,7 +20,8 @@ namespace GameServer
             UserService.Instance.Init();
             DataManager.Instance.Load();
             MapServices.Instance.Init();
-            CharacterManager.Instance.Init();
+            ItemService.Instance.Init();
+            //CharacterManager.Instance.Init();
             thread = new Thread(new ThreadStart(this.Update));
 
             return true;

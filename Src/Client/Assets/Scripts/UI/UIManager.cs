@@ -6,7 +6,7 @@ using UnityEngine;
 public class UIManager : Singleton<UIManager>
 {
     //Class
-    class UIElement 
+    class UIElement
     {
         public string Resources;//资源路径
         public bool Cache;//true:UI关闭时不会被销毁，只会隐藏  false：关闭时候会被销毁

@@ -32,13 +32,10 @@ namespace GameServer.Services
 
         internal void SendEntityUpdate(NetConnection<NetSession> connection, NEntitySync entity)
         {
-            NetMessage message = new NetMessage();
-            message.Response = new NetMessageResponse();
-            message.Response.mapEntitySync = new MapEntitySyncResponse();
-            message.Response.mapEntitySync.entitySyncs.Add(entity);
+            connection.Session.Response.mapEntitySync = new MapEntitySyncResponse();
+            connection.Session.Response.mapEntitySync.entitySyncs.Add(entity);
 
-            byte[] data = PackageHandler.PackMessage(message);
-            connection.SendData(data, 0, data.Length);
+            connection.SendResponse();
         }
 
         private void OnMapTeleporter(NetConnection<NetSession> sender, MapTeleportRequest request)
@@ -62,8 +59,6 @@ namespace GameServer.Services
             character.Position = target.Position;
             character.Direction = target.Direction;
             MapManager.Instance[target.MapID].CharacterEnter(sender, character);
-
-
         }
     }
 }
