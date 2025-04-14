@@ -228,8 +228,12 @@ namespace Services
             Debug.LogFormat("OnUserGameEnter:{0} [{1}]", response.Result, response.Errormsg);
             if (response.Result == Result.Success)
             {
-                ItemManager.Instance.Init(response.Character.Items);
-                BagManager.Instance.Init(response.Character.Bag);
+                if (response.Character != null)
+                {
+                    ItemManager.Instance.Init(response.Character.Items);
+                    BagManager.Instance.Init(response.Character.Bag);
+                    EquipManager.Instance.Init(response.Character.Equips);
+                }
             }
         }
 

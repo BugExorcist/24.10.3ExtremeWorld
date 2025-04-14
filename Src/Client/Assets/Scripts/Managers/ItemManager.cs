@@ -11,7 +11,7 @@ namespace Managers
 {
     public class ItemManager : Singleton<ItemManager>
     {
-        public Dictionary<int, Item> Items = new Dictionary<int, Item>();
+        public Dictionary<int, Item> Items = new Dictionary<int, Item>();//ID:Item
         internal void Init(List<NItemInfo> items)
         {
             this.Items.Clear();

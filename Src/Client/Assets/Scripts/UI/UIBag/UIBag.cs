@@ -36,7 +36,13 @@ public class UIBag : UIWindow
         StartCoroutine(InitBags());
     }
 
-    IEnumerator InitBags()
+    private void OnDestroy()
+    {
+        User.Instance.OnUpdataGold -= UpdataGold;
+        BagManager.Instance.OnUpdateItems -= UpdateItems;
+    }
+
+        IEnumerator InitBags()
     {
         this.money.text = User.Instance.CurrentCharacter.Gold.ToString();
         for (int i = 0; i < BagManager.Instance.Items.Length; i++)

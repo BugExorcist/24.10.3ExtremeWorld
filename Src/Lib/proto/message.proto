@@ -339,7 +339,7 @@ message ItemEquipRequest
 {
 	int32 slot = 1;
 	int32 itemId = 2;
-	bool isEquip = 2; //0穿1脱
+	bool isEquip = 3; //0穿1脱
 }
 
 message ItemEquipResponce

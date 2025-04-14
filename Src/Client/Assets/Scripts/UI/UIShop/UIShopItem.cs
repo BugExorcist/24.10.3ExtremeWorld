@@ -12,6 +12,7 @@ public class UIShopItem : MonoBehaviour, ISelectHandler
     public TMP_Text title;
     public TMP_Text price;
     public TMP_Text count;
+    public TMP_Text limitCategory;//¿‡–Õ
 
     public Image background;
     public Sprite nurmalBg;
@@ -42,8 +43,9 @@ public class UIShopItem : MonoBehaviour, ISelectHandler
         this.item = DataManager.Instance.Items[this.ShopItem.ItemID];
 
         this.title.text = this.item.Name;
-        this.count.text = ShopItem.Count.ToString();
+        this.count.text = "x" + ShopItem.Count.ToString();
         this.price.text = ShopItem.Prise.ToString();
+        this.limitCategory.text = this.item.Category;
         this.icon.overrideSprite = Resloader.Load<Sprite>(item.Icon);
     }
 

@@ -28,6 +28,10 @@ public class UIShop : UIWindow
         StartCoroutine(InitItems());
     }
 
+    private void OnDestroy()
+    {
+        User.Instance.OnUpdataGold -= UpdataGold;
+    }
     IEnumerator InitItems()
     {
         foreach (var kv in DataManager.Instance.ShopItems[shop.ID])

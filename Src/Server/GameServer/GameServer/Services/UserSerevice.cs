@@ -107,6 +107,7 @@ namespace GameServer.Services
                 MapPosY = 4000,
                 MapPosZ = 810,
                 Gold = 100000,//初始金币10w
+                Equips = new byte[28]// 7 * sizeof(int)
             };
             //背包初始化
             var bag = new TCharacterBag();
@@ -116,6 +117,22 @@ namespace GameServer.Services
             character.Bag = DBService.Instance.Entities.TCharacterBags.Add(bag);
 
             character = DBService.Instance.Entities.Characters.Add(character);
+
+            //添加初始道具============= 各20红蓝瓶
+            character.Items.Add(new TCharacterItem()
+            {   
+                Owner = character,
+                ItemID = 1,
+                ItemCount = 20
+            });
+            character.Items.Add(new TCharacterItem()
+            {
+                Owner = character,
+                ItemID = 2,
+                ItemCount = 20
+            });
+            //===========================
+
             sender.Session.User.Player.Characters.Add(character);
             DBService.Instance.Entities.SaveChanges();
 
@@ -149,27 +166,26 @@ namespace GameServer.Services
 
             sender.Session.Response.gameEnter.Character = character.Info;
 
-            //道具系统测试===============
-            int itemId = 1;
-            bool HasItem = character.ItemManager.HasItem(itemId);
-            Log.InfoFormat("HasItem:[{0}],{1}", itemId, HasItem);
-            if (HasItem)
-            {
-                //character.ItemManager.RemoveItem(itemId, 1);
-
-            }
-            else
-            {
-                character.ItemManager.AddItem(1, 200);
-                character.ItemManager.AddItem(2, 100);
-                character.ItemManager.AddItem(3, 30);
-                character.ItemManager.AddItem(4, 120);
-            }
-            Models.Item item = character.ItemManager.GetItem(itemId);
-            Log.InfoFormat("Item[{0}][{1}]", itemId, item);
-
-            DBService.Instance.Save();
-
+            ////道具系统测试===============
+            //int itemId = 1;
+            //bool HasItem = character.ItemManager.HasItem(itemId);
+            //Log.InfoFormat("HasItem:[{0}],{1}", itemId, HasItem);
+            //if (HasItem)
+            //{
+            //    //character.ItemManager.RemoveItem(itemId, 1);
+            //}
+            //else
+            //{
+            //    character.ItemManager.AddItem(1, 20);
+            //    character.ItemManager.AddItem(2, 100);
+            //    character.ItemManager.AddItem(3, 30);
+            //    character.ItemManager.AddItem(4, 120);
+            //}
+            //Models.Item item = character.ItemManager.GetItem(itemId);
+            //Log.InfoFormat("Item[{0}][{1}]", itemId, item);
+            //DBService.Instance.Save();
+            ////=========================
+            
             sender.SendResponse();
             //角色进入
             sender.Session.Character = character;
