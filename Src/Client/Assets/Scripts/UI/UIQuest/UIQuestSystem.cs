@@ -1,4 +1,5 @@
 using Common.Data;
+using Managers;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ public class UIQuestSystem : UIWindow
     {
         this.listMain.onItemSelected += this.OnQuestSelected;
         this.listBranch.onItemSelected += this.OnQuestSelected;
-        //this.Tabs.onTabSelect += OnSelectTab;
+        this.Tabs.onTabSelect += OnSelectTab;
         RefreshUI();
     }
 
@@ -30,7 +31,7 @@ public class UIQuestSystem : UIWindow
     {
         this.listMain.onItemSelected -= this.OnQuestSelected;
         this.listBranch.onItemSelected -= this.OnQuestSelected;
-        //this.Tabs.onTabSelect -= OnSelectTab;
+        this.Tabs.onTabSelect -= OnSelectTab;
     }
     private void OnQuestSelected(ListView.ListViewItem item)
     {
@@ -52,27 +53,27 @@ public class UIQuestSystem : UIWindow
 
     private void InitAllQuestItems()
     {
-        //foreach (var kv in QuestManager.Instance.allQuests)
-        //{
-        //    if (showAvailableList)
-        //    {   //有网络信息，表示任务已经接取，跳过
-        //        if (kv.Value.Info != null)
-        //            continue;
-        //    }
-        //    else
-        //    {   //此时有网络信息。表示任务未接取，跳过
-        //        if (kv.Value.Info == null)
-        //            continue;
-        //    }
+        foreach (var kv in QuestManager.Instance.allQuests)
+        {
+            if (showAvailableList)
+            {   //有网络信息，表示任务已经接取，跳过
+                if (kv.Value.Info != null)
+                    continue;
+            }
+            else
+            {   //此时有网络信息。表示任务未接取，跳过
+                if (kv.Value.Info == null)
+                    continue;
+            }
 
-        //    GameObject go = Instantiate(itemPrefab, kv.Value.Define.Type == QuestType.Main ? this.listMain.transform : this.listBranch.transform);
-        //    UIQuestItem item = go.GetComponent<UIQuestItem>();
-        //    item.SetQuestInfo(kv.Value);
-        //    if (kv.Value.Define.Type == QuestType.Main)
-        //        this.listMain.AddIten(item);
-        //    else
-        //        this.listBranch.AddIten(item);
-        //}
+            GameObject go = Instantiate(itemPrefab, kv.Value.Define.Type == QuestType.Main ? this.listMain.transform : this.listBranch.transform);
+            UIQuestItem item = go.GetComponent<UIQuestItem>();
+            item.SetQuestInfo(kv.Value);
+            if (kv.Value.Define.Type == QuestType.Main)
+                this.listMain.AddIten(item);
+            else
+                this.listBranch.AddIten(item);
+        }
     }
     void ClearAllQuestList()
     {

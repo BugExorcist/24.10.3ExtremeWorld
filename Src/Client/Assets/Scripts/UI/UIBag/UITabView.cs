@@ -2,11 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class UITabView : MonoBehaviour
 {
     public UITabButton[] tabButtons;
     public GameObject[] tabPages;
+
+    public UnityAction<int> onTabSelect;
 
     public int index = -1;
 
@@ -25,12 +28,13 @@ public class UITabView : MonoBehaviour
     {
         if (this.index != index)
         {
-            this.index = index;
             for (int i = 0; i < tabButtons.Length; i++)
             {
-                tabPages[i].SetActive(index == i);
                 tabButtons[i].Select(index == i);
+                if (i < tabPages.Length - 1)
+                    tabPages[i].SetActive(i == index);
             }
+            onTabSelect?.Invoke(index);
         }
     }
 }

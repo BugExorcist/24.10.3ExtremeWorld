@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8252981308944594485}
   - component: {fileID: 4034142810828359883}
   - component: {fileID: 968797098739298641}
+  - component: {fileID: 5800557957875168684}
   m_Layer: 5
   m_Name: UIQuestItem
   m_TagString: Untagged
@@ -103,6 +104,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5800557957875168684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2577021571071360423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae9ee3e2e85401498736ae9d0263936, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 0}
+  title: {fileID: 8190072688429518184}
+  background: {fileID: 764134656740141629}
+  selectedBg: {fileID: 21300000, guid: c0b9c81710487da458030049dab05e22, type: 3}
 --- !u!1 &5017295929289828713
 GameObject:
   m_ObjectHideFlags: 0

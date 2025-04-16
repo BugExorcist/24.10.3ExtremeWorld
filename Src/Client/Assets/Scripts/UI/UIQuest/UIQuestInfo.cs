@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using TMPro;
 using Models;
 using SkillBridge.Message;
+using System.ComponentModel;
 
 public class UIQuestInfo : MonoBehaviour 
 {
@@ -34,7 +35,7 @@ public class UIQuestInfo : MonoBehaviour
 
         foreach (var fitter in this.GetComponentsInChildren<ContentSizeFitter>())
         {
-            fitter.SetLayoutHorizontal();
+            fitter.SetLayoutVertical();
         }
     }
 

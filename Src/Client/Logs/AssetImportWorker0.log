@@ -15,7 +15,7 @@ F:/Unity/Projects/24.10.3ExtremeWorld/Src/Client
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-62835
+56666
 Successfully changed project path to: F:/Unity/Projects/24.10.3ExtremeWorld/Src/Client
 F:/Unity/Projects/24.10.3ExtremeWorld/Src/Client
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -49,12 +49,12 @@ F:/Unity/Projects/24.10.3ExtremeWorld/Src/Client
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [20080] Host "[IP] 66.183.199.85 [Port] 0 [Flags] 2 [Guid] 885585548 [EditorId] 885585548 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-H7TM5C4L) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [33152] Host "[IP] 66.183.219.187 [Port] 0 [Flags] 2 [Guid] 2338036867 [EditorId] 2338036867 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-H7TM5C4L) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [20080] Host "[IP] 66.183.199.85 [Port] 0 [Flags] 2 [Guid] 885585548 [EditorId] 885585548 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-H7TM5C4L) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [33152] Host "[IP] 66.183.219.187 [Port] 0 [Flags] 2 [Guid] 2338036867 [EditorId] 2338036867 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-H7TM5C4L) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
 [Physics::Module] Initialized MultithreadedJobDispatcher with 15 workers.
-Refreshing native plugins compatible for Editor in 69.70 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 51.27 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.3.30f1c1 (a6dc00fbe362)
 [Subsystems] Discovering subsystems at path C:/Apps/Unity Hub/Unity/Hub/Editor/2022.3.30f1c1/Editor/Data/Resources/UnitySubsystems
@@ -70,47 +70,47 @@ Initialize mono
 Mono path[0] = 'C:/Apps/Unity Hub/Unity/Hub/Editor/2022.3.30f1c1/Editor/Data/Managed'
 Mono path[1] = 'C:/Apps/Unity Hub/Unity/Hub/Editor/2022.3.30f1c1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Apps/Unity Hub/Unity/Hub/Editor/2022.3.30f1c1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56384
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56880
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Apps/Unity Hub/Unity/Hub/Editor/2022.3.30f1c1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: C:/Apps/Unity Hub/Unity/Hub/Editor/2022.3.30f1c1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.017464 seconds.
-- Loaded All Assemblies, in  0.387 seconds
+Registered in 0.019622 seconds.
+- Loaded All Assemblies, in  0.415 seconds
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
-Android Extension - Scanning For ADB Devices 409 ms
+Android Extension - Scanning For ADB Devices 517 ms
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.759 seconds
-Domain Reload Profiling: 1141ms
-	BeginReloadAssembly (129ms)
+- Finished resetting the current domain, in  0.883 seconds
+Domain Reload Profiling: 1293ms
+	BeginReloadAssembly (131ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (30ms)
-	RebuildNativeTypeToScriptingClass (9ms)
-	initialDomainReloadingComplete (76ms)
-	LoadAllAssembliesAndSetupDomain (137ms)
-		LoadAssemblies (124ms)
+	RebuildCommonClasses (36ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (79ms)
+	LoadAllAssembliesAndSetupDomain (153ms)
+		LoadAssemblies (127ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (135ms)
-			TypeCache.Refresh (133ms)
-				TypeCache.ScanAssembly (120ms)
+		AnalyzeDomain (149ms)
+			TypeCache.Refresh (147ms)
+				TypeCache.ScanAssembly (130ms)
 			ScanForSourceGeneratedMonoScriptInfo (0ms)
 			ResolveRequiredComponents (1ms)
-	FinalizeReload (759ms)
+	FinalizeReload (884ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (699ms)
+		SetupLoadedEditorAssemblies (817ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (525ms)
+			InitializePlatformSupportModulesInManaged (636ms)
 			SetLoadedEditorAssemblies (5ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (2ms)
-			ProcessInitializeOnLoadAttributes (118ms)
-			ProcessInitializeOnLoadMethodAttributes (50ms)
+			BeforeProcessingInitializeOnLoad (3ms)
+			ProcessInitializeOnLoadAttributes (124ms)
+			ProcessInitializeOnLoadMethodAttributes (49ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -121,8 +121,8 @@ Begin MonoManager ReloadAssembly
 Duplicate assembly 'log4net.dll' with different versions detected, using 'Assets/References/log4net.dll, AssemblyName=log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=null' and ignoring 'Packages/com.unity.collab-proxy/Lib/Editor/PlasticSCM/log4netPlastic.dll, AssemblyName=log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a'.Duplicate assembly 'Newtonsoft.Json.dll' with different versions detected, using 'Packages/com.unity.nuget.newtonsoft-json/Runtime/Newtonsoft.Json.dll, AssemblyName=Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' and ignoring 'Assets/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll, AssemblyName=Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null'.Symbol file LoadedFromMemory is not a mono symbol file
 Symbol file LoadedFromMemory is not a mono symbol file
 Symbol file LoadedFromMemory is not a mono symbol file
-- Loaded All Assemblies, in  0.787 seconds
-Refreshing native plugins compatible for Editor in 25.43 ms, found 2 plugins.
+- Loaded All Assemblies, in  0.777 seconds
+Refreshing native plugins compatible for Editor in 23.38 ms, found 2 plugins.
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
 Package Manager log level set to [2]
@@ -130,47 +130,47 @@ Package Manager log level set to [2]
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  1.037 seconds
-Domain Reload Profiling: 1813ms
-	BeginReloadAssembly (155ms)
+- Finished resetting the current domain, in  1.055 seconds
+Domain Reload Profiling: 1822ms
+	BeginReloadAssembly (173ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (5ms)
+		DisableScriptedObjects (6ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (31ms)
-	RebuildCommonClasses (28ms)
-	RebuildNativeTypeToScriptingClass (8ms)
-	initialDomainReloadingComplete (48ms)
-	LoadAllAssembliesAndSetupDomain (537ms)
-		LoadAssemblies (485ms)
+		CreateAndSetChildDomain (34ms)
+	RebuildCommonClasses (35ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (62ms)
+	LoadAllAssembliesAndSetupDomain (487ms)
+		LoadAssemblies (435ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (136ms)
-			TypeCache.Refresh (114ms)
-				TypeCache.ScanAssembly (89ms)
+		AnalyzeDomain (144ms)
+			TypeCache.Refresh (120ms)
+				TypeCache.ScanAssembly (94ms)
 			ScanForSourceGeneratedMonoScriptInfo (19ms)
-			ResolveRequiredComponents (3ms)
-	FinalizeReload (1037ms)
+			ResolveRequiredComponents (4ms)
+	FinalizeReload (1056ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (873ms)
+		SetupLoadedEditorAssemblies (902ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (34ms)
-			SetLoadedEditorAssemblies (8ms)
+			InitializePlatformSupportModulesInManaged (35ms)
+			SetLoadedEditorAssemblies (7ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (102ms)
-			ProcessInitializeOnLoadAttributes (550ms)
-			ProcessInitializeOnLoadMethodAttributes (166ms)
-			AfterProcessingInitializeOnLoad (14ms)
+			BeforeProcessingInitializeOnLoad (106ms)
+			ProcessInitializeOnLoadAttributes (560ms)
+			ProcessInitializeOnLoadMethodAttributes (178ms)
+			AfterProcessingInitializeOnLoad (16ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
 		AwakeInstancesAfterBackupRestoration (6ms)
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
-Refreshing native plugins compatible for Editor in 28.07 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 30.52 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2629 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 71 unused Assets / (76.5 KB). Loaded Objects now: 3092.
-Memory consumption went from 132.4 MB to 132.3 MB.
-Total: 8.257300 ms (FindLiveObjects: 0.248300 ms CreateObjectMapping: 0.191100 ms MarkObjects: 7.602300 ms  DeleteObjects: 0.214400 ms)
+Unloading 2637 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 71 unused Assets / (76.4 KB). Loaded Objects now: 3100.
+Memory consumption went from 132.5 MB to 132.4 MB.
+Total: 10.558000 ms (FindLiveObjects: 0.317900 ms CreateObjectMapping: 0.261700 ms MarkObjects: 9.689900 ms  DeleteObjects: 0.287100 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
@@ -188,642 +188,90 @@ AssetImportParameters requested are different than current active one (requested
   custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 7578.917355 seconds.
-  path: Assets/Scripts/Assets
-  artifactKey: Guid(ab984602f1a160544a82185268ab980f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Assets using Guid(ab984602f1a160544a82185268ab980f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ac1dbc3d8a7e9c9fc2898b784a49ae94') in 0.002996 seconds
+  Time since last request: 4521.627408 seconds.
+  path: Assets/Resources/UI/UIQuestDialog.prefab
+  artifactKey: Guid(8ac21bf02e7979d49b1db650290680bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/UI/UIQuestDialog.prefab using Guid(8ac21bf02e7979d49b1db650290680bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e4c0a14906ba431214c4a4a3ae47650c') in 0.276696 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
+Number of asset objects unloaded after import = 151
 ========================================================================
 Received Import Request.
-  Time since last request: 295.256592 seconds.
-  path: Assets/Resources/UI/UIQuestItem.prefab
-  artifactKey: Guid(50f504d3f33173240a5f86120f41e91b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestItem.prefab using Guid(50f504d3f33173240a5f86120f41e91b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f1b1776c27aef7b378eeba8cf5ceee0b') in 0.234847 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 19
-========================================================================
-Received Import Request.
-  Time since last request: 27.686292 seconds.
+  Time since last request: 32.527248 seconds.
   path: Assets/Resources/UI/UIQuestSystem.prefab
   artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '837d5a47b23e8e18ab7c85c1f246ac66') in 0.250233 seconds
+Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '92d938ad2085d017e348b31e74d77dbc') in 0.229367 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 251
+Number of asset objects unloaded after import = 288
+========================================================================
+Received Import Request.
+  Time since last request: 10.145540 seconds.
+  path: Assets/Resources/UI/UIQuestSystem.prefab
+  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a97430099374a94f85cfc11b5f72df7c') in 0.221059 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 288
+========================================================================
+Received Import Request.
+  Time since last request: 0.589011 seconds.
+  path: Assets/Resources/UI/UIQuestSystem.prefab
+  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f8e715128438f3ccf2219c3e8f8dc4bb') in 0.276419 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 288
 ========================================================================
 Received Prepare
 Begin MonoManager ReloadAssembly
 Duplicate assembly 'log4net.dll' with different versions detected, using 'Assets/References/log4net.dll, AssemblyName=log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=null' and ignoring 'Packages/com.unity.collab-proxy/Lib/Editor/PlasticSCM/log4netPlastic.dll, AssemblyName=log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a'.Duplicate assembly 'Newtonsoft.Json.dll' with different versions detected, using 'Packages/com.unity.nuget.newtonsoft-json/Runtime/Newtonsoft.Json.dll, AssemblyName=Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' and ignoring 'Assets/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll, AssemblyName=Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null'.Symbol file LoadedFromMemory is not a mono symbol file
 Symbol file LoadedFromMemory is not a mono symbol file
 Symbol file LoadedFromMemory is not a mono symbol file
-- Loaded All Assemblies, in  1.658 seconds
-Refreshing native plugins compatible for Editor in 37.82 ms, found 2 plugins.
+- Loaded All Assemblies, in  0.991 seconds
+Refreshing native plugins compatible for Editor in 26.02 ms, found 2 plugins.
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
 [Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  2.143 seconds
-Domain Reload Profiling: 3779ms
-	BeginReloadAssembly (878ms)
+- Finished resetting the current domain, in  1.620 seconds
+Domain Reload Profiling: 2601ms
+	BeginReloadAssembly (574ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (8ms)
+		DisableScriptedObjects (6ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (70ms)
-	RebuildCommonClasses (47ms)
-	RebuildNativeTypeToScriptingClass (13ms)
-	initialDomainReloadingComplete (80ms)
-	LoadAllAssembliesAndSetupDomain (617ms)
-		LoadAssemblies (642ms)
+		CreateAndSetChildDomain (48ms)
+	RebuildCommonClasses (34ms)
+	RebuildNativeTypeToScriptingClass (11ms)
+	initialDomainReloadingComplete (46ms)
+	LoadAllAssembliesAndSetupDomain (315ms)
+		LoadAssemblies (386ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (121ms)
-			TypeCache.Refresh (82ms)
-				TypeCache.ScanAssembly (68ms)
-			ScanForSourceGeneratedMonoScriptInfo (30ms)
-			ResolveRequiredComponents (6ms)
-	FinalizeReload (2143ms)
+		AnalyzeDomain (11ms)
+			TypeCache.Refresh (6ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (3ms)
+	FinalizeReload (1620ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (1220ms)
+		SetupLoadedEditorAssemblies (870ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (47ms)
-			SetLoadedEditorAssemblies (7ms)
-			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (164ms)
-			ProcessInitializeOnLoadAttributes (767ms)
-			ProcessInitializeOnLoadMethodAttributes (209ms)
-			AfterProcessingInitializeOnLoad (25ms)
-			EditorAssembliesLoaded (1ms)
-		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (10ms)
-Refreshing native plugins compatible for Editor in 38.97 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2603 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 65 unused Assets / (51.5 KB). Loaded Objects now: 3097.
-Memory consumption went from 126.3 MB to 126.3 MB.
-Total: 9.726100 ms (FindLiveObjects: 0.239100 ms CreateObjectMapping: 0.209900 ms MarkObjects: 9.137400 ms  DeleteObjects: 0.138300 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-========================================================================
-Received Prepare
-Begin MonoManager ReloadAssembly
-Duplicate assembly 'log4net.dll' with different versions detected, using 'Assets/References/log4net.dll, AssemblyName=log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=null' and ignoring 'Packages/com.unity.collab-proxy/Lib/Editor/PlasticSCM/log4netPlastic.dll, AssemblyName=log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a'.Duplicate assembly 'Newtonsoft.Json.dll' with different versions detected, using 'Packages/com.unity.nuget.newtonsoft-json/Runtime/Newtonsoft.Json.dll, AssemblyName=Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' and ignoring 'Assets/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll, AssemblyName=Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null'.Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file LoadedFromMemory is not a mono symbol file
-- Loaded All Assemblies, in  1.835 seconds
-Refreshing native plugins compatible for Editor in 42.62 ms, found 2 plugins.
-Native extension for WindowsStandalone target not found
-Native extension for Android target not found
-[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  2.464 seconds
-Domain Reload Profiling: 4280ms
-	BeginReloadAssembly (1143ms)
-		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (8ms)
-		BackupInstance (0ms)
-		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (65ms)
-	RebuildCommonClasses (62ms)
-	RebuildNativeTypeToScriptingClass (19ms)
-	initialDomainReloadingComplete (63ms)
-	LoadAllAssembliesAndSetupDomain (528ms)
-		LoadAssemblies (622ms)
-		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (27ms)
-			TypeCache.Refresh (12ms)
-				TypeCache.ScanAssembly (2ms)
-			ScanForSourceGeneratedMonoScriptInfo (9ms)
-			ResolveRequiredComponents (4ms)
-	FinalizeReload (2465ms)
-		ReleaseScriptCaches (0ms)
-		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (1181ms)
-			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (49ms)
-			SetLoadedEditorAssemblies (7ms)
-			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (131ms)
-			ProcessInitializeOnLoadAttributes (752ms)
-			ProcessInitializeOnLoadMethodAttributes (223ms)
-			AfterProcessingInitializeOnLoad (19ms)
-			EditorAssembliesLoaded (0ms)
-		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (14ms)
-Refreshing native plugins compatible for Editor in 43.94 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2604 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 62 unused Assets / (49.3 KB). Loaded Objects now: 3100.
-Memory consumption went from 126.6 MB to 126.5 MB.
-Total: 11.416600 ms (FindLiveObjects: 0.299500 ms CreateObjectMapping: 0.130100 ms MarkObjects: 10.828500 ms  DeleteObjects: 0.156800 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-========================================================================
-Received Prepare
-Begin MonoManager ReloadAssembly
-Duplicate assembly 'log4net.dll' with different versions detected, using 'Assets/References/log4net.dll, AssemblyName=log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=null' and ignoring 'Packages/com.unity.collab-proxy/Lib/Editor/PlasticSCM/log4netPlastic.dll, AssemblyName=log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a'.Duplicate assembly 'Newtonsoft.Json.dll' with different versions detected, using 'Packages/com.unity.nuget.newtonsoft-json/Runtime/Newtonsoft.Json.dll, AssemblyName=Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' and ignoring 'Assets/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll, AssemblyName=Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null'.Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file LoadedFromMemory is not a mono symbol file
-- Loaded All Assemblies, in  1.677 seconds
-Refreshing native plugins compatible for Editor in 38.99 ms, found 2 plugins.
-Native extension for WindowsStandalone target not found
-Native extension for Android target not found
-[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  2.169 seconds
-Domain Reload Profiling: 3829ms
-	BeginReloadAssembly (962ms)
-		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (11ms)
-		BackupInstance (0ms)
-		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (91ms)
-	RebuildCommonClasses (58ms)
-	RebuildNativeTypeToScriptingClass (15ms)
-	initialDomainReloadingComplete (77ms)
-	LoadAllAssembliesAndSetupDomain (547ms)
-		LoadAssemblies (657ms)
-		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (40ms)
-			TypeCache.Refresh (21ms)
-				TypeCache.ScanAssembly (4ms)
-			ScanForSourceGeneratedMonoScriptInfo (11ms)
-			ResolveRequiredComponents (6ms)
-	FinalizeReload (2171ms)
-		ReleaseScriptCaches (0ms)
-		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (1209ms)
-			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (50ms)
+			InitializePlatformSupportModulesInManaged (36ms)
 			SetLoadedEditorAssemblies (8ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (143ms)
-			ProcessInitializeOnLoadAttributes (762ms)
-			ProcessInitializeOnLoadMethodAttributes (224ms)
-			AfterProcessingInitializeOnLoad (21ms)
+			BeforeProcessingInitializeOnLoad (97ms)
+			ProcessInitializeOnLoadAttributes (544ms)
+			ProcessInitializeOnLoadMethodAttributes (171ms)
+			AfterProcessingInitializeOnLoad (14ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (12ms)
-Refreshing native plugins compatible for Editor in 43.01 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2604 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 62 unused Assets / (49.3 KB). Loaded Objects now: 3103.
-Memory consumption went from 126.6 MB to 126.5 MB.
-Total: 12.125500 ms (FindLiveObjects: 0.388800 ms CreateObjectMapping: 0.316900 ms MarkObjects: 11.304500 ms  DeleteObjects: 0.114000 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-========================================================================
-Received Import Request.
-  Time since last request: 1798.282289 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '72cbe6beb59c93e856c13e9ce099516e') in 0.273638 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 251
-========================================================================
-Received Import Request.
-  Time since last request: 45.233765 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c0c84b9712f2df47e2a1647cae8e910e') in 0.263129 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 251
-========================================================================
-Received Import Request.
-  Time since last request: 1.681966 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '628eb2b5f0e81ebb4f1652d4df8f7c59') in 0.251690 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 251
-========================================================================
-Received Import Request.
-  Time since last request: 1.627332 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bfdd282140667498bd8ef9004805d727') in 0.229096 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 251
-========================================================================
-Received Import Request.
-  Time since last request: 1.849891 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '736694f7604923d2f227156dcc936ecf') in 0.209242 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 251
-========================================================================
-Received Import Request.
-  Time since last request: 24.478082 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9ba71cbcb692c94416eb0b9827dfef3c') in 0.258588 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 252
-========================================================================
-Received Import Request.
-  Time since last request: 4.813759 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd7900f47f7c32b97c4359dfbdba1523d') in 0.212355 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 253
-========================================================================
-Received Import Request.
-  Time since last request: 119.061434 seconds.
-  path: Assets/Scripts/UI/UIQuest
-  artifactKey: Guid(aef1dfa51ee39174b94dee0af45a8939) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/UI/UIQuest using Guid(aef1dfa51ee39174b94dee0af45a8939) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c9341992727724364efca839608f7b9c') in 0.001138 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 18.603253 seconds.
-  path: Assets/Scripts/UI/UIQuest/UIQuestSystem.cs
-  artifactKey: Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/UI/UIQuest/UIQuestSystem.cs using Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0e229420407555d77f49b35ac1b65312') in 0.000982 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Prepare
-Begin MonoManager ReloadAssembly
-Duplicate assembly 'log4net.dll' with different versions detected, using 'Assets/References/log4net.dll, AssemblyName=log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=null' and ignoring 'Packages/com.unity.collab-proxy/Lib/Editor/PlasticSCM/log4netPlastic.dll, AssemblyName=log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a'.Duplicate assembly 'Newtonsoft.Json.dll' with different versions detected, using 'Packages/com.unity.nuget.newtonsoft-json/Runtime/Newtonsoft.Json.dll, AssemblyName=Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' and ignoring 'Assets/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll, AssemblyName=Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null'.Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file LoadedFromMemory is not a mono symbol file
-- Loaded All Assemblies, in  1.110 seconds
-Refreshing native plugins compatible for Editor in 28.55 ms, found 2 plugins.
-Native extension for WindowsStandalone target not found
-Native extension for Android target not found
-[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  1.535 seconds
-Domain Reload Profiling: 2633ms
-	BeginReloadAssembly (598ms)
-		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (5ms)
-		BackupInstance (0ms)
-		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (53ms)
-	RebuildCommonClasses (34ms)
-	RebuildNativeTypeToScriptingClass (12ms)
-	initialDomainReloadingComplete (50ms)
-	LoadAllAssembliesAndSetupDomain (403ms)
-		LoadAssemblies (487ms)
-		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (24ms)
-			TypeCache.Refresh (12ms)
-				TypeCache.ScanAssembly (2ms)
-			ScanForSourceGeneratedMonoScriptInfo (8ms)
-			ResolveRequiredComponents (3ms)
-	FinalizeReload (1535ms)
-		ReleaseScriptCaches (0ms)
-		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (857ms)
-			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (39ms)
-			SetLoadedEditorAssemblies (7ms)
-			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (101ms)
-			ProcessInitializeOnLoadAttributes (538ms)
-			ProcessInitializeOnLoadMethodAttributes (157ms)
-			AfterProcessingInitializeOnLoad (13ms)
-			EditorAssembliesLoaded (0ms)
-		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (6ms)
-Refreshing native plugins compatible for Editor in 30.05 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2604 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 65 unused Assets / (51.6 KB). Loaded Objects now: 3107.
-Memory consumption went from 126.4 MB to 126.3 MB.
-Total: 9.834100 ms (FindLiveObjects: 0.251100 ms CreateObjectMapping: 0.101600 ms MarkObjects: 9.337800 ms  DeleteObjects: 0.142400 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-========================================================================
-Received Import Request.
-  Time since last request: 8.167850 seconds.
-  path: Assets/Scripts/UI/UIQuest/UIQuestSystem.cs
-  artifactKey: Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/UI/UIQuest/UIQuestSystem.cs using Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '73ef596d44b3427a6c4ba8fd9930586d') in 0.007189 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 21.655058 seconds.
-  path: Assets/Scripts/UI/UIQuest/UIQuestSystem.cs
-  artifactKey: Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/UI/UIQuest/UIQuestSystem.cs using Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '68cf5a83b849de03b8d1869ae7c3bd99') in 0.001325 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 69.650353 seconds.
-  path: Assets/Scripts/UI/UIQuest/UIQuestSystem.cs
-  artifactKey: Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/UI/UIQuest/UIQuestSystem.cs using Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7c5901c1ca69bb42f13e8e08693362f4') in 0.000894 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 327.492282 seconds.
-  path: Assets/Scripts/UI/UIQuest/UIQuestSystem.cs
-  artifactKey: Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/UI/UIQuest/UIQuestSystem.cs using Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ddccaee4b3bbd8dc3388653da387df0d') in 0.001485 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 127.177597 seconds.
-  path: Assets/Scripts/UI/UIQuest/UIQuestSystem.cs
-  artifactKey: Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/UI/UIQuest/UIQuestSystem.cs using Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f5d5eabbe816a9a2c19fa32a56b2983e') in 0.001015 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 3.868054 seconds.
-  path: Assets/Scripts/UI/UIQuest/UIQuestSystem.cs
-  artifactKey: Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/UI/UIQuest/UIQuestSystem.cs using Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e1a712cffa3c1cd3d612eb5441fce572') in 0.000747 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 6.562628 seconds.
-  path: Assets/Scripts/UI/UIQuest/UIQuestSystem.cs
-  artifactKey: Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/UI/UIQuest/UIQuestSystem.cs using Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9dfeff7720e74695427add8922751889') in 0.001133 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 45.134858 seconds.
-  path: Assets/Scripts/UI/UIQuest/UIQuestSystem.cs
-  artifactKey: Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/UI/UIQuest/UIQuestSystem.cs using Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bda4f00016a720c4bbe5578503192f5c') in 0.000975 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 165.695973 seconds.
-  path: Assets/Scripts/UI/UIQuest/UIQuestSystem.cs
-  artifactKey: Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/UI/UIQuest/UIQuestSystem.cs using Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '991129cf3d15e91f346f9f9e095b7409') in 0.000884 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 213.953080 seconds.
-  path: Assets/Scripts/UI/UIQuest/UIQuestSystem.cs
-  artifactKey: Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/UI/UIQuest/UIQuestSystem.cs using Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '783099f9f974e71ab6c2e390814a805c') in 0.001078 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 34.620062 seconds.
-  path: Assets/Scripts/UI/UIQuest/UIQuestSystem.cs
-  artifactKey: Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/UI/UIQuest/UIQuestSystem.cs using Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6876be244f1fc614e0937be1a8b50b4c') in 0.001138 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 8.368994 seconds.
-  path: Assets/Scripts/UI/UIQuest/UIQuestSystem.cs
-  artifactKey: Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/UI/UIQuest/UIQuestSystem.cs using Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '790d9bd4f47dcaf67b7accca5945306b') in 0.001318 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 15.479645 seconds.
-  path: Assets/Scripts/UI/UIQuest/UIQuestSystem.cs
-  artifactKey: Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/UI/UIQuest/UIQuestSystem.cs using Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c6ee17125ba4e38d6d0fa2f43cd9fd5f') in 0.001087 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 12.290548 seconds.
-  path: Assets/Scripts/UI/UIQuest/UIQuestSystem.cs
-  artifactKey: Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/UI/UIQuest/UIQuestSystem.cs using Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5ecbee1f3b1baba4bb36a1a467fadc82') in 0.000853 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 254.829192 seconds.
-  path: Assets/Scripts/UI/UIQuest/UIQuestSystem.cs
-  artifactKey: Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/UI/UIQuest/UIQuestSystem.cs using Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eb6679a50d167f8c1b80ae6d4d74b4cc') in 0.001110 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 25.100900 seconds.
-  path: Assets/Scripts/UI/UIQuest/UIQuestSystem.cs
-  artifactKey: Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/UI/UIQuest/UIQuestSystem.cs using Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '30ec80ae9a857b2656c245d7d43e3757') in 0.000752 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 71.038910 seconds.
-  path: Assets/Scripts/UI/UIQuest/UIQuestSystem.cs
-  artifactKey: Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/UI/UIQuest/UIQuestSystem.cs using Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e3bfcda41f9b8fd41ae75b05fa0a2196') in 0.001182 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 128.740462 seconds.
-  path: Assets/Scripts/UI/UIQuest/UIQuestSystem.cs
-  artifactKey: Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/UI/UIQuest/UIQuestSystem.cs using Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cf99ad8abbf0fba35f01603facf1e01b') in 0.000966 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 494.345289 seconds.
-  path: Assets/Scripts/UI/UIQuest/UIQuestSystem.cs
-  artifactKey: Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/UI/UIQuest/UIQuestSystem.cs using Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3f6f37dffddd79e9800d2b44ab17ef10') in 0.001253 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 58.142585 seconds.
-  path: Assets/Scripts/UI/UIQuest/UIQuestSystem.cs
-  artifactKey: Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/UI/UIQuest/UIQuestSystem.cs using Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e165fa5364b1ddb812b05ffaeb3ffcf6') in 0.001116 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 113.405405 seconds.
-  path: Assets/Scripts/UI/UIQuest/UIQuestSystem.cs
-  artifactKey: Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/UI/UIQuest/UIQuestSystem.cs using Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1fff0ea8d6bdcc90a3eebf5ee82c6603') in 0.001470 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 4.475762 seconds.
-  path: Assets/Scripts/UI/UIQuest/UIQuestSystem.cs
-  artifactKey: Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/UI/UIQuest/UIQuestSystem.cs using Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8cedbacf2a7635499b968fae623efcb1') in 0.001828 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 121.030955 seconds.
-  path: Assets/Scripts/UI/UIQuest/UIQuestSystem.cs
-  artifactKey: Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/UI/UIQuest/UIQuestSystem.cs using Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a1a4314f5c7564112a632da0b6e8d7c9') in 0.001405 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 113.635697 seconds.
-  path: Assets/Scripts/UI/UIQuest/UIQuestSystem.cs
-  artifactKey: Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/UI/UIQuest/UIQuestSystem.cs using Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5deda36907c17d71821ba6b6ef3a8ec3') in 0.001644 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 581.691452 seconds.
-  path: Assets/Scripts/UI/UIQuest/UIQuestSystem.cs
-  artifactKey: Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/UI/UIQuest/UIQuestSystem.cs using Guid(92f6110edfa17a44ca1cbc1159c40b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ae2525cd142ae5d48bf13778b8b257d6') in 0.001778 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 1038.867026 seconds.
-  path: Assets/Scripts/UI/UIQuest/UIQuestInfo.cs
-  artifactKey: Guid(1a80290ed25a47542a3b9ff3deb010a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/UI/UIQuest/UIQuestInfo.cs using Guid(1a80290ed25a47542a3b9ff3deb010a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd9da06351999e6647e4f16b1d4d85d8d') in 0.001221 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Prepare
-Begin MonoManager ReloadAssembly
-Duplicate assembly 'log4net.dll' with different versions detected, using 'Assets/References/log4net.dll, AssemblyName=log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=null' and ignoring 'Packages/com.unity.collab-proxy/Lib/Editor/PlasticSCM/log4netPlastic.dll, AssemblyName=log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a'.Duplicate assembly 'Newtonsoft.Json.dll' with different versions detected, using 'Packages/com.unity.nuget.newtonsoft-json/Runtime/Newtonsoft.Json.dll, AssemblyName=Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' and ignoring 'Assets/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll, AssemblyName=Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null'.Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file LoadedFromMemory is not a mono symbol file
-Symbol file LoadedFromMemory is not a mono symbol file
-- Loaded All Assemblies, in  1.353 seconds
-Refreshing native plugins compatible for Editor in 21.95 ms, found 2 plugins.
-Native extension for WindowsStandalone target not found
-Native extension for Android target not found
-[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  1.559 seconds
-Domain Reload Profiling: 2901ms
-	BeginReloadAssembly (798ms)
-		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (14ms)
-		BackupInstance (0ms)
-		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (90ms)
-	RebuildCommonClasses (41ms)
-	RebuildNativeTypeToScriptingClass (13ms)
-	initialDomainReloadingComplete (50ms)
-	LoadAllAssembliesAndSetupDomain (440ms)
-		LoadAssemblies (531ms)
-		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (26ms)
-			TypeCache.Refresh (13ms)
-				TypeCache.ScanAssembly (2ms)
-			ScanForSourceGeneratedMonoScriptInfo (8ms)
-			ResolveRequiredComponents (4ms)
-	FinalizeReload (1559ms)
-		ReleaseScriptCaches (0ms)
-		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (842ms)
-			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (38ms)
-			SetLoadedEditorAssemblies (7ms)
-			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (107ms)
-			ProcessInitializeOnLoadAttributes (514ms)
-			ProcessInitializeOnLoadMethodAttributes (161ms)
-			AfterProcessingInitializeOnLoad (13ms)
-			EditorAssembliesLoaded (1ms)
-		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (6ms)
+		AwakeInstancesAfterBackupRestoration (7ms)
 Refreshing native plugins compatible for Editor in 26.43 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2607 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 62 unused Assets / (49.4 KB). Loaded Objects now: 3113.
+Unloading 2610 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 65 unused Assets / (51.5 KB). Loaded Objects now: 3104.
 Memory consumption went from 126.4 MB to 126.4 MB.
-Total: 9.731200 ms (FindLiveObjects: 0.234900 ms CreateObjectMapping: 0.177100 ms MarkObjects: 9.182400 ms  DeleteObjects: 0.135600 ms)
+Total: 7.733200 ms (FindLiveObjects: 0.229900 ms CreateObjectMapping: 0.174100 ms MarkObjects: 7.209700 ms  DeleteObjects: 0.117800 ms)
 
 Prepare: number of updated asset objects reloaded= 0
 AssetImportParameters requested are different than current active one (requested -> active):
@@ -841,402 +289,142 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
 ========================================================================
-Received Import Request.
-  Time since last request: 101.612861 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8fe7283bb38412c5f82b682c00499540') in 0.312642 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 254
+Received Prepare
+Begin MonoManager ReloadAssembly
+Duplicate assembly 'log4net.dll' with different versions detected, using 'Assets/References/log4net.dll, AssemblyName=log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=null' and ignoring 'Packages/com.unity.collab-proxy/Lib/Editor/PlasticSCM/log4netPlastic.dll, AssemblyName=log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a'.Duplicate assembly 'Newtonsoft.Json.dll' with different versions detected, using 'Packages/com.unity.nuget.newtonsoft-json/Runtime/Newtonsoft.Json.dll, AssemblyName=Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' and ignoring 'Assets/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll, AssemblyName=Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null'.Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  1.184 seconds
+Refreshing native plugins compatible for Editor in 27.41 ms, found 2 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.742 seconds
+Domain Reload Profiling: 2913ms
+	BeginReloadAssembly (626ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (6ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (56ms)
+	RebuildCommonClasses (36ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (54ms)
+	LoadAllAssembliesAndSetupDomain (445ms)
+		LoadAssemblies (524ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (14ms)
+			TypeCache.Refresh (7ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (7ms)
+	FinalizeReload (1743ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (959ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (40ms)
+			SetLoadedEditorAssemblies (8ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (108ms)
+			ProcessInitializeOnLoadAttributes (597ms)
+			ProcessInitializeOnLoadMethodAttributes (190ms)
+			AfterProcessingInitializeOnLoad (17ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (8ms)
+Refreshing native plugins compatible for Editor in 27.12 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2611 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 62 unused Assets / (49.4 KB). Loaded Objects now: 3107.
+Memory consumption went from 126.6 MB to 126.6 MB.
+Total: 7.755600 ms (FindLiveObjects: 0.222600 ms CreateObjectMapping: 0.266600 ms MarkObjects: 7.162000 ms  DeleteObjects: 0.102700 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
 ========================================================================
-Received Import Request.
-  Time since last request: 18.141507 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '42a8a151eaaa830ab0d32d9e01384307') in 0.238000 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 269
-========================================================================
-Received Import Request.
-  Time since last request: 21.329491 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9b698115cf1292f8e5662bbd9f80fd2e') in 0.220147 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 270
-========================================================================
-Received Import Request.
-  Time since last request: 4.211227 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c2923df79ad68b1b2ada5b90957250a8') in 0.222637 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 270
-========================================================================
-Received Import Request.
-  Time since last request: 5.435100 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8b332847e87532b5a0f4fe39c0104611') in 0.222259 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 271
-========================================================================
-Received Import Request.
-  Time since last request: 4.020285 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4f6679f51d22dcf6a10c2a12f5a21bd7') in 0.271505 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 272
-========================================================================
-Received Import Request.
-  Time since last request: 3.794418 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6c055d95b425dbf4f49292c391132203') in 0.216919 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 272
-========================================================================
-Received Import Request.
-  Time since last request: 1.811632 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7f2bfa8564b5747de2873fd4da385391') in 0.214551 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 272
-========================================================================
-Received Import Request.
-  Time since last request: 6.094311 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '255a57640789aab518ea737b9464b5f9') in 0.220953 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 272
-========================================================================
-Received Import Request.
-  Time since last request: 8.276631 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '926e98d653a3a078d92180816beeae7e') in 0.242506 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 272
-========================================================================
-Received Import Request.
-  Time since last request: 4.652443 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd236b442c4f09856a44d53954e25bd7a') in 0.222038 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 272
-========================================================================
-Received Import Request.
-  Time since last request: 19.855962 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '61b632c73061be1ae46c59f2abd9dff4') in 0.267117 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 273
-========================================================================
-Received Import Request.
-  Time since last request: 4.837293 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '090b61f0872db95be5e899e7276117b5') in 0.231461 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 273
-========================================================================
-Received Import Request.
-  Time since last request: 11.743658 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3ea4a666ca3ea3739ccea8802a59a9f2') in 0.260850 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 273
-========================================================================
-Received Import Request.
-  Time since last request: 3.188894 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b5c39216b82d9916a0124f32e0ff4cec') in 0.214390 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 273
-========================================================================
-Received Import Request.
-  Time since last request: 21.813955 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '73c7fb477acb46033eb4bfd819b52e7f') in 0.257144 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 273
-========================================================================
-Received Import Request.
-  Time since last request: 1.427613 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fde4f1e95b709c87d26ed50639c4f8ef') in 0.220944 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 273
-========================================================================
-Received Import Request.
-  Time since last request: 1.835023 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3195f2294c8cfa14c674abe2a177e746') in 0.213368 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 273
-========================================================================
-Received Import Request.
-  Time since last request: 5.533633 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0e8b9295d1ba99cfcb96e93dc54873fb') in 0.223406 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 273
-========================================================================
-Received Import Request.
-  Time since last request: 176.080859 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1a5df6f6c7c74c0c61230e832957a071') in 0.214954 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 273
-========================================================================
-Received Import Request.
-  Time since last request: 10.521902 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'def78dd50c82e1ee65e0f44e62ddb02d') in 0.226357 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 273
-========================================================================
-Received Import Request.
-  Time since last request: 2.996880 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ab975b459198882f3b9eb29d976887c4') in 0.259174 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 277
-========================================================================
-Received Import Request.
-  Time since last request: 3.702450 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4c118fab38cb448c49379b3feca59863') in 0.217387 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 277
-========================================================================
-Received Import Request.
-  Time since last request: 4.419980 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fe87cd133d4e3d7d6a267b814b9c57d2') in 0.228922 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 277
-========================================================================
-Received Import Request.
-  Time since last request: 1.366763 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '862bed469ff20e90c4d6fdd422d61d31') in 0.221883 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 281
-========================================================================
-Received Import Request.
-  Time since last request: 1.232930 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bfa0a5062fa947a03b547632364c8e84') in 0.220403 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 281
-========================================================================
-Received Import Request.
-  Time since last request: 5.902486 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ccb6476f3bedb84a6424bff68d1cc032') in 0.258379 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 281
-========================================================================
-Received Import Request.
-  Time since last request: 2.406070 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9e719de8ab818a6c4c095b5483ace97b') in 0.217372 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 285
-========================================================================
-Received Import Request.
-  Time since last request: 1.428962 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ca45b8830bcc2e9de1ff42acee99f7aa') in 0.257145 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 285
-========================================================================
-Received Import Request.
-  Time since last request: 14.327168 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'be198c9a24577d33578580d47630d721') in 0.214623 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 285
-========================================================================
-Received Import Request.
-  Time since last request: 8.178593 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd2588a14e7b8e98459345aaa8dea8470') in 0.218977 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 285
-========================================================================
-Received Import Request.
-  Time since last request: 6.921787 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a592041391f6d9d12146142c9cd02a79') in 0.227633 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 285
-========================================================================
-Received Import Request.
-  Time since last request: 5.536459 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '066df7d35138c5ae3ea3996121576a30') in 0.223637 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 285
-========================================================================
-Received Import Request.
-  Time since last request: 5.297009 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1270cf75b133d5c07503bacb70c6e430') in 0.229658 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 285
-========================================================================
-Received Import Request.
-  Time since last request: 3.677393 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '68f9be4e1ef61c2c668da1757d31a6ab') in 0.224162 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 285
-========================================================================
-Received Import Request.
-  Time since last request: 7.461108 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '74ede44a78989d38358d5cb1c3124167') in 0.223756 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 285
-========================================================================
-Received Import Request.
-  Time since last request: 4.061759 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0238b2d7a3f194ad66bc62a217632ec2') in 0.256872 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 285
-========================================================================
-Received Import Request.
-  Time since last request: 4.479660 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '28297d267b7dca728581b2752a67dfd7') in 0.209909 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 285
-========================================================================
-Received Import Request.
-  Time since last request: 8.231160 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e6aa17c9739d94e385e78fc0976c66b7') in 0.259307 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 285
-========================================================================
-Received Import Request.
-  Time since last request: 3.028279 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '504007fd4c3be6728f394eaa6501ae52') in 0.211552 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 285
-========================================================================
-Received Import Request.
-  Time since last request: 14.244773 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dc4eb040c75c83283730d00485c5d90f') in 0.219376 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 285
-========================================================================
-Received Import Request.
-  Time since last request: 2.892695 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4d4fa18f1c0df4e59fb3154b51ffdd7b') in 0.217094 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 285
-========================================================================
-Received Import Request.
-  Time since last request: 1.856394 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4c7773cd0b2f48af4b2dfd4b2a53ea45') in 0.212361 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 285
-========================================================================
-Received Import Request.
-  Time since last request: 3.074497 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd749ae2768c74778f07332b7d010992f') in 0.220345 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 285
-========================================================================
-Received Import Request.
-  Time since last request: 2.220214 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f7558fa8f543a34b3b76bed0dca7af25') in 0.214140 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 285
-========================================================================
-Received Import Request.
-  Time since last request: 11.001922 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'baece102aa99dbad99aafb5b9311ecc5') in 0.218082 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 285
-========================================================================
-Received Import Request.
-  Time since last request: 28.419933 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4dc7c1f77d0b67ec5aeee5cb59bb14a5') in 0.216232 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 285
-========================================================================
-Received Import Request.
-  Time since last request: 3.673767 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cb888ed7410a89005df2f375332424b5') in 0.223929 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 285
-========================================================================
-Received Import Request.
-  Time since last request: 10.933900 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5b21930da6f0308189744de48522db8c') in 0.222023 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 286
-========================================================================
-Received Import Request.
-  Time since last request: 10.953339 seconds.
-  path: Assets/Resources/UI/UIQuestSystem.prefab
-  artifactKey: Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/UI/UIQuestSystem.prefab using Guid(fcd9cdac22effe04ea9c97c4cd7eeb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '897ef953e78707d945c18fe2bd102b2d') in 0.215110 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 286
+Received Prepare
+Begin MonoManager ReloadAssembly
+Duplicate assembly 'log4net.dll' with different versions detected, using 'Assets/References/log4net.dll, AssemblyName=log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=null' and ignoring 'Packages/com.unity.collab-proxy/Lib/Editor/PlasticSCM/log4netPlastic.dll, AssemblyName=log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a'.Duplicate assembly 'Newtonsoft.Json.dll' with different versions detected, using 'Packages/com.unity.nuget.newtonsoft-json/Runtime/Newtonsoft.Json.dll, AssemblyName=Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' and ignoring 'Assets/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll, AssemblyName=Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null'.Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  1.408 seconds
+Refreshing native plugins compatible for Editor in 26.32 ms, found 2 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.640 seconds
+Domain Reload Profiling: 3036ms
+	BeginReloadAssembly (817ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (12ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (62ms)
+	RebuildCommonClasses (44ms)
+	RebuildNativeTypeToScriptingClass (13ms)
+	initialDomainReloadingComplete (62ms)
+	LoadAllAssembliesAndSetupDomain (459ms)
+		LoadAssemblies (489ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (81ms)
+			TypeCache.Refresh (57ms)
+				TypeCache.ScanAssembly (43ms)
+			ScanForSourceGeneratedMonoScriptInfo (20ms)
+			ResolveRequiredComponents (3ms)
+	FinalizeReload (1641ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (930ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (35ms)
+			SetLoadedEditorAssemblies (7ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (100ms)
+			ProcessInitializeOnLoadAttributes (582ms)
+			ProcessInitializeOnLoadMethodAttributes (188ms)
+			AfterProcessingInitializeOnLoad (18ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (9ms)
+Refreshing native plugins compatible for Editor in 29.14 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2611 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 62 unused Assets / (49.4 KB). Loaded Objects now: 3110.
+Memory consumption went from 126.6 MB to 126.6 MB.
+Total: 9.704400 ms (FindLiveObjects: 0.225700 ms CreateObjectMapping: 0.200800 ms MarkObjects: 9.168600 ms  DeleteObjects: 0.108400 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 

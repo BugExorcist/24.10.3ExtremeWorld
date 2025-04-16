@@ -31,7 +31,7 @@ public class UIQuestItem : ListView.ListViewItem
     {
         this.quest = item;
         if (this.title != null)
-            this.title.text = this.quest.Define.Name;
+            this.title.text = string.Format("[{0}]{1}", quest.Define.Type, quest.Define.Name);
     }
 }
 

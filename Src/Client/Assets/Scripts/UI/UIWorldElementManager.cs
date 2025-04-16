@@ -1,4 +1,5 @@
 using Entities;
+using Managers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,26 +7,47 @@ using UnityEngine;
 public class UIWorldElementManager : MonoSingleton<UIWorldElementManager>
 {
     public GameObject nameBarPrefab;
+    public GameObject npcStatusProfab;
 
-    private Dictionary<Transform, GameObject> elements = new Dictionary<Transform, GameObject>();
+    private Dictionary<Transform, GameObject> elementNames = new Dictionary<Transform, GameObject>();
+    private Dictionary<Transform, GameObject> elemantStatus = new Dictionary<Transform, GameObject>();
 
 
     public void AddCharacterNameBar(Transform owner, Character character)
     {
         GameObject goNameBar = Instantiate(nameBarPrefab, this.transform);
-        goNameBar.name = "NameBar" + owner;
+        goNameBar.name = "NameBar" + character.entityId;
         goNameBar.GetComponent<UIWorldElement>().owner = owner;
         goNameBar.GetComponent<UINameBar>().character = character;
         goNameBar.SetActive(true);
-        this.elements[owner] = goNameBar;
+        this.elementNames[owner] = goNameBar;
     }
 
     public void RemoveCharacterNameBar(Transform owner)
     {
-        if(this.elements.ContainsKey(owner))
+        if(this.elementNames.ContainsKey(owner))
         {
-            Destroy(this.elements[owner]);
-            this.elements.Remove(owner);
+            Destroy(this.elementNames[owner]);
+            this.elementNames.Remove(owner);
+        }
+    }
+
+    public void AddNpcQuestStatus(Transform owner, NpcQuestStatus status)
+    {
+        GameObject go = Instantiate(npcStatusProfab, this.transform);
+        go.name = "NpcQuestStatus" + owner.name;
+        go.GetComponent<UIWorldElement>().owner = owner;
+        go.GetComponent<UINpcQuestStatus>().SetQuestStatus(status);
+        go.SetActive(true);
+        this.elemantStatus[owner] = go;
+    }
+
+    public void RemoveNpcQuestStatus(Transform owner)
+    {
+        if (this.elemantStatus.ContainsKey(owner))
+        {
+            Destroy(this.elemantStatus[owner]);
+            this.elemantStatus.Remove(owner);
         }
     }
 }

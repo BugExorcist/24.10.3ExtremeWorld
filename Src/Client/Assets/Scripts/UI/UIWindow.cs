@@ -12,7 +12,7 @@ public abstract class UIWindow : MonoBehaviour, IBeginDragHandler, IDragHandler
     //实现鼠标拖动窗口
     private RectTransform rootRectTransform = null;//Prifab根节点的RectTransform
     public RectTransform dragRectTransform = null;//拖动把手部分的RectTransform
-    private Vector2 offset;
+    private Vector2 offset = Vector2.zero;
 
     public virtual System.Type Type { get { return this.GetType(); } }
 
@@ -58,14 +58,14 @@ public abstract class UIWindow : MonoBehaviour, IBeginDragHandler, IDragHandler
     public void OnBeginDrag(PointerEventData eventData)
     {
         // 记录鼠标位置与对象左上角的偏移量
-        if (CanDrag(Input.mousePosition))
+        if (CanDrag(Input.mousePosition) && this.dragRectTransform != null)
             offset = this.rootRectTransform.anchoredPosition - eventData.position;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         // 根据当前鼠标位置调整对象的位置
-        if (CanDrag(Input.mousePosition))
+        if (CanDrag(Input.mousePosition) && this.offset != Vector2.zero)
         {
             Vector2 newPosition = eventData.position + offset;
             this.rootRectTransform.anchoredPosition = newPosition;
@@ -84,6 +84,4 @@ public abstract class UIWindow : MonoBehaviour, IBeginDragHandler, IDragHandler
         }
         return false;
     }
-
-    public virtual void FlashUI() { }
 }
