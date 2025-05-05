@@ -50,14 +50,14 @@ public class ListView : MonoBehaviour
     public ListViewItem SelectedItem
     {
         get { return selectedIten; }
-        private set
+        set
         {
             if (selectedIten != null && selectedIten != value)
             {
                 selectedIten.Selected = false;
             }
             selectedIten = value;
-            onItemSelected?.Invoke((ListViewItem)value);
+            onItemSelected?.Invoke(value);
         }
     }
 
@@ -74,5 +74,14 @@ public class ListView : MonoBehaviour
             Destroy(it.gameObject);
         }
         items.Clear();
+    }
+
+    public void InitItemStatus()
+    {
+        if (this.SelectedItem != null)
+        {
+            this.SelectedItem.Selected = false;
+            this.SelectedItem = null;
+        }
     }
 }

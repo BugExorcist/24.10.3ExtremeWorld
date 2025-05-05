@@ -4,6 +4,7 @@ using UnityEngine;
 using Common.Data;
 using Managers;
 using Models;
+using SkillBridge.Message;
 
 public class NPCController : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class NPCController : MonoBehaviour
 
     private bool inInteractive = false;
 
+    NpcQuestStatus questStatus;
+
     void Start()
     {
         renderer = this.gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
@@ -23,6 +26,27 @@ public class NPCController : MonoBehaviour
         orignColor = renderer.sharedMaterial.color;
         npc = NPCManager.Instance.GetNpcDefine(npcID);
         this.StartCoroutine(Actions());
+        RefreshNpcStatus();
+        QuestManager.Instance.onQuestStatusChanged += OnQuestStatusChanged;
+    }
+
+    private void OnQuestStatusChanged()
+    {
+        RefreshNpcStatus();
+    }
+
+    private void RefreshNpcStatus()
+    {
+        questStatus = QuestManager.Instance.GetQuestStatusByNpc(this.npcID);
+        UIWorldElementManager.Instance.RemoveNpcQuestStatus(this.transform);
+        UIWorldElementManager.Instance.AddNpcQuestStatus(this.transform, questStatus);
+    }
+
+    private void OnDestroy()
+    {
+        QuestManager.Instance.onQuestStatusChanged -= OnQuestStatusChanged;
+        if (UIWorldElementManager.Instance != null)
+            UIWorldElementManager.Instance.RemoveNpcQuestStatus(this.transform);
     }
 
     IEnumerator Actions()

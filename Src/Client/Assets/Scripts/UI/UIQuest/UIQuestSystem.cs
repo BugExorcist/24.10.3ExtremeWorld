@@ -37,6 +37,10 @@ public class UIQuestSystem : UIWindow
     {
         UIQuestItem questItem = item as UIQuestItem;
         this.qurstInfo.SetQuestInfo(questItem.quest);
+        if (item.owner == this.listMain)
+            this.listBranch.InitItemStatus();
+        else
+            this.listMain.InitItemStatus();
     }
 
     void OnSelectTab(int idx)

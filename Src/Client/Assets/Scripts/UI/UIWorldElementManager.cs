@@ -37,7 +37,7 @@ public class UIWorldElementManager : MonoSingleton<UIWorldElementManager>
         GameObject go = Instantiate(npcStatusProfab, this.transform);
         go.name = "NpcQuestStatus" + owner.name;
         go.GetComponent<UIWorldElement>().owner = owner;
-        go.GetComponent<UINpcQuestStatus>().SetQuestStatus(status);
+        go.GetComponent<UIQuestStatus>().SetQuestStatus(status);
         go.SetActive(true);
         this.elemantStatus[owner] = go;
     }

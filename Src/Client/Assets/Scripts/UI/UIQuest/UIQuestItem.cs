@@ -31,7 +31,17 @@ public class UIQuestItem : ListView.ListViewItem
     {
         this.quest = item;
         if (this.title != null)
-            this.title.text = string.Format("[{0}]{1}", quest.Define.Type, quest.Define.Name);
+        {
+            if (item.Info != null)
+            {
+                if (item.Info.Status == SkillBridge.Message.QuestStatus.Finished)
+                {
+                    this.title.text = string.Format("√[{0}]{1}", quest.Define.Type.GetDescription(), quest.Define.Name);
+                    this.title.color = Color.gray;
+                    return;
+                }
+            }
+            this.title.text = string.Format("[{0}]{1}", quest.Define.Type.GetDescription(), quest.Define.Name);
+        }
     }
 }
-
