@@ -57,11 +57,12 @@ namespace GameServer.Services
                 foreach (var c in user.Player.Characters)
                 {
                     NCharacterInfo info = new NCharacterInfo();
-                    info.Id = c.ID;//Entity ID
+                    info.Id = c.ID;
                     info.Name = c.Name;
                     info.Type = CharacterType.Player;
                     info.Class = (CharacterClass)c.Class;
-                    info.Tid = c.ID;//存放DB ID
+                    info.ConfigId = c.TID;
+
                     sender.Session.Response.userLogin.Userinfo.Player.Characters.Add(info);
                 }
             }
@@ -102,6 +103,7 @@ namespace GameServer.Services
                 Name = request.Name,
                 Class = (int)request.Class,
                 TID = (int)request.Class,
+                Level = 1,
                 MapID = 1,
                 MapPosX = 5000,//初始出生位置
                 MapPosY = 4000,
@@ -143,11 +145,11 @@ namespace GameServer.Services
             foreach (var c in sender.Session.User.Player.Characters)
             {
                 NCharacterInfo info = new NCharacterInfo();
-                info.Id = 0;//用来存放Entity ID
+                info.Id = c.ID;
                 info.Name = c.Name;
                 info.Type = CharacterType.Player;
                 info.Class = (CharacterClass)c.Class;
-                info.Tid = c.ID;//存放DB ID
+                info.ConfigId = c.TID;
                 sender.Session.Response.createChar.Characters.Add(info);
             }
 

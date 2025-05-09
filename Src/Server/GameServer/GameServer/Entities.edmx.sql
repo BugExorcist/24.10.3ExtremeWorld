@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/04/2025 20:46:43
+-- Date Created: 05/09/2025 18:02:23
 -- Generated from EDMX file: F:\Unity\Projects\24.10.3ExtremeWorld\Src\Server\GameServer\GameServer\Entities.edmx
 -- --------------------------------------------------
 
@@ -88,6 +88,8 @@ CREATE TABLE [dbo].[Characters] (
     [MapPosZ] int  NOT NULL,
     [Gold] bigint  NOT NULL,
     [Equips] binary(28)  NOT NULL,
+    [Level] int  NOT NULL,
+    [Exp] bigint  NOT NULL,
     [Player_ID] int  NOT NULL,
     [Bag_Id] int  NOT NULL
 );
@@ -113,12 +115,23 @@ GO
 -- Creating table 'CharacterQuests'
 CREATE TABLE [dbo].[CharacterQuests] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [TCharacterID] int  NOT NULL,
+    [CharacterID] int  NOT NULL,
     [QuestID] int  NOT NULL,
     [Target1] int  NOT NULL,
     [Target2] int  NOT NULL,
     [Target3] int  NOT NULL,
     [Status] int  NOT NULL
+);
+GO
+
+-- Creating table 'TCharacterFriends'
+CREATE TABLE [dbo].[TCharacterFriends] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [FriendId] int  NOT NULL,
+    [FriendName] nvarchar(max)  NOT NULL,
+    [Class] int  NOT NULL,
+    [Level] int  NOT NULL,
+    [CharacterID] int  NOT NULL
 );
 GO
 
@@ -159,6 +172,12 @@ GO
 -- Creating primary key on [Id] in table 'CharacterQuests'
 ALTER TABLE [dbo].[CharacterQuests]
 ADD CONSTRAINT [PK_CharacterQuests]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'TCharacterFriends'
+ALTER TABLE [dbo].[TCharacterFriends]
+ADD CONSTRAINT [PK_TCharacterFriends]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -226,10 +245,10 @@ ON [dbo].[Characters]
     ([Bag_Id]);
 GO
 
--- Creating foreign key on [TCharacterID] in table 'CharacterQuests'
+-- Creating foreign key on [CharacterID] in table 'CharacterQuests'
 ALTER TABLE [dbo].[CharacterQuests]
 ADD CONSTRAINT [FK_TCharacterQuestTCharacter]
-    FOREIGN KEY ([TCharacterID])
+    FOREIGN KEY ([CharacterID])
     REFERENCES [dbo].[Characters]
         ([ID])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -238,7 +257,22 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_TCharacterQuestTCharacter'
 CREATE INDEX [IX_FK_TCharacterQuestTCharacter]
 ON [dbo].[CharacterQuests]
-    ([TCharacterID]);
+    ([CharacterID]);
+GO
+
+-- Creating foreign key on [CharacterID] in table 'TCharacterFriends'
+ALTER TABLE [dbo].[TCharacterFriends]
+ADD CONSTRAINT [FK_TCharacterTCharacterFriend]
+    FOREIGN KEY ([CharacterID])
+    REFERENCES [dbo].[Characters]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_TCharacterTCharacterFriend'
+CREATE INDEX [IX_FK_TCharacterTCharacterFriend]
+ON [dbo].[TCharacterFriends]
+    ([CharacterID]);
 GO
 
 -- --------------------------------------------------

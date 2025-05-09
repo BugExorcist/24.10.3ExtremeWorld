@@ -12,15 +12,14 @@ namespace GameServer
     using System;
     using System.Collections.Generic;
     
-    public partial class TCharacterQuest
+    public partial class TCharacterFriend
     {
         public int Id { get; set; }
+        public int FriendId { get; set; }
+        public string FriendName { get; set; }
+        public int Class { get; set; }
+        public int Level { get; set; }
         public int CharacterID { get; set; }
-        public int QuestID { get; set; }
-        public int Target1 { get; set; }
-        public int Target2 { get; set; }
-        public int Target3 { get; set; }
-        public int Status { get; set; }
     
         public virtual TCharacter Owner { get; set; }
     }

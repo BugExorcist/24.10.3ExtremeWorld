@@ -13,7 +13,7 @@ public class UIMain : MonoSingleton<UIMain>
 
     protected override void OnStart()
     {
-        this.id.text = string.Format("ID:{0}", User.Instance.CurrentCharacter.Tid);
+        this.id.text = string.Format("ID:{0}", User.Instance.CurrentCharacter.ConfigId);
         UpdataUIAvatar();
     }
 

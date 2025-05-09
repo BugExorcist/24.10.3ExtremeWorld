@@ -77,19 +77,21 @@ message NPlayerInfo {
 }
 
 message NCharacterInfo {
-	int32 id = 1;
-	int32 tid = 2;
-	string name = 3;
-	CHARACTER_TYPE type = 4;
-	CHARACTER_CLASS class = 5;
-	int32 level = 6;
-	int32 mapId = 7;
-	NEntity entity = 8;
-	int64 gold = 9;//金钱
-	repeated NItemInfo Items = 10;//repeated 相当于定义了一个数组
-	NBagInfo Bag = 11;
-	bytes Equips = 12;//装备
-	repeated NQuestInfo quests = 13;//任务
+	int32 id = 1;// db id 数据库中的唯一ID
+	int32 config_id = 2;//config id 配置表中的ID
+	int32 entity_id  =3;//entity id
+	string name = 4;
+	CHARACTER_TYPE type = 5;
+	CHARACTER_CLASS class = 6;
+	int32 level = 7;
+	int32 mapId = 8;
+	NEntity entity = 9;
+	int64 gold = 10;//金钱
+	repeated NItemInfo Items = 11;//repeated 相当于定义了一个数组
+	NBagInfo Bag = 12;
+	bytes Equips = 13;//装备
+	repeated NQuestInfo quests = 14;//任务
+	repeated NFriendInfo friends = 15;//好友
 }
 
 message NItemInfo
@@ -199,6 +201,11 @@ message NetMessageRequest{
 	QuestListRequest questList = 12;
 	QuestAcceptRequest questAccept = 13;
 	QuestSubmitRequest questSubmit = 14;
+
+	FriendAddRequest friendAddReq = 15;
+	FriendAddResponse friendAddRes = 16;
+	FriendListRequest friendList = 17;
+	FriendRemoveRequest friendRemove = 18;
 }
 
 message NetMessageResponse{
@@ -213,15 +220,19 @@ message NetMessageResponse{
 
 	MapEntitySyncResponse mapEntitySync = 8;
 
-	ItemBuyResponce itemBuy = 10;
-	ItemEquipResponce itemEquip = 11;
+	ItemBuyResponse itemBuy = 10;
+	ItemEquipResponse itemEquip = 11;
 
 	QuestListResponse questList = 12;
 	QuestAcceptResponse questAccept = 13;
 	QuestSubmitResponse questSubmit = 14;
 
+	FriendAddRequest friendAddReq = 15;
+	FriendAddResponse friendAddRes = 16;
+	FriendListResponse friendList = 17;
+	FriendRemoveResponse friendRemove = 18;
+
 	StatusNotify statusNotify = 100;
-	
 }
 
 
@@ -300,7 +311,7 @@ message MapCharacterEnterResponse
 
 message MapCharacterLeaveResponse
 {
-	int32 characterId = 1;
+	int32 entityId = 1;
 }
 
 
@@ -326,7 +337,7 @@ message ItemBuyRequest
 	int32 shopItemId = 2;
 }
 
-message ItemBuyResponce
+message ItemBuyResponse
 {
 	RESULT result = 1;
 	string errormsg = 2;
@@ -351,7 +362,7 @@ message ItemEquipRequest
 	bool isEquip = 3; //0穿1脱
 }
 
-message ItemEquipResponce
+message ItemEquipResponse
 {
 	RESULT result = 1;
 	string errormsg = 2;
@@ -427,4 +438,51 @@ message QuestAbandonResponse
 {
 	RESULT result = 1;
 	string errormsg = 2;
+}
+
+// 好友系统
+message NFriendInfo
+{
+	int32 id = 1;
+	NCharacterInfo friendInfo = 2;
+	int32 status = 3;
+}
+
+message FriendAddRequest
+{
+	int32 from_id = 1;
+	string from_name = 2;
+	int32 to_id = 3;
+	string to_name = 4;
+}
+
+message FriendAddResponse
+{
+	RESULT result = 1;
+	string errormsg = 2;
+	FriendAddRequest request = 3;
+}
+
+message FriendListRequest
+{
+}
+
+message FriendListResponse
+{
+	RESULT result = 1;
+	string errormsg = 2;
+	repeated NFriendInfo friends = 3;
+}
+
+message FriendRemoveRequest
+{
+	int32 id = 1;
+	int32 friendId = 2;
+}
+
+message FriendRemoveResponse
+{
+	RESULT result = 1;
+	string errormsg = 2;
+	int32 id = 3;
 }

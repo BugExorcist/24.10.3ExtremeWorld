@@ -61,7 +61,7 @@ public class GameObjectManager : MonoSingleton<GameObjectManager>
             }
             //实列化角色，并且放在GameObjectManager节点下
             GameObject go = (GameObject)Instantiate(obj, this.transform);
-            go.name = "Character_" + character.Info.Id + "_" + character.Info.Name;
+            go.name = "Character_" + character.Id + "_" + character.Name;
             Characters[character.entityId] = go;
 
             UIWorldElementManager.Instance.AddCharacterNameBar(go.transform, character);
@@ -77,13 +77,13 @@ public class GameObjectManager : MonoSingleton<GameObjectManager>
         if (ec != null)
         {
             ec.entity = character;
-            ec.isPlayer = character.IsPlayer;
+            ec.isPlayer = character.IsCurrentPlayer;
         }
 
         PlayerInputController pc = go.GetComponent<PlayerInputController>();
         if (pc != null)
         {
-            if (character.Info.Id == Models.User.Instance.CurrentCharacter.Id)
+            if (character.IsCurrentPlayer)
             {
                 User.Instance.CurrentCharacterObject = go;
                 MainPlayerCamera.Instance.player = go;
