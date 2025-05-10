@@ -60,7 +60,6 @@
     <Analyzer Include="C:\Apps\Unity Hub\Unity\Hub\Editor\2022.3.30f1c1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\UI\UIMessageBox.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
     <Compile Include="Assets\Scripts\UI\UICharacterSelect.cs" />
     <Compile Include="Assets\Scripts\Network\NetClient.cs" />
@@ -89,6 +88,7 @@
     <Compile Include="Assets\Scripts\UI\UIQuest\UIQuestInfo.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\Scripts\Managers\NPCManager.cs" />
+    <Compile Include="Assets\Scripts\UI\Friends\UIFriendItem.cs" />
     <Compile Include="Assets\Scripts\Login.cs" />
     <Compile Include="Assets\Scripts\UI\UICharInfo.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
@@ -110,10 +110,8 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
     <Compile Include="Assets\Scripts\GameObject\PlayerInputController.cs" />
     <Compile Include="Assets\Scripts\Models\Quest.cs" />
-    <Compile Include="Assets\Scripts\UI\UIInputBox.cs" />
     <Compile Include="Assets\Scripts\Utilities\GameUtil.cs" />
     <Compile Include="Assets\Scripts\UI\UIMain.cs" />
-    <Compile Include="Assets\Scripts\UI\InputBox.cs" />
     <Compile Include="Assets\Scripts\Log\UnityLogger.cs" />
     <Compile Include="Assets\Scripts\Managers\QuestManager.cs" />
     <Compile Include="Assets\Scripts\GameObject\EntityController.cs" />
@@ -122,7 +120,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\Scripts\GameObject\GameObjectTool.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
-    <Compile Include="Assets\Scripts\UI\MessageBox.cs" />
+    <Compile Include="Assets\Scripts\UI\Box\MessageBox.cs" />
     <Compile Include="Assets\Scripts\Assets\Resloader.cs" />
     <Compile Include="Assets\Scripts\UI\UINameBar.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
@@ -144,6 +142,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
     <Compile Include="Assets\Scripts\Models\User.cs" />
+    <Compile Include="Assets\Scripts\UI\Box\UIInputBox.cs" />
     <Compile Include="Assets\Scripts\UI\UIIconItem.cs" />
     <Compile Include="Assets\Scripts\GameObject\GameObjectManager.cs" />
     <Compile Include="Assets\Scripts\Services\ItemService.cs" />
@@ -154,16 +153,20 @@
     <Compile Include="Assets\Scripts\Managers\TestManager.cs" />
     <Compile Include="Assets\Scripts\UI\UIEquip\UIEquipItem.cs" />
     <Compile Include="Assets\Scripts\Utilities\MonoSingleton.cs" />
+    <Compile Include="Assets\Scripts\UI\Box\UIMessageBox.cs" />
+    <Compile Include="Assets\Scripts\UI\Box\InputBox.cs" />
     <Compile Include="Assets\Scripts\LoadingManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
     <Compile Include="Assets\Scripts\GameObject\MainPlayerCamera.cs" />
     <Compile Include="Assets\Scripts\GameObject\SpawnPoint.cs" />
     <Compile Include="Assets\Scripts\Entities\Character.cs" />
+    <Compile Include="Assets\Scripts\Services\FriendService.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
     <Compile Include="Assets\Scripts\Utilities\Singleton.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
+    <Compile Include="Assets\Scripts\UI\Friends\UIFriends.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
     <Compile Include="Assets\Scripts\Services\QuestService.cs" />
   </ItemGroup>

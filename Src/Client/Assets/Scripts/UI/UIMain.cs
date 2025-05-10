@@ -13,7 +13,7 @@ public class UIMain : MonoSingleton<UIMain>
 
     protected override void OnStart()
     {
-        this.id.text = string.Format("ID:{0}", User.Instance.CurrentCharacter.ConfigId);
+        this.id.text = string.Format("ID:{0}", User.Instance.CurrentCharacter.Id);
         UpdataUIAvatar();
     }
 
@@ -30,17 +30,19 @@ public class UIMain : MonoSingleton<UIMain>
         Services.UserService.Instance.SendGameLeave();
     }
 
+    /// <summary>
+    /// UI≤‚ ‘
+    /// </summary>
+    //public void OnClickTest()
+    //{
+    //    UITest test = UIManager.Instance.Show<UITest>();
+    //    test.OnClose += Test_OnClose;
+    //}
 
-    public void OnClickTest()
-    {
-        UITest test = UIManager.Instance.Show<UITest>();
-        test.OnClose += Test_OnClose;
-    }
+    //private void Test_OnClose(UIWindow sender, WindowResult result)
+    //{
 
-    private void Test_OnClose(UIWindow sender, WindowResult result)
-    {
-
-    }
+    //}
 
     public void OnClickbag()
     {

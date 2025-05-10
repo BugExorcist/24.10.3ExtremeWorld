@@ -445,7 +445,7 @@ message NFriendInfo
 {
 	int32 id = 1;
 	NCharacterInfo friendInfo = 2;
-	int32 status = 3;
+	int32 status = 3; //1:在线 other:离线
 }
 
 message FriendAddRequest
