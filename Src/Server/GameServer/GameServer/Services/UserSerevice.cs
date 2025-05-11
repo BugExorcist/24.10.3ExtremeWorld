@@ -161,7 +161,7 @@ namespace GameServer.Services
             TCharacter dbcharacter = sender.Session.User.Player.Characters.ElementAt(request.characterIdx);
             Log.InfoFormat("UserGameEnterRequest: characterId:{0}:Name:{1} Map{2} POS({3},{4},{4})", dbcharacter.ID, dbcharacter.Name, dbcharacter.MapID, dbcharacter.MapPosX, dbcharacter.MapPosY, dbcharacter.MapPosZ);
             Character character = CharacterManager.Instance.AddCharacter(dbcharacter);
-
+            SessionManager.Instance.AddSession(character.Id, sender);
             sender.Session.Response.gameEnter = new UserGameEnterResponse();
             sender.Session.Response.gameEnter.Result = Result.Success;
             sender.Session.Response.gameEnter.Errormsg = "None";
@@ -191,6 +191,7 @@ namespace GameServer.Services
             sender.SendResponse();
             //角色进入
             sender.Session.Character = character;
+            sender.Session.PostResponser = character;
             MapManager.Instance[dbcharacter.MapID].CharacterEnter(sender, character);
         }
 
@@ -198,6 +199,7 @@ namespace GameServer.Services
         {
             Character character = sender.Session.Character;
             Log.InfoFormat("UserGameLeaveRequest: characterId:{0}:Name:{1} Map{2} POS{3} ", character.Id, character.Info.Name, character.Info.mapId, character.Position.ToString());
+            SessionManager.Instance.RemoveSession(character.Id);
             //角色离开
             CharacterLeave(character);
 
@@ -212,6 +214,7 @@ namespace GameServer.Services
         {
             CharacterManager.Instance.RemoceCharacter(character.Id);
             MapManager.Instance[character.Info.mapId].CharacterLeave(character);
+            character.Clear();
         }
     }
 }

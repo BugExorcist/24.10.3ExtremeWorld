@@ -335,9 +335,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIShop, Assembly-CSharp
-        m_MethodName: OnClickBuy
+      - m_Target: {fileID: 3360991031014020163}
+        m_TargetAssemblyTypeName: UIFriends, Assembly-CSharp
+        m_MethodName: OnClickFriendChat
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -848,7 +848,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3360991031014020163}
         m_TargetAssemblyTypeName: UIWindow, Assembly-CSharp
         m_MethodName: OnCloseClick
         m_Mode: 1
@@ -1184,9 +1184,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIShop, Assembly-CSharp
-        m_MethodName: OnClickBuy
+      - m_Target: {fileID: 3360991031014020163}
+        m_TargetAssemblyTypeName: UIFriends, Assembly-CSharp
+        m_MethodName: OnClickFriendAdd
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2081,9 +2081,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIShop, Assembly-CSharp
-        m_MethodName: OnClickBuy
+      - m_Target: {fileID: 3360991031014020163}
+        m_TargetAssemblyTypeName: UIFriends, Assembly-CSharp
+        m_MethodName: OnClickFriendRemove
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2574,6 +2574,7 @@ GameObject:
   - component: {fileID: 8142532042500227875}
   - component: {fileID: 4307169343073439314}
   - component: {fileID: 578706695253385172}
+  - component: {fileID: 3360991031014020163}
   m_Layer: 5
   m_Name: UIFriends
   m_TagString: Untagged
@@ -2664,3 +2665,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &3360991031014020163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9170541144461388385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a30f5513e9112843a02b544866919a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dragRectTransform: {fileID: 2577813649034897375}
+  itemPrefab: {fileID: 1668609980172539094, guid: 972b5691f51cb004aadf352459b1473f,
+    type: 3}
+  listView: {fileID: 7378081001130636689}
+  itemRoot: {fileID: 3510795167080348060}

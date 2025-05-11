@@ -1,6 +1,7 @@
 using Common.Data;
 using Managers;
 using Models;
+using Services;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ public class UIFriends : UIWindow
     public GameObject itemPrefab;
     public ListView listView;
     public Transform itemRoot;
-    public UIFriendItem selectedItem;
+    private UIFriendItem selectedItem;
 
     private void Start()
     {
@@ -33,24 +34,13 @@ public class UIFriends : UIWindow
 
     private void InitFriendItems()
     {
-        //foreach (var kv in FriendManager.Instance.allQuests)
-        //{
-        //    if (showAvailableList)
-        //    {   //有网络信息，表示任务已经接取，跳过
-        //        if (kv.Value.Info != null)
-        //            continue;
-        //    }
-        //    else
-        //    {   //此时有网络信息。表示任务未接取，跳过
-        //        if (kv.Value.Info == null)
-        //            continue;
-        //    }
-
-        //    GameObject go = Instantiate(itemPrefab, kv.Value.Define.Type == QuestType.Main ? this.listMain.transform : this.listBranch.transform);
-        //    UIQuestItem item = go.GetComponent<UIQuestItem>();
-        //    item.SetQuestInfo(kv.Value);
-        //    this.listView.AddIten(item);
-        //}
+        foreach (var info in FriendManager.Instance.allFriends)
+        {
+            GameObject go = Instantiate(itemPrefab, itemRoot);
+            UIFriendItem item = go.GetComponent<UIFriendItem>();
+            item.SetFriendInfo(info);
+            this.listView.AddIten(item);
+        }
     }
 
     private void OnFriendSelected(ListView.ListViewItem item)
@@ -60,7 +50,7 @@ public class UIFriends : UIWindow
 
     public void OnClickFriendAdd()
     {
-        InputBox.Show("请输入要添加的好友名称或ID", "添加好友").OnSubmit += OnFriendAddSubmit;
+        InputBox.Show("请输入要添加的好友名称或ID", "添加好友","添加","取消","数据不能为空").OnSubmit += OnFriendAddSubmit;
     }
 
     private bool OnFriendAddSubmit(string inputText, out string tips)
@@ -79,7 +69,7 @@ public class UIFriends : UIWindow
         return true;
     }
 
-    public void OnClickFriendChar()
+    public void OnClickFriendChat()
     {
         MessageBox.Show("暂未实现");
     }
@@ -91,7 +81,9 @@ public class UIFriends : UIWindow
             MessageBox.Show("请选择要删除的好友");
             return;
         }
-        MessageBox.Show(string.Format("确定要删除好友[{0}]吗？", selectedItem.Info.friendInfo.Name), "删除好友", MessageBoxType.Confirm, "删除", "取消");
-        FriendService.Instance.
+        MessageBox.Show(string.Format("确定要删除好友[{0}]吗？", selectedItem.Info.friendInfo.Name), "删除好友", MessageBoxType.Confirm, "删除", "取消").OnYes = () =>
+        {
+            FriendService.Instance.SendFriendRemoveRequest(this.selectedItem.Info.Id, this.selectedItem.Info.friendInfo.Id);
+        };
     }
 }

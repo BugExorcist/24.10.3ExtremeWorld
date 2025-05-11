@@ -29,6 +29,8 @@ namespace Services
             handles.Add(action);
         }
 
+        public void Init() { }
+
         public StatusService()
         {
             MessageDistributer.Instance.Subscribe<StatusNotify>(this.OnStatusNotify);

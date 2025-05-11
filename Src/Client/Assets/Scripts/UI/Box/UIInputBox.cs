@@ -40,10 +40,10 @@ public class UIInputBox : MonoBehaviour {
         this.buttonNo.onClick.AddListener(OnClickNo);
     }
 
-    void OnClickYes()
+    public void OnClickYes()
     {
         this.tips.text = null;
-        if (!string.IsNullOrEmpty(inputField.text))
+        if (string.IsNullOrEmpty(inputField.text))
         {
             this.tips.text = this.emptyTips;
             return;
@@ -60,10 +60,9 @@ public class UIInputBox : MonoBehaviour {
         Destroy(this.gameObject);
     }
 
-    void OnClickNo()
+    public void OnClickNo()
     {
         Destroy(this.gameObject);
-        if (this.OnNo != null)
-            this.OnNo();
+        this.OnNo?.Invoke();
     }
 }
