@@ -36,10 +36,23 @@ public class UIFriends : UIWindow
     {
         foreach (var info in FriendManager.Instance.allFriends)
         {
-            GameObject go = Instantiate(itemPrefab, itemRoot);
-            UIFriendItem item = go.GetComponent<UIFriendItem>();
-            item.SetFriendInfo(info);
-            this.listView.AddIten(item);
+            if (info.Status == 1)
+            {
+                GameObject go = Instantiate(itemPrefab, itemRoot);
+                UIFriendItem item = go.GetComponent<UIFriendItem>();
+                item.SetFriendInfo(info);
+                this.listView.AddIten(item);
+            }
+        }
+        foreach (var info in FriendManager.Instance.allFriends)
+        {
+            if (info.Status != 1)
+            {
+                GameObject go = Instantiate(itemPrefab, itemRoot);
+                UIFriendItem item = go.GetComponent<UIFriendItem>();
+                item.SetFriendInfo(info);
+                this.listView.AddIten(item);
+            }
         }
     }
 
@@ -69,6 +82,24 @@ public class UIFriends : UIWindow
         return true;
     }
 
+    public void OnClickTeamInvite()
+    {
+        if (selectedItem == null)
+        {
+            MessageBox.Show("请选择要邀请的好友");
+            return;
+        }
+        if (selectedItem.Info.Status != 1)
+        {
+            MessageBox.Show("请选择在线的好友");
+            return;
+        }
+        MessageBox.Show(string.Format("确定选择邀请【{0}】加入队伍吗？", selectedItem.Info.friendInfo.Name), "邀请好友组队", MessageBoxType.Confirm, "邀请", "取消").OnYes = () =>
+        {
+            TeamService.Instance.SendTeamInviteResquest(this.selectedItem.Info.friendInfo.Id, this.selectedItem.Info.friendInfo.Name);
+        };
+    }
+
     public void OnClickFriendChat()
     {
         MessageBox.Show("暂未实现");
@@ -81,7 +112,7 @@ public class UIFriends : UIWindow
             MessageBox.Show("请选择要删除的好友");
             return;
         }
-        MessageBox.Show(string.Format("确定要删除好友[{0}]吗？", selectedItem.Info.friendInfo.Name), "删除好友", MessageBoxType.Confirm, "删除", "取消").OnYes = () =>
+        MessageBox.Show(string.Format("确定要删除好友【{0}】吗？", selectedItem.Info.friendInfo.Name), "删除好友", MessageBoxType.Confirm, "删除", "取消").OnYes = () =>
         {
             FriendService.Instance.SendFriendRemoveRequest(this.selectedItem.Info.Id, this.selectedItem.Info.friendInfo.Id);
         };

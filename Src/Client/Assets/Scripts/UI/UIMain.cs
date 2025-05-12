@@ -11,6 +11,8 @@ public class UIMain : MonoSingleton<UIMain>
     public TMP_Text avaterLevel;
     public TMP_Text id;
 
+    public UITeam TeamWindow;
+
     protected override void OnStart()
     {
         this.id.text = string.Format("ID:{0}", User.Instance.CurrentCharacter.Id);
@@ -62,5 +64,10 @@ public class UIMain : MonoSingleton<UIMain>
     public void OnClickFriend()
     {
         UIManager.Instance.Show<UIFriends>();
+    }
+
+    public void ShowTeamUI(bool show)
+    {
+        TeamWindow.ShowTeam(show);
     }
 }

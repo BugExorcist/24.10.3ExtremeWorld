@@ -41,6 +41,7 @@ public class LoadingManager : MonoBehaviour
         StatusService.Instance.Init();
         FriendService.Instance.Init();
         ShopManager.Instance.Init();
+        TeamService.Instance.Init();
         
         // 模拟进度条加载
         for (float i = 50;i < 100;)

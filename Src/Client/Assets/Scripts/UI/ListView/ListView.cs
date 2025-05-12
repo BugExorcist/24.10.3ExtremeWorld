@@ -25,6 +25,11 @@ public class ListView : MonoBehaviour
                 onSelected(selected);
             }
         }
+
+        /// <summary>
+        /// 继承自ListViewItem需要重写此方法实现选中的逻辑
+        /// </summary>
+        /// <param name="selected"></param>
         public virtual void onSelected(bool selected)
         {
         }
