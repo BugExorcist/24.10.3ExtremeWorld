@@ -9,10 +9,12 @@ public class UITeamItem : ListView.ListViewItem
     public Image classIcon;
     public Image leaderIcon;
     public Image background;
+    private Sprite normalBackGround;
+    public Sprite selectedBackGround;
 
     public override void onSelected(bool selected)
     {
-        this.background.enabled = selected ? true: false;
+        this.background.overrideSprite = selected ? selectedBackGround : normalBackGround;
     }
 
     public int idx;
@@ -20,7 +22,7 @@ public class UITeamItem : ListView.ListViewItem
 
     private void Start()
     {
-        this.background.enabled = false;
+        this.normalBackGround = background.GetComponent<Sprite>();
     }
 
     public void SetMemnerInfo(int idx, NCharacterInfo info, bool isLeader)

@@ -296,6 +296,9 @@ namespace SkillBridge.Message
         [global::ProtoBuf.ProtoMember(22)]
         public TeamLeaveRequest teamLeave { get; set; }
 
+        [global::ProtoBuf.ProtoMember(23)]
+        public TeamSetLeaderRequest teamSetLeader { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -367,6 +370,9 @@ namespace SkillBridge.Message
 
         [global::ProtoBuf.ProtoMember(22)]
         public TeamLeaveResponse teamLeave { get; set; }
+
+        [global::ProtoBuf.ProtoMember(23)]
+        public TeamSetLeaderResponse teamSetLeader { get; set; }
 
         [global::ProtoBuf.ProtoMember(100)]
         public StatusNotify statusNotify { get; set; }
@@ -1006,8 +1012,8 @@ namespace SkillBridge.Message
         [global::ProtoBuf.ProtoMember(1, Name = @"team_id")]
         public int TeamId { get; set; }
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"fron_id")]
-        public int FronId { get; set; }
+        [global::ProtoBuf.ProtoMember(2, Name = @"from_id")]
+        public int FromId { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, Name = @"from_name")]
         [global::System.ComponentModel.DefaultValue("")]
@@ -1100,6 +1106,37 @@ namespace SkillBridge.Message
 
         [global::ProtoBuf.ProtoMember(3)]
         public int characterId { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class TeamSetLeaderRequest : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"team_id")]
+        public int TeamId { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"leader_id")]
+        public int LeaderId { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class TeamSetLeaderResponse : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"result")]
+        public Result Result { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"errormsg")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Errormsg { get; set; } = "";
 
     }
 

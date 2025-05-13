@@ -93,6 +93,9 @@ namespace GameServer.Managers
                 friendInfo.friendInfo.Class = character.Info.Class;
                 friendInfo.friendInfo.Level = character.Info.Level;
 
+                if (character.Info.Level != friend.Level)
+                    friend.Level = character.Info.Level;
+
                 character.FriendManager.UpdateFriendInfo(this.Owner.Info, 1);
                 friendInfo.Status = 1;
             }

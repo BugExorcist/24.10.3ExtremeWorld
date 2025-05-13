@@ -1,6 +1,7 @@
 ﻿using Common;
 using GameServer.Entities;
 using GameServer.Managers;
+using GameServer.Models;
 using Network;
 using SkillBridge.Message;
 using System;
@@ -18,7 +19,11 @@ namespace GameServer.Services
             MessageDistributer<NetConnection<NetSession>>.Instance.Subscribe<TeamInviteRequest>(this.OnTeamInviteRequset);
             MessageDistributer<NetConnection<NetSession>>.Instance.Subscribe<TeamInviteResponse>(this.OnTeamInviteResponse);
             MessageDistributer<NetConnection<NetSession>>.Instance.Subscribe<TeamLeaveRequest>(this.OnTeamLeave);
+            MessageDistributer<NetConnection<NetSession>>.Instance.Subscribe<TeamSetLeaderRequest>(this.OnSetLeader);
+
         }
+
+
         public void Init()
         {
             TeamManager.Instance.Init();
@@ -26,71 +31,54 @@ namespace GameServer.Services
         private void OnTeamInviteRequset(NetConnection<NetSession> sender, TeamInviteRequest request)
         {
             Character character = sender.Session.Character;
-            Log.InfoFormat("OnTeamInviteRequset: :FromID:{0} FromName:{1} ToId:{2} ToName:{3}", request.FronId, request.FromName, request.ToId, request.ToName);
-            //TODO:执行一些前置数据校验
+            Log.InfoFormat("OnTeamInviteRequset: :FromID:{0} FromName:{1} ToId:{2} ToName:{3}", request.FromId, request.FromName, request.ToId, request.ToName);
+            if (character == null)
+                return;
 
-
-            if (request.ToId == 0)
+            NetConnection<NetSession> target = SessionManager.Instance.GetSession(request.ToId);
+            if (target == null)
             {
-                foreach (var cha in CharacterManager.Instance.Characters)
-                {
-                    if (cha.Value.Data.Name == request.ToName)
-                    {
-                        request.ToId = cha.Key;
-                        break;
-                    }
-                }
+                sender.Session.Response.teamInviteRes = new TeamInviteResponse();
+                sender.Session.Response.teamInviteRes.Result = Result.Failed;
+                sender.Session.Response.teamInviteRes.Errormsg = "好友不在线";
+                sender.SendResponse();
+                return;
             }
-            NetConnection<NetSession> friend = null;
-            if (request.ToId > 0)
+            if (target.Session.Character.Team != null)
             {
-                if (character.FriendManager.GetFriendInfo(request.ToId) != null)
-                {
-                    sender.Session.Response.friendAddRes = new FriendAddResponse();
-                    sender.Session.Response.friendAddRes.Result = Result.Failed;
-                    sender.Session.Response.friendAddRes.Errormsg = "已经是好友了";
-                    sender.SendResponse();
-                    return;
-                }
-                friend = SessionManager.Instance.GetSession(request.ToId);
-            }
-            if (friend == null)
-            {
-                sender.Session.Response.friendAddRes = new FriendAddResponse();
-                sender.Session.Response.friendAddRes.Result = Result.Failed;
-                sender.Session.Response.friendAddRes.Errormsg = "好友不存在或者离线";
+                sender.Session.Response.teamInviteRes = new TeamInviteResponse();
+                sender.Session.Response.teamInviteRes.Result = Result.Failed;
+                sender.Session.Response.teamInviteRes.Errormsg = "对方已有队伍";
                 sender.SendResponse();
                 return;
             }
 
             Log.InfoFormat("ForwardRequest: :FromID:{0} FromName:{1} ToId:{2} ToName:{3}", request.FromId, request.FromName, request.ToId, request.ToName);
-            friend.Session.Response.friendAddReq = request;
-            friend.SendResponse();
+            target.Session.Response.teamInviteReq = request;
+            target.SendResponse();
         }
 
-        private void OnTeamInviteResponse(NetConnection<NetSession> sender, TeamInviteResponse message)
+        private void OnTeamInviteResponse(NetConnection<NetSession> sender, TeamInviteResponse response)
         {
             Character character = sender.Session.Character;
             Log.InfoFormat("OnFriendAddResponse: :character:{0} Result:{1} FroId:{2} ToId:{3}", character.Id, response.Request, response.Request.FromId, response.Request.ToId);
-            sender.Session.Response.friendAddRes = response;
+            sender.Session.Response.teamInviteRes = response;
 
             if (response.Result == Result.Success)
             {
                 var requester = SessionManager.Instance.GetSession(response.Request.FromId);
                 if (requester == null)
                 {
-                    sender.Session.Response.friendAddRes.Result = Result.Failed;
-                    sender.Session.Response.friendAddRes.Errormsg = "请求者离线";
+                    sender.Session.Response.teamInviteRes.Result = Result.Failed;
+                    sender.Session.Response.teamInviteRes.Errormsg = "请求者离线";
                 }
                 else
                 {
-                    //添加好友
-                    character.FriendManager.AddFriend(requester.Session.Character);
-                    requester.Session.Character.FriendManager.AddFriend(character);
-                    DBService.Instance.Save();
-                    requester.Session.Response.friendAddRes = response;
-                    requester.Session.Response.friendAddRes.Result = Result.Success;
-                    requester.Session.Response.friendAddRes.Errormsg = "添加好友成功";
+                    //组队
+                    TeamManager.Instance.AddTamMember(requester.Session.Character, character);
+                    requester.Session.Response.teamInviteRes = response;
+                    requester.Session.Response.teamInviteRes.Errormsg = string.Format("{0}加入队伍", character.Info.Name);
+                    sender.Session.Response.teamInviteRes.Errormsg = string.Format("加入{0}的队伍", requester.Session.Character.Info.Name);
                     requester.SendResponse();
                 }
             }
@@ -100,29 +88,81 @@ namespace GameServer.Services
         private void OnTeamLeave(NetConnection<NetSession> sender, TeamLeaveRequest request)
         {
             Character character = sender.Session.Character;
-            Log.InfoFormat("OnFriendRemove: :character:{0} FriendReletionID:{1}", character.Id, request.Id);
-            sender.Session.Response.friendRemove = new FriendRemoveResponse();
-            sender.Session.Response.friendRemove.Id = request.Id;
-
-            if (character.FriendManager.RemoveFriendByID(request.Id))
+            sender.Session.Response.teamLeave = new TeamLeaveResponse();
+            if (request.memberId == sender.Session.Character.Id)
             {
-                sender.Session.Response.friendRemove.Result = Result.Success;
-                // 删除别人好友中的自己
-                var friend = SessionManager.Instance.GetSession(request.friendId);
-                if (friend != null)
+                Log.InfoFormat("OnTeamLeave: : TeamID:{0}memberId:{1}", request.TeamId, request.memberId);
+                if (character.Team == null)
                 {
-                    friend.Session.Character.FriendManager.RemoveFriendByFriendId(character.Id);
+                    sender.Session.Response.teamLeave.Result = Result.Failed;
+                    sender.Session.Response.teamLeave.Errormsg = "当前没有组队";
+                    sender.SendResponse();
+                    return;
                 }
-                else
-                {
-                    //不在线
-                    this.RemoveFriend(request.friendId, character.Id);
-                }
+                sender.Session.Character.Team.Leave(character);
+                sender.Session.Response.teamLeave.characterId = request.memberId;
+                sender.Session.Response.teamLeave.Result = Result.Success;
+                sender.Session.Response.teamLeave.Errormsg = "退出成功";
+                sender.SendResponse();
+                return;
             }
-            else
-                sender.Session.Response.friendRemove.Result = Result.Failed;
-            DBService.Instance.Save();
+            NetConnection<NetSession> target = SessionManager.Instance.GetSession(request.memberId);
+            target.Session.Response.teamLeave = new TeamLeaveResponse();
+            Character tcharacter = target.Session.Character;
+            Log.InfoFormat("OnTeamLeave: : TeamID:{0}memberId:{1}",request.TeamId, request.memberId);
+            if (character == null)
+            {
+                sender.Session.Response.teamLeave.Result = Result.Failed;
+                sender.Session.Response.teamLeave.Errormsg = "该角色离线";
+                sender.SendResponse();
+                return;
+            }
+            if (character.Team == null)
+            {
+                sender.Session.Response.teamLeave.Result = Result.Failed;
+                sender.Session.Response.teamLeave.Errormsg = "此角色当前没有组队";
+                sender.SendResponse();
+                return;
+            }
+            if(character.Team.Id != tcharacter.Team.Id)
+            {
+                sender.Session.Response.teamLeave.Result = Result.Failed;
+                sender.Session.Response.teamLeave.Errormsg = "此角色不在你的队伍中";
+                sender.SendResponse();
+                return;
+            }
+            sender.Session.Character.Team.Leave(tcharacter);
+            sender.Session.Response.teamLeave.characterId = request.memberId;
+            sender.Session.Response.teamLeave.Result = Result.Failed;//Result.Failed不会隐藏TeamUI
+            sender.Session.Response.teamLeave.Errormsg = "踢出成功";
+            target.Session.Response.teamLeave.characterId = request.memberId;
+            target.Session.Response.teamLeave.Result = Result.Success;
+            target.Session.Response.teamLeave.Errormsg = "你被踢出队伍";
             sender.SendResponse();
+            target.SendResponse();
         }
-    }
+
+        private void OnSetLeader(NetConnection<NetSession> sender, TeamSetLeaderRequest request)
+        {
+            Log.InfoFormat("OnSetLeader: : TeamID:{0} newLeaderId:{1}", request.TeamId, request.LeaderId);
+            Character character = sender.Session.Character;
+            var target = SessionManager.Instance.GetSession(request.LeaderId);
+            sender.Session.Response.teamSetLeader = new TeamSetLeaderResponse();
+            if (target.Session.Character.Team.Id != request.TeamId || target == null)
+            {
+                sender.Session.Response.teamSetLeader.Result = Result.Failed;
+                sender.Session.Response.teamSetLeader.Errormsg = "该角色离线或不在你的队伍中";
+                sender.SendResponse();
+                return;
+            }
+            character.Team.SetLeader(target.Session.Character);
+            sender.Session.Response.teamSetLeader.Result = Result.Success;
+            sender.Session.Response.teamSetLeader.Errormsg = "设置新队长成功";
+            target.Session.Response.teamSetLeader = new TeamSetLeaderResponse();
+            target.Session.Response.teamSetLeader.Result = Result.Success;
+            target.Session.Response.teamSetLeader.Errormsg = "你被设置为队长";
+            sender.SendResponse();
+            target.SendResponse();
+        }
+    } 
 }

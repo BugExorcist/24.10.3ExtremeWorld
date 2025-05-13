@@ -20,7 +20,7 @@ namespace Managers
             ShowTeamUI(team != null);
         }
 
-        private void ShowTeamUI(bool v)
+        public void ShowTeamUI(bool v)
         {
             if (UIMain.Instance != null)
             {

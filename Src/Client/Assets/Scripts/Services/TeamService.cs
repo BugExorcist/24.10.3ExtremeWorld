@@ -3,11 +3,6 @@ using Models;
 using Network;
 using SkillBridge.Message;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 namespace Services
@@ -25,6 +20,7 @@ namespace Services
             MessageDistributer.Instance.Subscribe<TeamInviteResponse>(this.OnTeamInviteResponse);
             MessageDistributer.Instance.Subscribe<TeamInfoResponse>(this.OnTeamInfo);
             MessageDistributer.Instance.Subscribe<TeamLeaveResponse>(this.OnTeamLeave);
+            MessageDistributer.Instance.Subscribe<TeamSetLeaderResponse>(this.OnSetLeader);
         }
         public void Dispose()
         {
@@ -32,14 +28,17 @@ namespace Services
             MessageDistributer.Instance.Unsubscribe<TeamInviteResponse>(this.OnTeamInviteResponse);
             MessageDistributer.Instance.Unsubscribe<TeamInfoResponse>(this.OnTeamInfo);
             MessageDistributer.Instance.Unsubscribe<TeamLeaveResponse>(this.OnTeamLeave);
+            MessageDistributer.Instance.Unsubscribe<TeamSetLeaderResponse>(this.OnSetLeader);
+
         }
+
         public void SendTeamInviteResquest(int friendId, string friendNama)
         {
             Debug.Log("SendTeamInviteResquest");
             NetMessage message = new NetMessage();
             message.Request = new NetMessageRequest();
             message.Request.teamInviteReq = new TeamInviteRequest();
-            message.Request.teamInviteReq.FronId = User.Instance.CurrentCharacter.Id;
+            message.Request.teamInviteReq.FromId = User.Instance.CurrentCharacter.Id;
             message.Request.teamInviteReq.FromName = User.Instance.CurrentCharacter.Name;
             message.Request.teamInviteReq.ToId = friendId;
             message.Request.teamInviteReq.ToName = friendNama;
@@ -82,7 +81,9 @@ namespace Services
         private void OnTeamInviteResponse(object sender, TeamInviteResponse message)
         {
             if (message.Result == Result.Success)
-                MessageBox.Show(message.Request.ToName + "加入你的队伍", "组队成功");
+            {
+                MessageBox.Show(message.Errormsg, "组队成功");
+            }
             else
                 MessageBox.Show("添加好友失败 " + message.Errormsg, "组队失败");
         }
@@ -105,15 +106,48 @@ namespace Services
             NetClient.Instance.SendMessage(message);
         }
 
+        public void SendTeamLeaveRequest(int memberId)
+        {
+            Debug.Log("SendTeamLeaveRequest memberID: " + memberId);
+            NetMessage message = new NetMessage();
+            message.Request = new NetMessageRequest();
+            message.Request.teamLeave = new TeamLeaveRequest();
+            message.Request.teamLeave.TeamId = User.Instance.TeamInfo.Id;
+            message.Request.teamLeave.memberId = memberId;
+            NetClient.Instance.SendMessage(message);
+        }
+
+
         private void OnTeamLeave(object sender, TeamLeaveResponse message)
         {
             if (message.Result == Result.Success)
             {
-                MessageBox.Show("退出成功", "退出队伍");
+                MessageBox.Show(message.Errormsg, "退出队伍");
                 TeamManager.Instance.UpdateTeamInfo(null);
             }
             else
-                MessageBox.Show("退出失败", "退出队伍", MessageBoxType.Error);
+                MessageBox.Show(message.Errormsg, "退出队伍", MessageBoxType.Error);
+        }
+
+        public void SendSetLeader(int memberId)
+        {
+            Debug.Log("SendSetLeader memberID: " + memberId);
+            NetMessage message = new NetMessage();
+            message.Request = new NetMessageRequest();
+            message.Request.teamSetLeader = new TeamSetLeaderRequest();
+            message.Request.teamSetLeader.TeamId = User.Instance.TeamInfo.Id;
+            message.Request.teamSetLeader.LeaderId = memberId;
+            NetClient.Instance.SendMessage(message);
+        }
+
+        private void OnSetLeader(object sender, TeamSetLeaderResponse message)
+        {
+            if (message.Result == Result.Success)
+            {
+                MessageBox.Show(message.Errormsg, "提示");
+            }
+            else
+                MessageBox.Show(message.Errormsg, "提示", MessageBoxType.Error);
         }
     }
 }

@@ -43,14 +43,21 @@ namespace GameServer.Models
                 {
                     this.Leader = null;
                 }
-                member.Team = null;
-                timestamp = Time.timestamp;
             }
+            member.Team = null;
+            timestamp = Time.timestamp;
+        }
+
+        public void SetLeader(Character leader)
+        {
+            this.Leader = leader;
+            this.timestamp = Time.timestamp;
         }
 
         public void PostProcess(NetMessageResponse message)
         {
-            if (message.teamInfo != null)
+            Log.InfoFormat("PostProcess > Team: Teamid:{0} leader:{1} ", this.Id, this.Leader.Id);
+            if (message.teamInfo == null)
             {
                 message.teamInfo = new TeamInfoResponse();
                 message.teamInfo.Result = Result.Success;

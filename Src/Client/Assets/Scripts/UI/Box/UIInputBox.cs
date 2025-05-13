@@ -33,8 +33,8 @@ public class UIInputBox : MonoBehaviour {
         this.OnSubmit = null;
         this.emptyTips = emptyTips;
 
-        if (!string.IsNullOrEmpty(btnOK)) this.buttonYesTitle.text = title;
-        if (!string.IsNullOrEmpty(btnCancel)) this.buttonNoTitle.text = title;
+        if (!string.IsNullOrEmpty(btnOK)) this.buttonYesTitle.text = btnOK;
+        if (!string.IsNullOrEmpty(btnCancel)) this.buttonNoTitle.text = btnCancel;
 
         this.buttonYes.onClick.AddListener(OnClickYes);
         this.buttonNo.onClick.AddListener(OnClickNo);
