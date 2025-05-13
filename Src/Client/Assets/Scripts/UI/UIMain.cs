@@ -1,3 +1,4 @@
+using Managers;
 using Models;
 using System.Collections;
 using System.Collections.Generic;
@@ -66,6 +67,25 @@ public class UIMain : MonoSingleton<UIMain>
         UIManager.Instance.Show<UIFriends>();
     }
 
+    public void OnCilckGuild()
+    {
+        GuildManager.Instance.ShowGuild();
+    }
+
+    public void OnClickRide()
+    {
+
+    }
+
+    public void OnClickSetting()
+    {
+
+    }
+
+    public void OnClickSkill()
+    {
+
+    }
     public void ShowTeamUI(bool show)
     {
         TeamWindow.ShowTeam(show);
