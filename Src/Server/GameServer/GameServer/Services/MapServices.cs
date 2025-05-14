@@ -43,17 +43,17 @@ namespace GameServer.Services
             Character character = sender.Session.Character;
             Log.InfoFormat("OnMapTeleporter: CharacterID:{0}:{1} TeleporterID:{2}", character.Id, character.Info.Name, request.teleporterId);
 
-            if(!DataManager.Instance.Teleporters.ContainsKey(request.teleporterId))
+            if(!DateManager.Instance.Teleporters.ContainsKey(request.teleporterId))
             {
                 Log.WarningFormat("Source TeleporterId [{0}] not existed!", request.teleporterId);
                 return;
             }
-            TeleporterDefine source = DataManager.Instance.Teleporters[request.teleporterId];
-            if(source.LinkTo == 0 || !DataManager.Instance.Teleporters.ContainsKey(source.LinkTo))
+            TeleporterDefine source = DateManager.Instance.Teleporters[request.teleporterId];
+            if(source.LinkTo == 0 || !DateManager.Instance.Teleporters.ContainsKey(source.LinkTo))
             {
                 Log.WarningFormat("Source TeleporterID [{0}] LinkTo [{1}] not existed", request.teleporterId, source.LinkTo);
             }
-            TeleporterDefine target = DataManager.Instance.Teleporters[source.LinkTo];
+            TeleporterDefine target = DateManager.Instance.Teleporters[source.LinkTo];
 
             MapManager.Instance[source.MapID].CharacterLeave(character);
             character.Position = target.Position;

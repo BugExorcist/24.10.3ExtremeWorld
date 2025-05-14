@@ -17,13 +17,14 @@ namespace GameServer
             network = new NetService();
             network.Init(Port);
             DBService.Instance.Init();
-            DataManager.Instance.Load();
+            DateManager.Instance.Load();
             UserService.Instance.Init();
             MapServices.Instance.Init();
             ItemService.Instance.Init();
             QuestService.Instance.Init();
             FriendService.Instance.Init();
             TeamService.Instance.Init();
+            GuildService.Instance.Init();
 
             thread = new Thread(new ThreadStart(this.Update));
 

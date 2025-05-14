@@ -28,11 +28,11 @@ namespace GameServer.Managers
             this.Define = define1;
             this.Map = map;
 
-            if (DataManager.Instance.SpawnPoints.ContainsKey(this.Map.ID))
+            if (DateManager.Instance.SpawnPoints.ContainsKey(this.Map.ID))
             {
-                if (DataManager.Instance.SpawnPoints[this.Map.ID].ContainsKey(this.Define.SpawnPoint))
+                if (DateManager.Instance.SpawnPoints[this.Map.ID].ContainsKey(this.Define.SpawnPoint))
                 {
-                    spawnPoint = DataManager.Instance.SpawnPoints[this.Map.ID][this.Define.SpawnPoint];
+                    spawnPoint = DateManager.Instance.SpawnPoints[this.Map.ID][this.Define.SpawnPoint];
                 }
                 else
                 {

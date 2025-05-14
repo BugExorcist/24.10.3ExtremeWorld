@@ -66,7 +66,7 @@ public class ListView : MonoBehaviour
         }
     }
 
-    public void AddIten(ListViewItem item)
+    public void AddItem(ListViewItem item)
     {
         item.owner = this;
         this.items.Add(item);

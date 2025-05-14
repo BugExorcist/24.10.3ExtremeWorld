@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 1924938789796415958}
   - component: {fileID: 1598531347486540095}
   m_Layer: 5
-  m_Name: InputField (TMP) (1)
+  m_Name: InputFieldNotice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -554,6 +554,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragRectTransform: {fileID: 0}
+  inputName: {fileID: 8794902372178416862}
+  inputNotice: {fileID: 1598531347486540095}
 --- !u!1 &3242235081629256284
 GameObject:
   m_ObjectHideFlags: 0
@@ -887,7 +889,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u8BF7\u8F93\u5165\u5DE5\u4F1A\u540D\u79F0  2-5\u4E2A\u6C49\u5B57"
+  m_text: "\u8BF7\u8F93\u5165\u5DE5\u4F1A\u540D\u79F0  2-10\u4E2A\u5B57\u7B26"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eb8bacd46357fb4418b3d529965e7b08, type: 2}
   m_sharedMaterial: {fileID: 2979193228837331801, guid: eb8bacd46357fb4418b3d529965e7b08,
@@ -1392,7 +1394,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u8BF7\u8F93\u5165\u5DE5\u4F1A\u5B97\u65E8\n3-50\u4E2A\u6C49\u5B57"
+  m_text: "\u8BF7\u8F93\u5165\u5DE5\u4F1A\u5B97\u65E8\n3-50\u4E2A\u5B57\u7B26"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eb8bacd46357fb4418b3d529965e7b08, type: 2}
   m_sharedMaterial: {fileID: 2979193228837331801, guid: eb8bacd46357fb4418b3d529965e7b08,
@@ -1811,7 +1813,7 @@ GameObject:
   - component: {fileID: 5519032438025496069}
   - component: {fileID: 8794902372178416862}
   m_Layer: 5
-  m_Name: InputField (TMP)
+  m_Name: InputFieldName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

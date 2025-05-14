@@ -23,7 +23,7 @@ public class UITeam : MonoBehaviour
         }
         foreach (var item in Members)
         {
-            this.list.AddIten(item);
+            this.list.AddItem(item);
         }
     }
 

@@ -18,7 +18,10 @@ namespace GameServer.Entities
         public FriendManager FriendManager;
 
         public Team Team;
-        public int TeamUpdateTS;
+        public double TeamUpdateTS;
+
+        public Guild Guild;
+        public double GuildUpdateTS;
 
         public Character(CharacterType type,TCharacter cha):
             base(new Core.Vector3Int(cha.MapPosX, cha.MapPosY, cha.MapPosZ),new Core.Vector3Int(100,0,0))
@@ -29,17 +32,13 @@ namespace GameServer.Entities
             this.Info.Id = cha.ID;
             this.Info.EntityId = this.entityId;
             this.Info.Name = cha.Name;
-            //=======任务测试=======
-            cha.Level = 10;
-            DBService.Instance.Save();
-            //=======================
             this.Info.Level = cha.Level;
             this.Info.ConfigId = cha.TID;
             this.Info.Class = (CharacterClass)cha.Class;
             this.Info.mapId = cha.MapID;
             this.Info.Gold = cha.Gold;
             this.Info.Entity = this.EntityData;
-            this.Define = DataManager.Instance.Characters[this.Info.ConfigId];
+            this.Define = DateManager.Instance.Characters[this.Info.ConfigId];
 
             this.ItemManager = new ItemManager(this);
             this.ItemManager.GetItemInfos(this.Info.Items);
@@ -53,6 +52,8 @@ namespace GameServer.Entities
             this.StatusManager = new StatusManager(this);
             this.FriendManager = new FriendManager(this);
             this.FriendManager.GetFriendInfos(this.Info.Friends);
+
+            this.Guild = GuildManager.Instance.GetGuild(this.Data.GuildId);
         }
 
         public long Gold
@@ -78,6 +79,24 @@ namespace GameServer.Entities
                 {
                     TeamUpdateTS = this.Team.timestamp;
                     this.Team.PostProcess(message);
+                }
+            }
+
+            if (this.Guild != null)
+            {
+                Log.InfoFormat("PostProcess > Guild: characterID:{0}:{1} {2}<{3}", this.Id, this.Info.Name, GuildUpdateTS, this.Guild.timestamp);
+                if (this.Info.Guild == null)
+                {   //Character.Info.Guild第一次赋值位置
+                    this.Info.Guild = this.Guild.GuildInfo(this);
+                    if (message.mapCharacterEnter != null)
+                    {//登录后第一次后处理的时候，同步角色的公会时间戳
+                        GuildUpdateTS = Guild.timestamp;
+                    } 
+                }
+                if (GuildUpdateTS < this.Guild.timestamp && message.mapCharacterEnter == null)
+                {//不是第一次后处理且公会信息发生变化时，进行后处理
+                    GuildUpdateTS = this.Guild.timestamp;
+                    this.Guild.PostProcess(this, message);
                 }
             }
             if (this.StatusManager.HasStatus)

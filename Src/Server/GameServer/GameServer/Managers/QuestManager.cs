@@ -47,7 +47,7 @@ namespace GameServer.Managers
             Character character = sender.Session.Character;
 
             QuestDefine quest;
-            if (DataManager.Instance.Quests.TryGetValue(questId, out quest))
+            if (DateManager.Instance.Quests.TryGetValue(questId, out quest))
             {
                 var dbquest = DBService.Instance.Entities.CharacterQuests.Create();
                 dbquest.QuestID = quest.ID;
@@ -78,7 +78,7 @@ namespace GameServer.Managers
             Character character = sender.Session.Character;
 
             QuestDefine quest;
-            if (DataManager.Instance.Quests.TryGetValue(questId, out quest))
+            if (DateManager.Instance.Quests.TryGetValue(questId, out quest))
             {
                 var dbquest = character.Data.Quests.Where(q => q.QuestID == questId).FirstOrDefault();
                 if (dbquest != null)

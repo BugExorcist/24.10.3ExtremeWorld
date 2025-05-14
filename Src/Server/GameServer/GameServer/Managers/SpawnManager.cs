@@ -15,9 +15,9 @@ namespace GameServer.Managers
         public void Init(Map map)
         {
             this.Map = map;
-            if (DataManager.Instance.SpawnRules.ContainsKey(map.Define.ID))
+            if (DateManager.Instance.SpawnRules.ContainsKey(map.Define.ID))
             {
-                foreach (var define in DataManager.Instance.SpawnRules[map.Define.ID].Values)
+                foreach (var define in DateManager.Instance.SpawnRules[map.Define.ID].Values)
                     this.Rules.Add(new Spawner(define, this.Map));
             }
         }

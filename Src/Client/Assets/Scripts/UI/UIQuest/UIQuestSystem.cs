@@ -74,9 +74,9 @@ public class UIQuestSystem : UIWindow
             UIQuestItem item = go.GetComponent<UIQuestItem>();
             item.SetQuestInfo(kv.Value);
             if (kv.Value.Define.Type == QuestType.Main)
-                this.listMain.AddIten(item);
+                this.listMain.AddItem(item);
             else
-                this.listBranch.AddIten(item);
+                this.listBranch.AddItem(item);
         }
     }
     void ClearAllQuestList()

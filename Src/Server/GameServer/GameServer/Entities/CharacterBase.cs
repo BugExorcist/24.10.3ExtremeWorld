@@ -13,6 +13,7 @@ namespace GameServer.Entities
     class CharacterBase : Entity
     {
         public int Id { get { return this.Info.Id; } }
+        public string Name { get { return this.Info.Name; } }
         public NCharacterInfo Info;
         public CharacterDefine Define;
 
@@ -30,7 +31,7 @@ namespace GameServer.Entities
             this.Info.ConfigId = configId;
             this.Info.Entity = this.EntityData;
             this.Info.EntityId = this.entityId;
-            this.Define = DataManager.Instance.Characters[this.Info.ConfigId];
+            this.Define = DateManager.Instance.Characters[this.Info.ConfigId];
             this.Info.Name = this.Define.Name;
         }
     }

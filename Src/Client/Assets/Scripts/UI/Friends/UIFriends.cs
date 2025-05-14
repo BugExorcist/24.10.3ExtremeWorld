@@ -41,7 +41,7 @@ public class UIFriends : UIWindow
                 GameObject go = Instantiate(itemPrefab, itemRoot);
                 UIFriendItem item = go.GetComponent<UIFriendItem>();
                 item.SetFriendInfo(info);
-                this.listView.AddIten(item);
+                this.listView.AddItem(item);
             }
         }
         foreach (var info in FriendManager.Instance.allFriends)
@@ -51,7 +51,7 @@ public class UIFriends : UIWindow
                 GameObject go = Instantiate(itemPrefab, itemRoot);
                 UIFriendItem item = go.GetComponent<UIFriendItem>();
                 item.SetFriendInfo(info);
-                this.listView.AddIten(item);
+                this.listView.AddItem(item);
             }
         }
     }

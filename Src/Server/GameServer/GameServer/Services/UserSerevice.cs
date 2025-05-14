@@ -165,33 +165,14 @@ namespace GameServer.Services
             sender.Session.Response.gameEnter = new UserGameEnterResponse();
             sender.Session.Response.gameEnter.Result = Result.Success;
             sender.Session.Response.gameEnter.Errormsg = "None";
-
             sender.Session.Response.gameEnter.Character = character.Info;
 
-            ////道具系统测试===============
-            //int itemId = 1;
-            //bool HasItem = character.ItemManager.HasItem(itemId);
-            //Log.InfoFormat("HasItem:[{0}],{1}", itemId, HasItem);
-            //if (HasItem)
-            //{
-            //    //character.ItemManager.RemoveItem(itemId, 1);
-            //}
-            //else
-            //{
-            //    character.ItemManager.AddItem(1, 20);
-            //    character.ItemManager.AddItem(2, 100);
-            //    character.ItemManager.AddItem(3, 30);
-            //    character.ItemManager.AddItem(4, 120);
-            //}
-            //Models.Item item = character.ItemManager.GetItem(itemId);
-            //Log.InfoFormat("Item[{0}][{1}]", itemId, item);
-            //DBService.Instance.Save();
-            ////=========================
-            
-            sender.SendResponse();
             //角色进入
             sender.Session.Character = character;
             sender.Session.PostResponser = character;
+
+            sender.SendResponse();
+            
             MapManager.Instance[dbcharacter.MapID].CharacterEnter(sender, character);
         }
 
