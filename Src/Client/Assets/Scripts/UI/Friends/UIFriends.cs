@@ -2,6 +2,7 @@ using Common.Data;
 using Managers;
 using Models;
 using Services;
+using SkillBridge.Message;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -38,20 +39,22 @@ public class UIFriends : UIWindow
         {
             if (info.Status == 1)
             {
-                GameObject go = Instantiate(itemPrefab, itemRoot);
-                UIFriendItem item = go.GetComponent<UIFriendItem>();
-                item.SetFriendInfo(info);
-                this.listView.AddItem(item);
+                this.listView.AddItem<NFriendInfo, UIFriendItem>(info, itemPrefab);
+                //GameObject go = Instantiate(itemPrefab, listView.transform);
+                //UIFriendItem item = go.GetComponent<UIFriendItem>();
+                //item.SetFriendInfo(info);
+                //this.listView.AddItem(item);
             }
         }
         foreach (var info in FriendManager.Instance.allFriends)
         {
             if (info.Status != 1)
             {
-                GameObject go = Instantiate(itemPrefab, itemRoot);
-                UIFriendItem item = go.GetComponent<UIFriendItem>();
-                item.SetFriendInfo(info);
-                this.listView.AddItem(item);
+                this.listView.AddItem<NFriendInfo, UIFriendItem>(info, itemPrefab);
+                //GameObject go = Instantiate(itemPrefab, listView.transform);
+                //UIFriendItem item = go.GetComponent<UIFriendItem>();
+                //item.SetFriendInfo(info);
+                //this.listView.AddItem(item);
             }
         }
     }

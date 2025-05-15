@@ -6,6 +6,11 @@ using UnityEngine.EventSystems;
 [System.Serializable]
 public class ItemSelectEvent : UnityEvent<ListView.ListViewItem> { }
 
+public interface ISetItemInfo<Tinfo>
+{
+    void SetItemInfo(Tinfo info);
+}
+
 public class ListView : MonoBehaviour
 {
     public UnityAction<ListViewItem> onItemSelected;
@@ -28,6 +33,7 @@ public class ListView : MonoBehaviour
         /// <param name="selected"></param>
         public virtual void onSelected(bool selected)
         {
+
         }
 
         public ListView owner;
@@ -60,6 +66,23 @@ public class ListView : MonoBehaviour
             selectedIten = value;
             onItemSelected?.Invoke(value);
         }
+    }
+
+    /// <summary>
+    /// 向ListView添加item，并且根据info实列化对应的UIItem
+    /// </summary>
+    /// <typeparam name="Tinfo">协议的信息类</typeparam>
+    /// <typeparam name="TScript">UIItem的脚本类</typeparam>
+    /// <param name="info">协议内容</param>
+    /// <param name="Profab">Item预制体</param>
+    public void AddItem<Tinfo, TScript>(Tinfo info, GameObject Profab) where TScript : ListViewItem, ISetItemInfo<Tinfo>
+    {
+        GameObject go = Instantiate(Profab, this.transform);
+        TScript item = go.GetComponent<TScript>();
+        item.SetItemInfo(info);
+
+        item.owner = this;
+        this.items.Add(item);
     }
 
     public void AddItem(ListViewItem item)

@@ -21,6 +21,8 @@ namespace GameServer.Services
             MessageDistributer<NetConnection<NetSession>>.Instance.Subscribe<GuildJoinRequest>(this.OnGuildJoinReq);
             MessageDistributer<NetConnection<NetSession>>.Instance.Subscribe<GuildJoinResponse>(this.OnGuildJoinRes);
             MessageDistributer<NetConnection<NetSession>>.Instance.Subscribe<GuildLeaveRequest>(this.OnGuildLeave);
+            MessageDistributer<NetConnection<NetSession>>.Instance.Subscribe<GuildAdminRequest>(this.OnGuildAdmin);
+            MessageDistributer<NetConnection<NetSession>>.Instance.Subscribe<GuildSetNoticeRequest>(this.OnGuildSetNotice);
         }
 
         public void Init()
@@ -131,6 +133,54 @@ namespace GameServer.Services
             sender.Session.Response.guildLeave = new GuildLeaveResponse();
             sender.Session.Response.guildLeave.Result = Result.Success;
             DBService.Instance.Save();
+            sender.SendResponse();
+        }
+
+        private void OnGuildAdmin(NetConnection<NetSession> sender, GuildAdminRequest request)
+        {
+            Character character = sender.Session.Character;
+            Log.InfoFormat("OnGuildAdmin: :character:{0}:{1}", character.Id, character.Name);
+            sender.Session.Response.guildAdmin = new GuildAdminResponse();
+            if (character.Guild == null)
+            {
+                sender.Session.Response.guildAdmin.Result = Result.Failed;
+                sender.Session.Response.guildAdmin.Errormsg = "您没有公会";
+                sender.SendResponse();
+                return;
+            }
+            character.Guild.ExecuteAdmin(request.Command, request.Target, character.Id);
+            var target = SessionManager.Instance.GetSession(request.Target);
+            if (target != null)
+            {
+                target.Session.Response.guildAdmin = new GuildAdminResponse();
+                target.Session.Response.guildAdmin.Result = Result.Success;
+                target.Session.Response.guildAdmin.Command = request; 
+                target.SendResponse();
+            }
+            sender.Session.Response.guildAdmin.Result = Result.Success;
+            sender.Session.Response.guildAdmin.Command = request;
+            sender.SendResponse();
+        }
+
+        private void OnGuildSetNotice(NetConnection<NetSession> sender, GuildSetNoticeRequest request)
+        {
+            Character character = sender.Session.Character;
+            Log.InfoFormat("OnGuildSetNotice: :character:{0}:{1}", character.Id, character.Name);
+            sender.Session.Response.guildSetNotice = new GuildSetNoticeResponse();
+            if (character.Guild == null)
+            {
+                sender.Session.Response.guildSetNotice.Result = Result.Failed;
+                sender.Session.Response.guildSetNotice.Errormsg = "您没有公会";
+                sender.SendResponse();
+            }
+            if (character.Guild. != character.Id)
+            {
+                sender.Session.Response.guildSetNotice.Result = Result.Failed;
+                sender.Session.Response.guildSetNotice.Errormsg = "您不是会长";
+                sender.SendResponse();
+            }
+            character.Guild.SetNotice(request.Notice);
+            sender.Session.Response.guildSetNotice.Result = Result.Success;
             sender.SendResponse();
         }
     }

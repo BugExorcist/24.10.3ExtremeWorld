@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEngine.GraphicsBuffer;
 
 namespace Services
 {
@@ -26,6 +27,8 @@ namespace Services
             MessageDistributer.Instance.Subscribe<GuildResponse>(this.OnGuild);
             MessageDistributer.Instance.Subscribe<GuildLeaveResponse>(this.OnGuildLeave);
             MessageDistributer.Instance.Subscribe<GuildListResponse>(this.OnGuildList);
+            MessageDistributer.Instance.Subscribe<GuildAdminResponse>(this.OnGuildAdmin);
+            MessageDistributer.Instance.Subscribe<GuildSetNoticeResponse>(this.OnSetNotice);
         }
         public void Dispose()
         {
@@ -35,7 +38,12 @@ namespace Services
             MessageDistributer.Instance.Unsubscribe<GuildResponse>(this.OnGuild);
             MessageDistributer.Instance.Unsubscribe<GuildLeaveResponse>(this.OnGuildLeave);
             MessageDistributer.Instance.Unsubscribe<GuildListResponse>(this.OnGuildList);
+            MessageDistributer.Instance.Unsubscribe<GuildAdminResponse>(this.OnGuildAdmin);
+            MessageDistributer.Instance.Unsubscribe<GuildSetNoticeResponse>(this.OnSetNotice);
         }
+
+        
+
         public void SendGuildCreate(string name, string notice)
         {
             Debug.Log("SendGuildCreate");
@@ -146,9 +154,65 @@ namespace Services
             NetClient.Instance.SendMessage(message);
         }
 
+        /// <summary>
+        /// 通知更新公会列表
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="response"></param>
         private void OnGuildList(object sender, GuildListResponse response)
         {
             this.OnGuildListResult?.Invoke(response.Guilds);
+        }
+        /// <summary>
+        /// 发送加入公会审批
+        /// </summary>
+        /// <param name="accept"></param>
+        /// <param name="apply"></param>
+        public void SendGuildJoinApply(bool accept,NGuildApplyInfo apply)
+        {
+            Debug.Log("SendGuildJoinApply");
+            NetMessage message = new NetMessage();
+            message.Request = new NetMessageRequest();
+            message.Request.guildJoinRes = new GuildJoinResponse();
+            message.Request.guildJoinRes.Result = Result.Success;
+            message.Request.guildJoinRes.Apply = apply;
+            message.Request.guildJoinRes.Apply.Result = accept ? ApplyResult.Accept : ApplyResult.Reject;
+            NetClient.Instance.SendMessage(message);
+        }
+
+        internal void SendAdminCommand(GuildAdminCommand command, int targetId)
+        {
+            Debug.Log("SendAdminCommand");
+            NetMessage message = new NetMessage();
+            message.Request = new NetMessageRequest();
+            message.Request.guildAdmin = new GuildAdminRequest();
+            message.Request.guildAdmin.Command = command;
+            message.Request.guildAdmin.Target = targetId;
+            NetClient.Instance.SendMessage(message);
+        }
+
+        private void OnGuildAdmin(object sender, GuildAdminResponse response)
+        {
+            Debug.LogFormat("OnGuildAdmin : {0}  {1}", response.Command, response.Result);
+            MessageBox.Show(response.Errormsg, "提示", MessageBoxType.Information);
+        }
+
+        internal void SendGuildSetNotice(string inputText)
+        {
+            Debug.Log("SendGuildSetNotice");
+            NetMessage message = new NetMessage();
+            message.Request = new NetMessageRequest();
+            message.Request.guildSetNotice = new GuildSetNoticeRequest();
+            message.Request.guildSetNotice.Notice = inputText;
+            NetClient.Instance.SendMessage(message);
+        }
+        private void OnSetNotice(object sender, GuildSetNoticeResponse message)
+        {
+            Debug.LogFormat("OnSetNotice");
+            if (message.Result == Result.Success)
+                MessageBox.Show("设置公会公告成功", "提示");
+            else
+                MessageBox.Show("设置公会公告失败 " + message.Errormsg, "提示", MessageBoxType.Error);
         }
     }
 }

@@ -58,6 +58,7 @@ public class UIInputBox : MonoBehaviour {
             }
         }
         Destroy(this.gameObject);
+        this.OnYes?.Invoke();
     }
 
     public void OnClickNo()

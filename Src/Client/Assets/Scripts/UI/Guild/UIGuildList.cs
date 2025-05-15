@@ -39,10 +39,11 @@ public class UIGuildList : UIWindow
     {
         foreach (var info in guilds)
         {
-            GameObject go = Instantiate(itemPrefab, listView.transform);
-            UIGuildItem item = go.GetComponent<UIGuildItem>();
-            item.SetGuildInfo(info);
-            this.listView.AddItem(item);
+            this.listView.AddItem<NGuildInfo, UIGuildItem>(info, itemPrefab);
+            //GameObject go = Instantiate(itemPrefab, listView.transform);
+            //UIGuildItem item = go.GetComponent<UIGuildItem>();
+            //item.SetGuildInfo(info);
+            //this.listView.AddItem(item);
         }
     }
 

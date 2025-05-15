@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIFriendItem : ListView.ListViewItem
+public class UIFriendItem : ListView.ListViewItem, ISetItemInfo<NFriendInfo>
 {
     public TMP_Text name;
     public TMP_Text level;
@@ -28,12 +28,21 @@ public class UIFriendItem : ListView.ListViewItem
 
     public NFriendInfo Info;
 
-    public void SetFriendInfo(NFriendInfo info)
+    //public void SetFriendInfo(NFriendInfo info)
+    //{
+    //    this.Info = info;
+    //    if (this.name != null) this.name.text = this.Info.friendInfo.Name;
+    //    if (this.level != null) this.level.text = this.Info.friendInfo.Level.ToString();
+    //    if (this.type != null) this.type.text = this.Info.friendInfo.Class.ToString();
+    //    if (this.status!= null) this.status.text = this.Info.Status == 1 ? "在线" : "离线";
+    //}
+
+    public void SetItemInfo(NFriendInfo info)
     {
         this.Info = info;
         if (this.name != null) this.name.text = this.Info.friendInfo.Name;
         if (this.level != null) this.level.text = this.Info.friendInfo.Level.ToString();
         if (this.type != null) this.type.text = this.Info.friendInfo.Class.ToString();
-        if (this.status!= null) this.status.text = this.Info.Status == 1 ? "在线" : "离线";
+        if (this.status != null) this.status.text = this.Info.Status == 1 ? "在线" : "离线";
     }
 }

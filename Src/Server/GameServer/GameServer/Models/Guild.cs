@@ -14,8 +14,6 @@ namespace GameServer.Models
     {
         public int Id { get { return Data.Id; } }
         public string Name { get { return Data.Name; } }
-        public Character Leader;
-        public List<Character> Members = new List<Character>();
         public int timestamp;
         public TGuild Data;
 
@@ -186,6 +184,24 @@ namespace GameServer.Models
                 Class = (CharacterClass)member.Class,
                 Level = member.Level
             };
+        }
+        /// <summary>
+        /// 执行管理员命令
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="target"></param>
+        /// <param name="id"></param>
+        /// <exception cref="NotImplementedException"></exception>
+        internal void ExecuteAdmin(GuildAdminCommand command, int target, int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void SetNotice(string notice)
+        {
+            DBService.Instance.Entities.Guilds.FirstOrDefault(v => v.Id == this.Id).Notice = notice;
+            DBService.Instance.Save();
+            this.timestamp = Time.timestamp;
         }
     }
 }

@@ -9,7 +9,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIGuildMemberItem : ListView.ListViewItem
+public class UIGuildMemberItem : ListView.ListViewItem, ISetItemInfo<NGuildMemberInfo>
 {
     public NGuildMemberInfo Info;
     public TMP_Text name;
@@ -33,7 +33,18 @@ public class UIGuildMemberItem : ListView.ListViewItem
         this.Bg.overrideSprite = selected ? selectedBg : normalBg;
     }
 
-    internal void SetGuildInfo(NGuildMemberInfo info)
+    //internal void SetItemInfo(NGuildMemberInfo info)
+    //{
+    //    this.Info = info;
+    //    if (this.name != null) this.name.text = this.Info.Info.Name;
+    //    if (this.level != null) this.level.text = this.Info.Info.Level.ToString();
+    //    if (this.type != null) this.type.text = this.Info.Info.Class.ToString();
+    //    if (this.status != null) this.status.text = this.Info.Status == 1 ? "在线" : "离线";
+    //    if (this.joinTime != null) this.joinTime.text = TimeUtils.GetTime(this.Info.joinTime).ToString();
+    //    if (this.title != null) this.title.text = GuildManager.Instance.GetTitle(this.Info.Title);
+    //}
+
+    public void SetItemInfo(NGuildMemberInfo info)
     {
         this.Info = info;
         if (this.name != null) this.name.text = this.Info.Info.Name;
