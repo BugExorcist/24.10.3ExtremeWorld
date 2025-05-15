@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/13/2025 22:19:45
+-- Date Created: 05/15/2025 17:22:04
 -- Generated from EDMX file: F:\Unity\Projects\24.10.3ExtremeWorld\Src\Server\GameServer\GameServer\Entities.edmx
 -- --------------------------------------------------
 
@@ -35,6 +35,12 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_TCharacterTCharacterFriend]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[TCharacterFriends] DROP CONSTRAINT [FK_TCharacterTCharacterFriend];
 GO
+IF OBJECT_ID(N'[dbo].[FK_TGuildTGuildMember]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[GuildMembers] DROP CONSTRAINT [FK_TGuildTGuildMember];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TGuildTGuildApply]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[GuildApplies] DROP CONSTRAINT [FK_TGuildTGuildApply];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -60,6 +66,15 @@ IF OBJECT_ID(N'[dbo].[CharacterQuests]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[TCharacterFriends]', 'U') IS NOT NULL
     DROP TABLE [dbo].[TCharacterFriends];
+GO
+IF OBJECT_ID(N'[dbo].[Guilds]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Guilds];
+GO
+IF OBJECT_ID(N'[dbo].[GuildMembers]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[GuildMembers];
+GO
+IF OBJECT_ID(N'[dbo].[GuildApplies]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[GuildApplies];
 GO
 
 -- --------------------------------------------------

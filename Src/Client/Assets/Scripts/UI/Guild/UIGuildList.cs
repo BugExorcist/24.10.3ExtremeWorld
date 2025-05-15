@@ -1,12 +1,6 @@
-﻿using Common.Data;
-using Managers;
-using Services;
+﻿using Services;
 using SkillBridge.Message;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class UIGuildList : UIWindow
@@ -59,7 +53,7 @@ public class UIGuildList : UIWindow
 
     public void OnClickJoin()
     {
-        if (selectedItem = null)
+        if (selectedItem == null)
         {
             MessageBox.Show("请选择要加入的公会");
             return;

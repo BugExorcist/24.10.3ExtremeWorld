@@ -40,7 +40,7 @@ public class UIGuildMemberItem : ListView.ListViewItem
         if (this.level != null) this.level.text = this.Info.Info.Level.ToString();
         if (this.type != null) this.type.text = this.Info.Info.Class.ToString();
         if (this.status != null) this.status.text = this.Info.Status == 1 ? "在线" : "离线";
-        if (this.joinTime != null) this.status.text = this.Info.joinTime.ToString();
-        if (this.title != null) this.status.text = GuildManager.Instance.GetTitle(this.Info.Title);
+        if (this.joinTime != null) this.joinTime.text = TimeUtils.GetTime(this.Info.joinTime).ToString();
+        if (this.title != null) this.title.text = GuildManager.Instance.GetTitle(this.Info.Title);
     }
 }

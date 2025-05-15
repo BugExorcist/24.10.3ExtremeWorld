@@ -1,9 +1,5 @@
 ﻿using Common.Data;
 using SkillBridge.Message;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using TMPro;
 using UnityEngine;
 
@@ -22,8 +18,7 @@ public class UIGuildInfo : MonoBehaviour
         get { return info; }
         set
         {
-            if (value == null) return;
-            this.Info = value;
+            this.info = value;
             this.UpdateUI();
         }
     }

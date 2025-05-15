@@ -1,11 +1,5 @@
 ﻿using Managers;
 using Services;
-using SkillBridge.Message;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class UIGuild : UIWindow
@@ -13,7 +7,7 @@ public class UIGuild : UIWindow
     public GameObject itemPrefab;
     public ListView listView;
     public UIGuildInfo uiInfo;
-    private UIGuildItem selectedItem;
+    private UIGuildMemberItem selectedItem;
 
     private void Start()
     {
@@ -36,8 +30,7 @@ public class UIGuild : UIWindow
 
     private void OnItemSelected(ListView.ListViewItem item)
     {
-        this.selectedItem = item as UIGuildItem;
-        this.uiInfo.Info = this.selectedItem.Info;
+        this.selectedItem = item as UIGuildMemberItem;
     }
 
     private void InitItems()

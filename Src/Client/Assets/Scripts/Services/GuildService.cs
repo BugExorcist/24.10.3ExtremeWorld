@@ -1,13 +1,8 @@
 ﻿using Managers;
-using Models;
 using Network;
 using SkillBridge.Message;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -97,8 +92,8 @@ namespace Services
             message.Request = new NetMessageRequest();
             message.Request.guildJoinRes = new GuildJoinResponse();
             message.Request.guildJoinRes.Result = Result.Success;
-            message.Request.guildJoinReq.Apply = request.Apply;
-            message.Request.guildJoinReq.Apply.Result = accept ? ApplyResult.Accept : ApplyResult.Reject;
+            message.Request.guildJoinRes.Apply = request.Apply;
+            message.Request.guildJoinRes.Apply.Result = accept ? ApplyResult.Accept : ApplyResult.Reject;
             NetClient.Instance.SendMessage(message);
         }
 

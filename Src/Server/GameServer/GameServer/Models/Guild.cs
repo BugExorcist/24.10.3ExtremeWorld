@@ -45,7 +45,11 @@ namespace GameServer.Models
             this.timestamp = Time.timestamp;
             return true;
         }
-
+        /// <summary>
+        /// 确认申请
+        /// </summary>
+        /// <param name="apply"></param>
+        /// <returns></returns>
         internal bool JoinAppove(NGuildApplyInfo apply)
         {
             var oldApply = this.Data.GuildApplies.FirstOrDefault(v => v.CharacterID == apply.characterId && v.Result == 0) ;
@@ -56,8 +60,8 @@ namespace GameServer.Models
             if(apply.Result == ApplyResult.Accept)
             {
                 this.AddMember(apply.characterId, apply.Name, apply.Class, apply.Level, GuildTitle.None);
+                DBService.Instance.Save();
             }
-            DBService.Instance.Save();
             this.timestamp = Time.timestamp;
             return true;
         }

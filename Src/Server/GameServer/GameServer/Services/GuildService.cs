@@ -105,16 +105,16 @@ namespace GameServer.Services
             Character character = sender.Session.Character;
             Log.InfoFormat("OnGuildJoinRes: :character:{0}:{1}  GuildId:{2}", response.Apply.characterId, response.Apply.Name, response.Apply.GuildId);
             Guild guild = GuildManager.Instance.GetGuild(response.Apply.GuildId);
+            var requester = SessionManager.Instance.GetSession(response.Apply.characterId);
             if (response.Result == Result.Success)
             {//接受了公会请求
                 guild.JoinAppove(response.Apply);
+                DBService.Instance.Entities.Characters.FirstOrDefault(v => v.ID == response.Apply.characterId).GuildId = response.Apply.GuildId;
+                DBService.Instance.Save();
             }
-
-            var requester = SessionManager.Instance.GetSession(response.Apply.characterId);
             if (requester != null)
             {
                 requester.Session.Character.Guild = guild;
-
                 requester.Session.Response.guildJoinRes = response;
                 requester.Session.Response.guildJoinRes.Result = Result.Success;
                 requester.Session.Response.guildJoinRes.Errormsg = "加入公会成功";
