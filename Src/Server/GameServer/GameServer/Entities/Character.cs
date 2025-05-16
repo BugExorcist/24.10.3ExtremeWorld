@@ -84,6 +84,8 @@ namespace GameServer.Entities
 
             if (this.Guild != null)
             {
+                if (this.Id == 3)
+                    Log.Info("目标");
                 Log.InfoFormat("PostProcess > Guild: characterID:{0}:{1} {2}<{3}", this.Id, this.Info.Name, GuildUpdateTS, this.Guild.timestamp);
                 if (this.Info.Guild == null)
                 {   //Character.Info.Guild第一次赋值位置

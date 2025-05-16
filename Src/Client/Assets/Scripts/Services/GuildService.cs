@@ -109,7 +109,15 @@ namespace Services
         {
             Debug.LogFormat("OnGuildJoinResponse  : {0}", response.Result);
             if (response.Result == Result.Success)
-                MessageBox.Show("加入公会成功", "公会");
+            {
+                if (response.Apply.Result == ApplyResult.Accept)
+                    MessageBox.Show("加入公会成功", "公会");
+                if (response.Apply.Result == ApplyResult.Reject)
+                {
+                    MessageBox.Show("加入公会失败 " + response.Errormsg, "公会");
+                    GuildManager.Instance.Init(null);
+                }
+            }
             else
                 MessageBox.Show("加入公会失败 " + response.Errormsg, "公会");
         }
@@ -168,7 +176,7 @@ namespace Services
         /// </summary>
         /// <param name="accept"></param>
         /// <param name="apply"></param>
-        public void SendGuildJoinApply(bool accept,NGuildApplyInfo apply)
+        public void SendGuildJoinApply(bool accept, NGuildApplyInfo apply)
         {
             Debug.Log("SendGuildJoinApply");
             NetMessage message = new NetMessage();
@@ -194,6 +202,10 @@ namespace Services
         private void OnGuildAdmin(object sender, GuildAdminResponse response)
         {
             Debug.LogFormat("OnGuildAdmin : {0}  {1}", response.Command, response.Result);
+            if (response.Command.Command == GuildAdminCommand.Kickout)
+            {
+                GuildManager.Instance.Init(null);
+            }
             MessageBox.Show(response.Errormsg, "提示", MessageBoxType.Information);
         }
 

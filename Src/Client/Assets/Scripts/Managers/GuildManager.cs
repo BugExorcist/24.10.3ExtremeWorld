@@ -16,7 +16,7 @@ namespace Managers
         internal void Init(NGuildInfo guild)
         {
             this.guildInfo = guild;
-            if (guild != null)
+            if (guildInfo == null)
             {
                 myMemberInfo = null;
                 return;

@@ -12,6 +12,7 @@ public class UIGuildApplyList : UIWindow
     {
         GuildService.Instance.OnGuildUpdate += UpdateList;
         GuildService.Instance.SendGuildListRequest();
+        UpdateList();
     }
 
     private void OnDestroy()

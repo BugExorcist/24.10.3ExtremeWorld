@@ -194,7 +194,7 @@ namespace GameServer.Services
         public void CharacterLeave(Character character)
         {
             Log.InfoFormat("CharacterLeave: charaacterID:{0}:{1}", character.Id, character.Info.Name);
-            CharacterManager.Instance.RemoceCharacter(character.Id);
+            CharacterManager.Instance.RemoveCharacter(character.Id);
             character.Clear();
             MapManager.Instance[character.Info.mapId].CharacterLeave(character);
         }

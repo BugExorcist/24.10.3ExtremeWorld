@@ -1,4 +1,5 @@
 ﻿using Common;
+using Common.Utils;
 using GameServer.Entities;
 using GameServer.Models;
 using GameServer.Services;
@@ -28,7 +29,16 @@ namespace GameServer.Managers
         {
             this.Guilds.Add(guild.Id, guild);
             this.GuildNames.Add(guild.Name);
-            guild.timestamp = Time.timestamp;
+            guild.timestamp = TimeUtil.timestamp;
+        }
+
+        public void RemoveGuild(Guild guild)
+        {
+            this.Guilds.Remove(guild.Id);
+            this.GuildNames.Remove(guild.Name);
+            var dbGuild = DBService.Instance.Entities.Guilds.FirstOrDefault(v => v.Id == guild.Id);
+            DBService.Instance.Entities.Guilds.Remove(dbGuild);
+            guild.timestamp = TimeUtil.timestamp;
         }
 
         internal bool CheckNameExisted(string guildName)
@@ -50,6 +60,7 @@ namespace GameServer.Managers
             Guild guild = new Guild(dbGuild);
             guild.AddMember(leader.Id, leader.Name, leader.Data.Class, leader.Data.Level, GuildTitle.President);
             leader.Guild = guild;
+            DBService.Instance.Save();
             leader.Data.GuildId = dbGuild.Id;
             DBService.Instance.Save();
             this.AddGuid(guild);
@@ -68,11 +79,12 @@ namespace GameServer.Managers
         /// </summary>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        internal List<NGuildInfo> GetGuildsInfo()
+        internal List<NGuildInfo> GetGuildsInfo(Character character)
         {
             List<NGuildInfo> guilds = new List<NGuildInfo>();
             foreach (var guild in this.Guilds.Values)
-            {   //不是公会成员不能获取所有信息
+            {   
+                //不是公会成员不能获取所有信息
                 guilds.Add(guild.GuildInfo(null));
             }
             return guilds;

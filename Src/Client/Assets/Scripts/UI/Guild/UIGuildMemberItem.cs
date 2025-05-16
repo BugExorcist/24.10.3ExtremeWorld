@@ -1,4 +1,5 @@
-﻿using Managers;
+﻿using Common.Utils;
+using Managers;
 using SkillBridge.Message;
 using System;
 using System.Collections.Generic;
@@ -51,7 +52,7 @@ public class UIGuildMemberItem : ListView.ListViewItem, ISetItemInfo<NGuildMembe
         if (this.level != null) this.level.text = this.Info.Info.Level.ToString();
         if (this.type != null) this.type.text = this.Info.Info.Class.ToString();
         if (this.status != null) this.status.text = this.Info.Status == 1 ? "在线" : "离线";
-        if (this.joinTime != null) this.joinTime.text = TimeUtils.GetTime(this.Info.joinTime).ToString();
+        if (this.joinTime != null) this.joinTime.text = TimeUtil.GetTime(this.Info.joinTime).ToString();
         if (this.title != null) this.title.text = GuildManager.Instance.GetTitle(this.Info.Title);
     }
 }
