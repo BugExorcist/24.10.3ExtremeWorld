@@ -87,7 +87,7 @@ namespace Managers
         {
             this.Messages.Add(new ChatMessage()
             {
-                Channel = ChatChannel.Local,
+                Channel = SendChannel,
                 Message = text,
                 FromId = User.Instance.CurrentCharacter.Id,
                 FromName = User.Instance.CurrentCharacter.Name,
@@ -149,9 +149,9 @@ namespace Managers
                 case ChatChannel.System://中灰色 加粗
                     return string.Format("<#808080><b>[系统]{0}</b></color>", msg.Message);
                 case ChatChannel.Private://紫色
-                    return string.Format("<#9400D3>[私聊]</color>{0}<#9400D3>{1}</color>", FormatFromPlayer(msg), msg.Message);
+                    return string.Format("<#9400D3>[私聊]</color>{0}<#9400D3>{3}</color>", FormatFromPlayer(msg), msg.Message);
                 case ChatChannel.Team://深绿色
-                    return string.Format("<#008000>[队伍]</color>{0}<#008000>{1}</color>", FormatFromPlayer(msg), msg.Message);
+                    return string.Format("<#FF4500>[队伍]</color>{0}<#FF4500>{1}</color>", FormatFromPlayer(msg), msg.Message);
                 case ChatChannel.Guild://橙色
                     return string.Format("<#FFA500>[公会]</color>{0}<#FFA500>{1}</color>", FormatFromPlayer(msg), msg.Message);
                 default:
@@ -162,9 +162,9 @@ namespace Managers
         private string FormatFromPlayer(ChatMessage msg)
         {   //橙红色
             if (msg.FromId == User.Instance.CurrentCharacter.Id)
-                return "<link=\"\"><#FF4500><u>[我]</u></color></link>";
+                return "<link=\"\"><#008000><u>[我]</u></color></link>";
             else
-                return string.Format("<link=\"{0}:{1}\"><#FF4500><u>[{1}]</u></color></link>", msg.FromId, msg.FromName);
+                return string.Format("<link=\"{0}:{1}\"><#008000><u>[{1}]</u></color></link>", msg.FromId, msg.FromName);
         }
     }
 }

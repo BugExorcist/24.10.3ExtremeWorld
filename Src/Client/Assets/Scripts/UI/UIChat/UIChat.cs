@@ -11,7 +11,7 @@ public class UIChat : MonoBehaviour
     public TabView channelTab;
 
     public TMP_InputField inputField;
-    public TMP_Text chatText;
+    public TMP_Text targetText;
     public TMP_Dropdown channelSelect;
 
     private void Start()
@@ -45,21 +45,21 @@ public class UIChat : MonoBehaviour
         this.channelSelect.value = (int)ChatManager.Instance.sendChannel - 1;
         if (ChatManager.Instance.SendChannel == ChatChannel.Private)
         {
-            this.chatText.gameObject.SetActive(true);
+            this.targetText.gameObject.SetActive(true);
             if (ChatManager.Instance.PrivateID != 0)
             {
-                this.chatText.text = ChatManager.Instance.PrivateName + ":";
+                this.targetText.text = ChatManager.Instance.PrivateName + ":";
                 SetElementSize();
             }
             else
             {
-                this.chatText.text = "<无>";
+                this.targetText.text = "<无>";
                 SetElementSize();
             }
         }
         else
         {
-            this.chatText.gameObject.SetActive(false);
+            this.targetText.gameObject.SetActive(false);
         }
     }
 
@@ -68,15 +68,15 @@ public class UIChat : MonoBehaviour
     /// </summary>
     private void SetElementSize()
     {
-        var layout1 = this.chatText.GetComponent<LayoutElement>();
-        layout1.preferredWidth = this.chatText.text.Length * 15;
+        var layout1 = this.targetText.GetComponent<LayoutElement>();
+        layout1.preferredWidth = this.targetText.text.Length * 15;
         var layout2 = this.inputField.GetComponent<LayoutElement>();
         layout2.preferredWidth = 300 - layout1.preferredWidth;
     }
 
     public void OnClickSend()
     {
-        OnEndInput(this.chatText.text);
+        OnEndInput(this.inputField.text);
     }
 
     /// <summary>
@@ -89,18 +89,19 @@ public class UIChat : MonoBehaviour
         {
             ChatManager.Instance.SendChat(text);
         }
-        this.chatText.text = "";
+        this.inputField.text = "";
     }
 
-    public void OnSendChannelChanged(int idx)
+    public void OnSendChannelChanged()
     {   //发送频道没有综合 idx要+1
-        if (ChatManager.Instance.sendChannel == (ChatManager.LocalChannel)(idx + 1)) return;
-        if (!ChatManager.Instance.SetSendChannel((ChatManager.LocalChannel)idx + 1))
+        if (ChatManager.Instance.sendChannel == (ChatManager.LocalChannel)(this.channelSelect.value + 1)) return;
+        if (!ChatManager.Instance.SetSendChannel((ChatManager.LocalChannel)this.channelSelect.value + 1))
         {   //设置频道失败，恢复UI的选中频道
             this.channelSelect.value = (int)ChatManager.Instance.sendChannel - 1;
         }
         else
         {   //成功。刷新UI
+            Debug.Log("成功切换频道->" + (ChatManager.LocalChannel)(this.channelSelect.value + 1));
             this.ReFreshUI();
         }
     }
