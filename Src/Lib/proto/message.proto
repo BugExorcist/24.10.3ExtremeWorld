@@ -222,6 +222,8 @@ message NetMessageRequest{
 	GuildListRequset guildList = 29;
 	GuildAdminRequest guildAdmin = 30;
 	GuildSetNoticeRequest guildSetNotice = 31;
+
+	ChatRequest chat = 32;
 }
 
 message NetMessageResponse{
@@ -262,6 +264,8 @@ message NetMessageResponse{
 	GuildListResponse guildList = 29;
 	GuildAdminResponse guildAdmin = 30;
 	GuildSetNoticeResponse guildSetNotice = 31;
+
+	ChatResponse chat = 32;
 
 	StatusNotify statusNotify = 100;
 }
@@ -718,4 +722,44 @@ message GuildSetNoticeResponse
 {
 	RESULT result = 1;
 	string errormsg = 2;
+}
+
+enum CHAT_CHANNEL
+{
+	ALL = -1;	//全部
+	LOCAL = 1;	//本地
+	WORLD = 2;	//世界
+	SYSTEM = 4;	//系统
+	PRIVATE = 8;//私聊
+	TEAM = 16;	//队伍
+	GUILD = 32;	//公会
+}
+
+message ChatMessage
+{
+	CHAT_CHANNEL channel = 1;
+	int32 id = 2;
+	int32 from_id = 3;
+	string from_name = 4;
+	int32 to_id = 5;
+	string to_name = 6;
+	string message = 7;
+	double time = 8;
+}
+
+message ChatRequest
+{
+	ChatMessage message = 1;
+}
+
+message ChatResponse
+{
+	RESULT result = 1;
+	string errormsg = 2;
+	repeated ChatMessage localMessage = 3;
+	repeated ChatMessage worldMessage = 4;
+	repeated ChatMessage teamMessage = 5;
+	repeated ChatMessage guildMessage = 6;
+	repeated ChatMessage privateMessage = 7;
+	repeated ChatMessage systemMessage = 8;
 }

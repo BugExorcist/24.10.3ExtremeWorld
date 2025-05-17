@@ -1,3 +1,6 @@
+using Managers;
+using Models;
+using Services;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,18 +36,29 @@ public class UIPopCharMenu : UIWindow ,IDeselectHandler
     }
 
 
-    public void Chat()
+    public void OnChat()
     {
-        
+        ChatManager.Instance.StartPrivateChat(targetId, targetName);
+        this.Close(WindowResult.No);
     }
 
     public void AddFriend()
     {
-        
+        if (targetId == User.Instance.CurrentCharacter.Id)
+        {
+            MessageBox.Show("不能添加自己为好友哦~");
+            return;
+        }
+        FriendService.Instance.SendFriendAddRequest(targetId, targetName);
+        this.Close(WindowResult.No);
     }
     public void InviteTeam()
     {
-        
+        MessageBox.Show(string.Format("确定选择邀请【{0}】加入队伍吗？", targetName), "邀请好友组队", MessageBoxType.Confirm, "邀请", "取消").OnYes = () =>
+        {
+            TeamService.Instance.SendTeamInviteResquest(targetId, targetName);
+        };
+        this.Close(WindowResult.No);
     }
 
     

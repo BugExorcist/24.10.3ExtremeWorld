@@ -10,6 +10,5 @@ namespace Managers
     {
         public bool IsInputMode = false;
 
-
     }
 }
