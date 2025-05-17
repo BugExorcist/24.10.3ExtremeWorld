@@ -17,6 +17,8 @@ namespace Services
 
         NetMessage pendingMessage = null;
         bool connected = false;
+        //标志当前是否退出游戏
+        bool isQuitGame = false;
 
         public UserService()
         {
@@ -241,8 +243,9 @@ namespace Services
             }
         }
 
-        public void SendGameLeave()
+        public void SendGameLeave(bool isQuitGame = false)
         {
+            this.isQuitGame = isQuitGame;
             Debug.LogFormat("UserGameLeaveRequest");
             NetMessage message = new NetMessage();
             message.Request = new NetMessageRequest();
@@ -252,18 +255,17 @@ namespace Services
 
         public void OnGameLeave(object sender, UserGameLeaveResponse response)
         {
-            Debug.LogFormat("OnUserGameLeave:{0} [{1}]", response.Result, response.Errormsg);
             MapService.Instance.CurrentMapId = 0;
             User.Instance.CurrentCharacter = null;
+            Debug.LogFormat("OnUserGameLeave:{0} [{1}]", response.Result, response.Errormsg);
+            if (this.isQuitGame)
+            {
+#if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+#else
+                Application.Quit();
+#endif
+            }
         }
-
-        //private void OnCharacterEnter(object sender, MapCharacterEnterResponse response)
-        //{
-        //    Debug.LogFormat("OnMapCharacterEnter:{0}", response.mapId);
-
-        //    NCharacterInfo info = response.Characters[0];
-        //    //User.Instance.CurrentCharacter = info;
-        //    SceneManager.Instance.LoadScene(DataManager.Instance.Maps[response.mapId].Resource);
-        //}
     }
 }

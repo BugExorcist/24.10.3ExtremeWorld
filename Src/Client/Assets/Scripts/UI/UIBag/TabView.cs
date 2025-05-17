@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class UITabView : MonoBehaviour
+public class TabView : MonoBehaviour
 {
-    public UITabButton[] tabButtons;
+    public TabButton[] tabButtons;
     public GameObject[] tabPages;
 
     public UnityAction<int> onTabSelect;
@@ -31,10 +31,11 @@ public class UITabView : MonoBehaviour
             for (int i = 0; i < tabButtons.Length; i++)
             {
                 tabButtons[i].Select(index == i);
-                if (i < tabPages.Length - 1)
+                if (tabPages.Length >= i + 1)
                     tabPages[i].SetActive(i == index);
             }
             onTabSelect?.Invoke(index);
+            this.index = index;
         }
     }
 }

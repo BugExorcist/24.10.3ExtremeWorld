@@ -11,7 +11,7 @@ public class UIQuestSystem : UIWindow
     public TMP_Text title;
     public GameObject itemPrefab;
 
-    public UITabView Tabs;
+    public TabView Tabs;
     public ListView listMain;
     public ListView listBranch;
 

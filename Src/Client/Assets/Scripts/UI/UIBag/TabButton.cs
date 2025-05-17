@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UITabButton : MonoBehaviour
+public class TabButton : MonoBehaviour
 {
     private Sprite normalImage;//未被选中的图片
     public Sprite activeImage;//被选中的图片
     public bool OnSecleted = false;
-    public UITabView tabView;
+    public TabView tabView;
 
     public int index = -1;
     public Image image;

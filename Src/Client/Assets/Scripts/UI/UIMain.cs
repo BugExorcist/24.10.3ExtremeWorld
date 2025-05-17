@@ -33,20 +33,6 @@ public class UIMain : MonoSingleton<UIMain>
         Services.UserService.Instance.SendGameLeave();
     }
 
-    /// <summary>
-    /// UI≤‚ ‘
-    /// </summary>
-    //public void OnClickTest()
-    //{
-    //    UITest test = UIManager.Instance.Show<UITest>();
-    //    test.OnClose += Test_OnClose;
-    //}
-
-    //private void Test_OnClose(UIWindow sender, WindowResult result)
-    //{
-
-    //}
-
     public void OnClickbag()
     {
         UIManager.Instance.Show<UIBag>();
@@ -79,7 +65,7 @@ public class UIMain : MonoSingleton<UIMain>
 
     public void OnClickSetting()
     {
-
+        UIManager.Instance.Show<UISetting>();
     }
 
     public void OnClickSkill()

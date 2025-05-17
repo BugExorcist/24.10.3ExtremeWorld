@@ -72,10 +72,11 @@
     <Compile Include="Assets\Scripts\GameObject\TeleporterObject.cs" />
     <Compile Include="Assets\Scripts\UI\SpriteManager.cs" />
     <Compile Include="Assets\Scripts\Managers\DataManager.cs" />
+    <Compile Include="Assets\Scripts\UI\UIChat\UIChat.cs" />
     <Compile Include="Assets\Scripts\UI\Guild\UIGuildPopCreate.cs" />
+    <Compile Include="Assets\Scripts\UI\UIBag\TabView.cs" />
     <Compile Include="Assets\Scripts\UI\UIWorldElementManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
-    <Compile Include="Assets\Scripts\UI\UIBag\UITabButton.cs" />
     <Compile Include="Assets\Scripts\UI\Guild\UIGuildApplyItem.cs" />
     <Compile Include="Assets\Scripts\UI\Guild\UIGuild.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
@@ -88,6 +89,8 @@
     <Compile Include="Assets\Scripts\Managers\EquipManager.cs" />
     <Compile Include="Assets\Scripts\Services\GuildService.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
+    <Compile Include="Assets\Scripts\UI\UISetting.cs" />
+    <Compile Include="Assets\Scripts\UI\UIBag\TabButton.cs" />
     <Compile Include="Assets\Scripts\UI\UIQuest\UIQuestItem.cs" />
     <Compile Include="Assets\Scripts\Managers\BagManager.cs" />
     <Compile Include="Assets\Scripts\UI\UITeam\UITeam.cs" />
@@ -103,7 +106,6 @@
     <Compile Include="Assets\Scripts\UI\Guild\UIGuildPopNoGuild.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
-    <Compile Include="Assets\Scripts\UI\UIBag\UITabView.cs" />
     <Compile Include="Assets\Scripts\GameObject\MapController.cs" />
     <Compile Include="Assets\Scripts\UI\UIQuest\UIQuestStatus.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
@@ -142,12 +144,14 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
     <Compile Include="Assets\Scripts\Services\MapService.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
+    <Compile Include="Assets\Scripts\Utilities\LinkOpener.cs" />
     <Compile Include="Assets\Scripts\UI\UIBag\UIBag.cs" />
     <Compile Include="Assets\Scripts\Services\StatusService.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
     <Compile Include="Assets\Scripts\UI\UILogin.cs" />
     <Compile Include="Assets\Scripts\UI\UIQuest\UIQuestDialog.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
+    <Compile Include="Assets\Scripts\Managers\InputManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\Scripts\UI\UIEquip\UICharEquip.cs" />
     <Compile Include="Assets\Scripts\Services\UserService.cs" />
@@ -170,6 +174,7 @@
     <Compile Include="Assets\Scripts\Managers\FriendManager.cs" />
     <Compile Include="Assets\Scripts\Services\TeamService.cs" />
     <Compile Include="Assets\Scripts\UI\Box\InputBox.cs" />
+    <Compile Include="Assets\Scripts\UI\UIPopCharMenu.cs" />
     <Compile Include="Assets\Scripts\LoadingManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
@@ -222,6 +227,7 @@
     <None Include="Assets\References\log4net.dll" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\JsonDotNet\Assemblies\Windows\Newtonsoft.Json.dll" />
+    <None Include="Assets\ChineseFountAssest\zh-cn.txt" />
     <None Include="Assets\References\protobuf-net.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
