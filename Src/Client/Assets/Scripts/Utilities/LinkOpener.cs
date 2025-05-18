@@ -16,10 +16,14 @@ public class LinkOpener : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
             TMP_LinkInfo linkInfo = pTextMeshPro.textInfo.linkInfo[linkIndex];
             string linkId = linkInfo.GetLinkID();
             if (string.IsNullOrEmpty(linkId)) return;
-            string[] strs = linkId.Split(":".ToCharArray());
-            UIPopCharMenu menu = UIManager.Instance.Show<UIPopCharMenu>();
-            menu.targetId = int.Parse(strs[0]);
-            menu.targetName = strs[1];
+            if (linkId.StartsWith("c:"))//角色信息
+            {
+                string[] strs = linkId.Split(":".ToCharArray());
+                UIPopCharMenu menu = UIManager.Instance.Show<UIPopCharMenu>();
+                menu.targetId = int.Parse(strs[1]);
+                menu.targetName = strs[2];
+            }
+            
         }
     }
 
