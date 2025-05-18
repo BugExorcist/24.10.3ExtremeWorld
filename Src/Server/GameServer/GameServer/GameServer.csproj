@@ -114,6 +114,7 @@
     <Compile Include="Managers\DataManager.cs" />
     <Compile Include="Managers\EntityManager.cs" />
     <Compile Include="Managers\FriendManager.cs" />
+    <Compile Include="Managers\ChatManager.cs" />
     <Compile Include="Managers\GuildManager.cs" />
     <Compile Include="Managers\ItemManager.cs" />
     <Compile Include="Managers\MapManager.cs" />
@@ -126,6 +127,7 @@
     <Compile Include="Managers\SpawnManager.cs" />
     <Compile Include="Managers\StatusManager.cs" />
     <Compile Include="Managers\TeamManager.cs" />
+    <Compile Include="Models\Chat.cs" />
     <Compile Include="Models\Guild.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\Map.cs" />
@@ -147,6 +149,7 @@
     </Compile>
     <Compile Include="Services\BagService.cs" />
     <Compile Include="Services\DBService.cs" />
+    <Compile Include="Services\ChatService.cs" />
     <Compile Include="Services\FriendService.cs" />
     <Compile Include="Services\GuildService.cs" />
     <Compile Include="Services\ItemService.cs" />

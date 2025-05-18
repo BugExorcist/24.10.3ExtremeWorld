@@ -23,7 +23,7 @@ public class LinkOpener : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
                 menu.targetId = int.Parse(strs[1]);
                 menu.targetName = strs[2];
             }
-            
+
         }
     }
 

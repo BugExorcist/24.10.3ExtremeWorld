@@ -11,6 +11,6 @@ namespace Common.Data
         public const int BagMaxItemPerPage = 30;
         public const int GuildMaxMemberCount = 99;
         public const int MaxChatRecoredNums = 20;
-        public const int MaxChatRecoredTime = 600;
+        public const int MaxChatRecoredTime = 600;//10分钟
     }
 }

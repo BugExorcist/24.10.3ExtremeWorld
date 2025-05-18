@@ -23,6 +23,8 @@ namespace GameServer.Entities
         public Guild Guild;
         public double GuildUpdateTS;
 
+        public Chat chat;
+
         public Character(CharacterType type,TCharacter cha):
             base(new Core.Vector3Int(cha.MapPosX, cha.MapPosY, cha.MapPosZ),new Core.Vector3Int(100,0,0))
         {
@@ -54,6 +56,7 @@ namespace GameServer.Entities
             this.FriendManager.GetFriendInfos(this.Info.Friends);
 
             this.Guild = GuildManager.Instance.GetGuild(this.Data.GuildId);
+            this.chat = new Chat(this);
         }
 
         public long Gold
@@ -84,8 +87,6 @@ namespace GameServer.Entities
 
             if (this.Guild != null)
             {
-                if (this.Id == 3)
-                    Log.Info("目标");
                 Log.InfoFormat("PostProcess > Guild: characterID:{0}:{1} {2}<{3}", this.Id, this.Info.Name, GuildUpdateTS, this.Guild.timestamp);
                 if (this.Info.Guild == null)
                 {   //Character.Info.Guild第一次赋值位置
@@ -105,6 +106,8 @@ namespace GameServer.Entities
             {
                 this.StatusManager.PostProcess(message);
             }
+
+            this.chat.PostProcess(message);
         }
 
         public void Clear()

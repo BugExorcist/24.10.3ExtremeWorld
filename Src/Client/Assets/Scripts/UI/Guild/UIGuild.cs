@@ -3,6 +3,7 @@ using Services;
 using SkillBridge.Message;
 using System;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class UIGuild : UIWindow
 {
@@ -80,7 +81,7 @@ public class UIGuild : UIWindow
 
     public void OnClickChat()
     {
-        MessageBox.Show("敬请期待");
+        ChatManager.Instance.StartPrivateChat(selectedItem.Info.Info.Id, selectedItem.Info.Info.Name);
     }
     public void OnClickKickOut()
     {

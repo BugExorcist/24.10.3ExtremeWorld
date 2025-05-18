@@ -4,6 +4,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static Managers.ChatManager;
 
 public class UIChat : MonoBehaviour
 {
@@ -43,7 +44,7 @@ public class UIChat : MonoBehaviour
     {
         this.textArea.text = ChatManager.Instance.GetCurrentMessage();
         this.channelSelect.value = (int)ChatManager.Instance.sendChannel - 1;
-        if (ChatManager.Instance.SendChannel == ChatChannel.Private)
+        if (ChatManager.Instance.sendChannel == LocalChannel.Private)
         {
             this.targetText.gameObject.SetActive(true);
             if (ChatManager.Instance.PrivateID != 0)

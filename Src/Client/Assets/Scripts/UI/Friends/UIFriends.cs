@@ -105,7 +105,7 @@ public class UIFriends : UIWindow
 
     public void OnClickFriendChat()
     {
-        MessageBox.Show("‘›Œ¥ µœ÷");
+        ChatManager.Instance.StartPrivateChat(selectedItem.Info.friendInfo.Id, selectedItem.Info.friendInfo.Name);
     }
 
     public void OnClickFriendRemove()

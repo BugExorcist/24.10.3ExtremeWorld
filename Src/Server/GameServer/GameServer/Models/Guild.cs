@@ -104,7 +104,10 @@ namespace GameServer.Models
                     DBService.Instance.Entities.GuildApplies.Remove(apply);
                 var character = CharacterManager.Instance.GetCharacter(characterId);
                 if (character != null)
+                {
                     character.Data.GuildId = 0;
+                    character.Guild = null;
+                }
                 else
                     DBService.Instance.Entities.Characters.FirstOrDefault(v => v.ID == characterId).GuildId = 0;
             }

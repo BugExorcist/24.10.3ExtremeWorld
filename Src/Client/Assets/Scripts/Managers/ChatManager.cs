@@ -1,4 +1,5 @@
 ﻿using Models;
+using Services;
 using SkillBridge.Message;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,12 @@ namespace Managers
             ChatChannel.Private,
         };
 
+        public void Init()
+        {
+            foreach (var messages in this.Messages)
+                messages.Clear();
+        }
+
         public LocalChannel displayChannel;
         public LocalChannel sendChannel;
 
@@ -65,7 +72,15 @@ namespace Managers
         public int PrivateID = 0;
         public string PrivateName = "";
         // 临时列表消息
-        public List<ChatMessage> Messages = new List<ChatMessage>();
+        public List<ChatMessage>[] Messages = new List<ChatMessage>[6]
+        {
+            new List<ChatMessage>(),
+            new List<ChatMessage>(),
+            new List<ChatMessage>(),
+            new List<ChatMessage>(),
+            new List<ChatMessage>(),
+            new List<ChatMessage>(),
+        };
 
         /// <summary>
         /// 设置私聊对象信息
@@ -80,21 +95,18 @@ namespace Managers
             this.sendChannel = LocalChannel.Private;
             OnChat?.Invoke();
         }
-        
+
         /// <summary>
-        /// 发送私聊
+        /// 发送聊天
         /// </summary>
-        /// <param name="text"></param>
-        /// <exception cref="NotImplementedException"></exception>
-        public void SendChat(string text)
+        public void SendChat(string text, int toId = 0, string toName = "")
         {
-            this.Messages.Add(new ChatMessage()
+            if (this.SendChannel == ChatChannel.Private)
             {
-                Channel = SendChannel,
-                Message = text,
-                FromId = User.Instance.CurrentCharacter.Id,
-                FromName = User.Instance.CurrentCharacter.Name,
-            });
+                toId = this.PrivateID;
+                toName = this.PrivateName;
+            }
+            ChatService.Instance.SendChat(this.SendChannel, text, toId, toName);
         }
 
         public bool SetSendChannel(LocalChannel channel)
@@ -109,7 +121,7 @@ namespace Managers
             }
             if (channel == LocalChannel.Guild)
             {
-                if (User.Instance.CurrentCharacter.Guild == null)
+                if (!GuildManager.Instance.HasGuild)
                 {
                     this.AddSystemMessage("你没有加入任何公会！");
                     return false;
@@ -120,9 +132,19 @@ namespace Managers
             return true;
         }
 
+        public void AddMessages(ChatChannel channel, List<ChatMessage> messages)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                if ((this.ChannelFilter[i] & channel) == channel)
+                    this.Messages[i].AddRange(messages);
+            }
+            OnChat?.Invoke();
+        }
+
         private void AddSystemMessage(string message, string from = "")
         {
-            this.Messages.Add(new ChatMessage()
+            this.Messages[(int)LocalChannel.All].Add(new ChatMessage()
             {
                 Channel = ChatChannel.System,
                 Message = message,
@@ -134,12 +156,10 @@ namespace Managers
         public string GetCurrentMessage()
         {
             StringBuilder sb = new StringBuilder();
-            foreach(var msg in this.Messages)
+
+            foreach (var message in this.Messages[(int)displayChannel])
             {
-                if ((msg.Channel & ChannelFilter[(int)displayChannel]) != 0)
-                {
-                    sb.AppendLine(FormatMessage(msg));
-                }
+                sb.AppendLine(FormatMessage(message));
             }
             return sb.ToString();
         }
@@ -155,7 +175,7 @@ namespace Managers
                 case ChatChannel.System://中灰色 加粗
                     return string.Format("<#808080><b>[系统]{0}</b></color>", msg.Message);
                 case ChatChannel.Private://紫色
-                    return string.Format("<#9400D3>[私聊]</color>{0}<#9400D3>{1}</color>", FormatFromPlayer(msg), msg.Message);
+                    return string.Format("<#9400D3>[私聊]</color>{0}<#9400D3>→</color>{1}<#9400D3>{2}</color>", FormatFromPlayer(msg), FormatToPlayer(msg), msg.Message);
                 case ChatChannel.Team://橙红色
                     return string.Format("<#FF4500>[队伍]</color>{0}<#FF4500>{1}</color>", FormatFromPlayer(msg), msg.Message);
                 case ChatChannel.Guild://橙色
@@ -171,6 +191,14 @@ namespace Managers
                 return "<link=\"\"><#008000><u>[我]</u></color></link>";
             else
                 return string.Format("<link=\"c:{0}:{1}\"><#008000><u>[{1}]</u></color></link>", msg.FromId, msg.FromName);
+        }
+
+        private object FormatToPlayer(ChatMessage msg)
+        {   //深绿色
+            if (msg.ToId == User.Instance.CurrentCharacter.Id)
+                return "<link=\"\"><#008000><u>[我]</u></color></link>";
+            else
+                return string.Format("<link=\"c:{0}:{1}\"><#008000><u>[{1}]</u></color></link>", msg.ToId, msg.ToName);
         }
     }
 }
