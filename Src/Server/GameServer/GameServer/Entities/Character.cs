@@ -39,6 +39,7 @@ namespace GameServer.Entities
             this.Info.Class = (CharacterClass)cha.Class;
             this.Info.mapId = cha.MapID;
             this.Info.Gold = cha.Gold;
+            this.Info.Ride = 0;
             this.Info.Entity = this.EntityData;
             this.Define = DateManager.Instance.Characters[this.Info.ConfigId];
 
@@ -70,6 +71,17 @@ namespace GameServer.Entities
                 this.Data.Gold = value;
             }
         }
+
+        public int Ride
+        {
+            get { return this.Info.Ride; }
+            set 
+            {
+                if (this.Info.Ride == value) return;
+                this.Info.Ride = value; 
+            }
+        }
+
 
         public void PostProcess(NetMessageResponse message)
         {

@@ -36,9 +36,23 @@ namespace Models
 
         public SkillBridge.Message.NCharacterInfo CurrentCharacter { get; set; }
 
-        public GameObject CurrentCharacterObject { get; set; }
+        public PlayerInputController CurrentCharacterObject { get; set; }
 
         public NTeamInfo TeamInfo { get; set; }
 
+        public int CurrentRide = 0;
+        public void Ride(int rideId)
+        {
+            if (CurrentRide != rideId)
+            {
+                this.CurrentRide = rideId;
+                CurrentCharacterObject.SendEntityEvent(EntityEvent.Ride, CurrentRide);
+            }
+            else
+            {
+                this.CurrentRide = 0;
+                CurrentCharacterObject.SendEntityEvent(EntityEvent.Ride, CurrentRide);
+            }
+        }
     }
 }

@@ -72,7 +72,7 @@ namespace Services
                 Debug.LogErrorFormat("EnterMap：Map {0} not existed", mapId);
         }
 
-        public void SendMapEntitySync(EntityEvent entityEvent, NEntity entity)
+        public void SendMapEntitySync(EntityEvent entityEvent, NEntity entity, int param)
         {
             Debug.LogFormat("MapEntityUpdateRequest ID:{0} Position:{1} Direction:{2} Speed:{3}", entity.Id, entity.Position.String(), entity.Direction.String(), entity.Speed);
             NetMessage message = new NetMessage();
@@ -82,7 +82,8 @@ namespace Services
             {
                 Entity = entity,
                 Id = entity.Id,
-                Event = entityEvent
+                Event = entityEvent,
+                Param = param
             };
             NetClient.Instance.SendMessage(message);
         }

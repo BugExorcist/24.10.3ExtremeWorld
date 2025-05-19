@@ -1,5 +1,6 @@
 using Entities;
 using Managers;
+using Models;
 using SkillBridge.Message;
 using System;
 using System.Collections;
@@ -27,6 +28,10 @@ public class EntityController : MonoBehaviour, IEntityNotify
     public float jumpPower = 3.0f;
 
     public bool isPlayer = false;
+
+    public RideController rideController;
+    private int currentRide = 0;
+    public Transform rideBone;//用来绑定骑乘的骨骼
 
 
     void Start()
@@ -86,7 +91,7 @@ public class EntityController : MonoBehaviour, IEntityNotify
         Destroy(this.gameObject);
     }
 
-    public void OnEntityEvent(EntityEvent entityEvent)
+    public void OnEntityEvent(EntityEvent entityEvent, int param)
     {
         switch (entityEvent)
         {
@@ -103,7 +108,46 @@ public class EntityController : MonoBehaviour, IEntityNotify
             case EntityEvent.Jump:
                 anim.SetTrigger("Jump");
                 break;
+            case EntityEvent.Ride:
+                    this.Ride(param);
+                break;
         }
+        if (this.rideController != null) this.rideController.OnEntityEvent(entityEvent, param);
+    }
+
+    /// <summary>
+    /// 骑乘或者取消骑乘
+    /// </summary>
+    /// <param name="rideID">0-取消骑乘  其他-对应坐骑的ID</param>
+    public void Ride(int rideID)
+    {
+        if (currentRide == rideID) return;
+        currentRide = rideID;
+        if(rideID > 0)
+        {
+            this.rideController = GameObjectManager.Instance.LoadRide(rideID, this.transform);
+        }
+        else
+        {
+            Destroy(this.rideController.gameObject);
+            this.rideController = null;
+        }
+
+        if (this.rideController == null)
+        {
+            this.anim.transform.localPosition = Vector3.zero;
+            this.anim.SetLayerWeight(1, 0);
+        }
+        else
+        {
+            this.rideController.SetRide(this);
+            this.anim.SetLayerWeight(1, 1);
+        }
+    }
+
+    public void SetRidePosition(Vector3 position)
+    {
+        this.anim.transform.position = position + (this.anim.transform.position - this.rideBone.position);
     }
 
     public void OnEntityChanged(Entity entity)

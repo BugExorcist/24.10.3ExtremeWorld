@@ -6,7 +6,7 @@ public class UISetting : UIWindow
 {
     public void ExitToCharacterSelect()
     {
-        SceneManager.Instance.LoadScene("CharacterSelect");
+        SceneManager.Instance.LoadScene("CharSelect");
         Services.UserService.Instance.SendGameLeave();
     }
 

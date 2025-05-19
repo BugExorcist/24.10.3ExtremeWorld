@@ -60,7 +60,7 @@ public class UIMain : MonoSingleton<UIMain>
 
     public void OnClickRide()
     {
-
+        UIManager.Instance.Show<UIRide>();
     }
 
     public void OnClickSetting()
@@ -72,6 +72,7 @@ public class UIMain : MonoSingleton<UIMain>
     {
 
     }
+
     public void ShowTeamUI(bool show)
     {
         TeamWindow.ShowTeam(show);

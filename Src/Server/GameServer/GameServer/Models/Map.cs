@@ -130,6 +130,10 @@ namespace GameServer.Models
             conn.SendResponse();
         }
 
+        /// <summary>
+        /// 同步位置 收到来自客户端发来的信息，如果是自己，则直接更新角色信息，否则发送给所有角色
+        /// </summary>
+        /// <param name="entity"></param>
         internal void UpdateEntity(NEntitySync entity)
         {
             foreach (var kv in this.MapCharacters)
@@ -139,6 +143,10 @@ namespace GameServer.Models
                     kv.Value.character.Position = entity.Entity.Position;
                     kv.Value.character.Direction = entity.Entity.Direction;
                     kv.Value.character.Speed = entity.Entity.Speed;
+                    if (entity.Event == EntityEvent.Ride)
+                    {
+                        kv.Value.character.Ride = entity.Param;
+                    }
                 }
                 else
                 {
