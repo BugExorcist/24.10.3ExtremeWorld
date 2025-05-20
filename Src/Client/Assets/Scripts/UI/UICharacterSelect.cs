@@ -82,6 +82,7 @@ public class UICharacterSelect : MonoBehaviour
         }
         UserService.Instance.SendCharacterCreate(this.inputName.text, this.characterClass);
         InitCharacterSelect(true);
+        SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_Click);
     }
 
     public void OnSelectClass(int value)
@@ -95,6 +96,7 @@ public class UICharacterSelect : MonoBehaviour
         }
 
         discribeText.text = DataManager.Instance.Characters[value + 1].Description;
+        SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_Click);
     }
 
     public void OnCharacterCreate(Result result, string message)

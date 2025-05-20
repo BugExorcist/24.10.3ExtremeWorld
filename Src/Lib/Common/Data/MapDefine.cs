@@ -11,5 +11,6 @@ namespace Common.Data
         public string Name { get; set; }
         public string Resource { get; set; }
         public string MiniMap { get; set; }
+        public string Music { get; set; }
     }
 }

@@ -27,6 +27,7 @@ public class UIRegister : MonoBehaviour
 
     public void OnClickRegister()
     {
+        SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_Click);
         if (string.IsNullOrEmpty(username.text))
         {
             MessageBox.Show("«Î ‰»Î’À∫≈");

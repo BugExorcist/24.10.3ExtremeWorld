@@ -43,6 +43,7 @@ public class UILogin : MonoBehaviour
             return;
         }
         UserService.Instance.SendLogin(username.text, password.text);
+        SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_Click);
     }
 
     public void OnLogin(Result result, string msg)
@@ -52,6 +53,7 @@ public class UILogin : MonoBehaviour
             //MessageBox.Show(string.Format("{0}: {1}", result, msg));
             // 登录成功，进入角色选择场景
             SceneManager.Instance.LoadScene("CharSelect");
+            SoundManager.Instance.PlayMusic(SoundDefine.Music_Select);
         }
         else  
         {
