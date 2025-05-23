@@ -66,7 +66,7 @@ public class UIManager : Singleton<UIManager>
         return default(T);
     }
 
-    public void Closs(Type type)
+    public void Close(Type type)
     {
         //SoundManager.Instance.PlaySound("ui_colse");
         if (this.UIResources.ContainsKey(type))
@@ -82,5 +82,10 @@ public class UIManager : Singleton<UIManager>
                 info.Instance = null;
             }
         }
+    }
+
+    internal void Close<T>()
+    {
+        this.Close(typeof(T));
     }
 }

@@ -1,11 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Entities;
 using SkillBridge.Message;
-using System;
 using Services;
 using Managers;
+using UnityEngine.AI;
+using System;
+using System.Collections;
 
 public class PlayerInputController : MonoBehaviour
 {
@@ -18,6 +18,9 @@ public class PlayerInputController : MonoBehaviour
     public int speed;
     public EntityController entityController;
     public bool onAir = false;
+
+    private NavMeshAgent agent;
+    private bool autoNav = false;
 
 
     void Start()
@@ -41,12 +44,85 @@ public class PlayerInputController : MonoBehaviour
             if (entityController != null)
                 entityController.entity = this.character;
         }
+
+        if (agent == null)
+        {
+            agent = this.gameObject.AddComponent<NavMeshAgent>();
+            agent.stoppingDistance = 1.5f;
+            agent.updatePosition = false;
+        }
+    }
+
+    public void StartNav(Vector3 target)
+    {
+        StartCoroutine(BeginNav(target));
+    }
+
+    IEnumerator BeginNav(Vector3 target)
+    {
+        agent.updatePosition = true;
+        agent.SetDestination(target);
+        yield return null;
+        autoNav = true;
+        if (state != CharacterState.Move)
+        {
+            state = CharacterState.Move;
+            this.character.MoveForward();
+            this.SendEntityEvent(EntityEvent.MoveFwd);
+            agent.speed = this.character.speed / 100f;
+        }
+    }
+
+    public void StopNav()
+    {
+        autoNav = false;
+        agent.ResetPath();
+        if (state != CharacterState.Idle)
+        {
+            state = CharacterState.Idle;
+            this.rb.velocity = Vector3.zero;
+            this.character.Stop();
+            this.SendEntityEvent(EntityEvent.Idle);
+        }
+        agent.updatePosition = false;
+        NavPathRenderer.Instance.SetPath(null, Vector3.zero);
+    }
+
+    public void navMove()
+    {
+        // 路径计算是否完毕
+        if (agent.pathPending) return;
+        if (agent.pathStatus == NavMeshPathStatus.PathInvalid)
+        {   //  路径计算失败
+            StopNav();
+            return;
+        }
+        if (agent.pathStatus != NavMeshPathStatus.PathComplete) return;
+
+        if (Mathf.Abs(Input.GetAxis("Vertical")) > 0.1 || Mathf.Abs(Input.GetAxis("Horizontal")) > 0.1)
+        {
+            StopNav();
+            return;
+        }
+
+        NavPathRenderer.Instance.SetPath(agent.path, agent.destination);
+        if (agent.isStopped || agent.remainingDistance < 1.5f)
+        {
+            StopNav();
+            return;
+        }
     }
 
     void FixedUpdate()
     {
         if (character == null)
             return;
+        if (autoNav)
+        {
+            navMove();
+            return;
+        }
+
         if (InputManager.Instance != null && InputManager.Instance.IsInputMode)
             return;
 
@@ -55,7 +131,7 @@ public class PlayerInputController : MonoBehaviour
         {
             if(state != CharacterState.Move)
             {
-                state=CharacterState.Move;
+                state = CharacterState.Move;
                 this.character.MoveForward();
                 this.SendEntityEvent(EntityEvent.MoveFwd);
             }
@@ -105,18 +181,29 @@ public class PlayerInputController : MonoBehaviour
     Vector3 lastPos;
 
     private void LateUpdate()
-    {
+    {   // 同步位置
         Vector3 offset = this.rb.transform.position - lastPos;
         this.speed = (int)(offset.magnitude * 100f / Time.deltaTime);
-
         this.lastPos = this.rb.transform.position;
 
-        if((GameObjectTool.WorldToLogic(this.rb.transform.position) - this.character.position).magnitude > 50)
+        if ((GameObjectTool.WorldToLogic(this.rb.transform.position) - this.character.position).magnitude > 50)
         {
             this.character.SetPosition(GameObjectTool.WorldToLogic(this.rb.transform.position));
             this.SendEntityEvent(EntityEvent.None);
         }
         this.transform.position = this.rb.transform.position;
+        // 同步方向
+        Vector3 dir = GameObjectTool.LogicToWorld(character.direction);
+        Quaternion rot = new Quaternion();
+        rot.SetFromToRotation(dir, this.transform.forward);
+
+        agent.nextPosition = this.transform.position;
+
+        if (rot.eulerAngles.y > this.turnAngle && rot.eulerAngles.y < (360 - this.turnAngle))
+        {
+            character.SetDirection(GameObjectTool.WorldToLogic(this.transform.forward));
+            this.SendEntityEvent(EntityEvent.None);
+        }
     }
     public void SendEntityEvent(EntityEvent enetityEvent, int param = 0)
     {

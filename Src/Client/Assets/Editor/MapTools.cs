@@ -4,6 +4,7 @@ using Common.Data;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.AI;
 
 public class MapTools
 {
@@ -104,5 +105,44 @@ public class MapTools
         DataManager.Instance.SaveSpawnPoints();
         EditorSceneManager.OpenScene("Assets/Levels/" + currentScene + ".unity");
         EditorUtility.DisplayDialog("提示", "刷怪点导出完成", "确定");
+    }
+
+    [MenuItem("地图工具/生成导航数据")]
+    public static void GenerateNavDate()
+    {
+        //Material red = new Material(Shader.Find("Particle/ParticleAdditive"));
+        //red.color = Color.red;
+        //red.SetColor("_TintColor", Color.red);
+        //red.enableInstancing  = true;
+        GameObject go = GameObject.Find("MiniMapBoudingBox");
+        if (go != null)
+        {
+            GameObject root = new GameObject("Root");
+            BoxCollider bound = go.GetComponent<BoxCollider>();
+            float step = 1f;
+            for(float x = bound.bounds.min.x; x < bound.bounds.max.x; x += step)
+            {
+                for (float z = bound.bounds.min.z; z < bound.bounds.max.z; z += step)
+                {
+                    for (float y = bound.bounds.max.y; y < bound.bounds.max.y + 5f; y += step)
+                    {
+                        var pos = new Vector3(x, y, z);
+                        NavMeshHit hit;
+                        if (NavMesh.SamplePosition(pos, out hit, 0.5f, NavMesh.AllAreas))
+                        {
+                            if (hit.hit)
+                            {
+                                var box = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                                box.name = "Hit_" + hit.mask;
+                                //box.GetComponent<MeshRenderer>().sharedMaterial = red;
+                                box.transform.SetParent(root.transform, true);
+                                box.transform.position = pos;
+                                box.transform.localScale = Vector3.one * 0.9f;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

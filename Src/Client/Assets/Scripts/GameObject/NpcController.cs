@@ -24,7 +24,8 @@ public class NPCController : MonoBehaviour
         renderer = this.gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
         animator = this.gameObject.GetComponent<Animator>();
         orignColor = renderer.sharedMaterial.color;
-        npc = NPCManager.Instance.GetNpcDefine(npcID);
+        npc = NPCManager.Instance.GetNpcDefine(this.npcID);
+        NPCManager.Instance.UpdateNpcPosition(this.npcID, this.transform.position);
         this.StartCoroutine(Actions());
         RefreshNpcStatus();
         QuestManager.Instance.onQuestStatusChanged += OnQuestStatusChanged;
@@ -100,7 +101,14 @@ public class NPCController : MonoBehaviour
     void OnMouseDown()
     {   //被鼠标点击时触发
         if (NearToNpc())
+        {
             Interactive();
+            return;
+        }
+        if (Vector3.Distance(this.transform.position, User.Instance.CurrentCharacterObject.transform.position) > 2f)
+        {
+            User.Instance.CurrentCharacterObject.StartNav(this.transform.position);
+        }
     }
 
     private void OnMouseOver()
