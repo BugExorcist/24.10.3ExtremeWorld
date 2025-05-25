@@ -187,7 +187,7 @@ namespace Managers
 
         private string FormatFromPlayer(ChatMessage msg)
         {   //深绿色
-            if (msg.FromId == User.Instance.CurrentCharacter.Id)
+            if (msg.FromId == User.Instance.CurrentCharacterInfo.Id)
                 return "<link=\"\"><#008000><u>[我]</u></color></link>";
             else
                 return string.Format("<link=\"c:{0}:{1}\"><#008000><u>[{1}]</u></color></link>", msg.FromId, msg.FromName);
@@ -195,7 +195,7 @@ namespace Managers
 
         private object FormatToPlayer(ChatMessage msg)
         {   //深绿色
-            if (msg.ToId == User.Instance.CurrentCharacter.Id)
+            if (msg.ToId == User.Instance.CurrentCharacterInfo.Id)
                 return "<link=\"\"><#008000><u>[我]</u></color></link>";
             else
                 return string.Format("<link=\"c:{0}:{1}\"><#008000><u>[{1}]</u></color></link>", msg.ToId, msg.ToName);

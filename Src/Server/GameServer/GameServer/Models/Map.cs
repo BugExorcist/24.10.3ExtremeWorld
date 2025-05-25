@@ -98,18 +98,6 @@ namespace GameServer.Models
             this.MapCharacters.Remove(cha.Id);
         }
 
-        //void SendCharacterEnterMap(NetConnection<NetSession> conn, NCharacterInfo character)
-        //{
-        //    NetMessage message = new NetMessage();
-        //    message.Response = new NetMessageResponse();
-
-        //    message.Response.mapCharacterEnter = new MapCharacterEnterResponse();
-        //    message.Response.mapCharacterEnter.mapId = this.Define.ID;
-        //    message.Response.mapCharacterEnter.Characters.Add(character);
-
-        //    byte[] data = PackageHandler.PackMessage(message);
-        //    conn.SendData(data, 0, data.Length);
-        //}
 
         private void AddCharacterEnterMap(NetConnection<NetSession> conn, NCharacterInfo character)
         {

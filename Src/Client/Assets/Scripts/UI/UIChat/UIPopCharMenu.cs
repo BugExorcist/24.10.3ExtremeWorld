@@ -44,7 +44,7 @@ public class UIPopCharMenu : UIWindow ,IDeselectHandler
 
     public void AddFriend()
     {
-        if (targetId == User.Instance.CurrentCharacter.Id)
+        if (targetId == User.Instance.CurrentCharacterInfo.Id)
         {
             MessageBox.Show("不能添加自己为好友哦~");
             return;

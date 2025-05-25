@@ -36,7 +36,7 @@ public class UIRide : UIWindow
     {
         foreach (var kv in ItemManager.Instance.Items)
         {
-            if (kv.Value.Define.Type == ItemType.Ride && (kv.Value.Define.LimitClass == User.Instance.CurrentCharacter.Class || kv.Value.Define.LimitClass == CharacterClass.None))
+            if (kv.Value.Define.Type == ItemType.Ride && (kv.Value.Define.LimitClass == User.Instance.CurrentCharacterInfo.Class || kv.Value.Define.LimitClass == CharacterClass.None))
             {
                 GameObject go = Instantiate(itemPrefab, this.listView.transform);
                 UIRideItem ui = go.GetComponent<UIRideItem>();

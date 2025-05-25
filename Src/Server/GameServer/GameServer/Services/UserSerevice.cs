@@ -109,6 +109,8 @@ namespace GameServer.Services
                 MapPosY = 4000,
                 MapPosZ = 810,
                 Gold = 100000,//初始金币10w
+                HP = 1000,
+                MP = 1000,
                 Equips = new byte[28]// 7 * sizeof(int)
             };
             //背包初始化

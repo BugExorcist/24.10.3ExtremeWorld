@@ -16,14 +16,14 @@ public class UIMain : MonoSingleton<UIMain>
 
     protected override void OnStart()
     {
-        this.id.text = string.Format("ID:{0}", User.Instance.CurrentCharacter.Id);
+        this.id.text = string.Format("ID:{0}", User.Instance.CurrentCharacterInfo.Id);
         UpdataUIAvatar();
     }
 
     void UpdataUIAvatar()
     {
-        this.avaterName.text = User.Instance.CurrentCharacter.Name;
-        this.avaterLevel.text = User.Instance.CurrentCharacter.Level.ToString();
+        this.avaterName.text = User.Instance.CurrentCharacterInfo.Name;
+        this.avaterLevel.text = User.Instance.CurrentCharacterInfo.Level.ToString();
     }
 
 

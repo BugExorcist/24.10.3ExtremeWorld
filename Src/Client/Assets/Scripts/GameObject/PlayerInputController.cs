@@ -39,6 +39,7 @@ public class PlayerInputController : MonoBehaviour
             cInfo.Entity.Direction.X = 0;
             cInfo.Entity.Direction.Y = 100;
             cInfo.Entity.Direction.Z = 0;
+            cInfo.attDynamic = new NAttributeDynamic();
             this.character = new Character(cInfo);
 
             if (entityController != null)

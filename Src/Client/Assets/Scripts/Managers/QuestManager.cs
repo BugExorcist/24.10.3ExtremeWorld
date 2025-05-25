@@ -58,9 +58,9 @@ namespace Managers
         {
             foreach (var kv in DataManager.Instance.Quests)
             {
-                if (kv.Value.LimitClass != User.Instance.CurrentCharacter.Class && kv.Value.LimitClass != CharacterClass.None)
+                if (kv.Value.LimitClass != User.Instance.CurrentCharacterInfo.Class && kv.Value.LimitClass != CharacterClass.None)
                     continue;//不符合职业
-                if (kv.Value.LimitLevel > User.Instance.CurrentCharacter.Level)
+                if (kv.Value.LimitLevel > User.Instance.CurrentCharacterInfo.Level)
                     continue;//等级不够
                 if (this.allQuests.ContainsKey(kv.Key))
                     continue;//已经接取

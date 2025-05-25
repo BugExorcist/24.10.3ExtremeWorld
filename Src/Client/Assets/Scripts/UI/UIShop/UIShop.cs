@@ -51,7 +51,7 @@ public class UIShop : UIWindow
     {
         this.shop = shop;
         this.title.text = shop.Name;
-        this.money.text = User.Instance.CurrentCharacter.Gold.ToString();
+        this.money.text = User.Instance.CurrentCharacterInfo.Gold.ToString();
     }
 
     private UIShopItem selectedItem;
@@ -79,6 +79,6 @@ public class UIShop : UIWindow
 
     private void UpdataGold()
     {
-        this.money.text = User.Instance.CurrentCharacter.Gold.ToString();
+        this.money.text = User.Instance.CurrentCharacterInfo.Gold.ToString();
     }
 }

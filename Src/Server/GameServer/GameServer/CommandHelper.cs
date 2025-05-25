@@ -14,23 +14,45 @@ namespace GameServer
             while (run)
             {
                 Console.Write(">");
-                string line = Console.ReadLine();
-                switch (line.ToLower().Trim())
+                string line = Console.ReadLine().ToLower().Trim();
+                try
                 {
-                    case "exit":
-                        run = false;
-                        break;
-                    default:
-                        Help();
-                        break;
+                    string[] cmd = line.Split(" ".ToArray(), StringSplitOptions.RemoveEmptyEntries);
+                    switch (line.ToLower().Trim())
+                    {
+                        case "addexp":
+                            AddExp(int.Parse(cmd[1]), int.Parse(cmd[2]));
+                            break;
+                        case "exit":
+                            run = false;
+                            break;
+                        default:
+                            Help();
+                            break;
+                    }
+                }catch(Exception e)
+                {
+                    Console.Error.WriteLine(e.ToString());
                 }
             }
+        }
+
+        private static void AddExp(int id, int exp)
+        {
+            var cha = Managers.CharacterManager.Instance.GetCharacter(id);
+            if (cha == null)
+            {
+                Console.WriteLine("CharacterID {0} not found", id);
+                return;
+            }
+            cha.AddExp(exp);
         }
 
         public static void Help()
         {
             Console.Write(@"
 Help:
+    addexp <characterID> <exp>
     exit    Exit Game Server
     help    Show Help
 ");

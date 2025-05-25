@@ -1,4 +1,5 @@
 ﻿using Common.Data;
+using Entities;
 using SkillBridge.Message;
 using System;
 using System.Collections.Generic;
@@ -27,14 +28,16 @@ namespace Models
 
         public void AddGold(int value)
         {
-            this.CurrentCharacter.Gold += value;
+            this.CurrentCharacterInfo.Gold += value;
             //通知UI刷新
             OnUpdataGold?.Invoke();
         }
 
         public MapDefine CurrentMapData { get; set; }
 
-        public SkillBridge.Message.NCharacterInfo CurrentCharacter { get; set; }
+        public Character CurrentCharacter { get; set; }
+
+        public NCharacterInfo CurrentCharacterInfo { get; set; }
 
         public PlayerInputController CurrentCharacterObject { get; set; }
 

@@ -55,7 +55,7 @@ public class UITeam : MonoBehaviour
                 this.Members[i].gameObject.SetActive(false);
             }
         }
-        this.LeaderPanel.SetActive(User.Instance.TeamInfo.Leader == User.Instance.CurrentCharacter.Id);
+        this.LeaderPanel.SetActive(User.Instance.TeamInfo.Leader == User.Instance.CurrentCharacterInfo.Id);
         
 
     }
@@ -75,7 +75,7 @@ public class UITeam : MonoBehaviour
 
     public void OnClickKickOut()
     {
-        if (this.selectedItem.chaInfo.Id == User.Instance.CurrentCharacter.Id)
+        if (this.selectedItem.chaInfo.Id == User.Instance.CurrentCharacterInfo.Id)
             OnClickLeave();
         else
         {
@@ -88,7 +88,7 @@ public class UITeam : MonoBehaviour
 
     public void OnClickSetLeader()
     {
-        if (this.selectedItem.chaInfo.Id == User.Instance.CurrentCharacter.Id)
+        if (this.selectedItem.chaInfo.Id == User.Instance.CurrentCharacterInfo.Id)
         {
             MessageBox.Show("你已经是队长了", "提示", MessageBoxType.Information);
             return;
