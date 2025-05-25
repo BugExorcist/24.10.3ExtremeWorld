@@ -100,6 +100,9 @@ namespace Network
                 MessageHandler<Tm> handler = (MessageHandler<Tm>)messageHandlers[key];
                 if (handler != null)
                 {
+
+                    //handler(sender, msg);
+
                     try
                     {
                         handler(sender, msg);

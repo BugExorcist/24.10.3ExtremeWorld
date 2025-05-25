@@ -23,20 +23,15 @@ namespace Common.Battle
         public float HP
         {
             get { return dynamic.Hp; }
-            set
-            {
-                dynamic.Hp = (int)Math.Min(value, MaxHP);
-            }
+            set { dynamic.Hp = (int)Math.Min(value, MaxHP); }
         }
 
         public float MP
         {
             get { return dynamic.Mp; }
-            set
-            {
-                dynamic.Mp = (int)Math.Min(value, MaxMP);
-            }
+            set { dynamic.Mp = (int)Math.Min(value, MaxMP); }
         }
+
         /// <summary>
         /// 最大生命值
         /// </summary>
@@ -101,10 +96,15 @@ namespace Common.Battle
 
             this.InitFinalAttributes();
             if (this.dynamic == null)
+            {
                 this.dynamic = new NAttributeDynamic();
-            this.HP = attDynamic.Hp;
-            this.MP = attDynamic.Mp;
-
+                this.HP = this.MaxHP;
+                this.MP = this.MaxMP;
+            }
+            else {
+                this.HP = attDynamic.Hp;
+                this.MP = attDynamic.Mp;
+            }
         }
 
         private void LoadInitAttribute(AttributeData attr, CharacterDefine define)
@@ -132,6 +132,8 @@ namespace Common.Battle
         private void LoadEquipAttribute(AttributeData attr, List<EquipDefine> equips)
         {
             attr.Reset();
+            if (equips == null) return;
+
             foreach (var define in equips)
             {
                 attr.MaxHP += define.MaxHP;
@@ -162,7 +164,7 @@ namespace Common.Battle
         }
 
         private void InitSecondaryAttributes()
-        {   //二级属性成长
+        {   //二级属性成长(包括装备)
             this.Basic.MaxHP = this.Basic.STR * 10 + this.Initial.MaxHP + this.Equip.MaxHP;
             this.Basic.MaxMP = this.Basic.INT * 10 + this.Initial.MaxMP + this.Equip.MaxMP;
 
@@ -177,8 +179,12 @@ namespace Common.Battle
 
         private void InitFinalAttributes()
         {
-            for (int i = (int)AttributeType.MaxMP; i <= (int)AttributeType.MAX; i++)
+            for (int i = (int)AttributeType.MaxHP; i < (int)AttributeType.MAX; i++)
             {
+                Log.Info(i);
+                Log.Info(this.Final.Data.Length);
+                Log.Info(this.Basic.Data.Length);
+                Log.Info(this.Buff.Data.Length);
                 this.Final.Data[i] = this.Basic.Data[i] + this.Buff.Data[i];
             }
         }

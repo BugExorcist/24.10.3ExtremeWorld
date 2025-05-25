@@ -8,49 +8,50 @@ namespace Common.Battle
     public class AttributeData
     {
         public float[] Data = new float[(int)AttributeType.MAX];
+
         /// <summary>
         /// 最大生命
         /// </summary>
         public float MaxHP { get { return Data[(int)AttributeType.MaxHP]; } set { Data[(int)AttributeType.MaxHP] = value; } }
-        /// <summary>
+        ///<summary>
         /// 最大法力
-        /// </summary>
+        ///</summary>
         public float MaxMP { get { return Data[(int)AttributeType.MaxMP]; } set { Data[(int)AttributeType.MaxMP] = value; } }
-        /// <summary>
+        ///<summary>
         /// 力量
-        /// </summary>
+        ///</summary>
         public float STR { get { return Data[(int)AttributeType.STR]; } set { Data[(int)AttributeType.STR] = value; } }
-        /// <summary>
+        ///<summary>
         /// 智力
-        /// </summary>
+        ///</summary>
         public float INT { get { return Data[(int)AttributeType.INT]; } set { Data[(int)AttributeType.INT] = value; } }
-        /// <summary>
+        ///<summary>
         /// 敏捷
-        /// </summary>
+        ///</summary>
         public float DEX { get { return Data[(int)AttributeType.DEX]; } set { Data[(int)AttributeType.DEX] = value; } }
-        /// <summary>
+        ///<summary>
         /// 物理攻击
-        /// </summary>
+        ///</summary>
         public float AD { get { return Data[(int)AttributeType.AD]; } set { Data[(int)AttributeType.AD] = value; } }
-        /// <summary>
+        ///<summary>
         /// 魔法攻击
-        /// </summary>
+        ///</summary>
         public float AP { get { return Data[(int)AttributeType.AP]; } set { Data[(int)AttributeType.AP] = value; } }
-        /// <summary>
+        ///<summary>
         /// 物理防御
-        /// </summary>
+        ///</summary>
         public float DEF { get { return Data[(int)AttributeType.DEF]; } set { Data[(int)AttributeType.DEF] = value; } }
-        /// <summary>
+        ///<summary>
         /// 魔法防御
-        /// </summary>
+        ///</summary>
         public float MDEF { get { return Data[(int)AttributeType.MDEF]; } set { Data[(int)AttributeType.MDEF] = value; } }
-        /// <summary>
+        ///<summary>
         /// 攻击速度
-        /// </summary>
+        ///</summary>
         public float SPD { get { return Data[(int)AttributeType.SPD]; } set { Data[(int)AttributeType.SPD] = value; } }
-        /// <summary>
-        /// 暴击率
-        /// </summary>
+        ///<summary>
+        /// 暴击概率
+        ///</summary>
         public float CRI { get { return Data[(int)AttributeType.CRI]; } set { Data[(int)AttributeType.CRI] = value; } }
 
         public void Reset()

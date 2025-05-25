@@ -18,7 +18,7 @@ namespace GameServer
                 try
                 {
                     string[] cmd = line.Split(" ".ToArray(), StringSplitOptions.RemoveEmptyEntries);
-                    switch (line.ToLower().Trim())
+                    switch (cmd[0])
                     {
                         case "addexp":
                             AddExp(int.Parse(cmd[1]), int.Parse(cmd[2]));
@@ -46,6 +46,7 @@ namespace GameServer
                 return;
             }
             cha.AddExp(exp);
+            Console.WriteLine("succese!", id, exp);
         }
 
         public static void Help()
