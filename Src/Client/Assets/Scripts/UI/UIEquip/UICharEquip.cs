@@ -45,7 +45,7 @@ public class UICharEquip : UIWindow
 
     private void RefreshUI()
     {
-        this.name.text = string.Format("{0} LV{1}", User.Instance.CurrentCharacterInfo.Name, User.Instance.CurrentCharacterInfo.Level);
+        this.name.text = string.Format("{0} LV.{1}", User.Instance.CurrentCharacterInfo.Name, User.Instance.CurrentCharacterInfo.Level);
         ClearAllEquipList();
         InitAllEquipItems();
         ClearEquipedList();
