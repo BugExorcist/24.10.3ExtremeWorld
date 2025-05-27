@@ -9,13 +9,13 @@ C:\Apps\Unity Hub\Unity\Hub\Editor\2022.3.30f1c1\Editor\Unity.exe
 -batchMode
 -noUpm
 -name
-AssetImportWorker3
+AssetImportWorker2
 -projectPath
 F:/Unity/Projects/24.10.3ExtremeWorld/Src/Client
 -logFile
-Logs/AssetImportWorker3.log
+Logs/AssetImportWorker2.log
 -srvPort
-64834
+54260
 Successfully changed project path to: F:/Unity/Projects/24.10.3ExtremeWorld/Src/Client
 F:/Unity/Projects/24.10.3ExtremeWorld/Src/Client
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -49,12 +49,12 @@ F:/Unity/Projects/24.10.3ExtremeWorld/Src/Client
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [8220] Host "[IP] 66.183.201.165 [Port] 0 [Flags] 2 [Guid] 900928627 [EditorId] 900928627 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-H7TM5C4L) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [33476] Host "[IP] 66.183.223.208 [Port] 0 [Flags] 2 [Guid] 3847215655 [EditorId] 3847215655 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-H7TM5C4L) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [8220] Host "[IP] 66.183.201.165 [Port] 0 [Flags] 2 [Guid] 900928627 [EditorId] 900928627 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-H7TM5C4L) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [33476] Host "[IP] 66.183.223.208 [Port] 0 [Flags] 2 [Guid] 3847215655 [EditorId] 3847215655 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-H7TM5C4L) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
 [Physics::Module] Initialized MultithreadedJobDispatcher with 15 workers.
-Refreshing native plugins compatible for Editor in 44.75 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 60.12 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.3.30f1c1 (a6dc00fbe362)
 [Subsystems] Discovering subsystems at path C:/Apps/Unity Hub/Unity/Hub/Editor/2022.3.30f1c1/Editor/Data/Resources/UnitySubsystems
@@ -70,47 +70,47 @@ Initialize mono
 Mono path[0] = 'C:/Apps/Unity Hub/Unity/Hub/Editor/2022.3.30f1c1/Editor/Data/Managed'
 Mono path[1] = 'C:/Apps/Unity Hub/Unity/Hub/Editor/2022.3.30f1c1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Apps/Unity Hub/Unity/Hub/Editor/2022.3.30f1c1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56636
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56256
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Apps/Unity Hub/Unity/Hub/Editor/2022.3.30f1c1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: C:/Apps/Unity Hub/Unity/Hub/Editor/2022.3.30f1c1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.012780 seconds.
-- Loaded All Assemblies, in  0.349 seconds
+Registered in 0.019918 seconds.
+- Loaded All Assemblies, in  0.432 seconds
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
-Android Extension - Scanning For ADB Devices 323 ms
+Android Extension - Scanning For ADB Devices 432 ms
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.636 seconds
-Domain Reload Profiling: 981ms
-	BeginReloadAssembly (105ms)
+- Finished resetting the current domain, in  0.805 seconds
+Domain Reload Profiling: 1231ms
+	BeginReloadAssembly (137ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (31ms)
+	RebuildCommonClasses (39ms)
 	RebuildNativeTypeToScriptingClass (10ms)
-	initialDomainReloadingComplete (68ms)
-	LoadAllAssembliesAndSetupDomain (130ms)
-		LoadAssemblies (100ms)
+	initialDomainReloadingComplete (85ms)
+	LoadAllAssembliesAndSetupDomain (154ms)
+		LoadAssemblies (131ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (128ms)
-			TypeCache.Refresh (126ms)
-				TypeCache.ScanAssembly (114ms)
+		AnalyzeDomain (152ms)
+			TypeCache.Refresh (150ms)
+				TypeCache.ScanAssembly (132ms)
 			ScanForSourceGeneratedMonoScriptInfo (0ms)
 			ResolveRequiredComponents (0ms)
-	FinalizeReload (636ms)
+	FinalizeReload (806ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (583ms)
+		SetupLoadedEditorAssemblies (742ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (426ms)
+			InitializePlatformSupportModulesInManaged (558ms)
 			SetLoadedEditorAssemblies (4ms)
 			RefreshPlugins (0ms)
 			BeforeProcessingInitializeOnLoad (2ms)
-			ProcessInitializeOnLoadAttributes (106ms)
-			ProcessInitializeOnLoadMethodAttributes (45ms)
+			ProcessInitializeOnLoadAttributes (128ms)
+			ProcessInitializeOnLoadMethodAttributes (49ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -121,8 +121,8 @@ Begin MonoManager ReloadAssembly
 Duplicate assembly 'log4net.dll' with different versions detected, using 'Assets/References/log4net.dll, AssemblyName=log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=null' and ignoring 'Packages/com.unity.collab-proxy/Lib/Editor/PlasticSCM/log4netPlastic.dll, AssemblyName=log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a'.Duplicate assembly 'Newtonsoft.Json.dll' with different versions detected, using 'Packages/com.unity.nuget.newtonsoft-json/Runtime/Newtonsoft.Json.dll, AssemblyName=Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' and ignoring 'Assets/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll, AssemblyName=Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null'.Symbol file LoadedFromMemory is not a mono symbol file
 Symbol file LoadedFromMemory is not a mono symbol file
 Symbol file LoadedFromMemory is not a mono symbol file
-- Loaded All Assemblies, in  0.671 seconds
-Refreshing native plugins compatible for Editor in 20.34 ms, found 2 plugins.
+- Loaded All Assemblies, in  0.885 seconds
+Refreshing native plugins compatible for Editor in 24.50 ms, found 2 plugins.
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
 Package Manager log level set to [2]
@@ -130,47 +130,47 @@ Package Manager log level set to [2]
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.964 seconds
-Domain Reload Profiling: 1625ms
-	BeginReloadAssembly (140ms)
+- Finished resetting the current domain, in  1.142 seconds
+Domain Reload Profiling: 2015ms
+	BeginReloadAssembly (170ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (5ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (23ms)
-	RebuildCommonClasses (32ms)
-	RebuildNativeTypeToScriptingClass (13ms)
-	initialDomainReloadingComplete (49ms)
-	LoadAllAssembliesAndSetupDomain (426ms)
-		LoadAssemblies (374ms)
+		CreateAndSetChildDomain (28ms)
+	RebuildCommonClasses (35ms)
+	RebuildNativeTypeToScriptingClass (12ms)
+	initialDomainReloadingComplete (60ms)
+	LoadAllAssembliesAndSetupDomain (595ms)
+		LoadAssemblies (551ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (130ms)
-			TypeCache.Refresh (108ms)
-				TypeCache.ScanAssembly (84ms)
-			ScanForSourceGeneratedMonoScriptInfo (18ms)
-			ResolveRequiredComponents (3ms)
-	FinalizeReload (965ms)
+		AnalyzeDomain (143ms)
+			TypeCache.Refresh (118ms)
+				TypeCache.ScanAssembly (90ms)
+			ScanForSourceGeneratedMonoScriptInfo (20ms)
+			ResolveRequiredComponents (4ms)
+	FinalizeReload (1142ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (815ms)
+		SetupLoadedEditorAssemblies (973ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (34ms)
+			InitializePlatformSupportModulesInManaged (35ms)
 			SetLoadedEditorAssemblies (4ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (101ms)
-			ProcessInitializeOnLoadAttributes (514ms)
-			ProcessInitializeOnLoadMethodAttributes (147ms)
+			BeforeProcessingInitializeOnLoad (95ms)
+			ProcessInitializeOnLoadAttributes (643ms)
+			ProcessInitializeOnLoadMethodAttributes (180ms)
 			AfterProcessingInitializeOnLoad (14ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (7ms)
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
-Refreshing native plugins compatible for Editor in 20.90 ms, found 2 plugins.
+		AwakeInstancesAfterBackupRestoration (9ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
+Refreshing native plugins compatible for Editor in 27.08 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 2678 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 70 unused Assets / (47.8 KB). Loaded Objects now: 3152.
-Memory consumption went from 139.2 MB to 139.2 MB.
-Total: 7.197100 ms (FindLiveObjects: 0.240200 ms CreateObjectMapping: 0.165000 ms MarkObjects: 6.695100 ms  DeleteObjects: 0.095600 ms)
+Memory consumption went from 139.1 MB to 139.0 MB.
+Total: 8.442000 ms (FindLiveObjects: 0.233900 ms CreateObjectMapping: 0.176500 ms MarkObjects: 7.873100 ms  DeleteObjects: 0.156800 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
@@ -188,84 +188,44 @@ AssetImportParameters requested are different than current active one (requested
   custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 23298.798243 seconds.
-  path: Assets/Models/Characters/newArcher/Archer.mat
-  artifactKey: Guid(f183074ae106061459f94eb60bdbc1ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Characters/newArcher/Archer.mat using Guid(f183074ae106061459f94eb60bdbc1ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8cd40eab7abcbb5cbc05493ca4e86bc7') in 0.077300 seconds
+  Time since last request: 6205.181794 seconds.
+  path: Assets/Resources/UI/Skill/archer_skill_01.png
+  artifactKey: Guid(892de48990160394188631e3bdb0846c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/UI/Skill/archer_skill_01.png using Guid(892de48990160394188631e3bdb0846c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f066bbb1f66a93e77ad40539f9304ade') in 0.073689 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
+Number of asset objects unloaded after import = 3
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000030 seconds.
-  path: Assets/Models/Characters/newArcher/Material #25.mat
-  artifactKey: Guid(5944bf50bf156fd48828eaca29f72fc9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Characters/newArcher/Material #25.mat using Guid(5944bf50bf156fd48828eaca29f72fc9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3b43a3928339813097d9a71695ffaf04') in 0.010124 seconds
+  Time since last request: 0.000040 seconds.
+  path: Assets/Resources/UI/Skill/warrior_buff_yy.png
+  artifactKey: Guid(fe69a3b1c933a414684bf450d99753d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/UI/Skill/warrior_buff_yy.png using Guid(fe69a3b1c933a414684bf450d99753d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4e49c5a8539ae6e3714b29e4db4dc2c9') in 0.014496 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
+Number of asset objects unloaded after import = 3
 ========================================================================
 Received Import Request.
-  Time since last request: 7.420004 seconds.
-  path: Assets/Models/Characters/newArcher/fbx/Archer_AtkB.FBX
-  artifactKey: Guid(57c2f165fc7c9e342972b81b0c5ec557) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Characters/newArcher/fbx/Archer_AtkB.FBX using Guid(57c2f165fc7c9e342972b81b0c5ec557) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1bd29831fe63f7db3a0f131633c94f2f') in 0.010553 seconds
+  Time since last request: 0.000031 seconds.
+  path: Assets/Resources/UI/Skill/archer_skill_00.png
+  artifactKey: Guid(5dc8a4986d4abd14d83b53aa454bef38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/UI/Skill/archer_skill_00.png using Guid(5dc8a4986d4abd14d83b53aa454bef38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '92c144ac3092802445a7868cc67b2ccd') in 0.014084 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 159
+Number of asset objects unloaded after import = 3
 ========================================================================
 Received Import Request.
-  Time since last request: 0.008476 seconds.
-  path: Assets/Models/Characters/newArcher/fbx/Archer_Death.FBX
-  artifactKey: Guid(02b9741cd86d8494f9b9fd43e3bfd597) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Characters/newArcher/fbx/Archer_Death.FBX using Guid(02b9741cd86d8494f9b9fd43e3bfd597) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bc4449be306fe3af0fd5ef8fdecbdcfe') in 0.005203 seconds
+  Time since last request: 0.000028 seconds.
+  path: Assets/Resources/UI/Skill/archer_debuff_lx.png
+  artifactKey: Guid(e2b083790f84f6743863d81e62a04957) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/UI/Skill/archer_debuff_lx.png using Guid(e2b083790f84f6743863d81e62a04957) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4632f005be759a8f19c5c20ef8e96f73') in 0.014220 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 159
+Number of asset objects unloaded after import = 3
 ========================================================================
 Received Import Request.
-  Time since last request: 0.017066 seconds.
-  path: Assets/Models/Characters/newArcher/fbx/Archer_Jump.FBX
-  artifactKey: Guid(8b3cc5d8252374c4a89a58b6c7e18809) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Characters/newArcher/fbx/Archer_Jump.FBX using Guid(8b3cc5d8252374c4a89a58b6c7e18809) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b1fbfcf4b6be7ac4b5892e010586f13d') in 0.005133 seconds
+  Time since last request: 0.000023 seconds.
+  path: Assets/Resources/UI/Skill/warrior_skill_00.png
+  artifactKey: Guid(73d7c2cc05b79b044abf35973f434015) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/UI/Skill/warrior_skill_00.png using Guid(73d7c2cc05b79b044abf35973f434015) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e7cf16df6a85db9926f1e23977608d46') in 0.012136 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 159
-========================================================================
-Received Import Request.
-  Time since last request: 0.000020 seconds.
-  path: Assets/Models/Characters/newArcher/fbx/Archer_SkillC.FBX
-  artifactKey: Guid(dcd33b97e256c31419d49ff1a9df533c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Characters/newArcher/fbx/Archer_SkillC.FBX using Guid(dcd33b97e256c31419d49ff1a9df533c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ff282026f3316e60a07c5257b64fa011') in 0.003855 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 95
-========================================================================
-Received Import Request.
-  Time since last request: 0.000015 seconds.
-  path: Assets/Models/Characters/newArcher/fbx/Archer_Ride_Move.FBX
-  artifactKey: Guid(4949152ad88558846b8a44d193faff8a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Characters/newArcher/fbx/Archer_Ride_Move.FBX using Guid(4949152ad88558846b8a44d193faff8a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4bc2e55c3de95e1d3939806ddc4347c8') in 0.004551 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 127
-========================================================================
-Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/Models/Characters/newArcher/fbx/Archer_Move_Right.FBX
-  artifactKey: Guid(14c30288606b02f42a67e3449fb2095f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Characters/newArcher/fbx/Archer_Move_Right.FBX using Guid(14c30288606b02f42a67e3449fb2095f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8353f2106a8c2c4d596aee3442307ead') in 0.004097 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 159
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/Models/Characters/newArcher/fbx/Archer_Ride_Idle.FBX
-  artifactKey: Guid(af41dffc252ea164997af5abf57c496e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Characters/newArcher/fbx/Archer_Ride_Idle.FBX using Guid(af41dffc252ea164997af5abf57c496e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '335715ae067265ba9e37764131f1bf61') in 0.003786 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 127
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Models/Characters/newArcher/fbx/Archer_Move_Back.FBX
-  artifactKey: Guid(3d5c0b5cd19ad6f41a58d2a8348d9a43) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Characters/newArcher/fbx/Archer_Move_Back.FBX using Guid(3d5c0b5cd19ad6f41a58d2a8348d9a43) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '80b10d1297278647a5ff04a42b9934f2') in 0.004493 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 159
+Number of asset objects unloaded after import = 3
 Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
 TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: 由于线程退出或应用程序请求，已中止 I/O 操作。
 AssetImportWorker is now disconnected from the server
