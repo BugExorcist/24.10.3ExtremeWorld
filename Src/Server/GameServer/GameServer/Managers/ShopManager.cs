@@ -15,12 +15,12 @@ namespace GameServer.Managers
     {
         public Result BuyItem(NetConnection<NetSession> sender, int shopId, int shopItemId)
         {
-            if (!DateManager.Instance.Shops.ContainsKey(shopId))
+            if (!DataManager.Instance.Shops.ContainsKey(shopId))
             {
                 return Result.Failed;
             }
             ShopItemDefine shopItem;
-            if (DateManager.Instance.ShopItems[shopId].TryGetValue(shopItemId, out shopItem))
+            if (DataManager.Instance.ShopItems[shopId].TryGetValue(shopItemId, out shopItem))
             {
                 Log.InfoFormat("BuyItem:  Character:{0} Item:{1}  Count:{2}  Price :{3}", sender.Session.Character.Id, shopItem.ItemID, shopItem.Count, shopItem.Prise);
                 if (sender.Session.Character.Gold >= shopItem.Prise)

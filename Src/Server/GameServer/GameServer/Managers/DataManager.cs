@@ -10,7 +10,7 @@ using Common.Data;
 using Newtonsoft.Json;
 namespace GameServer.Managers
 {
-    public class DateManager : Singleton<DateManager>
+    public class DataManager : Singleton<DataManager>
     {
         internal string DataPath;
         internal Dictionary<int, MapDefine> Maps = null;
@@ -25,9 +25,9 @@ namespace GameServer.Managers
         public Dictionary<int, EquipDefine> Equips = null;
         public Dictionary<int, QuestDefine> Quests = null;
         public Dictionary<int, Dictionary<int, SkillDefine>> Skills = null;
+        public Dictionary<int, BuffDefine> Buffs = null;
 
-
-        public DateManager()
+        public DataManager()
         {
             this.DataPath = "Data/";
             Log.Info("DataManager > DataManager()");
@@ -70,6 +70,9 @@ namespace GameServer.Managers
 
             json = File.ReadAllText(this.DataPath + "SkillDefine.txt");
             this.Skills = JsonConvert.DeserializeObject<Dictionary<int, Dictionary<int, SkillDefine>>>(json);
+
+            json = File.ReadAllText(this.DataPath + "BuffDefine.txt");
+            this.Buffs = JsonConvert.DeserializeObject<Dictionary<int, BuffDefine>>(json);
         }
     }
 }

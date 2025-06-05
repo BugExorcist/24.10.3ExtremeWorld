@@ -296,7 +296,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 225087952172534469}
         m_TargetAssemblyTypeName: UIWindow, Assembly-CSharp
         m_MethodName: OnCloseClick
         m_Mode: 1
@@ -1103,6 +1103,7 @@ GameObject:
   - component: {fileID: 5087793239998451180}
   - component: {fileID: 8572676484290090278}
   - component: {fileID: 3581862391225331113}
+  - component: {fileID: 225087952172534469}
   m_Layer: 5
   m_Name: UISkill
   m_TagString: Untagged
@@ -1193,6 +1194,24 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &225087952172534469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6642693435513251268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e83e8ff9e99b28246b5ee6c72436d3f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Root: {fileID: 0}
+  dragRectTransform: {fileID: 2324485505388968747}
+  descript: {fileID: 8171930414652435647}
+  itemPrefab: {fileID: 5774185387908921847, guid: 40fc83cefdd9a3e429203ff4071a0699,
+    type: 3}
+  listView: {fileID: 6878943008004035760}
 --- !u!1 &7198312196533454826
 GameObject:
   m_ObjectHideFlags: 0
@@ -1512,9 +1531,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 6642693435513251268}
         m_TargetAssemblyTypeName: UIRide, Assembly-CSharp
-        m_MethodName: DoRide
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

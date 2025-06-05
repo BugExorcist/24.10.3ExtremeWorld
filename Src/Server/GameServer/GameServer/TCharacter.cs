@@ -21,6 +21,7 @@ namespace GameServer
             this.Items = new HashSet<TCharacterItem>();
             this.Quests = new HashSet<TCharacterQuest>();
             this.Friends = new HashSet<TCharacterFriend>();
+            this.Skills = new HashSet<TCharacterSkill>();
         }
     
         public int ID { get; set; }
@@ -47,5 +48,7 @@ namespace GameServer
         public virtual ICollection<TCharacterQuest> Quests { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TCharacterFriend> Friends { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TCharacterSkill> Skills { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/25/2025 19:50:34
+-- Date Created: 06/05/2025 19:54:11
 -- Generated from EDMX file: F:\Unity\Projects\24.10.3ExtremeWorld\Src\Server\GameServer\GameServer\Entities.edmx
 -- --------------------------------------------------
 
@@ -41,6 +41,9 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_TGuildTGuildApply]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[GuildApplies] DROP CONSTRAINT [FK_TGuildTGuildApply];
 GO
+IF OBJECT_ID(N'[dbo].[FK_TCharacterSkillTCharacter]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CharacterSkills] DROP CONSTRAINT [FK_TCharacterSkillTCharacter];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -75,6 +78,9 @@ IF OBJECT_ID(N'[dbo].[GuildMembers]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[GuildApplies]', 'U') IS NOT NULL
     DROP TABLE [dbo].[GuildApplies];
+GO
+IF OBJECT_ID(N'[dbo].[CharacterSkills]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CharacterSkills];
 GO
 
 -- --------------------------------------------------
@@ -197,6 +203,15 @@ CREATE TABLE [dbo].[GuildApplies] (
 );
 GO
 
+-- Creating table 'CharacterSkills'
+CREATE TABLE [dbo].[CharacterSkills] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [SkillID] int  NOT NULL,
+    [Level] int  NOT NULL,
+    [Owner_ID] int  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -258,6 +273,12 @@ GO
 -- Creating primary key on [Id] in table 'GuildApplies'
 ALTER TABLE [dbo].[GuildApplies]
 ADD CONSTRAINT [PK_GuildApplies]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'CharacterSkills'
+ALTER TABLE [dbo].[CharacterSkills]
+ADD CONSTRAINT [PK_CharacterSkills]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -383,6 +404,21 @@ GO
 CREATE INDEX [IX_FK_TGuildTGuildApply]
 ON [dbo].[GuildApplies]
     ([GuildId]);
+GO
+
+-- Creating foreign key on [Owner_ID] in table 'CharacterSkills'
+ALTER TABLE [dbo].[CharacterSkills]
+ADD CONSTRAINT [FK_TCharacterSkillTCharacter]
+    FOREIGN KEY ([Owner_ID])
+    REFERENCES [dbo].[Characters]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_TCharacterSkillTCharacter'
+CREATE INDEX [IX_FK_TCharacterSkillTCharacter]
+ON [dbo].[CharacterSkills]
+    ([Owner_ID]);
 GO
 
 -- --------------------------------------------------

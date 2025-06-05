@@ -32,7 +32,7 @@ public class UISkillItem : ListView.ListViewItem
         this.item = item;
 
         if (this.title != null) this.title.text = this.item.Name;
-        if (this.level != null) this.level.text = item.UnlockLevel.ToString();
+        if (this.level != null) this.level.text = "½âËøµÈ¼¶£º" + item.UnlockLevel.ToString();
         if (this.icon  != null) this.icon.overrideSprite = Resloader.Load<Sprite>(this.item.Icon);
     }
 }

@@ -10,9 +10,9 @@
         <AssociationConnector Association="ExtremeWorldModel.UserPlayer" />
         <EntityTypeShape EntityType="ExtremeWorldModel.TCharacter" Width="1.5" PointX="5.25" PointY="0.625" />
         <AssociationConnector Association="ExtremeWorldModel.PlayerCharacter" />
-        <EntityTypeShape EntityType="ExtremeWorldModel.TCharacterItem" Width="1.5" PointX="7.5" PointY="1.75" />
+        <EntityTypeShape EntityType="ExtremeWorldModel.TCharacterItem" Width="1.5" PointX="7.5" PointY="3.75" />
         <AssociationConnector Association="ExtremeWorldModel.TCharacterTCharacterItem" />
-        <EntityTypeShape EntityType="ExtremeWorldModel.TCharacterBag" Width="1.5" PointX="7.5" PointY="4" />
+        <EntityTypeShape EntityType="ExtremeWorldModel.TCharacterBag" Width="1.5" PointX="7.5" PointY="5.875" />
         <AssociationConnector Association="ExtremeWorldModel.TCharacterTCharacterBag" />
         <EntityTypeShape EntityType="ExtremeWorldModel.TCharacterQuest" Width="1.5" PointX="3" PointY="3" />
         <AssociationConnector Association="ExtremeWorldModel.TCharacterQuestTCharacter" />
@@ -23,6 +23,8 @@
         <AssociationConnector Association="ExtremeWorldModel.TGuildTGuildMember" />
         <EntityTypeShape EntityType="ExtremeWorldModel.TGuildApply" Width="1.5" PointX="11.75" PointY="1.125" />
         <AssociationConnector Association="ExtremeWorldModel.TGuildTGuildApply" />
+        <EntityTypeShape EntityType="ExtremeWorldModel.TCharacterSkill" Width="1.5" PointX="7.5" PointY="1.375" />
+        <AssociationConnector Association="ExtremeWorldModel.TCharacterSkillTCharacter" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

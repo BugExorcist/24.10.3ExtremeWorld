@@ -88,6 +88,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Battle\Skill.cs" />
+    <Compile Include="Battle\SkillManager.cs" />
     <Compile Include="CommandHelper.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Entities.Context.cs">
@@ -106,7 +108,7 @@
       <DependentUpon>Entities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Entities\Character.cs" />
-    <Compile Include="Entities\CharacterBase.cs" />
+    <Compile Include="Entities\Creature.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\Monster.cs" />
     <Compile Include="GameServer.cs" />
@@ -172,6 +174,9 @@
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="TCharacterQuest.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TCharacterSkill.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="TGuild.cs">

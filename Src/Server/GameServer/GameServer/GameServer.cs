@@ -17,7 +17,7 @@ namespace GameServer
             network = new NetService();
             network.Init(Port);
             DBService.Instance.Init();
-            DateManager.Instance.Load();
+            DataManager.Instance.Load();
             UserService.Instance.Init();
             MapServices.Instance.Init();
             ItemService.Instance.Init();
