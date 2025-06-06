@@ -17,6 +17,7 @@ namespace GameServer
         public int Id { get; set; }
         public int SkillID { get; set; }
         public int Level { get; set; }
+        public int CharacterID { get; set; }
     
         public virtual TCharacter Owner { get; set; }
     }

@@ -38,6 +38,7 @@ namespace Network
             if (message.guildAdmin != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.guildAdmin); }
             if (message.guildSetNotice != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.guildSetNotice); }
             if (message.Chat != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.Chat); }
+
         }
 
         public void Dispatch(T sender, SkillBridge.Message.NetMessageRequest message)

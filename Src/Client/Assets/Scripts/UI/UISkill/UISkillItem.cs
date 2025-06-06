@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using SkillBridge.Message;
 using Common.Data;
+using Batttle;
 
 public class UISkillItem : ListView.ListViewItem
 {
@@ -25,14 +26,14 @@ public class UISkillItem : ListView.ListViewItem
         this.normalbg = background.GetComponent<Sprite>();
     }
 
-    public SkillDefine item;
+    public Skill item;
 
-    public void SetItemInfo(SkillDefine item, UISkill owner, bool equiped)
+    public void SetItemInfo(Skill item, UISkill owner, bool equiped)
     {
         this.item = item;
 
-        if (this.title != null) this.title.text = this.item.Name;
-        if (this.level != null) this.level.text = "½âËøµÈ¼¶£º" + item.UnlockLevel.ToString();
-        if (this.icon  != null) this.icon.overrideSprite = Resloader.Load<Sprite>(this.item.Icon);
+        if (this.title != null) this.title.text = this.item.Define.Name;
+        if (this.level != null) this.level.text = "LV." + this.item.Info.Level.ToString();
+        if (this.icon  != null) this.icon.overrideSprite = Resloader.Load<Sprite>(this.item.Define.Icon);
     }
 }

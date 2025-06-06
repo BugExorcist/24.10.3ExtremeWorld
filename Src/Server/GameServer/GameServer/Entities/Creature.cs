@@ -32,10 +32,9 @@ namespace GameServer.Entities
             this.Info.Entity = this.EntityData;
             this.Info.EntityId = this.entityId;
             this.Info.Name = this.Define.Name;
-            this.InitSkill();
         }
 
-        private void InitSkill()
+        public void InitSkill()
         {
             SkillMgr = new SkillManager(this);
             this.Info.Skills.AddRange(this.SkillMgr.Infos);

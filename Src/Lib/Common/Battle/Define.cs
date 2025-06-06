@@ -66,14 +66,24 @@ namespace Common.Battle
     { 
         None  = 0,
         Target = 1,
-        Position = 2,
-        Self  = 3,
+        Self = 2,
+        Position = 3,
+       
     }
 
     public enum BuffEffect
     {
         None = 0,
         Stun = 1,
+    }
+
+    public enum SkillResult
+    {
+        OK = 0,
+        InvalidTarget = 1,
+        OutOfMP  = 2,
+        Cooldown = 3,
+
     }
 
 }

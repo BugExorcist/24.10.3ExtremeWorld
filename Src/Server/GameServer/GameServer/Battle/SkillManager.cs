@@ -29,9 +29,7 @@ namespace GameServer.Battle
             this.Skills.Clear();
             this.Infos.Clear();
 
-            //  添加 数据库读取技能信息
-
-
+            //  添加 数据库读取技能等级
             if (!DataManager.Instance.Skills.ContainsKey(this.Owner.Define.TID)) return;
 
             foreach(var define in DataManager.Instance.Skills[this.Owner.Define.TID])
@@ -44,8 +42,8 @@ namespace GameServer.Battle
                 }
                 else
                 {
-                    info.Level = 5;
-                    //info.Level =  DBService.Instance.Entities.CharacterSkills.FirstOrDefault(v => v.SkillID == define.Value.ID && v.Owner.ID == this.Owner.Id).Level;
+                    if (this.Owner.Info.Level != 0)
+                        info.Level =  DBService.Instance.Entities.CharacterSkills.FirstOrDefault(v => v.SkillID == define.Value.ID && v.CharacterID == this.Owner.Info.Id).Level;
                 }
                 this.Infos.Add(info);
                 this.Skills.Add(new Skill(info, this.Owner));

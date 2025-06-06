@@ -120,15 +120,17 @@ namespace GameServer.Services
             bag.Unlocked = 20;
             character.Bag = DBService.Instance.Entities.TCharacterBags.Add(bag);
             character = DBService.Instance.Entities.Characters.Add(character);
-            // 技能初始化
-            foreach (var item in DataManager.Instance.Skills[(int)character.Class])
+            //  技能
+            foreach (var item in DataManager.Instance.Skills[character.Class])
             {
-                character.Skills.Add(new TCharacterSkill()
+                TCharacterSkill skill = new TCharacterSkill()
                 {
                     Owner = character,
                     SkillID = item.Value.ID,
                     Level = 1,
-                });
+                    CharacterID = character.ID
+                };
+                character.Skills.Add(skill);
             }
             //添加初始道具============= 各20红蓝瓶
             character.Items.Add(new TCharacterItem()

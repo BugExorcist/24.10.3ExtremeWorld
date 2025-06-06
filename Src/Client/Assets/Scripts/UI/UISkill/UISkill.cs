@@ -23,7 +23,7 @@ public class UISkill : UIWindow
     private void OnItemSelected(ListView.ListViewItem item)
     {
         this.selectedItem = item as UISkillItem;
-        this.descript.text = this.selectedItem.item.Description;
+        this.descript.text = this.selectedItem.item.Define.Description;
     }
 
     private void ReFreshUI()
@@ -34,14 +34,14 @@ public class UISkill : UIWindow
 
     private void InitItems()
     {
-        var Skills = DataManager.Instance.Skills[(int)User.Instance.CurrentCharacterInfo.Class];
-        foreach (var kv in Skills)
+        var Skills = User.Instance.CurrentCharacter.SkillMgr.Skills;
+        foreach (var skill in Skills)
         {
-            if (kv.Value.Type == Common.Battle.SkillType.Skill)
+            if (skill.Define.Type == Common.Battle.SkillType.Skill)
             {
                 GameObject go = Instantiate(itemPrefab, this.listView.transform);
                 UISkillItem ui = go.GetComponent<UISkillItem>();
-                ui.SetItemInfo(kv.Value, this, false);
+                ui.SetItemInfo(skill, this, false);
                 this.listView.AddItem(ui);
             }
         }

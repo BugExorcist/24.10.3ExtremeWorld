@@ -177,7 +177,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="SkillID" Type="int" Nullable="false" />
     <Property Name="Level" Type="int" Nullable="false" />
-    <Property Name="Owner_ID" Type="int" Nullable="false" />
+    <Property Name="CharacterID" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="UserPlayer">
     <End Role="User" Type="ExtremeWorldModel.Store.Users" Multiplicity="*" />
@@ -283,7 +283,7 @@
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="TCharacterSkill">
-        <PropertyRef Name="Owner_ID" />
+        <PropertyRef Name="CharacterID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -549,10 +549,19 @@
           <Property Name="SkillID" Type="Int32" Nullable="false" />
           <Property Name="Level" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Owner" Relationship="ExtremeWorldModel.TCharacterSkillTCharacter" FromRole="TCharacterSkill" ToRole="TCharacter" />
+          <Property Name="CharacterID" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="TCharacterSkillTCharacter">
           <End Type="ExtremeWorldModel.TCharacterSkill" Role="TCharacterSkill" Multiplicity="*" />
           <End Type="ExtremeWorldModel.TCharacter" Role="TCharacter" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="TCharacter">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TCharacterSkill">
+              <PropertyRef Name="CharacterID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -689,6 +698,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="SkillID" ColumnName="SkillID" />
           <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="CharacterID" ColumnName="CharacterID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -714,14 +724,6 @@
       </EndProperty>
       <EndProperty Name="TCharacter">
         <ScalarProperty Name="ID" ColumnName="ID" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="TCharacterSkillTCharacter" TypeName="ExtremeWorldModel.TCharacterSkillTCharacter" StoreEntitySet="CharacterSkills">
-      <EndProperty Name="TCharacter">
-        <ScalarProperty Name="ID" ColumnName="Owner_ID" />
-      </EndProperty>
-      <EndProperty Name="TCharacterSkill">
-        <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

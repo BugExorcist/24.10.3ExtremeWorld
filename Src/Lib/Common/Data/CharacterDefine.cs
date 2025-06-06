@@ -8,6 +8,9 @@ namespace Common.Data
 {
     public class CharacterDefine
     {
+        /// <summary>
+        /// 这里是Define中定义的职业ID,不是tableID
+        /// </summary>
         public int TID { get; set; }
         public string Name { get; set; }
         public CharacterClass Class { get; set; }

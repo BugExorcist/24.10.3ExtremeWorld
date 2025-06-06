@@ -38,7 +38,7 @@ namespace GameServer.Entities
             this.Info.Gold = cha.Gold;
             this.Info.Ride = 0;
             this.Info.Name = cha.Name;
-
+            InitSkill();
             this.ItemManager = new ItemManager(this);
             this.ItemManager.GetItemInfos(this.Info.Items);
 

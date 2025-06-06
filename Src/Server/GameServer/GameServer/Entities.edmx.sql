@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/05/2025 19:54:11
+-- Date Created: 06/06/2025 14:44:42
 -- Generated from EDMX file: F:\Unity\Projects\24.10.3ExtremeWorld\Src\Server\GameServer\GameServer\Entities.edmx
 -- --------------------------------------------------
 
@@ -208,7 +208,7 @@ CREATE TABLE [dbo].[CharacterSkills] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [SkillID] int  NOT NULL,
     [Level] int  NOT NULL,
-    [Owner_ID] int  NOT NULL
+    [CharacterID] int  NOT NULL
 );
 GO
 
@@ -406,10 +406,10 @@ ON [dbo].[GuildApplies]
     ([GuildId]);
 GO
 
--- Creating foreign key on [Owner_ID] in table 'CharacterSkills'
+-- Creating foreign key on [CharacterID] in table 'CharacterSkills'
 ALTER TABLE [dbo].[CharacterSkills]
 ADD CONSTRAINT [FK_TCharacterSkillTCharacter]
-    FOREIGN KEY ([Owner_ID])
+    FOREIGN KEY ([CharacterID])
     REFERENCES [dbo].[Characters]
         ([ID])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -418,7 +418,7 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_TCharacterSkillTCharacter'
 CREATE INDEX [IX_FK_TCharacterSkillTCharacter]
 ON [dbo].[CharacterSkills]
-    ([Owner_ID]);
+    ([CharacterID]);
 GO
 
 -- --------------------------------------------------
