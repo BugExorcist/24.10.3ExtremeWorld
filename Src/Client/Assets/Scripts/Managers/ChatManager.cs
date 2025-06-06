@@ -142,7 +142,7 @@ namespace Managers
             OnChat?.Invoke();
         }
 
-        private void AddSystemMessage(string message, string from = "")
+        public void AddSystemMessage(string message, string from = "")
         {
             this.Messages[(int)LocalChannel.All].Add(new ChatMessage()
             {

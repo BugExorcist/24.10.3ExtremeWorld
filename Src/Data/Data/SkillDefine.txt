@@ -7,11 +7,15 @@
       "Type": "Normal",
       "UnlockLevel": 1,
       "CastTarget": "Target",
-      "CastRange": 1.0,
+      "CastRange": 200,
       "CastTime": 0.0,
       "CD": 3.0,
       "MPCost": 0,
       "AOERange": 0,
+      "SkillAnim": "Atk A",
+      "HitTimes": [
+        0.4
+      ],
       "AP": 0.0,
       "ADFator": 1.0
     },
@@ -23,11 +27,12 @@
       "Type": "Skill",
       "UnlockLevel": 5,
       "CastTarget": "Target",
-      "CastRange": 12.0,
+      "CastRange": 1200,
       "CastTime": 0.0,
       "CD": 8.0,
       "MPCost": 10,
       "AOERange": 0,
+      "SkillAnim": "Skill A",
       "Buff": [
         1,
         2
@@ -44,11 +49,12 @@
       "Type": "Skill",
       "UnlockLevel": 10,
       "CastTarget": "None",
-      "CastRange": 0.0,
+      "CastRange": 0,
       "CastTime": 0.0,
       "CD": 7.0,
       "MPCost": 20,
-      "AOERange": 2,
+      "AOERange": 300,
+      "SkillAnim": "Skill B",
       "Duration": 3.5,
       "Interval ": 0.8,
       "Buff": [
@@ -66,11 +72,15 @@
       "Type": "Skill",
       "UnlockLevel": 15,
       "CastTarget": "Target",
-      "CastRange": 1.0,
+      "CastRange": 1000,
       "CastTime": 0.0,
       "CD": 12.0,
       "MPCost": 15,
       "AOERange": 0,
+      "SkillAnim": "Skill C",
+      "HitTimes": [
+        0.9
+      ],
       "AD": 100.0,
       "AP": 0.0,
       "ADFator": 0.2
@@ -84,13 +94,17 @@
       "Type": "Normal",
       "UnlockLevel": 1,
       "CastTarget": "Target",
-      "CastRange": 10.0,
+      "CastRange": 1000,
       "CastTime": 0.0,
       "CD": 3.0,
       "MPCost": 0,
       "Bullet": true,
-      "BulletSpeed": 1000.0,
+      "BulletSpeed": 800.0,
       "AOERange": 0,
+      "SkillAnim": "Atk A",
+      "HitTimes": [
+        0.4
+      ],
       "APFator": 1.0
     },
     "202": {
@@ -101,11 +115,15 @@
       "Type": "Skill",
       "UnlockLevel": 5,
       "CastTarget": "Target",
-      "CastRange": 10.0,
+      "CastRange": 1000,
       "CastTime": 1.0,
       "CD": 3.0,
       "MPCost": 20,
       "AOERange": 0,
+      "SkillAnim": "Skill A",
+      "HitTimes": [
+        0.6
+      ],
       "AD": 0.0,
       "AP": 80.0,
       "APFator": 0.125
@@ -118,11 +136,12 @@
       "Type": "Skill",
       "UnlockLevel": 10,
       "CastTarget": "Position",
-      "CastRange": 12.0,
+      "CastRange": 1200,
       "CastTime": 1.2,
       "CD": 12.0,
       "MPCost": 30,
-      "AOERange": 3,
+      "AOERange": 500,
+      "SkillAnim": "Skill B",
       "Duration": 3.5,
       "Interval ": 0.8,
       "AD": 0.0,
@@ -137,11 +156,12 @@
       "Type": "Skill",
       "UnlockLevel": 15,
       "CastTarget": "Target",
-      "CastRange": 8.0,
+      "CastRange": 800,
       "CastTime": 0.0,
       "CD": 7.0,
       "MPCost": 25,
       "AOERange": 0,
+      "SkillAnim": "Skill C",
       "Buff": [
         4
       ],
@@ -158,13 +178,17 @@
       "Type": "Normal",
       "UnlockLevel": 1,
       "CastTarget": "Target",
-      "CastRange": 10.0,
+      "CastRange": 1000,
       "CastTime": 0.0,
       "CD": 3.0,
       "MPCost": 0,
       "Bullet": true,
-      "BulletSpeed": 1000.0,
+      "BulletSpeed": 800.0,
       "AOERange": 0,
+      "SkillAnim": "Atk A",
+      "HitTimes": [
+        0.8
+      ],
       "ADFator": 1.0
     },
     "302": {
@@ -175,11 +199,17 @@
       "Type": "Skill",
       "UnlockLevel": 5,
       "CastTarget": "Target",
-      "CastRange": 10.0,
+      "CastRange": 1000,
       "CastTime": 1.0,
       "CD": 8.0,
       "MPCost": 15,
+      "Bullet": true,
+      "BulletSpeed": 800.0,
       "AOERange": 0,
+      "SkillAnim": "Skill A",
+      "HitTimes": [
+        0.8
+      ],
       "Buff": [
         5
       ],
@@ -195,11 +225,15 @@
       "Type": "Skill",
       "UnlockLevel": 10,
       "CastTarget": "Position",
-      "CastRange": 12.0,
+      "CastRange": 1200,
       "CastTime": 1.2,
       "CD": 7.0,
       "MPCost": 25,
-      "AOERange": 3,
+      "AOERange": 500,
+      "SkillAnim": "Skill B",
+      "HitTimes": [
+        0.8
+      ],
       "Buff": [
         6
       ],
@@ -215,13 +249,19 @@
       "Type": "Skill",
       "UnlockLevel": 15,
       "CastTarget": "Target",
-      "CastRange": 8.0,
+      "CastRange": 800,
       "CastTime": 1.5,
       "CD": 12.0,
       "MPCost": 20,
       "Bullet": true,
-      "BulletSpeed": 1000.0,
+      "BulletSpeed": 800.0,
       "AOERange": 0,
+      "SkillAnim": "Skill C",
+      "HitTimes": [
+        0.6,
+        1.25,
+        2.0
+      ],
       "AD": 70.0,
       "AP": 0.0,
       "ADFator": 0.2

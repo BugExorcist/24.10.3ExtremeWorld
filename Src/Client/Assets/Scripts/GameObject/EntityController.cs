@@ -7,7 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EntityController : MonoBehaviour, IEntityNotify
+public class EntityController : MonoBehaviour, IEntityNotify, IEntityController
 {
 
     public Animator anim;
@@ -155,5 +155,20 @@ public class EntityController : MonoBehaviour, IEntityNotify
         Debug.LogFormat("OnEntityChanged : ID:{0} POS:{1} DIR:{2} SPD: {3}", entity.entityId, entity.position, entity.direction, entity.speed);
 
 
+    }
+
+    public void PlayAnim(string name)
+    {
+        this.anim.SetTrigger(name);
+    }
+
+    public void SetStandBy(bool standby)
+    {
+        this.anim.SetBool("Standby", standby);
+    }
+
+    private void OnMouseDown()
+    {
+        BattleManager.Instance.CurrentTarget = this.entity as Creature;
     }
 }

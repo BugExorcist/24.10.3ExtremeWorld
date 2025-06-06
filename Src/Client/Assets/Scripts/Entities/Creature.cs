@@ -18,10 +18,26 @@ namespace Entities
         public Attributes Attributes;
         public SkillManager SkillMgr;
 
+        bool battleState = false;
+        public bool BattleState
+        {
+            get { return battleState; }
+            set
+            {
+                if (battleState != value)
+                {
+                    battleState = value;
+                    this.SetStandby(value);
+                }
+            }
+        }
+
         public int Id
         {
             get { return Info.Id; }
         }
+
+        public Skill CastringSkill = null;
 
         public string Name
         {
@@ -90,6 +106,36 @@ namespace Entities
         {
             Debug.LogFormat("SetPosition:{0}", position);
             this.position = position;
+        }
+
+        internal void CsatSkill(int skillId, Creature target, NVector3 position)
+        {
+            this.SetStandby(true);
+            Skill skill = this.SkillMgr.GetSkill(skillId);
+            skill.BeginCast();
+        }
+
+        private void SetStandby(bool v)
+        {
+            if (this.Controller != null)
+            {
+                this.Controller.SetStandBy(v);
+            }
+        }
+
+        public void PlayAnim(string name)
+        {
+            if (this.Controller != null)
+            {
+                this.Controller.PlayAnim(name);
+            }
+        }
+
+        public override void OnUpdate(float delta)
+        {
+            base.OnUpdate(delta);
+
+            this.SkillMgr.OnUpdate(delta);
         }
     }
 }

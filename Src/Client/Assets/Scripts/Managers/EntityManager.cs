@@ -53,5 +53,12 @@ namespace Managers
                 }
             }
         }
+
+        internal Entity GetEntity(int targetId)
+        {
+            Entity entity = null;
+            entities.TryGetValue(targetId, out entity);
+            return entity;
+        }
     }
 }

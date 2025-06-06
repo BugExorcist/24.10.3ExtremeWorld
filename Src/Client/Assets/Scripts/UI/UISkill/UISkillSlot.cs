@@ -5,7 +5,8 @@ using UnityEngine.EventSystems;
 using TMPro;
 using System;
 using Batttle;
-using Common.Battle;
+using SkillBridge.Message;
+using Managers;
 
 public class UISkillSlot : MonoBehaviour, IPointerClickHandler
 {
@@ -14,16 +15,20 @@ public class UISkillSlot : MonoBehaviour, IPointerClickHandler
     public TMP_Text cdText;
     private Skill skill;
 
-    float overlaySpeed = 0;
-    float cdRemain = 0;//cd剩余时间
+    private void Start()
+    {
+        overlay.enabled = false;
+        cdText.enabled = false;
+    }
 
     private void Update()
     {
-        if (this.overlay.fillAmount > 0)
+        if (this.skill.CD > 0)
         {
-            overlay.fillAmount = this.cdRemain / this.skill.Define.CD;
-            this.cdText.text = ((int)Math.Ceiling(this.cdRemain)).ToString();
-            this.cdRemain -= Time.deltaTime;
+            if (!overlay.enabled) overlay.enabled = true;
+            if (!cdText.enabled) cdText.enabled = true;
+            overlay.fillAmount = this.skill.CD / this.skill.Define.CD;
+            this.cdText.text = ((int)Math.Ceiling(this.skill.CD)).ToString();
         }
         else
         {
@@ -34,39 +39,25 @@ public class UISkillSlot : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        SkillResult result = skill.CanCast();
+        SkillResult result = skill.CanCast(BattleManager.Instance.CurrentTarget);
         switch (result)
         {
+            case SkillResult.CoolDown:
+                MessageBox.Show("技能：" + this.skill.Define.Name + " 正在冷却中");
+                return;
             case SkillResult.InvalidTarget:
                 MessageBox.Show("技能：" + this.skill.Define.Name + " 目标无效");
                 return;
-            case SkillResult.OutOfMP:
+            case SkillResult.OutOfMp:
                 MessageBox.Show("技能：" + this.skill.Define.Name + " 释放MP不足");
                 return;
-            case SkillResult.Cooldown:
-                MessageBox.Show("技能：" + this.skill.Define.Name + " 正在冷却中");
-                return;
-
         }
-        MessageBox.Show("释放技能" + this.skill.Define.Name);
-        this.SetCD(this.skill.Define.CD);
-        this.skill.Cast();
-    }
-
-    private void SetCD(float cd)
-    {
-        if (!overlay.enabled) overlay.enabled = true;
-        if (!cdText.enabled) cdText.enabled = true;
-        this.cdText.text = ((int)Math.Floor(this.cdRemain)).ToString();
-        overlay.fillAmount = 1f;
-        overlaySpeed = 1f / cd;
-        cdRemain = cd;
+        BattleManager.Instance.CastSkill(this.skill);
     }
 
     public void SetSkill(Skill skill)
     {
         this.skill = skill;
         if (this.icon != null) this.icon.overrideSprite = Resloader.Load<Sprite>(this.skill.Define.Icon);
-        this.SetCD(this.skill.Define.CD);
     }
 }

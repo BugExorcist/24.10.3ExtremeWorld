@@ -34,5 +34,25 @@ namespace Batttle
         {
             this.Skills.Add(skill);
         }
+
+        internal Skill GetSkill(int skillId)
+        {
+            for(int i = 0; i < this.Skills.Count; i++)
+            {
+                if (this.Skills[i].Define.ID == skillId)
+                {
+                    return  this.Skills[i];
+                }
+            }
+            return null;
+        }
+
+        internal void OnUpdate(float delta)
+        {
+            for(int i = 0; i < this.Skills.Count; i++)
+            {
+                this.Skills[i].OnUpdate(delta);
+            }
+        }
     }
 }
