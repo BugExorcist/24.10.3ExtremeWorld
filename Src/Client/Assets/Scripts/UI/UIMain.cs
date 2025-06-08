@@ -1,5 +1,7 @@
+using Entities;
 using Managers;
 using Models;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -14,10 +16,13 @@ public class UIMain : MonoSingleton<UIMain>
 
     public UITeam TeamWindow;
 
+    public UICreatureInfo targetUI;
     protected override void OnStart()
     {
         this.id.text = string.Format("ID:{0}", User.Instance.CurrentCharacterInfo.Id);
         UpdataUIAvatar();
+        this.targetUI.gameObject.SetActive(false);
+        BattleManager.Instance.OnTargetChanged += OnTargetChanged;
     }
 
     void UpdataUIAvatar()
@@ -76,5 +81,18 @@ public class UIMain : MonoSingleton<UIMain>
     public void ShowTeamUI(bool show)
     {
         TeamWindow.ShowTeam(show);
+    }
+
+    private void OnTargetChanged(Creature target)
+    {
+        if (target != null)
+        {
+            if (!this.targetUI.isActiveAndEnabled) this.targetUI.gameObject.SetActive(true);
+            targetUI.Target = target;
+        }
+        else
+        {
+            this.targetUI.gameObject.SetActive(false);
+        }
     }
 }

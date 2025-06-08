@@ -1,13 +1,11 @@
-﻿using Common.Data;
+﻿using Common.Battle;
+using Common.Data;
 using GameServer.Battle;
 using GameServer.Core;
 using GameServer.Managers;
 using SkillBridge.Message;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameServer.Entities
 {
@@ -19,7 +17,7 @@ namespace GameServer.Entities
         public NCharacterInfo Info;
         public CharacterDefine Define;
         public SkillManager SkillMgr;
-
+        public Attributes Attributes;
 
         public Creature(CharacterType type, int configId, int level, Vector3Int pos, Vector3Int dir) :
            base(pos, dir)
@@ -32,6 +30,15 @@ namespace GameServer.Entities
             this.Info.Entity = this.EntityData;
             this.Info.EntityId = this.entityId;
             this.Info.Name = this.Define.Name;
+
+            this.Attributes = new Attributes();
+            this.Attributes.Init(this.Define, this.Info.Level, this.GetEquips(), this.Info.attDynamic);
+            this.Info.attDynamic = this.Attributes.DynamicAttr;
+        }
+
+        public virtual List<EquipDefine> GetEquips()
+        {
+            return null;
         }
 
         public void InitSkill()

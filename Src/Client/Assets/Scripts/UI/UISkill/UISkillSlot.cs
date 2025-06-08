@@ -51,6 +51,9 @@ public class UISkillSlot : MonoBehaviour, IPointerClickHandler
             case SkillResult.OutOfMp:
                 MessageBox.Show("技能：" + this.skill.Define.Name + " 释放MP不足");
                 return;
+            case SkillResult.OutOfRange:
+                MessageBox.Show("技能：" + this.skill.Define.Name + " 目标超出技能范围");
+                return;
         }
         BattleManager.Instance.CastSkill(this.skill);
     }

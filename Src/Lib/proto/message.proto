@@ -797,10 +797,11 @@ message ChatResponse
 
 enum SKILL_RESULT
 {
-    OK = 0;
-    OUT_OF_MP = 1;
-    COOL_DOWN  = 2;
-    INVALID_TARGET = 3;
+    OK = 0;					//正常
+    OUT_OF_MP = 1;			//MP不足
+    COOL_DOWN  = 2;			//技能冷却中
+    INVALID_TARGET = 3;		//无效目标
+	OUT_OF_RANGE = 4;		//超出施法距离
 }
 
 message NSkillCastInfo

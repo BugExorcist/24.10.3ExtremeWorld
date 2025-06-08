@@ -5,6 +5,7 @@ using System;
 using UnityEngine;
 using Common.Data;
 using Managers;
+using Entities;
 
 namespace Services
 {
@@ -25,6 +26,7 @@ namespace Services
         {
             MessageDistributer.Instance.Unsubscribe<MapCharacterEnterResponse>(this.OnMapCharacterEnter);
             MessageDistributer.Instance.Unsubscribe<MapCharacterLeaveResponse>(this.OnMapCharacterLeave);
+            MessageDistributer.Instance.Unsubscribe<MapEntitySyncResponse>(this.OnMapEntitySync);
 
         }
 
@@ -39,10 +41,20 @@ namespace Services
             foreach (var cha in response.Characters)
             {
                 if (User.Instance.CurrentCharacterInfo == null || cha.Type == CharacterType.Player && User.Instance.CurrentCharacterInfo.Id == cha.Id)
-                {
+                {   //如果是当前自机角色
                     User.Instance.CurrentCharacterInfo = cha;
+                    if (User.Instance.CurrentCharacter == null)
+                    {   //第一次进入游戏
+                        User.Instance.CurrentCharacter = new Character(cha);
+                    }
+                    else
+                    {
+                        User.Instance.CurrentCharacter.UpdateInfo(cha);
+                    }
+                    CharacterManager.Instance.AddCharacter(User.Instance.CurrentCharacter);
+                    continue;
                 }
-                CharacterManager.Instance.AddCharacter(cha);
+                CharacterManager.Instance.AddCharacter(new Character(cha));
             }
             if (CurrentMapId != response.mapId)
             {

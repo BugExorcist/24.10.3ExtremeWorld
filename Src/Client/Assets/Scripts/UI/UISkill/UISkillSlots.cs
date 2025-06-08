@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using Batttle;
+using Models;
 using UnityEngine;
 
 
@@ -9,7 +10,9 @@ public class UISkillSlots : MonoBehaviour
     void Start()
     {
         RefeshUI();
+        User.Instance.CurrentCharacter.SkillMgr.OnSkillInfoUpdate += RefeshUI;
     }
+
 
     public void RefeshUI()
     {

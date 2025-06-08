@@ -169,6 +169,8 @@ public class EntityController : MonoBehaviour, IEntityNotify, IEntityController
 
     private void OnMouseDown()
     {
+        Creature target = this.entity as Creature;
+        if (target.IsCurrentPlayer) return;
         BattleManager.Instance.CurrentTarget = this.entity as Creature;
     }
 }

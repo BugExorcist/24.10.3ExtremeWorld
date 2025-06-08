@@ -26,7 +26,7 @@ public class TeleporterObject : MonoBehaviour
         Gizmos.color = Color.green;
         if (this.mesh != null)
         {
-            Gizmos.DrawWireMesh(this.mesh, this.transform.position , this.transform.rotation, this.transform.localScale);
+            Gizmos.DrawWireMesh(this.mesh, this.transform.position + Vector3.up * this.transform.localScale.y * .5f, this.transform.rotation, this.transform.localScale);
         }
         UnityEditor.Handles.color = Color.red;
         UnityEditor.Handles.ArrowHandleCap(0, this.transform.position, this.transform.rotation, 1f, EventType.Repaint);

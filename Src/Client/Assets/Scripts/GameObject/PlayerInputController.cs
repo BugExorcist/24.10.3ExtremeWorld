@@ -89,7 +89,7 @@ public class PlayerInputController : MonoBehaviour
         NavPathRenderer.Instance.SetPath(null, Vector3.zero);
     }
 
-    public void navMove()
+    public void NavMove()
     {
         // 路径计算是否完毕
         if (agent.pathPending) return;
@@ -120,7 +120,7 @@ public class PlayerInputController : MonoBehaviour
             return;
         if (autoNav)
         {
-            navMove();
+            NavMove();
             return;
         }
 

@@ -34,15 +34,19 @@ namespace Batttle
 
         public SkillResult CanCast(Creature target)
         {
-            //if (this.Define.CastTarget == TargetType.Target)
-            //{
-            //    if (target == null || target == this.Owner)
-            //        return SkillResult.InvalidTarget;
-            //}
-            //if (this.Define.CastTarget == TargetType.Position && BattleManager.Instance.CurrentPosition == null)
-            //{
-            //    return SkillResult.InvalidTarget;
-            //}
+            if (this.Define.CastTarget == TargetType.Target)
+            {
+                if (target == null || target == this.Owner)
+                    return SkillResult.InvalidTarget;
+
+                int distance = (int)Vector3Int.Distance(this.Owner.position, target.position);
+                if (distance > this.Define.CastRange)
+                    return SkillResult.OutOfRange;
+            }
+            if (this.Define.CastTarget == TargetType.Position && BattleManager.Instance.CurrentPosition == null)
+            {
+                return SkillResult.InvalidTarget;
+            }
             if (this.Define.MPCost > this.Owner.Attributes.MP)
             {
                 return SkillResult.OutOfMp;
