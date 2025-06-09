@@ -71,6 +71,8 @@ namespace Entities
 
         public void UpdateInfo(NCharacterInfo info)
         {
+            this.entityId = info.EntityId;
+            this.EntityData = info.Entity;
             this.SetEntityData(info.Entity);
             this.Info = info;
             this.Attributes.Init(this.Define, this.Info.Level, this.GetEquip(), this.Info.attDynamic);
@@ -112,11 +114,11 @@ namespace Entities
             this.position = position;
         }
 
-        internal void CsatSkill(int skillId, Creature target, NVector3 position)
+        internal void CsatSkill(int skillId, Creature target, NVector3 pos, NDamageInfo damage)
         {
             this.SetStandby(true);
             Skill skill = this.SkillMgr.GetSkill(skillId);
-            skill.BeginCast();
+            skill.BeginCast(damage);
         }
 
         private void SetStandby(bool v)
@@ -140,6 +142,13 @@ namespace Entities
             base.OnUpdate(delta);
 
             this.SkillMgr.OnUpdate(delta);
+        }
+
+        public void DoDamage(NDamageInfo damage)
+        {
+            Debug.LogFormat("DoDamage:{0}", damage);
+            this.Attributes.HP -= damage.Damage;
+            this.PlayAnim("Hurt");
         }
     }
 }

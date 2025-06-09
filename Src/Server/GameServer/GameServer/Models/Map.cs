@@ -47,16 +47,20 @@ namespace GameServer.Models
         SpawnManager SpawnManager = new SpawnManager();
         public MonsterManager MonsterManager = new MonsterManager();
 
+        public Battle.Battle Battle;
+
         internal Map(MapDefine define)
         {
             this.Define = define;
             this.SpawnManager.Init(this);
             this.MonsterManager.Init(this);
+            this.Battle = new Battle.Battle(this);
         }
         
         internal void Update()
         {
             SpawnManager.Updata();
+            Battle.Update();
         }
 
         /// <summary>

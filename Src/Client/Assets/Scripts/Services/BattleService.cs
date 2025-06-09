@@ -50,7 +50,7 @@ namespace Services
                 if (caster != null)
                 {
                     Creature target = EntityManager.Instance.GetEntity(message.castInfo.targetId) as Creature;
-                    caster.CsatSkill(message.castInfo.skillId, target, message.castInfo.Position);
+                    caster.CsatSkill(message.castInfo.skillId, target, message.castInfo.Position, message.Damage);
                 }
             }
             else
