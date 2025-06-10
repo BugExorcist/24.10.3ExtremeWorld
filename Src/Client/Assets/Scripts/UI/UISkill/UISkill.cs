@@ -37,13 +37,10 @@ public class UISkill : UIWindow
         var Skills = User.Instance.CurrentCharacter.SkillMgr.Skills;
         foreach (var skill in Skills)
         {
-            if (skill.Define.Type == Common.Battle.SkillType.Skill)
-            {
-                GameObject go = Instantiate(itemPrefab, this.listView.transform);
-                UISkillItem ui = go.GetComponent<UISkillItem>();
-                ui.SetItemInfo(skill, this, false);
-                this.listView.AddItem(ui);
-            }
+            GameObject go = Instantiate(itemPrefab, this.listView.transform);
+            UISkillItem ui = go.GetComponent<UISkillItem>();
+            ui.SetItemInfo(skill, this, false);
+            this.listView.AddItem(ui);
         }
     }
     private void ClearItems()

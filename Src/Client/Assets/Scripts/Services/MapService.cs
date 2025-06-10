@@ -43,9 +43,7 @@ namespace Services
                 if (User.Instance.CurrentCharacterInfo == null || cha.Type == CharacterType.Player && User.Instance.CurrentCharacterInfo.Id == cha.Id)
                 {   //如果是当前自机角色
                     User.Instance.CurrentCharacterInfo = cha;
-                    if (User.Instance.CurrentCharacter == null 
-                        ||  cha.Id == User.Instance.CurrentCharacter.Id
-                        )
+                    if (User.Instance.CurrentCharacter == null)
                     {   //角色第一次进入游戏
                         User.Instance.CurrentCharacter = new Character(cha);
                     }

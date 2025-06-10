@@ -42,8 +42,7 @@ namespace GameServer.Battle
                 }
                 else
                 {
-                    if (this.Owner.Info.Level != 0)
-                        info.Level =  DBService.Instance.Entities.CharacterSkills.FirstOrDefault(v => v.SkillID == define.Value.ID && v.CharacterID == this.Owner.Info.Id).Level;
+                    info.Level =  DBService.Instance.Entities.CharacterSkills.FirstOrDefault(v => v.SkillID == define.Value.ID && v.CharacterID == this.Owner.Info.Id).Level;
                 }
                 this.Infos.Add(info);
                 this.Skills.Add(new Skill(info, this.Owner));

@@ -17,6 +17,11 @@ public class UISkillSlot : MonoBehaviour, IPointerClickHandler
 
     private void Start()
     {
+        Init();
+    }
+
+    private void Init()
+    {
         overlay.enabled = false;
         cdText.enabled = false;
     }
@@ -62,5 +67,6 @@ public class UISkillSlot : MonoBehaviour, IPointerClickHandler
     {
         this.skill = skill;
         if (this.icon != null) this.icon.overrideSprite = Resloader.Load<Sprite>(this.skill.Define.Icon);
+        Init();
     }
 }

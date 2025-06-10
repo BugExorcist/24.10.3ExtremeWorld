@@ -17,15 +17,17 @@ public class UIMain : MonoSingleton<UIMain>
     public UITeam TeamWindow;
 
     public UICreatureInfo targetUI;
+
+    public UISkillSlots skillSlots;
     protected override void OnStart()
     {
         this.id.text = string.Format("ID:{0}", User.Instance.CurrentCharacterInfo.Id);
-        UpdataUIAvatar();
+        UpdateUIAvatar();
         this.targetUI.gameObject.SetActive(false);
         BattleManager.Instance.OnTargetChanged += OnTargetChanged;
     }
 
-    void UpdataUIAvatar()
+    void UpdateUIAvatar()
     {
         this.avaterName.text = User.Instance.CurrentCharacterInfo.Name;
         this.avaterLevel.text = User.Instance.CurrentCharacterInfo.Level.ToString();
