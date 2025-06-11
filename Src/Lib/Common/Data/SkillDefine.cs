@@ -35,7 +35,13 @@ namespace Common.Data
         public List<int> Buff { get; set; }
         public float AD  { get; set; }
         public float AP  { get; set; }
+        /// <summary>
+        /// 物理攻击系数
+        /// </summary>
         public float ADFactor { get; set; }
+        /// <summary>
+        /// 法术攻击系数
+        /// </summary>
         public float APFactor { get; set; }
         public string SkillAnim { get; set;}
     }

@@ -1,4 +1,5 @@
 ﻿using Common;
+using GameServer.Core;
 using GameServer.Entities;
 using GameServer.Managers;
 using GameServer.Models;
@@ -96,6 +97,19 @@ namespace GameServer.Battle
         public void LeaveBatle(Creature unit)
         {
             this.AllUnits.Remove(unit.entityId);
+        }
+
+        internal List<Creature> FindUnitsInRange(Vector3Int pos, int range)
+        {
+            List<Creature> result = new List<Creature>();
+            foreach (var unit in this.AllUnits)
+            {
+                if (unit.Value.Distance(pos) < range)
+                {
+                    result.Add(unit.Value);
+                }
+            }
+            return result;
         }
     }
 }
