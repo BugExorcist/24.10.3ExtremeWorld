@@ -68,5 +68,17 @@ namespace GameServer.Entities
         {
             this.SkillMgr.Update();
         }
+
+        internal int Distance(Creature target)
+        {
+            if (target != null)
+                return (int)Vector3Int.Distance(this.Position, target.Position);
+            return -1;
+        }
+
+        internal int Distance(Vector3Int pos)
+        {
+            return (int)Vector3Int.Distance(this.Position, pos);
+        }
     }
 }

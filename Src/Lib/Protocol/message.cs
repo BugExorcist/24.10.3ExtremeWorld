@@ -1932,6 +1932,19 @@ namespace SkillBridge.Message
         InvalidTarget = 3,
         [global::ProtoBuf.ProtoEnum(Name = @"OUT_OF_RANGE")]
         OutOfRange = 4,
+        [global::ProtoBuf.ProtoEnum(Name = @"CASTING")]
+        Casting = 5,
+    }
+
+    [global::ProtoBuf.ProtoContract(Name = @"SKILL_STATUS")]
+    public enum SkillStatus
+    {
+        [global::ProtoBuf.ProtoEnum(Name = @"NONE")]
+        None = 0,
+        [global::ProtoBuf.ProtoEnum(Name = @"CASTING")]
+        Casting = 1,
+        [global::ProtoBuf.ProtoEnum(Name = @"RUNNING")]
+        Running = 2,
     }
 
 }

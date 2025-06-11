@@ -20,8 +20,18 @@ namespace Common.Data
         public float BulletSpeed { get; set; }
         public string BulletResource { get; set; }
         public float AOERange { get; set; }
+        /// <summary>
+        /// 技能持续时间
+        /// </summary>
         public float Duration { get; set; }
+        /// <summary>
+        /// 持续技能的触发间隔
+        /// </summary>
         public float Interval { get; set; }
+        /// <summary>
+        /// 击中时间
+        /// </summary>
+        public List<float> HitTimes { get; set; }
         public List<int> Buff { get; set; }
         public float AD  { get; set; }
         public float AP  { get; set; }

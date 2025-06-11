@@ -802,6 +802,14 @@ enum SKILL_RESULT
     COOL_DOWN  = 2;			//技能冷却中
     INVALID_TARGET = 3;		//无效目标
 	OUT_OF_RANGE = 4;		//超出施法距离
+	CASTING = 5;			//技能正在施法
+}
+
+enum SKILL_STATUS
+{
+	NONE = 0;
+	CASTING = 1;  		//施法中
+	RUNNING = 2; 		//技能运行中
 }
 
 message NSkillCastInfo
