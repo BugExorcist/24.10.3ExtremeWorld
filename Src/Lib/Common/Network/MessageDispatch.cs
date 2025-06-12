@@ -39,6 +39,7 @@ namespace Network
             if (message.guildSetNotice != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.guildSetNotice); }
             if (message.Chat != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.Chat); }
             if (message.skillCast != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.skillCast); }
+            if (message.skillHits != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.skillHits); }
 
         }
 
@@ -75,6 +76,7 @@ namespace Network
             if (message.guildSetNotice != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.guildSetNotice); }
             if (message.Chat != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.Chat); }
             if (message.skillCast != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.skillCast); }
+            
         }
     }
 }

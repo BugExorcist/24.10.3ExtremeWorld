@@ -21,16 +21,18 @@ public class UIMain : MonoSingleton<UIMain>
     public UISkillSlots skillSlots;
     protected override void OnStart()
     {
-        this.id.text = string.Format("ID:{0}", User.Instance.CurrentCharacterInfo.Id);
         UpdateUIAvatar();
         this.targetUI.gameObject.SetActive(false);
         BattleManager.Instance.OnTargetChanged += OnTargetChanged;
+        User.Instance.OnCharacterInit += this.skillSlots.UpdateSkills;
+        this.skillSlots.UpdateSkills();
     }
 
     void UpdateUIAvatar()
     {
         this.avaterName.text = User.Instance.CurrentCharacterInfo.Name;
         this.avaterLevel.text = User.Instance.CurrentCharacterInfo.Level.ToString();
+        this.id.text = string.Format("ID:{0}", User.Instance.CurrentCharacterInfo.Id);
     }
 
 

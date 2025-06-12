@@ -57,5 +57,13 @@ namespace Models
                 CurrentCharacterObject.SendEntityEvent(EntityEvent.Ride, CurrentRide);
             }
         }
+
+        public delegate void CharacterInitHandle();
+        public event CharacterInitHandle OnCharacterInit;
+
+        public void CharacterInited()
+        {
+            OnCharacterInit?.Invoke();
+        }
     }
 }

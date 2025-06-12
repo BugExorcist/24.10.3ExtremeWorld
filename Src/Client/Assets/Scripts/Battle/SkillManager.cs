@@ -11,9 +11,6 @@ namespace Batttle
     {
         Creature Owner;
 
-        public delegate void SkillInfoUpdateHandler();
-        public event SkillInfoUpdateHandler OnSkillInfoUpdate;
-
         public List<Skill> Skills { get; private set; }
 
         public SkillManager(Creature owner)
@@ -31,7 +28,6 @@ namespace Batttle
                 Skill skill = new Skill(skillInfo, this.Owner);
                 this.AddSkill(skill);
             }
-            this.OnSkillInfoUpdate?.Invoke();
         }
 
         public void UpdateSkills()
@@ -44,7 +40,6 @@ namespace Batttle
                 else
                     this.AddSkill(skill);
             }
-            this.OnSkillInfoUpdate?.Invoke();
         }
 
         private void AddSkill(Skill skill)

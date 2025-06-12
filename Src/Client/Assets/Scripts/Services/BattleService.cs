@@ -14,6 +14,7 @@ namespace Services
         public BattleService()
         {
             MessageDistributer.Instance.Subscribe<SkillCastResponse>(this.OnSkillCsat);
+            MessageDistributer.Instance.Subscribe<SkillHitResponse>(this.OnSkillHit);
         }
 
         public void Init()
@@ -24,12 +25,13 @@ namespace Services
         public void Dispose()
         {
             MessageDistributer.Instance.Unsubscribe<SkillCastResponse>(this.OnSkillCsat);
+            MessageDistributer.Instance.Unsubscribe<SkillHitResponse>(this.OnSkillHit);
         }
         
         public void SendSkillCast(int skillId, int casterId, int targetId, NVector3 position)
         {
             if (position == null) position = new NVector3();
-            Debug.LogFormat("SendSkillCast:Skill:{0} caster:{1} target:{2} pos:{3}", skillId, casterId, targetId, position.ToString());
+            Debug.LogFormat("SendSkillCast:Skill:{0} caster:{1} target:{2} pos:{3}", skillId, casterId, targetId, position.String());
             NetMessage message = new NetMessage();
             message.Request = new NetMessageRequest();
             message.Request.skillCast = new SkillCastRequest();
@@ -43,7 +45,7 @@ namespace Services
 
         private void OnSkillCsat(object sender, SkillCastResponse message)
         {
-            Debug.LogFormat("OnSkillCast:Skill:{0} caster:{1} target:{2} pos:{3} result:{4}", message.castInfo.skillId, message.castInfo.casterId, message.castInfo.targetId, message.castInfo.Position.ToString(), message.Result);
+            Debug.LogFormat("OnSkillCast:Skill:{0} caster:{1} target:{2} pos:{3} result:{4}", message.castInfo.skillId, message.castInfo.casterId, message.castInfo.targetId, message.castInfo.Position.String(), message.Result);
             if (message.Result == Result.Success)
             {
                 Creature caster = EntityManager.Instance.GetEntity(message.castInfo.casterId) as Creature;
@@ -59,5 +61,20 @@ namespace Services
             }
         }
 
+        private void OnSkillHit(object sender, SkillHitResponse message)
+        {
+            Debug.LogFormat("OnSkillHit: cont:{0}", message.Hits.Count);
+            if (message.Result == Result.Success)
+            {
+                foreach (var hit in message.Hits)
+                {
+                    Creature caster = EntityManager.Instance.GetEntity(hit.casterId) as Creature;
+                    if (caster != null)
+                    {
+                        caster.DoSkillHit(hit.skillId, hit.hitId, hit.Damages);
+                    }
+                }
+            }
+        }
     }
 }

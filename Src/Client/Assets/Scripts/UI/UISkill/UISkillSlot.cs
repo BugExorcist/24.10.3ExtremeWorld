@@ -66,7 +66,11 @@ public class UISkillSlot : MonoBehaviour, IPointerClickHandler
     public void SetSkill(Skill skill)
     {
         this.skill = skill;
-        if (this.icon != null) this.icon.overrideSprite = Resloader.Load<Sprite>(this.skill.Define.Icon);
+        if (this.icon != null)
+        {
+            this.icon.overrideSprite = Resloader.Load<Sprite>(this.skill.Define.Icon);
+            this.icon.SetAllDirty();
+        }
         Init();
     }
 }

@@ -26,25 +26,24 @@ public class PlayerInputController : MonoBehaviour
     void Start()
     {
         state = CharacterState.Idle;
-        if(this.character == null)
-        {
-            DataManager.Instance.Load();
-            NCharacterInfo cInfo = new NCharacterInfo();
-            cInfo.Id = 1;
-            cInfo.Name = "Test";
-            cInfo.ConfigId = 1;
-            cInfo.Entity = new NEntity();
-            cInfo.Entity.Position = new NVector3();
-            cInfo.Entity.Direction = new NVector3();
-            cInfo.Entity.Direction.X = 0;
-            cInfo.Entity.Direction.Y = 100;
-            cInfo.Entity.Direction.Z = 0;
-            cInfo.attDynamic = new NAttributeDynamic();
-            this.character = new Character(cInfo);
-
-            if (entityController != null)
-                entityController.entity = this.character;
-        }
+        //if(this.character == null)
+        //{
+        //    DataManager.Instance.Load();
+        //    NCharacterInfo cInfo = new NCharacterInfo();
+        //    cInfo.Id = 1;
+        //    cInfo.Name = "Test";
+        //    cInfo.ConfigId = 1;
+        //    cInfo.Entity = new NEntity();
+        //    cInfo.Entity.Position = new NVector3();
+        //    cInfo.Entity.Direction = new NVector3();
+        //    cInfo.Entity.Direction.X = 0;
+        //    cInfo.Entity.Direction.Y = 100;
+        //    cInfo.Entity.Direction.Z = 0;
+        //    cInfo.attDynamic = new NAttributeDynamic();
+        //    this.character = new Character(cInfo);
+        //    if (entityController != null)
+        //        entityController.entity = this.character;
+        //}
 
         if (agent == null)
         {

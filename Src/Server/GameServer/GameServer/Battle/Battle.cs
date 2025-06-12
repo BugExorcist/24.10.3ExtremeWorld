@@ -8,6 +8,7 @@ using SkillBridge.Message;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,6 +25,8 @@ namespace GameServer.Battle
         Queue<NSkillCastInfo> Actions = new Queue<NSkillCastInfo>();
 
         List<Creature> DeadPool = new List<Creature>();
+
+        List<NSkillHitInfo> Hits = new List<NSkillHitInfo>();
 
         public Battle(Map map)
         {
@@ -42,12 +45,26 @@ namespace GameServer.Battle
 
         internal void Update()
         {
+            this.Hits.Clear();
             if (this.Actions.Count > 0)
             {
                 NSkillCastInfo skillCast = this.Actions.Dequeue();
                 this.ExecuteAction(skillCast);
             }
             this.UpdateUints();
+
+            this.BroadcastHitMessage();
+        }
+
+        private void BroadcastHitMessage()
+        {
+            if (this.Hits.Count == 0) return;
+            NetMessageResponse message = new NetMessageResponse();
+            message.skillHits = new SkillHitResponse();
+            message.skillHits.Hits.AddRange(this.Hits);
+            message.skillHits.Errormsg = "";
+            message.skillHits.Result =  Result.Success;
+            this.Map.BroadcastBattleResponse(message);
         }
 
         private void ExecuteAction(NSkillCastInfo cast)
@@ -110,6 +127,11 @@ namespace GameServer.Battle
                 }
             }
             return result;
+        }
+
+        public void AddHitInfo(NSkillHitInfo hitInfo)
+        {
+            this.Hits.Add(hitInfo);
         }
     }
 }

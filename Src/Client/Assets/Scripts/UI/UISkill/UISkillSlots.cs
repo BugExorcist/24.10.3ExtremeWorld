@@ -7,15 +7,10 @@ public class UISkillSlots : MonoBehaviour
 {
     public UISkillSlot[] slots;
 
-    void Start()
-    {
-        RefeshUI();
-        User.Instance.CurrentCharacter.SkillMgr.OnSkillInfoUpdate += RefeshUI;
-    }
 
-
-    public void RefeshUI()
+    public void UpdateSkills()
     {
+        if (User.Instance.CurrentCharacter == null) return;
         var Skills = User.Instance.CurrentCharacter.SkillMgr.Skills;
         int skillIdx = 0;
         foreach (var skill in Skills)

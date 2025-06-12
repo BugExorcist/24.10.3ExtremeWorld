@@ -16,7 +16,7 @@ namespace GameServer.Managers
 
         public void ProcessBattleMessage(NetConnection<NetSession> sender, SkillCastRequest request)
         {
-            Log.InfoFormat("BattleManager.ProcessBattleMessage: skill:{0} caster:{1} target:{2} pos:{3}", request.castInfo.skillId, request.castInfo.casterId, request.castInfo.targetId, request.castInfo.Position.ToString());
+            Log.InfoFormat("BattleManager.ProcessBattleMessage: skill:{0} caster:{1} target:{2} pos:{3}", request.castInfo.skillId, request.castInfo.casterId, request.castInfo.targetId, request.castInfo.Position.String());
             Creature character = sender.Session.Character;
             Battle.Battle battle = MapManager.Instance[character.Info.mapId].Battle;
 
