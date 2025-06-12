@@ -15,7 +15,7 @@ namespace GameServer.Battle
     public class Skill
     {
         public NSkillInfo Info;
-        private Creature Owner;
+        public Creature Owner;
         public SkillDefine Define;
         public SkillStatus Status;
 
@@ -41,7 +41,7 @@ namespace GameServer.Battle
         private float skillTime = 0;
         private int Hit = 0;
         BattleContext Context;
-        NSkillHitInfo HitInfo;
+        List<Bullet> Bullets = new List<Bullet>();
 
         public Skill(NSkillInfo info, Creature owner)
         {
@@ -188,32 +188,41 @@ namespace GameServer.Battle
                 }
                 else
                 {
-                    this.Status = SkillStatus.None;
-                    Log.InfoFormat("Skill[{0}].UpdateSkill Finish", this.Define.Name);
+                    if (!this.Define.Bullet)
+                    {
+                        this.Status = SkillStatus.None;
+                        Log.InfoFormat("Skill[{0}].UpdateSkill Finish", this.Define.Name);
+                    }
+                    
                 }
             }
         }
 
-        void InitHitInfo()
+        NSkillHitInfo InitHitInfo(bool isBullet)
         {
-            this.HitInfo = new NSkillHitInfo();
-            this.HitInfo.casterId = this.Context.Caster.entityId;
-            this.HitInfo.skillId = this.Info.Id;
-            this.HitInfo.hitId = this.Hit;
-            Context.Battle.AddHitInfo(this.HitInfo);
+            NSkillHitInfo hitInfo = new NSkillHitInfo();
+            hitInfo.casterId = this.Context.Caster.entityId;
+            hitInfo.skillId = this.Info.Id;
+            hitInfo.hitId = this.Hit;
+            hitInfo.isBullet = isBullet;
+            return hitInfo;
         }
 
-        private void DoHit()
+        public void DoHit()
         {
-            this.InitHitInfo();
+            NSkillHitInfo hitInfo = this.InitHitInfo(false);
             Log.InfoFormat("Skill[{0}].DoHit[{1}]", this.Define.Name, this.Hit);
             this.Hit++;
             if (this.Define.Bullet)
-            {
-                CastBullet();
+            {   //如果是子弹第一次DoHit，不造成伤害，子弹内部会调用有hitInfo的DoHit
+                CastBullet(hitInfo);
                 return;
             }
+            DoHit(hitInfo);
+        }
 
+        public void DoHit(NSkillHitInfo hitInfo)
+        { 
             if (this.Define.AOERange > 0)
             {
                 this.HitRange();
@@ -282,6 +291,14 @@ namespace GameServer.Battle
             return MathUtil.Random.NextDouble() < cirt;
         }
 
+        private void CastBullet(NSkillHitInfo hitInfo)
+        {
+            Log.InfoFormat("Skill[{0}].CastBullet[{1}]", this.Define.Name, this.Define.BulletResource);
+
+            Bullet bullet = new Bullet(this, this.Context.Target, hitInfo);
+            this.Bullets.Add(bullet);
+        }
+
         private void HitRange()
         {
             Vector3Int pos;
@@ -303,11 +320,6 @@ namespace GameServer.Battle
             {
                 this.HitTarget(target);
             }
-        }
-
-        private void CastBullet()
-        {
-            Log.InfoFormat("Skill[{0}].CastBullet[{1}]", this.Define.Name, this.Define.BulletResource);
         }
     }
 }

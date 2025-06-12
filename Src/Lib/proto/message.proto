@@ -834,7 +834,8 @@ message NSkillHitInfo
 	int32 skillId = 1;		//技能ID
 	int32 casterId = 2;		//技能发起者
 	int32 hitId = 3;		//技能的第x击
-	repeated NDamageInfo damages  = 4;
+	bool isBullet = 4;		//本次hit是否是子弹
+	repeated NDamageInfo damages  = 5;	//伤害信息
 }
 
 message SkillCastRequest
