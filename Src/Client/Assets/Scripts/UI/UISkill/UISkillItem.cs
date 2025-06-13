@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using SkillBridge.Message;
 using Common.Data;
-using Batttle;
+using Battle;
 
 public class UISkillItem : ListView.ListViewItem
 {

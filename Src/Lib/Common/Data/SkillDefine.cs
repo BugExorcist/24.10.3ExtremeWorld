@@ -20,6 +20,7 @@ namespace Common.Data
         public float BulletSpeed { get; set; }
         public string BulletResource { get; set; }
         public float AOERange { get; set; }
+        public string SkillAnim { get; set; }
         /// <summary>
         /// 技能持续时间
         /// </summary>
@@ -43,6 +44,6 @@ namespace Common.Data
         /// 法术攻击系数
         /// </summary>
         public float APFactor { get; set; }
-        public string SkillAnim { get; set;}
+        
     }
 }

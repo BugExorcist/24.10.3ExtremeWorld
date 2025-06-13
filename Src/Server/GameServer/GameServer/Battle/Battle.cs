@@ -25,7 +25,7 @@ namespace GameServer.Battle
         Queue<NSkillCastInfo> Actions = new Queue<NSkillCastInfo>();
 
         List<Creature> DeadPool = new List<Creature>();
-
+        //服务器每帧广播缓存的技能命中信息
         List<NSkillHitInfo> Hits = new List<NSkillHitInfo>();
 
         public Battle(Map map)

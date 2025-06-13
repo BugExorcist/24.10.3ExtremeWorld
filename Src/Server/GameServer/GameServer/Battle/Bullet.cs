@@ -13,7 +13,7 @@ namespace GameServer.Battle
     {
         private Skill skill;
         private Creature target;
-        // 此消息会发送两次 第一次是技能释放消息（isBullet = false） 第二次是技能命中消息（isBullet = true）
+        // 此消息会被子弹缓存 第一次DoHit创建子弹 第二次DoHit结算伤害
         NSkillHitInfo hitInfo;
         bool TimeMode = true;
         //子弹飞行总时间
@@ -33,7 +33,7 @@ namespace GameServer.Battle
             {
                 duration = distance / this.skill.Define.BulletSpeed;
             }
-            Log.InfoFormat("Bullet[{0}].CastBullet[{1}] Target:{2} Distance:{3} Time:{4}", this.skill.Define.Name, this.skill.Define.BulletResource, distance, this.duration);
+            Log.InfoFormat("Bullet[{0}].CastBullet[{1}] Target:{2} Distance:{3} Time:{4}", this.skill.Define.Name, this.skill.Define.Bullet, distance, this.duration);
         }
 
         public void Update()

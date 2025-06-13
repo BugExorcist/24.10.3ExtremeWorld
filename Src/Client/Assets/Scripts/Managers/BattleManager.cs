@@ -1,4 +1,4 @@
-﻿using Batttle;
+﻿using Battle;
 using Entities;
 using Services;
 using SkillBridge.Message;

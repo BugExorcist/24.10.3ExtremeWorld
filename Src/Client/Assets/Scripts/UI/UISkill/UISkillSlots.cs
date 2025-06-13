@@ -1,4 +1,4 @@
-﻿using Batttle;
+﻿using Battle;
 using Models;
 using UnityEngine;
 

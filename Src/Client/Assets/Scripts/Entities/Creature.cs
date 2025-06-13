@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Batttle;
+using Battle;
 using Common.Battle;
 using Common.Data;
 using SkillBridge.Message;
@@ -119,7 +119,7 @@ namespace Entities
         {
             this.SetStandby(true);
             Skill skill = this.SkillMgr.GetSkill(skillId);
-            skill.BeginCast(damage);
+            skill.BeginCast(target);
         }
 
         private void SetStandby(bool v)
@@ -152,10 +152,10 @@ namespace Entities
             this.PlayAnim("Hurt");
         }
 
-        internal void DoSkillHit(int skillId, int hitId, List<NDamageInfo> damages)
+        internal void DoSkillHit(NSkillHitInfo hitInfo)
         {
-            Skill skill = this.SkillMgr.GetSkill(skillId);
-            skill.DoHit(hitId, damages);
+            Skill skill = this.SkillMgr.GetSkill(hitInfo.skillId);
+            skill.DoHit(hitInfo);
         }
 
         internal int Distance(Creature target)

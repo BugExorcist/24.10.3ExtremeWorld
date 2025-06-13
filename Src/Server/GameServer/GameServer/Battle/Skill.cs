@@ -100,6 +100,7 @@ namespace GameServer.Battle
                 this.castingTime = 0;
                 this.cd = this.Define.CD;
                 this.Context = context;
+                this.Bullets.Clear();
 
                 if (this.Instant)
                 {
@@ -187,7 +188,7 @@ namespace GameServer.Battle
                     }
                 }
                 else
-                {
+                {   // 非子弹技能 结束时机判断
                     if (!this.Define.Bullet)
                     {
                         this.Status = SkillStatus.None;
@@ -195,6 +196,22 @@ namespace GameServer.Battle
                     }
                     
                 }
+            }
+            if (this.Define.Bullet)
+            {   // 子弹技能 结束时机判断
+                bool finish = true;
+                foreach (var bullet in this.Bullets)
+                {   // 一直更新 直到所有子弹都结束才返回finish
+                    bullet.Update();
+                    if (!bullet.Stoped) finish = false;
+                }
+
+                if (finish && this.Hit >= this.Define.HitTimes.Count)
+                {
+                    this.Status = SkillStatus.None;
+                    Log.InfoFormat("Skill[{0}].UpdateSkill Finish", this.Define.Name);
+                }
+
             }
         }
 
@@ -208,34 +225,39 @@ namespace GameServer.Battle
             return hitInfo;
         }
 
+        //每次hit会结算伤害信息（子弹技能发射子弹的时候只缓存hit信息，命中时结算伤害）
         public void DoHit()
         {
             NSkillHitInfo hitInfo = this.InitHitInfo(false);
             Log.InfoFormat("Skill[{0}].DoHit[{1}]", this.Define.Name, this.Hit);
             this.Hit++;
             if (this.Define.Bullet)
-            {   //如果是子弹第一次DoHit，不造成伤害，子弹内部会调用有hitInfo的DoHit
+            {   //如果是子弹第一次DoHit，不造成伤害，子弹内部会调用后续DoHit
                 CastBullet(hitInfo);
                 return;
+                //(这里return导致不会发送没有伤害信息的NSkillHitInfo
+                //（是子弹技能且hitInfo.isBullet = false）)
             }
             DoHit(hitInfo);
         }
 
         public void DoHit(NSkillHitInfo hitInfo)
         { 
+            Context.Battle.AddHitInfo(hitInfo);
+            Log.InfoFormat("Skill[{0}].DoHit[{1}] IsBullet;{2}", this.Define.Name, hitInfo.hitId, hitInfo.isBullet);
             if (this.Define.AOERange > 0)
             {
-                this.HitRange();
+                this.HitRange(hitInfo);
                 return;
             }
 
             if (this.Define.CastTarget == TargetType.Target)
             {
-                this.HitTarget(Context.Target);
+                this.HitTarget(Context.Target, hitInfo);
             }
         }
 
-        private void HitTarget(Creature target)
+        private void HitTarget(Creature target, NSkillHitInfo hitInfo)
         {
             if (this.Define.CastTarget == TargetType.Self && (target != Context.Caster)) return;
             else if (target == Context.Caster) return;
@@ -243,7 +265,7 @@ namespace GameServer.Battle
             NDamageInfo damage = this.CalcSkillDamage(Context.Caster, target);
             Log.InfoFormat("Skill[{0}].HitTarget[{1}] Damage:{2} Crit:{3}", this.Define.Name, target.Name, damage.Damage, damage.Crit);
             target.DoDamage(damage);
-            this.HitInfo.Damages.Add(damage);
+            hitInfo.Damages.Add(damage);
         }
 
         /// <summary>
@@ -293,13 +315,13 @@ namespace GameServer.Battle
 
         private void CastBullet(NSkillHitInfo hitInfo)
         {
-            Log.InfoFormat("Skill[{0}].CastBullet[{1}]", this.Define.Name, this.Define.BulletResource);
+            Log.InfoFormat("Skill[{0}].CastBullet[{1}]", this.Define.Name, this.Define.Bullet);
 
             Bullet bullet = new Bullet(this, this.Context.Target, hitInfo);
             this.Bullets.Add(bullet);
         }
 
-        private void HitRange()
+        private void HitRange(NSkillHitInfo hitInfo)
         {
             Vector3Int pos;
             if (this.Define.CastTarget == Common.Battle.TargetType.Target)
@@ -318,7 +340,7 @@ namespace GameServer.Battle
             List<Creature> units = this.Context.Battle.FindUnitsInRange(pos, (int)this.Define.AOERange);
             foreach(var target in units)
             {
-                this.HitTarget(target);
+                this.HitTarget(target, hitInfo);
             }
         }
     }

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 using System;
-using Batttle;
+using Battle;
 using SkillBridge.Message;
 using Managers;
 
