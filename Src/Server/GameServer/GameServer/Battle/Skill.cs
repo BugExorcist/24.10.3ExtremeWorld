@@ -73,7 +73,7 @@ namespace GameServer.Battle
             {
                 if (context.CastSkill.Position == null)
                     return SkillResult.InvalidTarget;
-                if (this.Owner.Distance(context.Position) > this.Define.CastRange)
+                if (this.Owner.Distance(context.CastSkill.Position) > this.Define.CastRange)
                     return SkillResult.OutOfRange;
             }
 
@@ -324,11 +324,11 @@ namespace GameServer.Battle
         private void HitRange(NSkillHitInfo hitInfo)
         {
             Vector3Int pos;
-            if (this.Define.CastTarget == Common.Battle.TargetType.Target)
+            if (this.Define.CastTarget == TargetType.Target)
             {
-                pos = Context.Target.Position;
+                pos = Context.Position;
             }
-            else if (this.Define.CastTarget == Common.Battle.TargetType.Position)
+            else if (this.Define.CastTarget == TargetType.Position)
             {
                 pos = Context.Position;
             }

@@ -7,6 +7,9 @@ using UnityEngine;
 
 public class GameObjectTool
 {
+    /// <summary>
+    /// 逻辑坐标转unity世界坐标 (交换y和z的值且缩小100倍)
+    /// </summary>
     public static Vector3 LogicToWorld(NVector3 vector)
     {
         return new Vector3(vector.X / 100f, vector.Z / 100f, vector.Y / 100f);

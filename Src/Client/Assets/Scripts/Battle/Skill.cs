@@ -238,7 +238,7 @@ namespace Battle
         /// </summary>
         internal void DoHit(int hitId, List<NDamageInfo> damages)
         {
-            if (hitId >= this.Hit)
+            if (hitId > this.Hit)
             {   //如果服务器发送的Hit数大于本地命中次数，说明服务器的速度快于本地，本地还没播放本次hit，把命中的伤害缓存起来
                 this.HitMap[hitId] = damages;
             }

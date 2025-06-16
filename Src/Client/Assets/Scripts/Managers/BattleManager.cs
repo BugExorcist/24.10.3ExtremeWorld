@@ -18,6 +18,9 @@ namespace Managers
 
 
         private Creature currentTarget;
+        /// <summary>
+        /// 目标类技能的目标
+        /// </summary>
         public Creature CurrentTarget
         {
             get { return currentTarget; }
@@ -28,6 +31,9 @@ namespace Managers
         }
       
         private NVector3 currentPosition;
+        /// <summary>
+        /// 位置类技能的位置
+        /// </summary>
         public NVector3 CurrentPosition
         {
             get { return currentPosition; }

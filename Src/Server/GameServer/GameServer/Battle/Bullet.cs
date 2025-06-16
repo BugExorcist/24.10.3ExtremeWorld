@@ -33,7 +33,7 @@ namespace GameServer.Battle
             {
                 duration = distance / this.skill.Define.BulletSpeed;
             }
-            Log.InfoFormat("Bullet[{0}].CastBullet[{1}] Target:{2} Distance:{3} Time:{4}", this.skill.Define.Name, this.skill.Define.Bullet, distance, this.duration);
+            Log.InfoFormat("Bullet[{0}].CastBullet[{1}] Target:{2} Distance:{3} Time:{4}", this.skill.Define.Name, this.skill.Define.Bullet, target.Name, distance, Time.time);
         }
 
         public void Update()

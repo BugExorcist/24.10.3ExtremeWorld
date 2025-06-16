@@ -44,7 +44,7 @@ namespace Services
 
         private void OnChat(object sender, ChatResponse response)
         {
-            Debug.Log("OnChat");
+            //Debug.Log("OnChat");
             if (response.Result == Result.Success)
             {
                 ChatManager.Instance.AddMessages(ChatChannel.World, response.worldMessages);
