@@ -102,6 +102,8 @@ namespace GameServer.Battle
                 this.Context = context;
                 this.Bullets.Clear();
 
+                this.AddBuff(TriggerType.SkillCast);
+
                 if (this.Instant)
                 {
                     this.DoHit();
@@ -121,6 +123,28 @@ namespace GameServer.Battle
             }
             Log.InfoFormat("Skill[{0}].Cast: :result:{1} statues:{2}", this.Define.Name, result, this.Status);
             return result;
+        }
+
+        private void AddBuff(TriggerType trigger)
+        {
+            if (this.Define.Buff == null || this.Define.Buff.Count == 0)
+            {
+                return;
+            }
+            foreach (var buffId in this.Define.Buff)
+            {
+                var buffDefine = DataManager.Instance.Buffs[buffId];
+                if (buffDefine.Trigger != trigger) continue;
+
+                if (buffDefine.Target == TargetType.Self)
+                {
+                    this.Owner.AddBuff(this.Context, buffDefine);
+                }
+                else if (buffDefine.Target == TargetType.Target)
+                {
+                    this.Context.Target.AddBuff(this.Context, buffDefine);
+                }
+            }
         }
 
         internal void Update()
@@ -246,13 +270,13 @@ namespace GameServer.Battle
             Context.Battle.AddHitInfo(hitInfo);
             Log.InfoFormat("Skill[{0}].DoHit[{1}] IsBullet;{2}", this.Define.Name, hitInfo.hitId, hitInfo.isBullet);
             if (this.Define.AOERange > 0)
-            {
+            {   // AOE伤害
                 this.HitRange(hitInfo);
                 return;
             }
 
             if (this.Define.CastTarget == TargetType.Target)
-            {
+            {   // 对目标单体伤害
                 this.HitTarget(Context.Target, hitInfo);
             }
         }
@@ -266,7 +290,10 @@ namespace GameServer.Battle
             Log.InfoFormat("Skill[{0}].HitTarget[{1}] Damage:{2} Crit:{3}", this.Define.Name, target.Name, damage.Damage, damage.Crit);
             target.DoDamage(damage);
             hitInfo.Damages.Add(damage);
+
+            this.AddBuff(TriggerType.SkillHit);
         }
+
 
         /// <summary>
         /// 计算技能对目标造成的伤害
@@ -337,7 +364,7 @@ namespace GameServer.Battle
                 pos = this.Owner.Position;
             }
 
-            List<Creature> units = this.Context.Battle.FindUnitsInRange(pos, (int)this.Define.AOERange);
+            List<Creature> units = this.Context.Battle.FindUnitsInMapRange(pos, (int)this.Define.AOERange);
             foreach(var target in units)
             {
                 this.HitTarget(target, hitInfo);

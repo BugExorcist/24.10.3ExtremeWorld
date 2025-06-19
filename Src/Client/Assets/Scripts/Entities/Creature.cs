@@ -115,7 +115,7 @@ namespace Entities
             this.position = position;
         }
 
-        internal void CsatSkill(int skillId, Creature target, NVector3 pos, NDamageInfo damage)
+        internal void CsatSkill(int skillId, Creature target, NVector3 pos)
         {
             this.SetStandby(true);
             Skill skill = this.SkillMgr.GetSkill(skillId);

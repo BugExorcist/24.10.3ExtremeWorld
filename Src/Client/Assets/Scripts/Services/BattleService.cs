@@ -15,6 +15,7 @@ namespace Services
         {
             MessageDistributer.Instance.Subscribe<SkillCastResponse>(this.OnSkillCsat);
             MessageDistributer.Instance.Subscribe<SkillHitResponse>(this.OnSkillHit);
+            MessageDistributer.Instance.Subscribe<BuffResponse>(this.OnBuff);
         }
 
         public void Init()
@@ -26,8 +27,9 @@ namespace Services
         {
             MessageDistributer.Instance.Unsubscribe<SkillCastResponse>(this.OnSkillCsat);
             MessageDistributer.Instance.Unsubscribe<SkillHitResponse>(this.OnSkillHit);
+            MessageDistributer.Instance.Unsubscribe<BuffResponse>(this.OnBuff);
         }
-        
+
         public void SendSkillCast(int skillId, int casterId, int targetId, NVector3 position)
         {
             if (position == null) position = new NVector3();
@@ -52,7 +54,7 @@ namespace Services
                 if (caster != null)
                 {
                     Creature target = EntityManager.Instance.GetEntity(message.castInfo.targetId) as Creature;
-                    caster.CsatSkill(message.castInfo.skillId, target, message.castInfo.Position, message.Damage);
+                    caster.CsatSkill(message.castInfo.skillId, target, message.castInfo.Position);
                 }
             }
             else
@@ -74,6 +76,16 @@ namespace Services
                         caster.DoSkillHit(hit);
                     }
                 }
+            }
+        }
+
+        private void OnBuff(object sender, BuffResponse message)
+        {
+            Debug.LogFormat("OnBuff:count:{0}", message.Buffs.Count);
+
+            foreach (var buff in message.Buffs)
+            {
+                Debug.LogFormat("Buff:{0}:{1}[{2}]", buff.buffId, buff.buffType, buff.Action);
             }
         }
     }

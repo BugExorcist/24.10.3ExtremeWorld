@@ -1,4 +1,5 @@
 ﻿using Common;
+using GameServer.Core;
 using GameServer.Entities;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace GameServer.Managers
             AllEntities.Add(entity.EntityData.Id, entity);
 
             List<Entity> entities = null;
-            if(!MapEntities.TryGetValue(mapId, out entities))
+            if (!MapEntities.TryGetValue(mapId, out entities))
             {
                 entities = new List<Entity>();
                 MapEntities[mapId] = entities;
@@ -47,6 +48,28 @@ namespace GameServer.Managers
         internal Creature GetCreature(int entityId)
         {
             return GetEntity(entityId) as Creature;
+        }
+
+        public List<T> GetMapEntitise<T>(int mapId, Predicate<Entity> match) where T : Creature
+        {
+            List<T> result = new List<T>();
+            foreach (Entity entity in this.MapEntities[mapId])
+            {
+                if (entity is T && match.Invoke(entity))
+                {
+                    result.Add(entity as T);
+                }
+            }
+            return result;
+        }
+
+        public List<T> GetMapEntitiseInRange<T>(int mapId, Vector3Int pos, int range) where T : Creature
+        {
+            return this.GetMapEntitise<T>(mapId, (entity) =>
+            {
+                T creature = entity as T;
+                return creature.Distance(pos) < range;
+            });
         }
     }
 }

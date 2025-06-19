@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace GameServer.Battle
 {
-    internal class Battle
+    public class Battle
     {
         public Map Map;
         /// <summary>
@@ -27,6 +27,8 @@ namespace GameServer.Battle
         List<Creature> DeadPool = new List<Creature>();
         //服务器每帧广播缓存的技能命中信息
         List<NSkillHitInfo> Hits = new List<NSkillHitInfo>();
+
+        List<NBuffInfo> BuffActions = new List<NBuffInfo>();
 
         public Battle(Map map)
         {
@@ -46,6 +48,7 @@ namespace GameServer.Battle
         internal void Update()
         {
             this.Hits.Clear();
+            this.BuffActions.Clear();
             if (this.Actions.Count > 0)
             {
                 NSkillCastInfo skillCast = this.Actions.Dequeue();
@@ -58,12 +61,23 @@ namespace GameServer.Battle
 
         private void BroadcastHitMessage()
         {
-            if (this.Hits.Count == 0) return;
+            if (this.Hits.Count == 0 && this.BuffActions.Count == 0) return;
             NetMessageResponse message = new NetMessageResponse();
-            message.skillHits = new SkillHitResponse();
-            message.skillHits.Hits.AddRange(this.Hits);
-            message.skillHits.Errormsg = "";
-            message.skillHits.Result =  Result.Success;
+            if (this.Hits.Count > 0)
+            {
+                message.skillHits = new SkillHitResponse();
+                message.skillHits.Hits.AddRange(this.Hits);
+                message.skillHits.Result = Result.Success;
+                message.skillHits.Errormsg = "";
+            }
+            if (this.BuffActions.Count > 0)
+            {
+                message.buffRes = new BuffResponse();
+                message.buffRes.Buffs.AddRange(this.BuffActions);
+                message.buffRes.Result = Result.Success;
+                message.buffRes.Errormsg = "";
+            }
+            
             this.Map.BroadcastBattleResponse(message);
         }
 
@@ -85,7 +99,6 @@ namespace GameServer.Battle
             NetMessageResponse message = new NetMessageResponse();
             message.skillCast = new SkillCastResponse();
             message.skillCast.castInfo = context.CastSkill;
-            message.skillCast.Damage = context.Damage;
             message.skillCast.Result = context.Result == SkillResult.Ok ? Result.Success : Result.Failed;
             message.skillCast.Errormsg = context.Result.ToString();
             this.Map.BroadcastBattleResponse(message);
@@ -130,9 +143,19 @@ namespace GameServer.Battle
             return result;
         }
 
+        internal List<Creature> FindUnitsInMapRange(Vector3Int pos, int range)
+        {
+            return EntityManager.Instance.GetMapEntitiseInRange<Creature>(this.Map.ID, pos, range);
+        }
+
         public void AddHitInfo(NSkillHitInfo hitInfo)
         {
             this.Hits.Add(hitInfo);
+        }
+
+        public void AddBuffAction(NBuffInfo buff)
+        {
+            this.BuffActions.Add(buff);
         }
     }
 }

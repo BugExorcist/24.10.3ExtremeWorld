@@ -4,7 +4,7 @@ using SkillBridge.Message;
 
 namespace GameServer.Battle
 {
-    internal class BattleContext
+    public class BattleContext
     {
         public Battle Battle;
         public Creature Caster;
@@ -12,7 +12,6 @@ namespace GameServer.Battle
         public Vector3Int Position;
 
         public NSkillCastInfo CastSkill;
-        public NDamageInfo Damage;
 
         public SkillResult Result;
 
