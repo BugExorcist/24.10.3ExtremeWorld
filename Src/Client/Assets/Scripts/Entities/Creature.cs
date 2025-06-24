@@ -14,6 +14,11 @@ namespace Entities
         public CharacterDefine Define;
         public Attributes Attributes;
         public SkillManager SkillMgr;
+        public BuffManager buffMgr;
+        public EffectManager effectMgr;
+
+        public Action<Buff> OnBuffAdd;
+        public Action<Buff> OnBuffRemove;
 
         bool battleState = false;
         public bool BattleState
@@ -68,6 +73,8 @@ namespace Entities
             this.Attributes = new Attributes();
             this.Attributes.Init(this.Define, this.Info.Level, this.GetEquip(), this.Info.attDynamic);
             this.SkillMgr = new SkillManager(this);
+            this.buffMgr = new BuffManager(this);
+            this.effectMgr = new EffectManager(this);
         }
 
         public void UpdateInfo(NCharacterInfo info)
@@ -143,6 +150,7 @@ namespace Entities
             base.OnUpdate(delta);
 
             this.SkillMgr.OnUpdate(delta);
+            this.buffMgr.OnUpdate(delta);
         }
 
         public void DoDamage(NDamageInfo damage)
@@ -161,6 +169,49 @@ namespace Entities
         internal int Distance(Creature target)
         {
             return (int)Vector3Int.Distance(this.position, target.position);
+        }
+
+        internal void DoBuffAction(NBuffInfo buff)
+        {
+            switch (buff.Action)
+            {
+                case BuffAction.Add:
+                    this.AddBuff(buff.buffId, buff.buffType, buff.casterId);
+                    break;
+                case BuffAction.Remove:
+                    this.RemoveBuff(buff.buffId);
+                    break;
+                case BuffAction.Hit:
+                    this.DoDamage(buff.Damage);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+
+        private void AddBuff(int buffId, int buffType, int casterId)
+        {
+            var buff = this.buffMgr.AddBuff(buffId, buffType, casterId);
+            if (buff != null)
+                this.OnBuffAdd?.Invoke(buff);
+        }
+
+        public void RemoveBuff(int buffId)
+        {
+            var buff = this.buffMgr.RemoveBuff(buffId);
+            if (buff != null)
+                this.OnBuffRemove?.Invoke(buff);
+        }
+
+        internal void AddBuffEffext(BuffEffect effect)
+        {
+            this.effectMgr.AddEffect(effect);
+        }
+
+        internal void RemoveBuffEffect(BuffEffect effect)
+        {
+            this.effectMgr.RemoveEffect(effect);
         }
     }
 }

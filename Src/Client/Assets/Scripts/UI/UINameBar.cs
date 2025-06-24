@@ -11,12 +11,15 @@ public class UINameBar : MonoBehaviour
     public TMP_Text avaverName;
 
     public Character character;
+
+    public UIBuffIcons UIBuffIcons;
+
     // Start is called before the first frame update
     void Start()
     {
-        if(this.character == null)
+        if(this.character != null)
         {
-
+            UIBuffIcons.SetOwner(this.character);
         }
         
     }
