@@ -53,7 +53,8 @@ namespace GameServer.Managers
         public List<T> GetMapEntitise<T>(int mapId, Predicate<Entity> match) where T : Creature
         {
             List<T> result = new List<T>();
-            foreach (Entity entity in this.MapEntities[mapId])
+            if (!this.MapEntities.TryGetValue(mapId, out List<Entity> entities)) return null;
+            foreach (Entity entity in entities)
             {
                 if (entity is T && match.Invoke(entity))
                 {

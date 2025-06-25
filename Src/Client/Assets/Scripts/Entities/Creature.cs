@@ -126,7 +126,7 @@ namespace Entities
         {
             this.SetStandby(true);
             Skill skill = this.SkillMgr.GetSkill(skillId);
-            skill.BeginCast(target);
+            skill.BeginCast(target, pos);
         }
 
         private void SetStandby(bool v)
@@ -212,6 +212,24 @@ namespace Entities
         internal void RemoveBuffEffect(BuffEffect effect)
         {
             this.effectMgr.RemoveEffect(effect);
+        }
+
+        internal void FaceTo(Vector3Int position)
+        {
+            this.SetDirection(GameObjectTool.WorldToLogic(GameObjectTool.LogicToWorld(position - this.position).normalized));
+            this.UpdateEntityData();
+            if (this.Controller != null)
+            {
+                this.Controller.UpdateDirection();
+            }
+        
+        }
+
+        internal void PlayEffect(EffectType type, string name, Creature target, float duration)
+        {
+            if (string.IsNullOrEmpty(name)) return;
+            if (this.Controller != null)
+                this.Controller.PlayEffect(type, name, target, duration);
         }
     }
 }

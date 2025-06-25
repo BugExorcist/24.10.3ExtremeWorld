@@ -185,7 +185,7 @@ public class PlayerInputController : MonoBehaviour
         Vector3 offset = this.rb.transform.position - lastPos;
         this.speed = (int)(offset.magnitude * 100f / Time.deltaTime);
         this.lastPos = this.rb.transform.position;
-
+        if (this.character == null) return;
         if ((GameObjectTool.WorldToLogic(this.rb.transform.position) - this.character.position).magnitude > 50)
         {
             this.character.SetPosition(GameObjectTool.WorldToLogic(this.rb.transform.position));

@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Battle\Skill.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
+    <Compile Include="Assets\Scripts\GameObject\AnimationEventController.cs" />
     <Compile Include="Assets\Scripts\UI\UICharacterSelect.cs" />
     <Compile Include="Assets\Scripts\Network\NetClient.cs" />
     <Compile Include="Assets\Scripts\Models\BagItem.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Assets\Scripts\UI\UIWorldElement.cs" />
     <Compile Include="Assets\Scripts\GameObject\TeleporterObject.cs" />
     <Compile Include="Assets\Scripts\UI\SpriteManager.cs" />
+    <Compile Include="Assets\Scripts\GameObject\Effect\EffectType.cs" />
     <Compile Include="Assets\Scripts\Managers\DataManager.cs" />
     <Compile Include="Assets\Scripts\UI\UIChat\UIChat.cs" />
     <Compile Include="Assets\Scripts\UI\Guild\UIGuildPopCreate.cs" />
@@ -79,6 +81,7 @@
     <Compile Include="Assets\Scripts\UI\UIWorldElementManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\Scripts\UI\Guild\UIGuildApplyItem.cs" />
+    <Compile Include="Assets\FX\Scripts\DelayActiveChild.cs" />
     <Compile Include="Assets\Scripts\UI\Guild\UIGuild.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\Scripts\UI\UISystemConfig.cs" />
@@ -128,6 +131,7 @@
     <Compile Include="Assets\Scripts\Managers\ItemManager.cs" />
     <Compile Include="Assets\Scripts\Battle\SkillManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
+    <Compile Include="Assets\Scripts\GameObject\Effect\EntityEffectManager.cs" />
     <Compile Include="Assets\Scripts\UI\UIRegister.cs" />
     <Compile Include="Assets\Scripts\Managers\MiniMapManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
@@ -142,9 +146,10 @@
     <Compile Include="Assets\Scripts\UI\Guild\UIGuildInfo.cs" />
     <Compile Include="Assets\Scripts\UI\UISkill\UIBuffIcons.cs" />
     <Compile Include="Assets\Scripts\Managers\QuestManager.cs" />
+    <Compile Include="Assets\FX\Scripts\uv_l.cs" />
     <Compile Include="Assets\Scripts\GameObject\EntityController.cs" />
-    <Compile Include="Assets\Scripts\UI\UITest.cs" />
     <Compile Include="Assets\Scripts\UI\UISkill\UIBuffIcon.cs" />
+    <Compile Include="Assets\Scripts\UI\UITest.cs" />
     <Compile Include="Assets\Scripts\UI\UISkill\UISkillSlot.cs" />
     <Compile Include="Assets\Scripts\Managers\ShopManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
@@ -157,6 +162,7 @@
     <Compile Include="Assets\Scripts\Battle\Bullet.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Managers\CharacterManager.cs" />
+    <Compile Include="Assets\Scripts\GameObject\Effect\EffectController.cs" />
     <Compile Include="Assets\Scripts\Battle\BuffManager.cs" />
     <Compile Include="Assets\Scripts\UI\UIQuest\UIQuestSystem.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
@@ -235,15 +241,19 @@
     <None Include="Assets\Shader\Lightmap\Lightmap.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+    <None Include="Assets\FX\Shader\ParticlesAlphaBlended.shader" />
     <None Include="Assets\Shader\DepthBloom.shader" />
     <None Include="Assets\References\log4net.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\FX\Shader\ParticlesAdditive.shader" />
     <None Include="Assets\JsonDotNet\link.xml" />
     <None Include="Assets\JsonDotNet\Assemblies\Windows\Newtonsoft.Json.XML" />
     <None Include="Assets\JsonDotNet\Assemblies\Standalone\Newtonsoft.Json.XML" />
     <None Include="Assets\References\protobuf-net.xml" />
     <None Include="Assets\JsonDotNet\Assemblies\Standalone\Newtonsoft.Json.dll" />
     <None Include="Assets\Shader\UITest.shader" />
+    <None Include="Assets\FX\Shader\ParticlesNiuQu01.shader" />
+    <None Include="Assets\FX\Shader\ParticlesFresnel.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
@@ -260,6 +270,7 @@
     <None Include="Assets\JsonDotNet\Assemblies\Windows\Newtonsoft.Json.dll" />
     <None Include="Assets\ChineseFountAssest\zh-cn.txt" />
     <None Include="Assets\References\protobuf-net.dll" />
+    <None Include="Assets\FX\Shader\ParticlesAlphaBlendedMask.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />

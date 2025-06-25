@@ -1,10 +1,6 @@
 using Entities;
 using Managers;
-using Models;
 using SkillBridge.Message;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EntityController : MonoBehaviour, IEntityNotify, IEntityController
@@ -32,6 +28,8 @@ public class EntityController : MonoBehaviour, IEntityNotify, IEntityController
     public RideController rideController;
     private int currentRide = 0;
     public Transform rideBone;//用来绑定骑乘的骨骼
+
+    public EntityEffectManager EffectMgr;
 
 
     void Start()
@@ -167,10 +165,28 @@ public class EntityController : MonoBehaviour, IEntityNotify, IEntityController
         this.anim.SetBool("Standby", standby);
     }
 
+    public void UpdateDirection()
+    {
+        this.direction = GameObjectTool.LogicToWorld(entity.direction);
+        this.transform.forward = this.direction;
+        this.lastRotation = this.rotation;
+    }
+
+    public void PlayEffect(EffectType type, string name, Creature target, float duration)
+    {
+        Transform transform = target.Controller.GetTransform();
+        this.EffectMgr.PlayEffect(type, name, transform, duration);
+    }
+
     private void OnMouseDown()
     {
         Creature target = this.entity as Creature;
         if (target.IsCurrentPlayer) return;
         BattleManager.Instance.CurrentTarget = this.entity as Creature;
+    }
+
+    public Transform GetTransform()
+    {
+        return this.transform;
     }
 }

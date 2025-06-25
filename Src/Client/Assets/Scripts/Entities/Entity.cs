@@ -23,7 +23,7 @@ namespace Entities
         {
             get
             {
-                UpdataEntityData();
+                UpdateEntityData();
                 return entityData;
             }
             set
@@ -55,7 +55,7 @@ namespace Entities
             this.direction = this.direction.FromNVector3(entity.Direction);
             this.speed = entity.Speed;
         }
-        private void UpdataEntityData()
+        internal void UpdateEntityData()
         {
             entityData.Position.FromVector3Int(this.position);
             entityData.Direction.FromVector3Int(this.direction);
