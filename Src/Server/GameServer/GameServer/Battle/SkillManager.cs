@@ -36,7 +36,7 @@ namespace GameServer.Battle
             {
                 NSkillInfo info = new NSkillInfo();
                 info.Id = define.Key;
-                if (define.Value.UnlockLevel > this.Owner.Info.Level)
+                if (define.Value.UnlockLevel > this.Owner.Info.Level || this.Owner.Info.Type != CharacterType.Player)
                 {
                     info.Level = 1;
                 }

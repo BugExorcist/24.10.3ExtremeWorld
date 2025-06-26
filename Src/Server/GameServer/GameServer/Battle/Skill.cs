@@ -47,7 +47,7 @@ namespace GameServer.Battle
         {
             this.Info = info;
             this.Owner = owner;
-            this.Define = DataManager.Instance.Skills[(int)this.Owner.Define.Class][this.Info.Id];
+            this.Define = DataManager.Instance.Skills[(int)this.Owner.Define.TID][this.Info.Id];//因为还有怪物，所以要用TID，不能用Define.Class
         }
 
         internal SkillResult CanCast(BattleContext context)

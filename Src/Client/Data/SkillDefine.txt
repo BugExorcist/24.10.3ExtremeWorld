@@ -17,7 +17,8 @@
         0.4
       ],
       "AP": 0.0,
-      "ADFator": 1.0
+      "ADFator": 1.0,
+      "HitEffect": "EFX_Warrior_Behurt_prefab"
     },
     "102": {
       "ID": 102,
@@ -100,12 +101,14 @@
       "MPCost": 0,
       "Bullet": true,
       "BulletSpeed": 800.0,
+      "BulletResource": "EFX_Wizard_AtkA_Bullet_prefab",
       "AOERange": 0,
       "SkillAnim": "Atk A",
       "HitTimes": [
         0.4
       ],
-      "APFator": 1.0
+      "APFator": 1.0,
+      "HitEffect": "EFX_Wizard_AttkA_hit_prefab"
     },
     "202": {
       "ID": 202,
@@ -116,9 +119,10 @@
       "UnlockLevel": 5,
       "CastTarget": "Target",
       "CastRange": 1000,
-      "CastTime": 1.0,
+      "CastTime": 0.0,
       "CD": 3.0,
       "MPCost": 20,
+      "BulletResource": "EFX_Wizard_SkillA_Bullet_prefab",
       "AOERange": 0,
       "SkillAnim": "Skill A",
       "HitTimes": [
@@ -126,7 +130,8 @@
       ],
       "AD": 0.0,
       "AP": 80.0,
-      "APFator": 0.125
+      "APFator": 0.125,
+      "HitEffect": "EFX_Wizard_SkillA_Hit_prefab"
     },
     "203": {
       "ID": 203,
@@ -146,7 +151,8 @@
       "Interval": 0.8,
       "AD": 0.0,
       "AP": 100.0,
-      "APFator": 0.16667
+      "APFator": 0.16667,
+      "AOEEffect": "EFX_Wizard_SkillB_bullet_perfab"
     },
     "204": {
       "ID": 204,
@@ -167,7 +173,8 @@
       ],
       "AD": 0.0,
       "AP": 140.0,
-      "APFator": 0.25
+      "APFator": 0.25,
+      "HitEffect": "EFX_Wizard_SkillA_Hit_prefab"
     }
   },
   "3": {
@@ -184,12 +191,14 @@
       "MPCost": 0,
       "Bullet": true,
       "BulletSpeed": 800.0,
+      "BulletResource": "EFX_Archer_AtkA_B_dandao_prefab",
       "AOERange": 0,
       "SkillAnim": "Atk A",
       "HitTimes": [
         0.8
       ],
-      "ADFator": 1.0
+      "ADFator": 1.0,
+      "HitEffect": "EFX_Archer_AtkA_B_Behurt_prefab"
     },
     "302": {
       "ID": 302,
@@ -200,11 +209,12 @@
       "UnlockLevel": 5,
       "CastTarget": "Target",
       "CastRange": 1000,
-      "CastTime": 1.0,
+      "CastTime": 0.5,
       "CD": 8.0,
       "MPCost": 15,
       "Bullet": true,
       "BulletSpeed": 800.0,
+      "BulletResource": "EFX_Archer_AtkA_B_dandao_prefab",
       "AOERange": 0,
       "SkillAnim": "Skill A",
       "HitTimes": [
@@ -215,7 +225,8 @@
       ],
       "AD": 70.0,
       "AP": 0.0,
-      "ADFator": 0.125
+      "ADFator": 0.125,
+      "HitEffect": "EFX_Archer_AtkA_B_Behurt_prefab"
     },
     "303": {
       "ID": 303,
@@ -239,7 +250,9 @@
       ],
       "AD": 80.0,
       "AP": 0.0,
-      "ADFator": 0.16667
+      "ADFator": 0.16667,
+      "AOEEffect": "EFX_Archer_SkillB_behurt_prefab",
+      "HitEffect": "EFX_Archer_AtkA_B_Behurt_prefab"
     },
     "304": {
       "ID": 304,
@@ -250,11 +263,12 @@
       "UnlockLevel": 15,
       "CastTarget": "Target",
       "CastRange": 800,
-      "CastTime": 1.5,
+      "CastTime": 0.5,
       "CD": 12.0,
       "MPCost": 20,
       "Bullet": true,
       "BulletSpeed": 800.0,
+      "BulletResource": "EFX_Archer_AtkA_B_dandao_prefab",
       "AOERange": 0,
       "SkillAnim": "Skill C",
       "HitTimes": [
@@ -264,7 +278,8 @@
       ],
       "AD": 70.0,
       "AP": 0.0,
-      "ADFator": 0.2
+      "ADFator": 0.2,
+      "HitEffect": "EFX_Archer_AtkA_B_Behurt_prefab"
     }
   }
 }

@@ -67,8 +67,8 @@ public class EntityEffectManager : MonoBehaviour
         if (this.Effects.TryGetValue(name, out profab))
         {
             GameObject go = Instantiate(profab, GameObjectManager.Instance.transform, true);
-            go.transform.position = this.transform.position;
-            go.transform.rotation = this.transform.rotation;
+            go.transform.position = profab.transform.position;
+            go.transform.rotation = profab.transform.rotation;
             return go.GetComponent<EffectController>();
         }
         return null;
