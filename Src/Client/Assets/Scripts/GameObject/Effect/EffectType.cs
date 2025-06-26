@@ -2,5 +2,7 @@
 public enum EffectType
 {
     None,
-    Bullet
+    Bullet,
+    Position,
+    Hit,
 }

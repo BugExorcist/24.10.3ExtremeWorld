@@ -13,7 +13,7 @@ public class EntityEffectManager : MonoBehaviour
     private void Start()
     {
         this.Effects.Clear();
-        if (this.Root.childCount > 0)
+        if (this.Root != null && this.Root.childCount > 0)
         {
             for (int i = 0; i < this.Root.childCount; i++)
             {
@@ -31,7 +31,7 @@ public class EntityEffectManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 播放（动画）时间帧 特效
+    /// 播放（动画）时间帧触发 特效
     /// </summary>
     internal void PlayEffect(string name)
     {
@@ -43,14 +43,19 @@ public class EntityEffectManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 播放 逻辑 特效
+    /// 播放 逻辑触发 特效
     /// </summary>
-    internal void PlayEffect(EffectType type, string name, Transform target, float duration)
+    /// <param name="type">特效类型</param>
+    /// <param name="name">特效资源名称</param>
+    /// <param name="target">特效的触发目标（Creature）</param>
+    /// <param name="pos">特效的触发位置</param>
+    /// <param name="duration">特效的逻辑上持续时间</param>
+    internal void PlayEffect(EffectType type, string name, Transform target, Vector3 pos, float duration)
     {
         if (type == EffectType.Bullet)
         {
             EffectController effect = InstantiateEffect(name);
-            effect.Init(type, this.transform, target, duration);
+            effect.Init(type, this.transform, target, pos, duration);
             effect.gameObject.SetActive(true);
         }
         else
@@ -58,6 +63,7 @@ public class EntityEffectManager : MonoBehaviour
             PlayEffect(name);
         }
     }
+
     /// <summary>
     /// 实列化子弹的EffectController
     /// </summary>

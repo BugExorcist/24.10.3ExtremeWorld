@@ -77,5 +77,7 @@ namespace Common.Data
         /// </summary>
         public float CRI { get; set; }
 
+        public float Height { get; set; }
+
     }
 }

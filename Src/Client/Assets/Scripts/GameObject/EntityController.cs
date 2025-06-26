@@ -2,6 +2,8 @@ using Entities;
 using Managers;
 using SkillBridge.Message;
 using UnityEngine;
+using UnityEngine.UIElements;
+using UnityEngine.VFX;
 
 public class EntityController : MonoBehaviour, IEntityNotify, IEntityController
 {
@@ -52,6 +54,13 @@ public class EntityController : MonoBehaviour, IEntityNotify, IEntityController
         this.rb.MovePosition(this.position);
         this.transform.forward = this.direction;
         this.lastPosition = this.position;
+        this.lastRotation = this.rotation;
+    }
+
+    public void UpdateDirection()
+    {
+        this.direction = GameObjectTool.LogicToWorld(entity.direction);
+        this.transform.forward = this.direction;
         this.lastRotation = this.rotation;
     }
 
@@ -165,17 +174,27 @@ public class EntityController : MonoBehaviour, IEntityNotify, IEntityController
         this.anim.SetBool("Standby", standby);
     }
 
-    public void UpdateDirection()
-    {
-        this.direction = GameObjectTool.LogicToWorld(entity.direction);
-        this.transform.forward = this.direction;
-        this.lastRotation = this.rotation;
-    }
-
+    /// <summary>
+    /// 目标类型播放特效
+    /// </summary>
     public void PlayEffect(EffectType type, string name, Creature target, float duration)
     {
         Transform transform = target.Controller.GetTransform();
-        this.EffectMgr.PlayEffect(type, name, transform, duration);
+        if (type == EffectType.Position || type == EffectType.Hit)
+            FXManager.Instance.PlayEffect(type, name, transform, target.GetHitOffset(), duration);
+        else
+            this.EffectMgr.PlayEffect(type, name, transform, target.GetHitOffset(), duration);
+    }
+
+    /// <summary>
+    /// 位置类型播放特效
+    /// </summary>
+    public void PlayEffect(EffectType type, string name, NVector3 positon, float duration)
+    {
+        if (type == EffectType.Position || type == EffectType.Hit)
+            FXManager.Instance.PlayEffect(type, name, null, GameObjectTool.LogicToWorld(positon), duration);
+        else
+            this.EffectMgr.PlayEffect(type, name, null, GameObjectTool.LogicToWorld(positon), duration);
     }
 
     private void OnMouseDown()

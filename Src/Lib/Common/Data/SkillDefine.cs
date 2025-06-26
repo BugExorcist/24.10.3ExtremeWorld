@@ -44,6 +44,8 @@ namespace Common.Data
         /// 法术攻击系数
         /// </summary>
         public float APFactor { get; set; }
+        public string HitEffect { get; set; }
+        public string AOEEffect { get; set; }
         
     }
 }

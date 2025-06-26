@@ -35,17 +35,24 @@ internal class EffectController : MonoBehaviour
     /// <param name="type">特效类型</param>
     /// <param name="source">子弹来源</param>
     /// <param name="target">子弹目标</param>
+    /// <param name="offset">目标角色身高</param>
     /// <param name="duration">子弹飞行时间</param>
-    internal void Init(EffectType type, Transform source, Transform target, float duration)
+    internal void Init(EffectType type, Transform source, Transform target, Vector3 offset, float duration)
     {
         this.type = type;
         this.target = target;
-        this.lifeTime = duration;
+        if (duration > 0)
+            this.lifeTime = duration;
+        this.time = 0;
         if (type == EffectType.Bullet)
         {
             this.startPos = this.transform.position;
-            this.offset = new Vector3(0, this.transform.position.y - source.position.y, 0);//发射源的高度
+            this.offset = offset;//身高
             this.targetPos = target.position + offset;
+        }
+        else if (type == EffectType.Hit)
+        {
+            this.transform.position = target.position + offset;
         }
     }
 
@@ -61,6 +68,11 @@ internal class EffectController : MonoBehaviour
             this.transform.LookAt(this.targetPos);
             if (Vector3.Distance(this.targetPos, this.transform.position) < 0.5f)
             {
+                Destroy(this.gameObject);
+                return;
+            }
+            if (this.lifeTime > 0 && this.time >= this.lifeTime)
+            {   //如果子弹超出了设定的生存周期也要销毁
                 Destroy(this.gameObject);
                 return;
             }
