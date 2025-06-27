@@ -18,6 +18,7 @@ public class EntityEffectManager : MonoBehaviour
             for (int i = 0; i < this.Root.childCount; i++)
             {
                 this.Effects[this.Root.GetChild(i).name] = this.Root.GetChild(i).gameObject;
+                this.Effects[this.Root.GetChild(i).name].SetActive(false);
             }
         }
 
@@ -26,6 +27,7 @@ public class EntityEffectManager : MonoBehaviour
             for (int i  = 0; i < this.Props.Length; i++)
             {
                 this.Effects[this.Props[i].name] = this.Props[i].gameObject;
+                this.Effects[this.Props[i].name].SetActive(false);
             }
         }
     }

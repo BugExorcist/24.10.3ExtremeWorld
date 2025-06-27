@@ -85,4 +85,11 @@ namespace Common.Battle
         SkillHit = 2,   //技能命中时
     }
 
+    public enum CharState
+    { 
+        None,
+        Idle,
+        InBattle,
+    }
+
 }

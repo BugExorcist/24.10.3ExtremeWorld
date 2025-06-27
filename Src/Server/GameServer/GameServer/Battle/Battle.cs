@@ -28,6 +28,8 @@ namespace GameServer.Battle
         //服务器每帧广播缓存的技能命中信息
         List<NSkillHitInfo> Hits = new List<NSkillHitInfo>();
 
+        List<NSkillCastInfo> CastSkills = new List<NSkillCastInfo>();
+
         List<NBuffInfo> BuffActions = new List<NBuffInfo>();
 
         public Battle(Map map)
@@ -47,6 +49,7 @@ namespace GameServer.Battle
 
         internal void Update()
         {
+            this.CastSkills.Clear();
             this.Hits.Clear();
             this.BuffActions.Clear();
             if (this.Actions.Count > 0)
@@ -61,7 +64,7 @@ namespace GameServer.Battle
 
         private void BroadcastHitMessage()
         {
-            if (this.Hits.Count == 0 && this.BuffActions.Count == 0) return;
+            if (this.Hits.Count == 0 && this.BuffActions.Count == 0 && this.CastSkills.Count == 0) return;
             NetMessageResponse message = new NetMessageResponse();
             if (this.Hits.Count > 0)
             {
@@ -76,6 +79,13 @@ namespace GameServer.Battle
                 message.buffRes.Buffs.AddRange(this.BuffActions);
                 message.buffRes.Result = Result.Success;
                 message.buffRes.Errormsg = "";
+            }
+            if (this.CastSkills.Count > 0)
+            {
+                message.skillCast = new SkillCastResponse();
+                message.skillCast.castInfoes.AddRange(this.CastSkills);
+                message.skillCast.Result = Result.Success;
+                message.skillCast.Errormsg = "";
             }
             
             this.Map.BroadcastBattleResponse(message);
@@ -95,13 +105,6 @@ namespace GameServer.Battle
                 this.JoinBattle(context.Target);
 
             context.Caster.CastSkill(context, cast.skillId);
-
-            NetMessageResponse message = new NetMessageResponse();
-            message.skillCast = new SkillCastResponse();
-            message.skillCast.castInfo = context.CastSkill;
-            message.skillCast.Result = context.Result == SkillResult.Ok ? Result.Success : Result.Failed;
-            message.skillCast.Errormsg = context.Result.ToString();
-            this.Map.BroadcastBattleResponse(message);
         }
 
         private void UpdateUints()
@@ -151,6 +154,11 @@ namespace GameServer.Battle
         public void AddHitInfo(NSkillHitInfo hitInfo)
         {
             this.Hits.Add(hitInfo);
+        } 
+        
+        public void AddCastSkillInfo(NSkillCastInfo castInfo)
+        {
+            this.CastSkills.Add(castInfo);
         }
 
         public void AddBuffAction(NBuffInfo buff)

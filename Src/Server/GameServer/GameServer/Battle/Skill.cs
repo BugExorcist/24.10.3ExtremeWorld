@@ -288,7 +288,7 @@ namespace GameServer.Battle
 
             NDamageInfo damage = this.CalcSkillDamage(Context.Caster, target);
             Log.InfoFormat("Skill[{0}].HitTarget[{1}] Damage:{2} Crit:{3}", this.Define.Name, target.Name, damage.Damage, damage.Crit);
-            target.DoDamage(damage);
+            target.DoDamage(damage, Context.Caster);
             hitInfo.Damages.Add(damage);
 
             this.AddBuff(TriggerType.SkillHit, target);

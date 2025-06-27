@@ -131,7 +131,7 @@ namespace Entities
 
         private void SetStandby(bool v)
         {
-            if (this.Controller != null)
+            if (this.Controller != null && this.Info.Type == CharacterType.Player)
             {
                 this.Controller.SetStandBy(v);
             }

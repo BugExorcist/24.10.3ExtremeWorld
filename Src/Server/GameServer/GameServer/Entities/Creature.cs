@@ -24,6 +24,8 @@ namespace GameServer.Entities
         public Attributes Attributes;
         public bool IsDeath = false;
 
+        public CharState State;
+
         public Creature(CharacterType type, int configId, int level, Vector3Int pos, Vector3Int dir) :
            base(pos, dir)
         {
@@ -63,17 +65,45 @@ namespace GameServer.Entities
         {
             Skill skill = this.SkillMgr.GetSkill(skillId);
             context.Result = skill.Cast(context);
+            if (context.Result == SkillResult.Ok)
+            {
+                this.State = CharState.InBattle;
+            }
+
+            if (context.CastSkill == null)//说明是Monster释放的技能
+            {
+                if (context.Result == SkillResult.Ok)
+                {
+                    context.CastSkill = new NSkillCastInfo()
+                    {
+                        casterId = this.entityId,
+                        targetId = context.Target.entityId,
+                        skillId = skill.Define.ID,
+                        Position = new NVector3(),
+                        Result = context.Result,
+                    };
+                    context.Battle.AddCastSkillInfo(context.CastSkill);
+                }
+            }
+            else//说明是Player释放的技能
+            { 
+                context.CastSkill.Result = context.Result;
+                context.Battle.AddCastSkillInfo(context.CastSkill);
+            }
         }
 
-        internal void DoDamage(NDamageInfo damege)
+        internal void DoDamage(NDamageInfo damage, Creature sorce)
         {
-            this.Attributes.HP -= damege.Damage;
+            this.State = CharState.InBattle;
+            this.Attributes.HP -= damage.Damage;
             if (this.Attributes.HP <= 0)
             {
                 this.IsDeath = true;
-                damege.WillDead = true;
+                damage.WillDead = true;
             }
+            this.OnDamage(damage, sorce);
         }
+
 
         public override void Update()
         {
@@ -96,6 +126,11 @@ namespace GameServer.Entities
         internal void AddBuff(BattleContext context, BuffDefine buffDefine)
         {
             this.BuffMgr.AddBuff(context, buffDefine);
+        }
+
+        protected virtual void OnDamage(NDamageInfo damage, Creature sorce)
+        {
+
         }
     }
 }
