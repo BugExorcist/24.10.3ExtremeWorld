@@ -79,5 +79,7 @@ namespace Common.Data
 
         public float Height { get; set; }
 
+        public string AI { get; set; }
+
     }
 }

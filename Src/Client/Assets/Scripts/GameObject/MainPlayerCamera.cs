@@ -10,7 +10,7 @@ public class MainPlayerCamera : MonoSingleton<MainPlayerCamera>
 
     public GameObject player;
 
-    public float followSpeed = 5f;
+    public float followSpeed = 10f;
 
     public float rotateSpeed = 5f;
 

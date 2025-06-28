@@ -15,7 +15,7 @@ namespace GameServer.Battle
         public List<Skill> Skills { get; private set; }
         public List<NSkillInfo> Infos { get; private set;}
 
-
+        public Skill NormalSkill { get; private set;}
         public SkillManager(Creature owner)
         {
             this.Owner = owner;
@@ -45,7 +45,10 @@ namespace GameServer.Battle
                     info.Level =  DBService.Instance.Entities.CharacterSkills.FirstOrDefault(v => v.SkillID == define.Value.ID && v.CharacterID == this.Owner.Info.Id).Level;
                 }
                 this.Infos.Add(info);
-                this.Skills.Add(new Skill(info, this.Owner));
+                Skill skill = new Skill(info, this.Owner);
+                if (skill.Define.Type == Common.Battle.SkillType.Normal)
+                    this.NormalSkill = skill;
+                this.Skills.Add(skill);
             }
         }
 
