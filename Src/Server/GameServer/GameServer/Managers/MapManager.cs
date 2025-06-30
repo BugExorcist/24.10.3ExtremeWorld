@@ -12,30 +12,54 @@ namespace GameServer.Managers
 {
     class MapManager : Singleton<MapManager>
     {
-        Dictionary<int, Map> Maps = new Dictionary<int, Map>();
+        //第一个key是地图ID， 第二个key是实例ID（副本）   没有副本的地图只有一个实例
+        Dictionary<int, Dictionary<int, Map>> Maps = new Dictionary<int, Dictionary<int, Map>>();
+
         public void Init()
         {
             foreach (var mapdefine in DataManager.Instance.Maps.Values)
             {
-                Map map = new Map(mapdefine);
-                Log.InfoFormat("MapManager.Init > Map:{0}:{1}", map.Define.ID, map.Define.Name);
-                this.Maps[mapdefine.ID] = map;
+                Log.InfoFormat("MapManager.Init > Map:{0}:{1}", mapdefine.ID, mapdefine.Name);
+
+                int instanceCount = 1;
+                if (mapdefine.Type == Common.Data.MapType.Arena)
+                {
+                    instanceCount = ArenaManager.MaxInstance;
+                }
+                this.Maps[mapdefine.ID] = new Dictionary<int, Map>();
+                for (int i = 0; i < instanceCount; i++)
+                {
+                    this.Maps[mapdefine.ID][i] = new Map(mapdefine, i);
+                }
             }
         }
 
+        /// <summary>
+        /// 返回地图第一个实例
+        /// </summary>
         public Map this[int key]
         {
             get
             {
-                return this.Maps[key];
+                return this.Maps[key][0];
             }
+        }
+        /// <summary>
+        /// 返回指定的地图实例
+        /// </summary>
+        internal Map GetInstance(int arenaMapId, int instanceId)
+        {
+            return this.Maps[arenaMapId][instanceId];
         }
 
         public void Update()
         {
-            foreach (var map in this.Maps.Values)
+            foreach (var maps in this.Maps.Values)
             {
-                map.Update();
+                foreach (var instance in maps.Values)
+                {
+                    instance.Update();
+                }
             }
         }
     }

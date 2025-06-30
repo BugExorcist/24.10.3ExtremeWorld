@@ -1,4 +1,5 @@
 ﻿using Common;
+using GameServer.Models;
 using Network;
 using SkillBridge.Message;
 using System;
@@ -12,11 +13,11 @@ namespace GameServer.Managers
     internal class ArenaManager : Singleton<ArenaManager>
     {
         public const int ArenaMapId = 5;
-        public const int MaxInstance = 100;
+        public const int MaxInstance = 100;//最大副本数量（和服务器性能有关）
 
         Queue<int> InstanceIndexes = new Queue<int>();
 
-        //Dictionary<int, Arena> Arenas = new Dictionary<int, Arena>();
+        Dictionary<int, Arena> Arenas = new Dictionary<int, Arena>();
 
         public void Init()
         {
@@ -26,15 +27,15 @@ namespace GameServer.Managers
             }
         }
 
-        //public Arena NewArena(ArenaInfo info, NetConnection<NetSession> red, NetConnection<NetSession> blue)
-        //{
-        //    var instance = InstanceIndexes.Dequeue();
-        //    var map = MapManager.Instance.GetInstance(ArenaMapId, instance);
-        //    Arena arena = new Arena(map, info, red, blue);
-        //    this.Arenas[instance] = arena;
-        //    arena.PlayerEnder();
-        //    return arena;
-        //}
+        public Arena NewArena(ArenaInfo info, NetConnection<NetSession> red, NetConnection<NetSession> blue)
+        {
+            var instance = InstanceIndexes.Dequeue();
+            var map = MapManager.Instance.GetInstance(ArenaMapId, instance);
+            Arena arena = new Arena(map, info, red, blue);
+            this.Arenas[instance] = arena;
+            arena.PlayerEnder();
+            return arena;
+        }
 
     }
 }

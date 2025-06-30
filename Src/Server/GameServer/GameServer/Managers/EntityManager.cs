@@ -72,5 +72,10 @@ namespace GameServer.Managers
                 return creature.Distance(pos) < range;
             });
         }
+
+        internal void RemoveMapEntity(int entityId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

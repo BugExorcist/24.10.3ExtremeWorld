@@ -77,9 +77,7 @@ namespace GameServer.Services
                 return;
             }
 
-            //var arena = ArenaManager.Instance.NewArena(response.ArenaInfo, requester, sender);
-            //SendArenaBegin(arena);
-
+            var arena = ArenaManager.Instance.NewArena(response.ArenaInfo, requester, sender);
             SendArenaBegin(requester, sender);
         }
 
@@ -99,7 +97,7 @@ namespace GameServer.Services
         {
             var arenaBegin = new ArenaBeginResponse();
             arenaBegin.Result = Result.Failed;
-            //arenaBegin.ArenaInfo = arena.ArenaInfo;
+            arenaBegin.ArenaInfo = arena.ArenaInfo;
             arenaBegin.Errormsg = "请求者离线";
             red.Session.Response.arenaBegin = arenaBegin;
             red.SendResponse();

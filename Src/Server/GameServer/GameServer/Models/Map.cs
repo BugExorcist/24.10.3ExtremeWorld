@@ -28,11 +28,18 @@ namespace GameServer.Models
                 this.character = cha;
             }
         }
-
+        /// <summary>
+        /// 地图索引ID
+        /// </summary>
         public int ID
         {
             get { return this.Define.ID; }
         }
+        /// <summary>
+        /// 地图实例ID（副本ID）
+        /// </summary>
+        public int InsanceID { get; set;}
+
         internal MapDefine Define;
 
         /// <summary>
@@ -49,9 +56,10 @@ namespace GameServer.Models
 
         public Battle.Battle Battle;
 
-        internal Map(MapDefine define)
+        internal Map(MapDefine define, int instanceId)
         {
             this.Define = define;
+            this.InsanceID = instanceId;
             this.SpawnManager.Init(this);
             this.MonsterManager.Init(this);
             this.Battle = new Battle.Battle(this);
