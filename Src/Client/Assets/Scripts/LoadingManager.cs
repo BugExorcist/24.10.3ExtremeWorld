@@ -45,6 +45,7 @@ public class LoadingManager : MonoBehaviour
         GuildService.Instance.Init();
         ChatService.Instance.Init();
         BattleManager.Instance.Init();
+        ArenaService.Instance.Init();
         SoundManager.Instance.PlayMusic(SoundDefine.Music_Login);
 
         // 模拟进度条加载
