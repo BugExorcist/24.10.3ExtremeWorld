@@ -15,6 +15,11 @@ namespace GameServer.AI
         public Monster monster;
         private AIBase ai;
 
+        internal void Init()
+        {
+
+        }
+
         public AIAgent(Monster owner)
         {
             this.monster = owner;
@@ -54,5 +59,7 @@ namespace GameServer.AI
                 this.ai.OnDamage(damage, source);
             }
         }
+
+        
     }
 }

@@ -365,10 +365,11 @@ namespace GameServer.Battle
             }
 
             List<Creature> units = this.Context.Battle.FindUnitsInMapRange(pos, (int)this.Define.AOERange);
-            foreach(var target in units)
-            {
-                this.HitTarget(target, hitInfo);
-            }
+            if (units != null)
+                foreach(var target in units)
+                {
+                    this.HitTarget(target, hitInfo);
+                }
         }
     }
 }

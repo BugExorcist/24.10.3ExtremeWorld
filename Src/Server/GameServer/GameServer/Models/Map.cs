@@ -77,10 +77,8 @@ namespace GameServer.Models
         /// <param name="character"></param>
         internal void CharacterEnter(NetConnection<NetSession> conn, Character character)
         {
-            Log.InfoFormat("CharacterEnter: Map:{0} characterId:{1}", this.Define.ID, character.Id);
-
-            character.Info.mapId = this.ID;
-            this.MapCharacters[character.Id] = new MapCharacter(conn, character);
+            Log.InfoFormat("Map.CharacterEnter: Map:{0} characterId:{1}", this.Define.ID, character.Id);
+            AddCharacter(conn, character);
 
             conn.Session.Response.mapCharacterEnter = new MapCharacterEnterResponse();
             conn.Session.Response.mapCharacterEnter.mapId = this.Define.ID;
@@ -99,8 +97,18 @@ namespace GameServer.Models
             conn.SendResponse();
         }
 
+        internal void AddCharacter(NetConnection<NetSession> conn, Character character)
+        {
+            Log.InfoFormat("Map.AddCharacter: Map:{0} characterId:{1}", this.Define.ID, character.Id);
+            character.Info.mapId = this.ID;
+            character.OnEnterMap(this);
+            if (!this.MapCharacters.ContainsKey(character.Id))
+                this.MapCharacters[character.Id] = new MapCharacter(conn, character);
+        }
+
         internal void CharacterLeave(Character cha)
         {
+            cha.OnLeaveMap(this);
             Log.InfoFormat("CharacterLeave: Map:{0} characterId:{1}", this.Define.ID, cha.Id);
 
             foreach(var kv in this.MapCharacters)

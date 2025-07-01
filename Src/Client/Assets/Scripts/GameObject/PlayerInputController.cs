@@ -22,6 +22,20 @@ public class PlayerInputController : MonoBehaviour
     private NavMeshAgent agent;
     private bool autoNav = false;
 
+    /// <summary>
+    /// 是否启用刚体
+    /// </summary>
+    public bool enableRigidbody
+    { 
+        get { return !this.rb.isKinematic; }
+        set
+        {
+            this.rb.isKinematic = !value;
+            this.rb.detectCollisions = value;
+
+        }
+    }
+
 
     void Start()
     {
@@ -115,7 +129,7 @@ public class PlayerInputController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (character == null)
+        if (character == null || !character.ready)
             return;
         if (autoNav)
         {
@@ -181,7 +195,10 @@ public class PlayerInputController : MonoBehaviour
     Vector3 lastPos;
 
     private void LateUpdate()
-    {   // 同步位置
+    {
+        if (character == null || !character.ready)
+            return;
+        // 同步位置
         Vector3 offset = this.rb.transform.position - lastPos;
         this.speed = (int)(offset.magnitude * 100f / Time.deltaTime);
         this.lastPos = this.rb.transform.position;
@@ -212,5 +229,19 @@ public class PlayerInputController : MonoBehaviour
             entityController.OnEntityEvent(enetityEvent, param);
             MapService.Instance.SendMapEntitySync(enetityEvent, this.character.EntityData, param);
         }
+    }
+
+    internal void OnLeaveLevel()
+    {
+        this.enableRigidbody = false;
+        this.rb.velocity = Vector3.zero;//速度赋值为0
+    }
+
+    internal void OnEnterLevel()
+    {
+        this.rb.velocity = Vector3.zero;
+        this.entityController.UpdateTransform();
+        this.lastPos = this.rb.transform.position;
+        this.enableRigidbody = true;
     }
 }

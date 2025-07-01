@@ -101,18 +101,18 @@ namespace Network
                 if (handler != null)
                 {
 
-                    handler(sender, msg);
+                    //handler(sender, msg);
 
-                    //try
-                    //{
-                    //    handler(sender, msg);
-                    //}
-                    //catch (System.Exception ex)
-                    //{
-                    //    Log.ErrorFormat("Message handler exception:{0}, {1}, {2}, {3}", ex.InnerException, ex.Message, ex.Source, ex.StackTrace);
-                    //    if (ThrowException)
-                    //        throw ex;
-                    //}
+                    try
+                    {
+                        handler(sender, msg);
+                    }
+                    catch (System.Exception ex)
+                    {
+                        Log.ErrorFormat("Message handler exception:{0}, {1}, {2}, {3}", ex.InnerException, ex.Message, ex.Source, ex.StackTrace);
+                        if (ThrowException)
+                            throw ex;
+                    }
                 }
                 else
                 {

@@ -29,6 +29,7 @@ namespace Entities
             set
             {
                 entityData = value;
+                entityId = entityData.Id;
                 this.SetEntityData(value);
             }
         }

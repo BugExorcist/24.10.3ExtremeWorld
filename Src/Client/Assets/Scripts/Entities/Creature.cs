@@ -79,6 +79,7 @@ namespace Entities
 
         public void UpdateInfo(NCharacterInfo info)
         {
+            EntityData = info.Entity;
             this.SetEntityData(info.Entity);
             this.Info = info;
             this.Attributes.Init(this.Define, this.Info.Level, this.GetEquip(), this.Info.attDynamic);

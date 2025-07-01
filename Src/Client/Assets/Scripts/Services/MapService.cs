@@ -11,23 +11,25 @@ namespace Services
 {
     internal class MapService : Singleton<MapService>, IDisposable
     {
+        public int CurrentMapId { get; set; }
+
+        private bool loadingDown = true;
         public MapService()
         {
             MessageDistributer.Instance.Subscribe<MapCharacterEnterResponse>(this.OnMapCharacterEnter);
             MessageDistributer.Instance.Subscribe<MapCharacterLeaveResponse>(this.OnMapCharacterLeave);
             MessageDistributer.Instance.Subscribe<MapEntitySyncResponse>(this.OnMapEntitySync);
-            
 
+            SceneManager.Instance.onSceneLoadDone += OnLoadDown;
         }
 
-        public int CurrentMapId { get; set; }
 
         public void Dispose()
         {
             MessageDistributer.Instance.Unsubscribe<MapCharacterEnterResponse>(this.OnMapCharacterEnter);
             MessageDistributer.Instance.Unsubscribe<MapCharacterLeaveResponse>(this.OnMapCharacterLeave);
             MessageDistributer.Instance.Unsubscribe<MapEntitySyncResponse>(this.OnMapEntitySync);
-
+            SceneManager.Instance.onSceneLoadDone -= OnLoadDown;
         }
 
         public void Init()
@@ -51,16 +53,18 @@ namespace Services
                     {
                         User.Instance.CurrentCharacter.UpdateInfo(cha);
                     }
+                    User.Instance.CurrentCharacter.ready = false;
                     User.Instance.CharacterInited();
                     CharacterManager.Instance.AddCharacter(User.Instance.CurrentCharacter);
+
+                    if (CurrentMapId != response.mapId)
+                    {
+                        this.EnterMap(response.mapId);
+                        this.CurrentMapId = response.mapId;
+                    }
                     continue;
                 }
                 CharacterManager.Instance.AddCharacter(new Character(cha));
-            }
-            if (CurrentMapId != response.mapId)
-            {
-                this.EnterMap(response.mapId);
-                this.CurrentMapId = response.mapId;
             }
         }
 
@@ -70,13 +74,21 @@ namespace Services
             if (response.entityId != User.Instance.CurrentCharacterInfo.EntityId)
                 CharacterManager.Instance.RemoveCharacter(response.entityId);
             else
+            {
+                if (User.Instance.CurrentCharacterObject != null)
+                {
+                    User.Instance.CurrentCharacterObject.OnLeaveLevel();
+                }
                 CharacterManager.Instance.Clear();
+
+            }
         }
 
         private void EnterMap(int mapId)
         {
             if (DataManager.Instance.Maps.ContainsKey(mapId))
             {
+                loadingDown = false;
                 MapDefine map = DataManager.Instance.Maps[mapId];
                 User.Instance.CurrentMapData = map; 
                 SceneManager.Instance.LoadScene(map.Resource);
@@ -88,7 +100,8 @@ namespace Services
 
         public void SendMapEntitySync(EntityEvent entityEvent, NEntity entity, int param)
         {
-            Debug.LogFormat("MapEntityUpdateRequest ID:{0} Position:{1} Direction:{2} Speed:{3}", entity.Id, entity.Position.String(), entity.Direction.String(), entity.Speed);
+            if (!loadingDown) return;
+            Debug.LogFormat("MapEntityUpdateRequest EntityID:{0} Position:{1} Direction:{2} Speed:{3}", entity.Id, entity.Position.String(), entity.Direction.String(), entity.Speed);
             NetMessage message = new NetMessage();
             message.Request = new NetMessageRequest();
             message.Request.mapEntitySync = new MapEntitySyncRequest();
@@ -103,6 +116,7 @@ namespace Services
         }
         private void OnMapEntitySync(object sender, MapEntitySyncResponse response)
         {
+            if (!loadingDown) return;
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.AppendFormat("MapEntityUpdateResponce: Entity:{0}", response.entitySyncs.Count);
             sb.AppendLine();
@@ -123,6 +137,17 @@ namespace Services
             message.Request.mapTeleport = new MapTeleportRequest();
             message.Request.mapTeleport.teleporterId = teleproterID;
             NetClient.Instance.SendMessage(message);
+        }
+
+        private void OnLoadDown()
+        {
+            if (User.Instance.CurrentCharacter != null)
+                User.Instance.CurrentCharacter.ready = true;
+            if (User.Instance.CurrentCharacterObject != null)
+            {
+                User.Instance.CurrentCharacterObject.OnEnterLevel();
+            }
+            this.loadingDown = true;
         }
     }
 }

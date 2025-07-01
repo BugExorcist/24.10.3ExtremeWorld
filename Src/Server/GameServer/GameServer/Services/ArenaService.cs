@@ -1,6 +1,7 @@
 ﻿using Common;
 using GameServer.Entities;
 using GameServer.Managers;
+using GameServer.Models;
 using Network;
 using SkillBridge.Message;
 using System;
@@ -16,7 +17,7 @@ namespace GameServer.Services
 
         public void Init()
         {
-
+            ArenaManager.Instance.Init();
         }
 
         public ArenaService()
@@ -78,31 +79,19 @@ namespace GameServer.Services
             }
 
             var arena = ArenaManager.Instance.NewArena(response.ArenaInfo, requester, sender);
-            SendArenaBegin(requester, sender);
+            SendArenaBegin(arena);
         }
 
-        //private void SendArenaBegin(Arena arena)
-        //{
-        //    var arenaBegin = new ArenaBeginResponse();
-        //    arenaBegin.Result = Result.Failed;
-        //    arenaBegin.ArenaInfo = arena.ArenaInfo;
-        //    arenaBegin.Errormsg = "请求者离线";
-        //    arena.Red.Session.Response.arenaBegin = arenaBegin;
-        //    arena.Red.SendResponse();
-        //    arena.Blue.Session.Response.arenaBegin = arenaBegin;
-        //    arena.Blue.SendResponse();
-        //}
-        
-        private void SendArenaBegin(NetConnection<NetSession> red, NetConnection<NetSession> blue)
+        private void SendArenaBegin(Arena arena)
         {
             var arenaBegin = new ArenaBeginResponse();
             arenaBegin.Result = Result.Failed;
             arenaBegin.ArenaInfo = arena.ArenaInfo;
             arenaBegin.Errormsg = "请求者离线";
-            red.Session.Response.arenaBegin = arenaBegin;
-            red.SendResponse();
-            blue.Session.Response.arenaBegin = arenaBegin;
-            blue.SendResponse();
+            arena.Red.Session.Response.arenaBegin = arenaBegin;
+            arena.Red.SendResponse();
+            arena.Blue.Session.Response.arenaBegin = arenaBegin;
+            arena.Blue.SendResponse();
         }
     }
 }

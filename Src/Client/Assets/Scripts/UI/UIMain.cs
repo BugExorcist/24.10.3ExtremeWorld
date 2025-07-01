@@ -10,7 +10,7 @@ using static UIWindow;
 
 public class UIMain : MonoSingleton<UIMain>
 {
-    public TMP_Text avaterName;
+    public UIAvatar Avatar;
     public TMP_Text avaterLevel;
     public TMP_Text id;
 
@@ -30,8 +30,7 @@ public class UIMain : MonoSingleton<UIMain>
 
     void UpdateUIAvatar()
     {
-        this.avaterName.text = User.Instance.CurrentCharacterInfo.Name;
-        this.avaterLevel.text = User.Instance.CurrentCharacterInfo.Level.ToString();
+        this.Avatar.SetAvatarInfo(User.Instance.CurrentCharacter);
         this.id.text = string.Format("ID:{0}", User.Instance.CurrentCharacterInfo.Id);
     }
 
