@@ -250,6 +250,7 @@ message NetMessageRequest{
 
 	ArenaChallengeRequest arenaChallengeReq = 60;
 	ArenaChallengeResponse arenaChallengeRes = 61;
+	ArenaReadyRequest arenaReady = 64;
 }
 
 message NetMessageResponse{
@@ -301,6 +302,9 @@ message NetMessageResponse{
 	ArenaChallengeResponse arenaChallengeRes = 61;
 	ArenaBeginResponse arenaBegin = 62;
 	ArenaEndResponse arenaEnd = 63;
+	ArenaReadyResponse arenaReady = 64;
+	ArenaRoundStratResponse arenaRoundStart = 65;
+	ArenaRoundEndResponse arenaRoundEnd = 66;
 
 	StatusNotify statusNotify = 100;
 }
@@ -934,4 +938,44 @@ message ArenaEndResponse
 	RESULT result = 1;
 	string errormsg = 2;
 	ArenaInfo arena_info = 3;
+}
+
+enum ARENA_STATUS
+{
+	NONE = 0;
+	WAIT = 1;
+	GAME = 2;
+	RESULE = 3;
+}
+
+enum ARENA_ROUND_STATUS
+{
+	NONE = 0;
+	READY = 1;
+	FIGHT = 2;
+	RESULT = 3;
+}
+
+message ArenaReadyRequest
+{
+	int32 arenaId = 1;
+	int32 entityId = 2;
+}
+
+message ArenaReadyResponse
+{
+	int32 round = 1;
+	ArenaInfo arena_info = 2;
+}
+
+message ArenaRoundStratResponse
+{
+	int32 round = 1;
+	ArenaInfo arena_info = 2;
+}
+
+message ArenaRoundEndResponse
+{
+	int32 round = 1;
+	ArenaInfo arena_info = 2;
 }

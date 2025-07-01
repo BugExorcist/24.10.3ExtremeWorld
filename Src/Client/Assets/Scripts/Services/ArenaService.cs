@@ -3,6 +3,7 @@ using Models;
 using Network;
 using SkillBridge.Message;
 using System;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 namespace Services
@@ -20,6 +21,9 @@ namespace Services
             MessageDistributer.Instance.Subscribe<ArenaChallengeResponse>(this.OnArenaChallengeResponse);
             MessageDistributer.Instance.Subscribe<ArenaBeginResponse>(this.OnArenaBegin);
             MessageDistributer.Instance.Subscribe<ArenaEndResponse>(this.OnArenaEnd);
+            MessageDistributer.Instance.Subscribe<ArenaReadyResponse>(this.OnArenaReady);
+            MessageDistributer.Instance.Subscribe<ArenaRoundStratResponse>(this.OnArenaRoundStart);
+            MessageDistributer.Instance.Subscribe<ArenaRoundEndResponse>(this.OnArenaRoundEnd);
         }
         public void Dispose()
         {
@@ -27,7 +31,11 @@ namespace Services
             MessageDistributer.Instance.Unsubscribe<ArenaChallengeResponse>(this.OnArenaChallengeResponse);
             MessageDistributer.Instance.Unsubscribe<ArenaBeginResponse>(this.OnArenaBegin);
             MessageDistributer.Instance.Unsubscribe<ArenaEndResponse>(this.OnArenaEnd);
+            MessageDistributer.Instance.Unsubscribe<ArenaReadyResponse>(this.OnArenaReady);
+            MessageDistributer.Instance.Unsubscribe<ArenaRoundStratResponse>(this.OnArenaRoundStart);
+            MessageDistributer.Instance.Unsubscribe<ArenaRoundEndResponse>(this.OnArenaRoundEnd);
         }
+
 
         /// <summary>
         /// 发送竞技邀请
@@ -111,6 +119,32 @@ namespace Services
         {
             Debug.Log("OnArenaEnd");
             ArenaManager.Instance.ExitArena(message.ArenaInfo);
+        }
+
+        internal void SendArenaReadyRequest(int arenaId)
+        {
+            Debug.Log("SendArenaReadyRequest");
+            NetMessage message = new NetMessage();
+            message.Request = new NetMessageRequest();
+            message.Request.arenaReady = new ArenaReadyRequest();
+            message.Request.arenaReady.entityId = User.Instance.CurrentCharacter.entityId;
+            message.Request.arenaReady.arenaId = arenaId;
+            NetClient.Instance.SendMessage(message);
+        }
+
+        private void OnArenaReady(object sender, ArenaReadyResponse response)
+        {
+            ArenaManager.Instance.OnReady(response.Round, response.ArenaInfo);
+        }
+
+        private void OnArenaRoundStart(object sender, ArenaRoundStratResponse response)
+        {
+            ArenaManager.Instance.OnRoundStart(response.Round, response.ArenaInfo);
+        }
+
+        private void OnArenaRoundEnd(object sender, ArenaRoundEndResponse response)
+        {
+            ArenaManager.Instance.OnRoundEnd(response.Round, response.ArenaInfo);
         }
     }
 }
