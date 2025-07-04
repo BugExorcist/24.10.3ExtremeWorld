@@ -1,5 +1,7 @@
-﻿using Common.Data;
+﻿using Common;
+using Common.Data;
 using GameServer.Managers;
+using GameServer.Services;
 using Network;
 using SkillBridge.Message;
 using System;
@@ -12,6 +14,10 @@ namespace GameServer.Models
 {
     internal class Arena
     {
+        const float READY_TIME = 11f;
+        const float ROUND_TIME = 60f;
+        const float RESULT_TIME = 5f;
+
         public Map Map;
         public ArenaInfo ArenaInfo;
         public NetConnection<NetSession> Red;
@@ -25,6 +31,21 @@ namespace GameServer.Models
         int RedPotin = 9;
         int BluePotin = 10;
 
+        // 红蓝两队是否准备好
+        private bool redReady;
+        private bool blueReady;
+        public bool Ready
+        {
+            get { return this.redReady && this.blueReady; }
+        }
+
+        private ArenaStatus ArenaStatus;
+        private ArenaRoundStatus RoundStatus;
+        public int Round;
+
+        float timer = 0f;
+
+
         public Arena(Map map, ArenaInfo arena, NetConnection<NetSession> red, NetConnection<NetSession> blue)
         {
             this.ArenaInfo = arena;
@@ -32,6 +53,8 @@ namespace GameServer.Models
             this.Blue = blue;
             this.Map = map;
             arena.ArenaId = map.InsanceID;
+            this.ArenaStatus = ArenaStatus.Wait;
+            this.RoundStatus = ArenaRoundStatus.None;
         }
 
         internal void PlayerEnder()
@@ -62,14 +85,98 @@ namespace GameServer.Models
             this.Blue.Session.Character.Position = bluePoint.Position;
             this.Blue.Session.Character.Direction = bluePoint.Direction;
 
-            //this.Map.AddCharacter(this.Red, this.Red.Session.Character);
-            //this.Map.AddCharacter(this.Blue, this.Blue.Session.Character);
+            this.Map.AddCharacter(this.Red, this.Red.Session.Character);
+            this.Map.AddCharacter(this.Blue, this.Blue.Session.Character);
 
             this.Map.CharacterEnter(this.Red, this.Red.Session.Character);
             this.Map.CharacterEnter(this.Blue, this.Blue.Session.Character);
 
             EntityManager.Instance.AddMapEntity(this.Map.ID, this.Map.InsanceID, this.Red.Session.Character);
             EntityManager.Instance.AddMapEntity(this.Map.ID, this.Map.InsanceID, this.Blue.Session.Character);
+        }
+
+        internal void Update()
+        {
+            if (this.ArenaStatus == ArenaStatus.Game)
+            {
+                UpdateRound();
+            }
+        }
+
+        private void UpdateRound()
+        {
+            if (this.RoundStatus == ArenaRoundStatus.Ready)
+            {
+                this.timer -= Time.deltaTime;
+                if (this.timer <= 0)
+                {
+                    this.RoundStatus = ArenaRoundStatus.Fight;
+                    this.timer = ROUND_TIME;
+                    Log.InfoFormat("Arena:[{0}] Round Start", this.ArenaInfo.ArenaId);
+                    ArenaService.Instance.SendArenaRoundStart(this);
+                }
+            }
+            else if (this.RoundStatus == ArenaRoundStatus.Fight)
+            {
+                this.timer -= Time.deltaTime;
+                if (this.timer <= 0)
+                {
+                    this.RoundStatus = ArenaRoundStatus.Result;
+                    this.timer = RESULT_TIME;
+                    Log.InfoFormat("Arena:[{0}] Round End", this.ArenaInfo.ArenaId);
+                    ArenaService.Instance.SendArenaRoundEnd(this);
+                }
+            }
+            else if (this.RoundStatus == ArenaRoundStatus.Result)
+            {
+                this.timer -= Time.deltaTime;
+                if (this.timer <= 0)
+                {
+                    if (this.Round >= 3)
+                    {
+                        ArenaResult();
+                    }
+                    else
+                    {
+                        NextRound();
+                    }
+                }
+            }
+        }
+
+        private void ArenaResult()
+        {
+            this.ArenaStatus = ArenaStatus.Resule;
+            // TODO: 结算
+
+        }
+
+        internal void EntityReady(int entityId)
+        {
+            if (this.Red.Session.Character.entityId == entityId)
+            {
+                this.redReady = true;
+            }
+            else if (this.Blue.Session.Character.entityId == entityId)
+            {
+                this.blueReady = true;
+            }
+
+            if (this.Ready)
+            {
+                this.ArenaStatus = ArenaStatus.Game;
+                this.Round = 0;
+                NextRound();
+            }
+        }
+
+        private void NextRound()
+        {
+            this.Round++;
+            this.timer = READY_TIME;
+            this.RoundStatus = ArenaRoundStatus.Ready;
+            Log.InfoFormat("Arena:{[0]} Round{[1]} Ready", this.ArenaInfo.ArenaId, this.Round);
+            ArenaService.Instance.SendArenaReday(this);
         }
     }
 }

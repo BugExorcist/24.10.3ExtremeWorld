@@ -17,7 +17,7 @@ namespace GameServer.Managers
 
         Queue<int> InstanceIndexes = new Queue<int>();
 
-        Dictionary<int, Arena> Arenas = new Dictionary<int, Arena>();
+        Arena[]  Arenas = new Arena[MaxInstance];
 
         public void Init()
         {
@@ -37,5 +37,22 @@ namespace GameServer.Managers
             return arena;
         }
 
+        internal void Update()
+        {
+            for(int i = 0; i < this.Arenas.Length; i++)
+            {
+                if (this.Arenas[i] != null)
+                {
+                    Arenas[i].Update();
+                }
+            }
+        }
+
+        internal Arena GetArena(int arenaId)
+        {
+            if (Arenas[arenaId] == null) return null;
+
+            return Arenas[arenaId];
+        }
     }
 }
