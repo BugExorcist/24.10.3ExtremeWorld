@@ -202,9 +202,12 @@ namespace Services
         private void OnGuildAdmin(object sender, GuildAdminResponse response)
         {
             Debug.LogFormat("OnGuildAdmin : {0}  {1}", response.Command, response.Result);
-            if (response.Command.Command == GuildAdminCommand.Kickout)
+            if (response.Command != null)
             {
-                GuildManager.Instance.Init(null);
+                if (response.Command.Command  == GuildAdminCommand.Kickout)
+                {
+                    GuildManager.Instance.Init(null);
+                }
             }
             MessageBox.Show(response.Errormsg, "提示", MessageBoxType.Information);
         }

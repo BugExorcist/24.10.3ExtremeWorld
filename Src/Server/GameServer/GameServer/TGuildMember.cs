@@ -19,7 +19,10 @@ namespace GameServer
         public string Name { get; set; }
         public int Class { get; set; }
         public int Level { get; set; }
-        public int Title { get; set; }
+        /// <summary>
+        /// 公会成员职位 0:普通成员 1:会长 2:副会长
+        /// </summary>
+        public int Title { get; set; } 
         public System.DateTime JoinTime { get; set; }
         public System.DateTime LastTime { get; set; }
         public int GuildId { get; set; }

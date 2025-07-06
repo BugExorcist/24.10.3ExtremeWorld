@@ -12,6 +12,17 @@ namespace Battle
         Creature Owner;
 
         public List<Skill> Skills { get; private set; }
+        public bool IsCasting { 
+            get
+            {
+                foreach( Skill skill in Skills)
+                {
+                    if (skill.IsCasting)
+                        return true;
+                }
+                return false;
+            }
+        }
 
         public SkillManager(Creature owner)
         {

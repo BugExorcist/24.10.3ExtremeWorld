@@ -170,7 +170,40 @@ namespace GameServer.Services
                 sender.SendResponse();
                 return;
             }
+
+            var membertarget = character.Guild.GetDBMemeber(request.Target);
+            var membersource = character.Guild.GetDBMemeber(character.Id);
+            if (request.Command == GuildAdminCommand.Depose || request.Command == GuildAdminCommand.Promote)
+            {
+                if (membersource.Title != (int)GuildTitle.President)
+                {
+                    sender.Session.Response.guildAdmin.Result = Result.Failed;
+                    sender.Session.Response.guildAdmin.Errormsg = "只有会长能进行此操作";
+                    sender.SendResponse();
+                    return;
+                }
+            }
+
+            if (request.Command == GuildAdminCommand.Kickout)
+            {
+                if (membersource.Title != (int)GuildTitle.President && membertarget.Title == (int)GuildTitle.President)
+                {
+                    sender.Session.Response.guildAdmin.Result = Result.Failed;
+                    sender.Session.Response.guildAdmin.Errormsg = "您无权踢出会长";
+                    sender.SendResponse();
+                    return;
+                }
+                if (membersource.Title != (int)GuildTitle.President && membertarget.Title == (int)GuildTitle.VicePresident)
+                {
+                    sender.Session.Response.guildAdmin.Result = Result.Failed;
+                    sender.Session.Response.guildAdmin.Errormsg = "您无权踢出副会长";
+                    sender.SendResponse();
+                    return;
+                }
+            }
+
             character.Guild.ExecuteAdmin(request.Command, request.Target, character.Id);
+
             var target = SessionManager.Instance.GetSession(request.Target);
             if (target != null)
             {

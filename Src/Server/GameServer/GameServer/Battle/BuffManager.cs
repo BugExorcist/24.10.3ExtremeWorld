@@ -26,6 +26,14 @@ namespace GameServer.Battle
 
         internal void AddBuff(BattleContext context, BuffDefine buffDefine)
         {
+            foreach (Buff item in this.Buffs)
+            {
+                if (item.Define.ID == buffDefine.ID)
+                {
+                    item.ReSetTime();
+                    return;
+                }
+            }
             Buff buff = new Buff(this.BuffID, this.Owner, buffDefine, context);
             this.Buffs.Add(buff);
         }

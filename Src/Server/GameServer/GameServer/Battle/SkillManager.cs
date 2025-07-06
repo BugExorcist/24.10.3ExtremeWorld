@@ -16,6 +16,18 @@ namespace GameServer.Battle
         public List<NSkillInfo> Infos { get; private set;}
 
         public Skill NormalSkill { get; private set;}
+        public bool isCasting {
+            get
+            {
+                foreach(Skill skill in Skills)
+                {
+                    if (skill.Status != SkillStatus.None)
+                        return true;
+                }
+                return false;
+            }
+        }
+
         public SkillManager(Creature owner)
         {
             this.Owner = owner;

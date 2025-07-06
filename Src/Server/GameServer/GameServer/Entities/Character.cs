@@ -180,6 +180,7 @@ namespace GameServer.Entities
             return new NCharacterInfo()
             {
                 Id = this.Id,
+                EntityId = this.entityId,
                 Name = this.Info.Name,
                 Class = this.Info.Class,
                 Level = this.Info.Level

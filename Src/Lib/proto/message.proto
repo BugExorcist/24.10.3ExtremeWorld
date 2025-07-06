@@ -910,6 +910,14 @@ message ArenaInfo
 	int32 arena_id = 1;
 	ArenaPlayer red = 2;
 	ArenaPlayer blue = 3;
+	repeated ArenaRoundInfo rounds = 4;
+	int32 winner = 5; // -1=none 0=red 1=blue
+}
+
+message ArenaRoundInfo
+{
+	int32 round = 1;
+	int32 winner = 2; // 0:red 1:blue
 }
 
 message ArenaChallengeRequest

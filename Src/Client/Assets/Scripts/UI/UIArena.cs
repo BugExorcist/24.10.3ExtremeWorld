@@ -41,12 +41,48 @@ public class UIArena : MonoSingleton<UIArena>
 
     internal void ShowRoundStart(int round, ArenaInfo arenaInfo)
     {
+        StartCoroutine(StartFight());
+    }
+
+    IEnumerator StartFight()
+    {
         countDownText.text = "FIGHT";
+        yield return new WaitForSeconds(1f);
+        roundText.enabled = false;
+        countDownText.enabled = false;
     }
 
     internal void ShowRoundResult(int round, ArenaInfo arenaInfo)
     {
         countDownText.enabled = true;
-        countDownText.text = "YOU WIN";
+        if (round < 3)
+        {
+            roundText.enabled = true;
+            foreach (var v in arenaInfo.Rounds)
+            {
+                if (round == v.Round)
+                {
+                    if (v.Winner == ArenaManager.Instance.ArenaTeam)
+                    {
+                        countDownText.text = "YOU WIN";
+                    }
+                    else if (v.Winner == -1)
+                    {
+                        countDownText.text = "DRAW";
+                    }
+                    else
+                    {
+                        countDownText.text = "YOU LOSE";
+                    }
+                }
+            }
+        }
+        else
+        {
+            if (arenaInfo.Winner == ArenaManager.Instance.ArenaTeam)
+                countDownText.text = "YOU ARE THE WINNER";
+            else
+                countDownText.text = "YOU ARE THE LOSER";
+        }
     }
 }

@@ -51,6 +51,11 @@ public class UISkillSlot : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (User.Instance.CurrentCharacter.SkillMgr.IsCasting)
+        {
+            MessageBox.Show("当前正在释放技能！");
+            return;
+        }
         if (this.skill.Define.CastTarget == Common.Battle.TargetType.Position)
         {
             TargetSelector.ShowSelector(User.Instance.CurrentCharacter.position ,this.skill.Define.CastRange, this.skill.Define.AOERange, OnPositionSelected);

@@ -57,6 +57,7 @@ namespace Services
                 Name = friendNama,
             };
             NetClient.Instance.SendMessage(message);
+            ArenaManager.Instance.ArenaTeam = 0;
         }
 
         /// <summary>
@@ -69,6 +70,7 @@ namespace Services
             confirm.OnYes = () =>
             {
                 this.SendAranaChallengeResponse(true, request);
+                ArenaManager.Instance.ArenaTeam = 1;
             };
             confirm.OnNo = () =>
             {

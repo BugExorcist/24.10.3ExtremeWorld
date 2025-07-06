@@ -24,8 +24,11 @@ public class UIFriends : UIWindow
 
     private void ReFreshUI()
     {
-        ClaerFriendList();
-        InitFriendItems();
+        if (this.listView != null)
+        {
+            ClaerFriendList();
+            InitFriendItems();
+        }
     }
 
     private void ClaerFriendList()
@@ -35,6 +38,7 @@ public class UIFriends : UIWindow
 
     private void InitFriendItems()
     {
+
         foreach (var info in FriendManager.Instance.allFriends)
         {
             if (info.Status == 1)
@@ -57,6 +61,7 @@ public class UIFriends : UIWindow
                 //this.listView.AddItem(item);
             }
         }
+        
     }
 
     private void OnFriendSelected(ListView.ListViewItem item)

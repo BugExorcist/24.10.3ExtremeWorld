@@ -7,8 +7,8 @@
       "Type": "Normal",
       "UnlockLevel": 1,
       "CastTarget": "Target",
-      "CastRange": 200,
-      "CastTime": 0.3,
+      "CastRange": 300,
+      "CastTime": 0.0,
       "CD": 3.0,
       "MPCost": 0,
       "AOERange": 0,
@@ -29,11 +29,14 @@
       "UnlockLevel": 5,
       "CastTarget": "Target",
       "CastRange": 1200,
-      "CastTime": 0.5,
+      "CastTime": 0.0,
       "CD": 8.0,
       "MPCost": 10,
       "AOERange": 0,
       "SkillAnim": "Skill A",
+      "HitTimes": [
+        0.7
+      ],
       "Buff": [
         1,
         2
@@ -51,19 +54,20 @@
       "UnlockLevel": 10,
       "CastTarget": "None",
       "CastRange": 0,
-      "CastTime": 1.5,
+      "CastTime": 0.0,
       "CD": 7.0,
       "MPCost": 20,
-      "AOERange": 300,
+      "AOERange": 400,
       "SkillAnim": "Skill B",
-      "Duration": 3.5,
-      "Interval": 0.8,
+      "Duration": 1.5,
+      "Interval": 0.35,
       "Buff": [
         3
       ],
       "AD": 80.0,
       "AP": 0.0,
-      "ADFator": 0.125
+      "ADFator": 0.125,
+      "HitEffect": "EFX_Warrior_Behurt_prefab"
     },
     "104": {
       "ID": 104,
@@ -74,17 +78,18 @@
       "UnlockLevel": 15,
       "CastTarget": "Target",
       "CastRange": 1000,
-      "CastTime": 2.5,
+      "CastTime": 0.0,
       "CD": 12.0,
       "MPCost": 15,
       "AOERange": 0,
       "SkillAnim": "Skill C",
       "HitTimes": [
-        0.9
+        0.8
       ],
       "AD": 100.0,
       "AP": 0.0,
-      "ADFator": 0.2
+      "ADFator": 0.2,
+      "HitEffect": "EFX_Warrior_Behurt_prefab"
     }
   },
   "2": {
@@ -96,7 +101,7 @@
       "UnlockLevel": 1,
       "CastTarget": "Target",
       "CastRange": 1000,
-      "CastTime": 0.3,
+      "CastTime": 0.1,
       "CD": 3.0,
       "MPCost": 0,
       "Bullet": true,
@@ -105,7 +110,7 @@
       "AOERange": 0,
       "SkillAnim": "Atk A",
       "HitTimes": [
-        0.4
+        0.6
       ],
       "APFator": 1.0,
       "HitEffect": "EFX_Wizard_AttkA_hit_prefab"
@@ -149,8 +154,8 @@
       "MPCost": 30,
       "AOERange": 500,
       "SkillAnim": "Skill B",
-      "Duration": 3.5,
-      "Interval": 0.8,
+      "Duration": 1.5,
+      "Interval": 0.35,
       "AD": 0.0,
       "AP": 100.0,
       "APFator": 0.16667,
@@ -170,6 +175,9 @@
       "MPCost": 25,
       "AOERange": 0,
       "SkillAnim": "Skill C",
+      "HitTimes": [
+        0.6
+      ],
       "Buff": [
         4
       ],

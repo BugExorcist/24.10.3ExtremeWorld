@@ -16,7 +16,7 @@ namespace GameServer.Battle
         public int BuffId;
         public bool Stoped { get; internal set; }
         private Creature Owner;
-        private BuffDefine Define;
+        public BuffDefine Define;
         private BattleContext Context;
         private float time = 0;
         private int hit = 0;
@@ -143,6 +143,11 @@ namespace GameServer.Battle
                 Damage = damage,
             };
             Context.Battle.AddBuffAction(buff);
+        }
+
+        internal void ReSetTime()
+        {
+            this.time = 0;
         }
     }
 }

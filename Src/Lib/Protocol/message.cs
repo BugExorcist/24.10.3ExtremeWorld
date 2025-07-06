@@ -1877,6 +1877,27 @@ namespace SkillBridge.Message
         [global::ProtoBuf.ProtoMember(3, Name = @"blue")]
         public ArenaPlayer Blue { get; set; }
 
+        [global::ProtoBuf.ProtoMember(4, Name = @"rounds")]
+        public global::System.Collections.Generic.List<ArenaRoundInfo> Rounds { get; } = new global::System.Collections.Generic.List<ArenaRoundInfo>();
+
+        [global::ProtoBuf.ProtoMember(5, Name = @"winner")]
+        public int Winner { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ArenaRoundInfo : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"round")]
+        public int Round { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"winner")]
+        public int Winner { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]

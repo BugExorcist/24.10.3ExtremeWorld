@@ -78,31 +78,34 @@ namespace GameServer.Entities
         internal void CastSkill(BattleContext context, int skillId)
         {
             Skill skill = this.SkillMgr.GetSkill(skillId);
-            context.Result = skill.Cast(context);
-            if (context.Result == SkillResult.Ok)
+            if (!this.SkillMgr.isCasting)
             {
-                this.BattleState = BattleState.InBattle;
-            }
-
-            if (context.CastSkill == null)//说明是Monster释放的技能
-            {
+                context.Result = skill.Cast(context);
                 if (context.Result == SkillResult.Ok)
                 {
-                    context.CastSkill = new NSkillCastInfo()
+                    this.BattleState = BattleState.InBattle;
+                }
+
+                if (context.CastSkill == null)//说明是Monster释放的技能
+                {
+                    if (context.Result == SkillResult.Ok)
                     {
-                        casterId = this.entityId,
-                        targetId = context.Target.entityId,
-                        skillId = skill.Define.ID,
-                        Position = new NVector3(),
-                        Result = context.Result,
-                    };
+                        context.CastSkill = new NSkillCastInfo()
+                        {
+                            casterId = this.entityId,
+                            targetId = context.Target.entityId,
+                            skillId = skill.Define.ID,
+                            Position = new NVector3(),
+                            Result = context.Result,
+                        };
+                        context.Battle.AddCastSkillInfo(context.CastSkill);
+                    }
+                }
+                else//说明是Player释放的技能
+                {
+                    context.CastSkill.Result = context.Result;
                     context.Battle.AddCastSkillInfo(context.CastSkill);
                 }
-            }
-            else//说明是Player释放的技能
-            { 
-                context.CastSkill.Result = context.Result;
-                context.Battle.AddCastSkillInfo(context.CastSkill);
             }
         }
 

@@ -187,5 +187,11 @@ namespace Common.Battle
                 this.Final.Data[i] = this.Basic.Data[i] + this.Buff.Data[i];
             }
         }
+
+        public void RecoverHPAndMP ()
+        {
+            this.HP = this.MaxHP;
+            this.MP = this.MaxMP;
+        }
     }
 }

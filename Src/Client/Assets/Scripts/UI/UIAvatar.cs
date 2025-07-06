@@ -1,4 +1,5 @@
 using Entities;
+using Models;
 using Newtonsoft.Json.Linq;
 using TMPro;
 using UnityEngine;
@@ -40,8 +41,8 @@ public class UIAvatar : MonoBehaviour
         this.Level.text = player.Info.Level.ToString();
         this.HPBar.maxValue = player.Attributes.MaxHP;
         this.MPBar.maxValue = player.Attributes.MaxMP;
-        this.HPBar.value = player.Attributes.HP;
-        this.MPBar.value = player.Attributes.MP;
+        this.HPBar.value = User.Instance.CurrentCharacter.Attributes.HP;
+        this.MPBar.value = User.Instance.CurrentCharacter.Attributes.MP;
         this.HP.text = string.Format("{0}/{1}", player.Attributes.HP, player.Attributes.MaxHP);
         this.MP.text = string.Format("{0}/{1}", player.Attributes.MP, player.Attributes.MaxMP);
     }

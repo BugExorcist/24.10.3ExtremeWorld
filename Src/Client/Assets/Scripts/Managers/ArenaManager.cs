@@ -1,11 +1,7 @@
-﻿using Models;
+﻿using Common.Data;
+using Models;
 using Services;
 using SkillBridge.Message;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Managers
 {
@@ -13,7 +9,7 @@ namespace Managers
     {
         private ArenaInfo ArenaInfo;
         public int Round = 0;
-
+        public int ArenaTeam = 0; // 0 = red team, 1 = blue team
         internal void Init()
         {
 
@@ -41,6 +37,7 @@ namespace Managers
             this.Round = round;
             if (UIArena.Instance != null)
                 UIArena.Instance.ShowCountDown();
+            User.Instance.CurrentCharacter.ready = false;
         }
 
         internal void OnRoundStart(int round, ArenaInfo arenaInfo)
@@ -48,14 +45,26 @@ namespace Managers
             User.Instance.CurrentCharacter.ready = true;
             if (UIArena.Instance != null)
                 UIArena.Instance.ShowRoundStart(round, arenaInfo);
+            User.Instance.CurrentCharacter.ready = true;
         }
-    
+
 
         internal void OnRoundEnd(int round, ArenaInfo arenaInfo)
         {
+            User.Instance.CurrentCharacter.ready = false;
+            //if (this.ArenaInfo.Red.EntityId == User.Instance.CurrentCharacter.entityId)
+            //{
+            //    TeleporterDefine redPoint = DataManager.Instance.Teleporters[9];
+            //    User.Instance.CurrentCharacterObject.transform.position = GameObjectTool.LogicToWorld(redPoint.Position);
+            //}
+            //else
+            //{
+            //    TeleporterDefine bluePoint = DataManager.Instance.Teleporters[10];
+            //    User.Instance.CurrentCharacterObject.transform.position = GameObjectTool.LogicToWorld(bluePoint.Position);
+            //}
             if (UIArena.Instance != null)
                 UIArena.Instance.ShowRoundResult(round, arenaInfo);
-            //TODO: 初始化角色的位置到出生点，给角色恢复状态
+            
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Battle
         private float castTime = 0;
         // 技能释放后经过的时间
         private float skillTime = 0;
-        private bool IsCasting = false;
+        public bool IsCasting = false;
         public int Hit = 0;
         private SkillStatus Status;
         //伤害缓存，如果伤害服务器发得早，则缓存

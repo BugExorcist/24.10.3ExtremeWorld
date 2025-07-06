@@ -214,7 +214,7 @@ namespace GameServer.Models
             };
         }
 
-        private TGuildMember GetDBMemeber(int characterId)
+        public TGuildMember GetDBMemeber(int characterId)
         {
             foreach( var member in this.Data.Members)
             {
@@ -241,8 +241,8 @@ namespace GameServer.Models
             switch (command)
             {
                 case GuildAdminCommand.Promote:
-                        target.Title = (int)GuildTitle.VicePresident;
-                        break;
+                    target.Title = (int)GuildTitle.VicePresident;
+                    break;
                 case GuildAdminCommand.Depose:
                     target.Title = (int)GuildTitle.None;
                     break;

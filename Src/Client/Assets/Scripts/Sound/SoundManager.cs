@@ -12,6 +12,7 @@ internal class SoundManager : MonoSingleton<SoundManager>
     public AudioSource musicAudioSource;
     public AudioSource soundAudioSource;
 
+    const  int MaxVolume = 10000;
     const string MusicPath = "Music/";
     const string SoundPath = "Sound/";
 
@@ -56,7 +57,7 @@ internal class SoundManager : MonoSingleton<SoundManager>
         {
             if (masterVolume != value)
             {
-                masterVolume = value;
+                masterVolume = Math.Min(value, MaxVolume);
                 if (soundOn) this.SetVolume("MasterVolume", masterVolume);
             }
         }
@@ -70,7 +71,7 @@ internal class SoundManager : MonoSingleton<SoundManager>
         {
             if (musicVolume != value)
             {
-                musicVolume = value;
+                musicVolume = Math.Min(value, MaxVolume);
                 if (musicOn) this.SetVolume("MusicVolume", musicVolume);
             }
         }
@@ -84,7 +85,7 @@ internal class SoundManager : MonoSingleton<SoundManager>
         {
             if (soundVolume != value)
             {
-                soundVolume = value;
+                soundVolume = Math.Min(value, MaxVolume);
                 if (soundOn) this.SetVolume("SoundVolume", soundVolume);
             }
         }
@@ -102,22 +103,23 @@ internal class SoundManager : MonoSingleton<SoundManager>
 
     public void MasterMute(bool mute)
     {
-        this.SetVolume("MasterVolume", mute ? 0 : masterVolume);
+        this.SetVolume("MasterVolume", mute ? 1 : masterVolume);
     }
 
     public void MusicMute(bool mute)
     {
-        this.SetVolume("MusicVolume", mute ? 0 : musicVolume);
+        this.SetVolume("MusicVolume", mute ? 1 : musicVolume);
     }
 
     public void SoundMute(bool mute)
     {
-        this.SetVolume("SoundVolume", mute ? 0 : soundVolume);
+        this.SetVolume("SoundVolume", mute ? 1 : soundVolume);
     }
 
-    private void SetVolume(string name, int value)
+    private void SetVolume(string name, float value)
     {
-        float volume = value * 0.5f - 50f;
+        float volume = Mathf.Log10(value / 10000) * 20;
+        Debug.Log("volume:" + volume);
         this.audioMixer.SetFloat(name, volume);
     }
 
