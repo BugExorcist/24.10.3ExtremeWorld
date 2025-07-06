@@ -48,6 +48,8 @@ namespace Network
             if (message.arenaReady != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.arenaReady); }
             if (message.arenaRoundStart != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.arenaRoundStart); }
             if (message.arenaRoundEnd != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.arenaRoundEnd); }
+            if (message.storyStart != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.storyStart); }
+            if (message.storyEnd != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.storyEnd); }
 
         }
 
@@ -87,6 +89,8 @@ namespace Network
             if (message.arenaChallengeReq != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.arenaChallengeReq); }
             if (message.arenaChallengeRes != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.arenaChallengeRes); }
             if (message.arenaReady != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.arenaReady); }
+            if (message.storyStart != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.storyStart); }
+            if (message.storyEnd != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.storyEnd); }
             
         }
     }

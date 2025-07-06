@@ -46,25 +46,25 @@ namespace Managers
             if (UIArena.Instance != null)
                 UIArena.Instance.ShowRoundStart(round, arenaInfo);
             User.Instance.CurrentCharacter.ready = true;
+            User.Instance.CurrentCharacter.Attributes.RecoverHPAndMP();
         }
 
 
         internal void OnRoundEnd(int round, ArenaInfo arenaInfo)
         {
             User.Instance.CurrentCharacter.ready = false;
-            //if (this.ArenaInfo.Red.EntityId == User.Instance.CurrentCharacter.entityId)
-            //{
-            //    TeleporterDefine redPoint = DataManager.Instance.Teleporters[9];
-            //    User.Instance.CurrentCharacterObject.transform.position = GameObjectTool.LogicToWorld(redPoint.Position);
-            //}
-            //else
-            //{
-            //    TeleporterDefine bluePoint = DataManager.Instance.Teleporters[10];
-            //    User.Instance.CurrentCharacterObject.transform.position = GameObjectTool.LogicToWorld(bluePoint.Position);
-            //}
+            if (this.ArenaInfo.Red.EntityId == User.Instance.CurrentCharacter.entityId)
+            {
+                TeleporterDefine redPoint = DataManager.Instance.Teleporters[9];
+                User.Instance.CurrentCharacterObject.transform.position = GameObjectTool.LogicToWorld(redPoint.Position);
+            }
+            else
+            {
+                TeleporterDefine bluePoint = DataManager.Instance.Teleporters[10];
+                User.Instance.CurrentCharacterObject.transform.position = GameObjectTool.LogicToWorld(bluePoint.Position);
+            }
             if (UIArena.Instance != null)
                 UIArena.Instance.ShowRoundResult(round, arenaInfo);
-            
         }
     }
 }

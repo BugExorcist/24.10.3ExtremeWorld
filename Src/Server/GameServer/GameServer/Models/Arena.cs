@@ -65,7 +65,7 @@ namespace GameServer.Models
             this.redScore = 0;
         }
 
-        internal void PlayerEnder()
+        internal void PlayerEnter()
         {
             this.SourseMapRed = PlayerLeaveMap(this.Red);
             this.SourseMapBlue = PlayerLeaveMap(this.Blue);
@@ -87,7 +87,6 @@ namespace GameServer.Models
         private void PlayerEnterArena()
         {
             InitPosition();
-
             //this.Map.AddCharacter(this.Red, this.Red.Session.Character);
             //this.Map.AddCharacter(this.Blue, this.Blue.Session.Character);
 
@@ -250,7 +249,6 @@ namespace GameServer.Models
             ArenaService.Instance.SendArenaReday(this);
 
             RecoverAttribute();
-            InitPosition();
         }
 
         private void RecoverAttribute()

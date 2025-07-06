@@ -33,7 +33,7 @@ namespace GameServer.Managers
             var map = MapManager.Instance.GetInstance(ArenaMapId, instance);
             Arena arena = new Arena(map, info, red, blue);
             this.Arenas[instance] = arena;
-            arena.PlayerEnder();
+            arena.PlayerEnter();
             return arena;
         }
 

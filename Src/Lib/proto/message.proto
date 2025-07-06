@@ -251,6 +251,9 @@ message NetMessageRequest{
 	ArenaChallengeRequest arenaChallengeReq = 60;
 	ArenaChallengeResponse arenaChallengeRes = 61;
 	ArenaReadyRequest arenaReady = 64;
+
+	StoryStartRequest storyStart = 70;
+	StoryEndRequest storyEnd = 71;
 }
 
 message NetMessageResponse{
@@ -305,6 +308,9 @@ message NetMessageResponse{
 	ArenaReadyResponse arenaReady = 64;
 	ArenaRoundStratResponse arenaRoundStart = 65;
 	ArenaRoundEndResponse arenaRoundEnd = 66;
+
+	StoryStartResponse storyStart = 70;
+	StoryEndResponse storyEnd = 71;
 
 	StatusNotify statusNotify = 100;
 }
@@ -986,4 +992,34 @@ message ArenaRoundEndResponse
 {
 	int32 round = 1;
 	ArenaInfo arena_info = 2;
+}
+
+
+// Story
+
+message StoryStartRequest
+{
+	int32 storyId = 1;
+}
+
+message StoryStartResponse
+{
+	RESULT result = 1;
+	string errormsg = 2;
+	int32 storyId = 3;
+	int32 instanceId = 4;
+}
+
+message StoryEndRequest
+{
+	int32 storyId = 1;
+	int32 instanceId = 2;
+}
+
+message StoryEndResponse
+{
+	RESULT result = 1;
+	string errormsg = 2;
+	int32 storyId = 3;
+	int32 instanceId = 4;
 }

@@ -123,6 +123,7 @@
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\Monster.cs" />
     <Compile Include="GameServer.cs" />
+    <Compile Include="Managers\StoryManager.cs" />
     <Compile Include="Managers\ArenaManager.cs" />
     <Compile Include="Managers\BattleManager.cs" />
     <Compile Include="Managers\CharacterManager.cs" />
@@ -142,6 +143,7 @@
     <Compile Include="Managers\SpawnManager.cs" />
     <Compile Include="Managers\StatusManager.cs" />
     <Compile Include="Managers\TeamManager.cs" />
+    <Compile Include="Models\Story.cs" />
     <Compile Include="Models\Arena.cs" />
     <Compile Include="Models\Chat.cs" />
     <Compile Include="Models\Guild.cs" />
@@ -163,6 +165,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Services\StoryService.cs" />
     <Compile Include="Services\ArenaService.cs" />
     <Compile Include="Services\BagService.cs" />
     <Compile Include="Services\BattleService.cs" />
