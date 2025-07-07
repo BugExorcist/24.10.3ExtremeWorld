@@ -19,6 +19,19 @@ public class UIMain : MonoSingleton<UIMain>
     public UICreatureInfo targetUI;
 
     public UISkillSlots skillSlots;
+
+    public bool Show
+    {
+        get { return gameObject.activeSelf; }
+        set
+        {
+            if (gameObject.activeSelf != value)
+            {
+                gameObject.SetActive(value);
+            }
+        }
+    }
+
     protected override void OnStart()
     {
         UpdateUIAvatar();
