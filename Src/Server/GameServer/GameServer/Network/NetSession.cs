@@ -13,8 +13,11 @@ namespace Network
 {
     class NetSession : INetSession
     {
+        // 用户数据
         public TUser User { get; set; }
+        // 角色数据
         public Character Character { get; set; }
+        // 实体数据
         public NEntity Entity { get; set; }
         //响应后处理
         public IPostResponser PostResponser { get; set; }

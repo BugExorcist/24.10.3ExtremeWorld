@@ -4,9 +4,7 @@ using SkillBridge.Message;
 using Common.Battle;
 using Managers;
 using UnityEngine;
-using System;
 using System.Collections.Generic;
-using Common;
 
 namespace Battle
 {

@@ -47,7 +47,7 @@ namespace Managers
                     entity.EntityData = data.Entity;
                 }
                 if (notifiers.ContainsKey(data.Id))
-                {
+                {   // 通知每个角色的EntityController
                     notifiers[entity.entityId].OnEntityChanged(entity);
                     notifiers[entity.entityId].OnEntityEvent(data.Event, data.Param);
                 }
