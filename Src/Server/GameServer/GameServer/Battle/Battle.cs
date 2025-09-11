@@ -125,7 +125,8 @@ namespace GameServer.Battle
 
         public void JoinBattle(Creature unit)
         {
-            this.AllUnits[unit.entityId] = unit;
+            if (!unit.IsDeath)
+                this.AllUnits[unit.entityId] = unit;
         }
 
         public void LeaveBatle(Creature unit)

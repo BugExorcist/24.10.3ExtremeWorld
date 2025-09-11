@@ -103,8 +103,13 @@ namespace Common.Battle
                 this.MP = this.MaxMP;
             }
             else {
-                this.HP = attDynamic.Hp;
-                this.MP = attDynamic.Mp;
+                /* TODO: 临时处理 上面的是正常逻辑
+                this.HP = Math.Min(attDynamic.Hp, this.MaxHP);
+                this.MP = Math.Min(attDynamic.Mp, this.MaxMP);
+                */
+                
+                this.HP = this.MaxHP;
+                this.MP = this.MaxMP;
             }
         }
 
@@ -192,6 +197,18 @@ namespace Common.Battle
         {
             this.HP = this.MaxHP;
             this.MP = this.MaxMP;
+        }
+
+        /// <summary>
+        /// 更新装备属性并重新计算所有相关属性
+        /// </summary>
+        /// <param name="equips">新的装备列表</param>
+        public void UpdateEquip(List<EquipDefine> equips)
+        {
+            this.LoadEquipAttribute(this.Equip, equips);
+            this.InitBasicAttributes();
+            this.InitSecondaryAttributes();
+            this.InitFinalAttributes();
         }
     }
 }

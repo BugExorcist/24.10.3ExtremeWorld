@@ -21,6 +21,7 @@ namespace Entities
         public Action<Buff> OnBuffRemove;
 
         bool battleState = false;
+        public bool IsDead = false;
         public bool BattleState
         {
             get { return battleState; }
@@ -75,6 +76,7 @@ namespace Entities
             this.SkillMgr = new SkillManager(this);
             this.buffMgr = new BuffManager(this);
             this.effectMgr = new EffectManager(this);
+            this.IsDead = false;
         }
 
         public void UpdateInfo(NCharacterInfo info)
@@ -156,8 +158,14 @@ namespace Entities
         {
             Debug.LogFormat("DoDamage:{0} DMG:{1} CRIT:{2}", this.Name, damage.Damage, damage.Crit);
             this.Attributes.HP -= damage.Damage;
-            if (playHurt) this.PlayAnim("Hurt");
-            if (this.Controller != null)
+            if (this.Attributes.HP <= 0)
+            {
+                this.Attributes.HP = 0;
+                this.IsDead = true;
+                this.PlayAnim("Death");
+            }
+            else if (playHurt) this.PlayAnim("Hurt");
+            if (this.Controller != null && !this.IsDead)
             {
                 UIWorldElementManager.Instance.ShowPopupText(PopupType.Damage, this.Controller.GetTransform().position + this.GetPopupOffset(), -damage.Damage, damage.Crit);
             }

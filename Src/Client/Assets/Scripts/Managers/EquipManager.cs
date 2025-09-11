@@ -92,6 +92,9 @@ namespace Managers
             }
             this.Equips[(int)equip.EquipInfo.Slot] = ItemManager.Instance.Items[equip.Id];
 
+            // 调用Attributes.UpdateEquip更新属性
+            User.Instance.CurrentCharacter.Attributes.UpdateEquip(this.GetEquipDefines());
+            
             OnEquipChange?.Invoke();
         }
 
@@ -100,6 +103,10 @@ namespace Managers
             if (this.Equips[(int)slot] != null)
             {
                 this.Equips[(int)slot] = null;
+                
+                // 调用Attributes.UpdateEquip更新属性
+                User.Instance.CurrentCharacter.Attributes.UpdateEquip(this.GetEquipDefines());
+                
                 OnEquipChange?.Invoke();
             }
         }
