@@ -15,13 +15,13 @@ public class UIBag : UIWindow
 
     public Transform[] pages;
 
-    public GameObject bagItems;//UIBagItemµÄÔ¤ÖÆÌå
+    public GameObject bagItems;//UIBagItemï¿½ï¿½Ô¤ï¿½ï¿½ï¿½ï¿½
 
-    List<Image> slots;//Ã¿¸ö¸ñ×ÓµÄImage
+    List<Image> slots;//Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½Image
 
     private void Start()
     {
-        //¼àÌýUI¸üÐÂ
+        //ï¿½ï¿½ï¿½ï¿½UIï¿½ï¿½ï¿½ï¿½
         User.Instance.OnUpdataGold += UpdataGold;
         BagManager.Instance.OnUpdateItems += UpdateItems;
 
@@ -53,7 +53,7 @@ public class UIBag : UIWindow
                 GameObject go = Instantiate(bagItems, slots[i].transform);
                 UIIconItem ui = go.GetComponent<UIIconItem>();
                 var def = ItemManager.Instance.Items[item.ItemId].Define;
-                ui.SetMainIcon(def.Icon, item.Count.ToString());
+                ui.SetMainIcon(def.Icon, item.Count.ToString(), def.QualityColor);
             }
         }
         for (int i = BagManager.Instance.Unlocked; i < slots.Count; i++)
@@ -91,14 +91,14 @@ public class UIBag : UIWindow
                 if (ui != null)
                 {
                     var def = ItemManager.Instance.Items[item.ItemId].Define;
-                    ui.SetMainIcon(def.Icon, item.Count.ToString());
+                    ui.SetMainIcon(def.Icon, item.Count.ToString(), def.QualityColor);
                 }
                 else
                 {
                     GameObject go = Instantiate(bagItems, slots[i].transform);
                     ui = go.GetComponent<UIIconItem>();
                     var def = ItemManager.Instance.Items[item.ItemId].Define;
-                    ui.SetMainIcon(def.Icon, item.Count.ToString());
+                    ui.SetMainIcon(def.Icon, item.Count.ToString(), def.QualityColor);
                 }
             }
         }

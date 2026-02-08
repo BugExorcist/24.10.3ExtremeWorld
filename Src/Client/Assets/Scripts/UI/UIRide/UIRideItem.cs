@@ -9,6 +9,7 @@ public class UIRideItem : ListView.ListViewItem
     public Image icon;
     public TMP_Text title;
     public TMP_Text level;
+    public Image quality;
 
     public Image background;
     private Sprite normalbg;
@@ -33,5 +34,6 @@ public class UIRideItem : ListView.ListViewItem
         if (this.title != null) this.title.text = this.item.Define.Name;
         if (this.level != null) this.level.text = "Lv." + this.item.Define.Level.ToString();
         if (this.icon  != null) this.icon.overrideSprite = Resloader.Load<Sprite>(this.item.Define.Icon);
+        if (this.quality != null) this.quality.color = UIQualityColor.GetColor(this.item.Define.QualityColor);
     }
 }

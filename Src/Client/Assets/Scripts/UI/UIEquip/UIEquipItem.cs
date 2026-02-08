@@ -17,6 +17,7 @@ public class UIEquipItem : MonoBehaviour, IPointerClickHandler
     public TMP_Text level;
     public TMP_Text limitClass;//限制职业
     public TMP_Text limitCategory;//限制种类
+    public Image quality;
 
     public Image background;
     public Sprite nurmalBg;
@@ -51,6 +52,7 @@ public class UIEquipItem : MonoBehaviour, IPointerClickHandler
         if (this.limitClass != null) this.limitClass.text = this.item.Define.LimitClass.ToString();
         if (this.limitCategory != null) this.limitCategory.text = item.Define.Category;
         if (this.icon != null) this.icon.overrideSprite = Resloader.Load<Sprite>(this.item.Define.Icon);
+        if (this.quality != null) this.quality.color = UIQualityColor.GetColor(this.item.Define.QualityColor);
     }
 
     private bool inUnEquip = false;//防止多次发送脱装备请求

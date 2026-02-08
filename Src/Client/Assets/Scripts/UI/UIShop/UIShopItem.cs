@@ -12,7 +12,8 @@ public class UIShopItem : MonoBehaviour, ISelectHandler
     public TMP_Text title;
     public TMP_Text price;
     public TMP_Text count;
-    public TMP_Text limitCategory;//ÀàÐÍ
+    public TMP_Text limitCategory;//ï¿½ï¿½ï¿½ï¿½
+    public Image quality;
 
     public Image background;
     public Sprite nurmalBg;
@@ -47,6 +48,7 @@ public class UIShopItem : MonoBehaviour, ISelectHandler
         this.price.text = ShopItem.Prise.ToString();
         this.limitCategory.text = this.item.Category;
         this.icon.overrideSprite = Resloader.Load<Sprite>(item.Icon);
+        if (this.quality != null) this.quality.color = UIQualityColor.GetColor(this.item.QualityColor);
     }
 
     public void OnSelect(BaseEventData eventData)

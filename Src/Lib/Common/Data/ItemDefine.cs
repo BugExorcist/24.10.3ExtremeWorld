@@ -1,7 +1,8 @@
-﻿using SkillBridge.Message;
+using SkillBridge.Message;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Common.Data
@@ -31,6 +32,7 @@ namespace Common.Data
         public float UseCD { get; set; }
         public int Prise { get; set; }
         public int SellPrise { get; set; }
+        public string QualityColor { get; set; }
 
         public int StackLimit { get; set; }//堆叠限制
         public string Icon { get; set; }
