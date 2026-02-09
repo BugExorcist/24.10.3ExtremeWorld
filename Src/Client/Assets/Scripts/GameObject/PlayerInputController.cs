@@ -23,7 +23,7 @@ public class PlayerInputController : MonoBehaviour
     private bool autoNav = false;
 
     /// <summary>
-    /// ÊÇ·ñÆôÓÃ¸ÕÌå
+    /// ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½
     /// </summary>
     public bool enableRigidbody
     { 
@@ -104,10 +104,10 @@ public class PlayerInputController : MonoBehaviour
 
     public void NavMove()
     {
-        // Â·¾¶¼ÆËãÊÇ·ñÍê±Ï
+        // Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½
         if (agent.pathPending) return;
         if (agent.pathStatus == NavMeshPathStatus.PathInvalid)
-        {   //  Â·¾¶¼ÆËãÊ§°Ü
+        {   //  Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½
             StopNav();
             return;
         }
@@ -125,6 +125,20 @@ public class PlayerInputController : MonoBehaviour
             StopNav();
             return;
         }
+    }
+
+    /// <summary>
+    /// æš‚æ—¶ç”¨æ¥æ£€æŸ¥åœ°å›¾ä¸Šçš„ç‰©å“æ˜¯å¦å¯ä»¥è¢«æ‹¾å–
+    /// </summary>
+    void Update()
+    {
+        if (character == null || !character.ready)
+            return;
+            
+        if (InputManager.Instance != null && InputManager.Instance.IsInputMode)
+            return;
+            
+        MapItemManager.Instance.CheckInput();
     }
 
     void FixedUpdate()
@@ -149,7 +163,7 @@ public class PlayerInputController : MonoBehaviour
                 this.character.MoveForward();
                 this.SendEntityEvent(EntityEvent.MoveFwd);
             }
-            //´¹Ö±·½ÏòËÙ¶È + ½ÇÉ«ÃæÏò·½ÏòµÄËÙ¶È
+            //ï¿½ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½ + ï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½
             this.rb.velocity = this.rb.velocity.y * Vector3.up + GameObjectTool.LogicToWorld(character.direction) * (this.character.speed + 9.81f) / 100f;
         }   
         else if (v < -0.1)
@@ -198,7 +212,7 @@ public class PlayerInputController : MonoBehaviour
     {
         if (character == null || !character.ready)
             return;
-        // Í¬²½Î»ÖÃ
+        // Í¬ï¿½ï¿½Î»ï¿½ï¿½
         Vector3 offset = this.rb.transform.position - lastPos;
         this.speed = (int)(offset.magnitude * 100f / Time.deltaTime);
         this.lastPos = this.rb.transform.position;
@@ -209,7 +223,7 @@ public class PlayerInputController : MonoBehaviour
             this.SendEntityEvent(EntityEvent.None);
         }
         this.transform.position = this.rb.transform.position;
-        // Í¬²½·½Ïò
+        // Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         Vector3 dir = GameObjectTool.LogicToWorld(character.direction);
         Quaternion rot = new Quaternion();
         rot.SetFromToRotation(dir, this.transform.forward);
@@ -234,7 +248,7 @@ public class PlayerInputController : MonoBehaviour
     internal void OnLeaveLevel()
     {
         this.enableRigidbody = false;
-        this.rb.velocity = Vector3.zero;//ËÙ¶È¸³ÖµÎª0
+        this.rb.velocity = Vector3.zero;//ï¿½Ù¶È¸ï¿½ÖµÎª0
     }
 
     internal void OnEnterLevel()

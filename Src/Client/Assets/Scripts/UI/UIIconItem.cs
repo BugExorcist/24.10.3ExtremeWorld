@@ -13,7 +13,7 @@ public class UIIconItem : MonoBehaviour
     public Image quality;
 
     public void SetMainIcon(string iconName, string text, string qualityColor = "White")
-    {
+    {   
         this.mainImage.overrideSprite = Resloader.Load<Sprite>(iconName);
         this.mainText.text = text;
         if (this.quality != null)

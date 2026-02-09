@@ -24,6 +24,7 @@ namespace GameServer.Entities
 
         public Attributes Attributes;
         public bool IsDeath = false;
+        public Creature Killer; // The creature that killed this one
 
         public BattleState BattleState;
         public CharacterState State;
@@ -116,6 +117,7 @@ namespace GameServer.Entities
             if (this.Attributes.HP <= 0)
             {
                 this.IsDeath = true;
+                this.Killer = sorce;
                 damage.WillDead = true;
             }
             this.OnDamage(damage, sorce);
@@ -148,6 +150,10 @@ namespace GameServer.Entities
         protected virtual void OnDamage(NDamageInfo damage, Creature sorce)
         {
 
+        }
+
+        public virtual void OnDeath()
+        {
         }
     }
 }

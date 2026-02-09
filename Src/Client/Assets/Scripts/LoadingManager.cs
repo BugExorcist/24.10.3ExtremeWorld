@@ -23,19 +23,21 @@ public class LoadingManager : MonoBehaviour
         Common.Log.Init("Unity");
         Common.Log.Info("LoadingManager start");
 
-        // Õ¹Ê¾½¡¿µÓÎÏ·ÖÒ¸æ
+        // Õ¹Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½Ò¸ï¿½
         UIGameTips.SetActive(true);
         UILoading.SetActive(false);
         UILogin.SetActive(false);
         yield return new WaitForSeconds(2f);
-        // Õ¹Ê¾¼ÓÔØÒ³Ãæ
+        // Õ¹Ê¾ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½
         UILoading.SetActive(true);
         UIGameTips.SetActive(false);
-        // ¼ÓÔØÊý¾Ý
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         yield return DataManager.Instance.LoadDate();
 
-        //³õÊ¼»¯·þÎñ
+        //ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         MapService.Instance.Init();
+        MapItemService.Instance.Init();
+        MapItemManager.Instance.Init();
         UserService.Instance.Init();
         //TestManager.Instance.Init();
         StatusService.Instance.Init();
@@ -49,7 +51,7 @@ public class LoadingManager : MonoBehaviour
         StoryService.Instance.Init();
         SoundManager.Instance.PlayMusic(SoundDefine.Music_Login);
 
-        // Ä£Äâ½ø¶ÈÌõ¼ÓÔØ
+        // Ä£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         for (float i = 50;i < 100;)
         {
             i++;
@@ -58,7 +60,7 @@ public class LoadingManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         yield return new WaitForSeconds(1f);
-        // Õ¹Ê¾µÇÂ¼Ò³Ãæ
+        // Õ¹Ê¾ï¿½ï¿½Â¼Ò³ï¿½ï¿½
         UILogin.SetActive(true);
         UILoading.SetActive(false);
         yield return null;

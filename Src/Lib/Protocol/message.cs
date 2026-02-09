@@ -260,6 +260,33 @@ namespace SkillBridge.Message
     }
 
     [global::ProtoBuf.ProtoContract()]
+    public partial class NMapItem : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public int mapItemId { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public int itemId { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"count")]
+        public int Count { get; set; }
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"position")]
+        public NVector3 Position { get; set; }
+
+        [global::ProtoBuf.ProtoMember(5)]
+        public int ownerType { get; set; }
+
+        [global::ProtoBuf.ProtoMember(6)]
+        public int ownerId { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public partial class NetMessage : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -373,6 +400,12 @@ namespace SkillBridge.Message
 
         [global::ProtoBuf.ProtoMember(32, Name = @"chat")]
         public ChatRequest Chat { get; set; }
+
+        [global::ProtoBuf.ProtoMember(33)]
+        public MapItemPickupRequest mapItemPickup { get; set; }
+
+        [global::ProtoBuf.ProtoMember(34)]
+        public MapItemSyncRequest mapItemSync { get; set; }
 
         [global::ProtoBuf.ProtoMember(50)]
         public SkillCastRequest skillCast { get; set; }
@@ -493,6 +526,18 @@ namespace SkillBridge.Message
 
         [global::ProtoBuf.ProtoMember(32, Name = @"chat")]
         public ChatResponse Chat { get; set; }
+
+        [global::ProtoBuf.ProtoMember(33)]
+        public MapItemSpawnNotify mapItemSpawn { get; set; }
+
+        [global::ProtoBuf.ProtoMember(34)]
+        public MapItemRemoveNotify mapItemRemove { get; set; }
+
+        [global::ProtoBuf.ProtoMember(35)]
+        public MapItemPickupResponse mapItemPickup { get; set; }
+
+        [global::ProtoBuf.ProtoMember(36)]
+        public MapItemSyncResponse mapItemSync { get; set; }
 
         [global::ProtoBuf.ProtoMember(50)]
         public SkillCastResponse skillCast { get; set; }
@@ -780,6 +825,88 @@ namespace SkillBridge.Message
 
         [global::ProtoBuf.ProtoMember(1)]
         public int teleporterId { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class MapItemSpawnNotify : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"items")]
+        public global::System.Collections.Generic.List<NMapItem> Items { get; } = new global::System.Collections.Generic.List<NMapItem>();
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class MapItemRemoveNotify : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public int mapItemId { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class MapItemPickupRequest : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public int mapItemId { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class MapItemPickupResponse : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"result")]
+        public Result Result { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"errormsg")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Errormsg { get; set; } = "";
+
+        [global::ProtoBuf.ProtoMember(3)]
+        public int mapItemId { get; set; }
+
+        [global::ProtoBuf.ProtoMember(4)]
+        public int itemId { get; set; }
+
+        [global::ProtoBuf.ProtoMember(5, Name = @"count")]
+        public int Count { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class MapItemSyncRequest : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class MapItemSyncResponse : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"items")]
+        public global::System.Collections.Generic.List<NMapItem> Items { get; } = new global::System.Collections.Generic.List<NMapItem>();
 
     }
 

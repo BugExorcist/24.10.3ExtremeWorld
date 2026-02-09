@@ -1,4 +1,4 @@
-﻿using System.Threading;
+using System.Threading;
 using Network;
 using GameServer.Services;
 using GameServer.Managers;
@@ -21,6 +21,7 @@ namespace GameServer
             UserService.Instance.Init();
             MapServices.Instance.Init();
             ItemService.Instance.Init();
+            MapItemService.Instance.Init();
             QuestService.Instance.Init();
             FriendService.Instance.Init();
             TeamService.Instance.Init();

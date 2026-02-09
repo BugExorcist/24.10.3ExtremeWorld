@@ -38,6 +38,10 @@ namespace Network
             if (message.guildAdmin != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.guildAdmin); }
             if (message.guildSetNotice != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.guildSetNotice); }
             if (message.Chat != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.Chat); }
+            if (message.mapItemSpawn != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.mapItemSpawn); }
+            if (message.mapItemRemove != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.mapItemRemove); }
+            if (message.mapItemPickup != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.mapItemPickup); }
+            if (message.mapItemSync != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.mapItemSync); }
             if (message.skillCast != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.skillCast); }
             if (message.skillHits != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.skillHits); }
             if (message.buffRes != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.buffRes); }
@@ -50,7 +54,7 @@ namespace Network
             if (message.arenaRoundEnd != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.arenaRoundEnd); }
             if (message.storyStart != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.storyStart); }
             if (message.storyEnd != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.storyEnd); }
-
+        
         }
 
         public void Dispatch(T sender, SkillBridge.Message.NetMessageRequest message)
@@ -85,6 +89,8 @@ namespace Network
             if (message.guildAdmin != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.guildAdmin); }
             if (message.guildSetNotice != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.guildSetNotice); }
             if (message.Chat != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.Chat); }
+            if (message.mapItemPickup != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.mapItemPickup); }
+            if (message.mapItemSync != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.mapItemSync); }
             if (message.skillCast != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.skillCast); }
             if (message.arenaChallengeReq != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.arenaChallengeReq); }
             if (message.arenaChallengeRes != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.arenaChallengeRes); }
@@ -92,6 +98,7 @@ namespace Network
             if (message.storyStart != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.storyStart); }
             if (message.storyEnd != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.storyEnd); }
             
+
         }
     }
 }

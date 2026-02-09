@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -53,6 +53,7 @@ namespace GameServer.Models
         /// </summary>
         SpawnManager SpawnManager = new SpawnManager();
         public MonsterManager MonsterManager = new MonsterManager();
+        public MapItemManager ItemManager = new MapItemManager();
 
         public Battle.Battle Battle;
 
@@ -62,6 +63,7 @@ namespace GameServer.Models
             this.InsanceID = instanceId;
             this.SpawnManager.Init(this);
             this.MonsterManager.Init(this);
+            this.ItemManager.Init(this);
             this.Battle = new Battle.Battle(this);
         }
         
@@ -94,7 +96,32 @@ namespace GameServer.Models
                 conn.Session.Response.mapCharacterEnter.Characters.Add(kv.Value.Info);
             }
 
+            var items = this.ItemManager.GetItems();
+            if (items.Count > 0)
+            {
+                conn.Session.Response.mapItemSpawn = new MapItemSpawnNotify();
+                conn.Session.Response.mapItemSpawn.Items.AddRange(items);
+            }
+
             conn.SendResponse();
+        }
+
+        internal void Broadcast(MapItemSpawnNotify notify)
+        {
+            foreach (var kv in this.MapCharacters)
+            {
+                kv.Value.connection.Session.Response.mapItemSpawn = notify;
+                kv.Value.connection.SendResponse();
+            }
+        }
+
+        internal void Broadcast(MapItemRemoveNotify notify)
+        {
+            foreach (var kv in this.MapCharacters)
+            {
+                kv.Value.connection.Session.Response.mapItemRemove = notify;
+                kv.Value.connection.SendResponse();
+            }
         }
 
         internal void AddCharacter(NetConnection<NetSession> conn, Character character)

@@ -81,5 +81,8 @@ namespace Common.Data
 
         public string AI { get; set; }
 
+        public int KillDrop { get; set; }
+        public int KillDropCount { get; set; }
+
     }
 }

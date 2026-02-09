@@ -1,4 +1,4 @@
-﻿using GameServer.AI;
+using GameServer.AI;
 using GameServer.Battle;
 using GameServer.Core;
 using GameServer.Models;
@@ -56,6 +56,19 @@ namespace GameServer.Entities
         {
             if (this.AI != null)
                 this.AI.OnDamage(damage, source);
+        }
+
+        public override void OnDeath()
+        {
+            base.OnDeath();
+            if (this.Map != null)
+            {   // 物品掉落逻辑
+                NVector3 pos = new NVector3();
+                pos.X = this.Position.x;
+                pos.Y = this.Position.y;
+                pos.Z = this.Position.z;
+                this.Map.ItemManager.AddItem(this.Define.KillDrop, this.Define.KillDropCount, pos);
+            }
         }
 
         internal void MoveTo(Vector3Int position)

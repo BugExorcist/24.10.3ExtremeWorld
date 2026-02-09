@@ -1,4 +1,4 @@
-﻿using Common;
+using Common;
 using GameServer.Core;
 using GameServer.Entities;
 using GameServer.Managers;
@@ -119,6 +119,7 @@ namespace GameServer.Battle
 
             foreach(var unit in DeadPool)
             {
+                unit.OnDeath();
                 this.LeaveBatle(unit);
             }
         }

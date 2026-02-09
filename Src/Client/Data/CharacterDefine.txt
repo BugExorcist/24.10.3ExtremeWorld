@@ -84,7 +84,7 @@
     "AI": "AIMonsterPassive",
     "InitLevel": 1,
     "Speed": 300,
-    "MaxHP": 500.0,
+    "MaxHP": 100.0,
     "MaxMP": 250.0,
     "GrowthSTR": 3.0,
     "GrowthINT": 2.0,
@@ -98,7 +98,9 @@
     "MDEF": 30.0,
     "SPD": 60.0,
     "CRI": 0.01,
-    "Height": 1.8
+    "Height": 1.8,
+    "KillDrop": 1,
+    "KillDropCount": 2
   },
   "1002": {
     "TID": 1002,
@@ -110,7 +112,7 @@
     "AI": "AIMonsterPassive",
     "InitLevel": 1,
     "Speed": 300,
-    "MaxHP": 3000.0,
+    "MaxHP": 200.0,
     "MaxMP": 500.0,
     "GrowthSTR": 3.0,
     "GrowthINT": 2.0,
@@ -124,7 +126,9 @@
     "MDEF": 60.0,
     "SPD": 60.0,
     "CRI": 0.03,
-    "Height": 2.5
+    "Height": 2.5,
+    "KillDrop": 1,
+    "KillDropCount": 2
   },
   "1003": {
     "TID": 1003,
@@ -136,7 +140,7 @@
     "AI": "AIMonsterPassive",
     "InitLevel": 1,
     "Speed": 300,
-    "MaxHP": 2000.0,
+    "MaxHP": 200.0,
     "MaxMP": 1000.0,
     "GrowthSTR": 3.0,
     "GrowthINT": 2.0,
@@ -150,7 +154,9 @@
     "MDEF": 150.0,
     "SPD": 60.0,
     "CRI": 0.01,
-    "Height": 2.0
+    "Height": 2.0,
+    "KillDrop": 2,
+    "KillDropCount": 2
   },
   "1004": {
     "TID": 1004,
@@ -162,7 +168,7 @@
     "AI": "AIMonsterPassive",
     "InitLevel": 1,
     "Speed": 300,
-    "MaxHP": 2000.0,
+    "MaxHP": 200.0,
     "MaxMP": 1000.0,
     "GrowthSTR": 3.0,
     "GrowthINT": 2.0,
@@ -176,7 +182,9 @@
     "MDEF": 150.0,
     "SPD": 60.0,
     "CRI": 0.01,
-    "Height": 1.5
+    "Height": 1.5,
+    "KillDrop": 2,
+    "KillDropCount": 2
   },
   "1005": {
     "TID": 1005,
@@ -188,7 +196,7 @@
     "AI": "AIBoss",
     "InitLevel": 1,
     "Speed": 300,
-    "MaxHP": 20000.0,
+    "MaxHP": 500.0,
     "MaxMP": 10000.0,
     "GrowthSTR": 3.0,
     "GrowthINT": 2.0,
@@ -202,6 +210,8 @@
     "MDEF": 250.0,
     "SPD": 60.0,
     "CRI": 0.05,
-    "Height": 2.0
+    "Height": 2.0,
+    "KillDrop": 2,
+    "KillDropCount": 2
   }
 }

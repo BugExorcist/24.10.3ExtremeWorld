@@ -192,6 +192,16 @@ message NEntitySync {
 	int32 param = 4;//坐骑的ID
 }
 
+// 地图掉落物
+message NMapItem {
+	int32 mapItemId = 1;
+	int32 itemId = 2;
+	int32 count = 3;
+	NVector3 position = 4;
+	int32 ownerType = 5; // 0=All, 1=Team, 2=Guild, 3=Person
+	int32 ownerId = 6;
+}
+
 
 
 ////////////////////////////////////////////////////////////////
@@ -245,6 +255,9 @@ message NetMessageRequest{
 	GuildSetNoticeRequest guildSetNotice = 31;
 
 	ChatRequest chat = 32;
+	// 掉落物
+	MapItemPickupRequest mapItemPickup = 33;
+	MapItemSyncRequest mapItemSync = 34;
 
 	SkillCastRequest skillCast = 50;
 
@@ -296,6 +309,11 @@ message NetMessageResponse{
 	GuildSetNoticeResponse guildSetNotice = 31;
 
 	ChatResponse chat = 32;
+	// 掉落物
+	MapItemSpawnNotify mapItemSpawn = 33;
+	MapItemRemoveNotify mapItemRemove = 34;
+	MapItemPickupResponse mapItemPickup = 35;
+	MapItemSyncResponse mapItemSync = 36;
 
 	SkillCastResponse skillCast = 50;
 	SkillHitResponse skillHits = 51;
@@ -410,6 +428,35 @@ message MapTeleportRequest
 {
 	int32 teleporterId = 1;
 }
+
+//////////// 地图凋落物刷新
+message MapItemSpawnNotify {
+	repeated NMapItem items = 1;
+}
+
+message MapItemRemoveNotify {
+	int32 mapItemId = 1;
+}
+
+message MapItemPickupRequest {
+	int32 mapItemId = 1;
+}
+
+message MapItemPickupResponse {
+	RESULT result = 1;
+	string errormsg = 2;
+	int32 mapItemId = 3;
+	int32 itemId = 4;
+	int32 count = 5;
+}
+
+message MapItemSyncRequest {
+}
+
+message MapItemSyncResponse {
+	repeated NMapItem items = 1;
+}
+////////////
 
 message ItemBuyRequest
 {
