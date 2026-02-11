@@ -21,7 +21,7 @@ namespace GameServer.Managers
         public Dictionary<int, NpcDefine> Npcs = null;
         public Dictionary<int, ItemDefine> Items = null;
         public Dictionary<int, ShopDefine> Shops = null;
-        public Dictionary<int, Dictionary<int, ShopItemDefine>> ShopItems = null;//ShopItemDefineÓĞÁ½ÁĞKey£¬ËùÒÔÒª¶àÒ»²ã×Öµä
+        public Dictionary<int, Dictionary<int, ShopItemDefine>> ShopItems = null;//ShopItemDefineæœ‰ä¸¤åˆ—Keyï¼Œæ‰€ä»¥è¦å¤šä¸€å±‚å­—å…¸
         public Dictionary<int, EquipDefine> Equips = null;
         public Dictionary<int, QuestDefine> Quests = null;
         public Dictionary<int, Dictionary<int, SkillDefine>> Skills = null;

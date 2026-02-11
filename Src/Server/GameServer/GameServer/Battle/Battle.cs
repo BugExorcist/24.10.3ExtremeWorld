@@ -114,13 +114,29 @@ namespace GameServer.Battle
             {
                 kv.Value.Update();
                 if (kv.Value.IsDeath)
-                    this.DeadPool.Add(kv.Value);
+                {
+                    if (kv.Value.DeathTime == 0)
+                    {
+                        kv.Value.DeathTime = Time.time;
+                        kv.Value.OnDeath();
+                    }
+                    if (Time.time > kv.Value.DeathTime + 1f)
+                    {
+                        this.DeadPool.Add(kv.Value);
+                    }
+                }
             }
 
             foreach(var unit in DeadPool)
             {
-                unit.OnDeath();
                 this.LeaveBatle(unit);
+                if (unit is Monster monster)
+                {
+                    if (monster.Spawner != null)
+                        monster.Spawner.OnMonsterDeath();
+                    if (monster.Map != null)
+                        monster.Map.MonsterManager.RemoveMonster(monster.Id);
+                }
             }
         }
 
@@ -140,6 +156,7 @@ namespace GameServer.Battle
             List<Creature> result = new List<Creature>();
             foreach (var unit in this.AllUnits)
             {
+                if (unit.Value.IsDeath) continue;
                 if (unit.Value.Distance(pos) < range)
                 {
                     result.Add(unit.Value);

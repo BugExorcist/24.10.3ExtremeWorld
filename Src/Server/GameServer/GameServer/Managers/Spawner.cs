@@ -1,4 +1,4 @@
-﻿using Common;
+using Common;
 using Common.Data;
 using GameServer.Models;
 using System;
@@ -58,11 +58,18 @@ namespace GameServer.Managers
             return true;
         }
 
+        public void OnMonsterDeath()
+        {
+            this.spawned = false;
+            this.unspaenTime = Time.time;
+        }
+
         private void Spawn()
         {
             this.spawned = true;
             Log.InfoFormat("Map[{0}]Spawn[{1}:Mon{2},Lv:{3}] At Point{4}", this.Define.MapID, this.Define.ID, this.Define.SpawnMonID, this.Define.SpawnLevel, this.Define.SpawnPoint);
-            this.Map.MonsterManager.Create(this.Define.SpawnMonID, this.Define.SpawnLevel, this.spawnPoint.Position, this.spawnPoint.Direction);
+            var monster = this.Map.MonsterManager.Create(this.Define.SpawnMonID, this.Define.SpawnLevel, this.spawnPoint.Position, this.spawnPoint.Direction);
+            monster.Spawner = this;
         }
     }
 }

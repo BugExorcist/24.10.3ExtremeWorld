@@ -1,6 +1,7 @@
 using GameServer.AI;
 using GameServer.Battle;
 using GameServer.Core;
+using GameServer.Managers;
 using GameServer.Models;
 using SkillBridge.Message;
 using System;
@@ -9,6 +10,7 @@ namespace GameServer.Entities
 {
     public class Monster : Creature
     {
+        internal Spawner Spawner;
         AIAgent AI;
         private Vector3Int moveTarget;
         Vector3 movePositon;

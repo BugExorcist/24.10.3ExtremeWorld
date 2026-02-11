@@ -24,6 +24,7 @@ namespace GameServer.Entities
 
         public Attributes Attributes;
         public bool IsDeath = false;
+        public float DeathTime = 0;
         public Creature Killer; // The creature that killed this one
 
         public BattleState BattleState;

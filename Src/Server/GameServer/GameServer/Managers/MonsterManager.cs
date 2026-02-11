@@ -1,4 +1,4 @@
-﻿using GameServer.Entities;
+using GameServer.Entities;
 using GameServer.Models;
 using SkillBridge.Message;
 using System;
@@ -30,6 +30,17 @@ namespace GameServer.Managers
             
             this.map.MonsterEnter(monster);
             return monster;
+        }
+
+        internal void RemoveMonster(int monsterId)
+        {
+            if (this.Monsters.ContainsKey(monsterId))
+            {
+                var monster = this.Monsters[monsterId];
+                this.Monsters.Remove(monsterId);
+                this.map.MonsterLeave(monster);
+                EntityManager.Instance.RemoveEntity(this.map.ID, this.map.InsanceID, monster);
+            }
         }
     }
 }

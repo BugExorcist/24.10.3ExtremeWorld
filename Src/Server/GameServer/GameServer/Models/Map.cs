@@ -157,7 +157,7 @@ namespace GameServer.Models
             conn.SendResponse();
         }
 
-        void SendCharacterLeaveMap(NetConnection<NetSession> conn, Character character)
+        void SendCharacterLeaveMap(NetConnection<NetSession> conn, Creature character)
         {
             Log.InfoFormat("SendCharacterLeaveMap To {0}:{1} : Map{2} Character:{3};{4}", conn.Session.Character.Id, conn.Session.Character.Info.Name, this.Define.ID, character.Id, character.Info.Name);
             conn.Session.Response.mapCharacterLeave = new MapCharacterLeaveResponse();
@@ -201,6 +201,16 @@ namespace GameServer.Models
             foreach (var kv in this.MapCharacters)
             {
                 this.AddCharacterEnterMap(kv.Value.connection, monster.Info);
+            }
+        }
+
+        internal void MonsterLeave(Monster monster)
+        {
+            Log.InfoFormat("MonsterLeave: Map:{0} characterId:{1}", this.Define.ID, monster.Id);
+            monster.OnLeaveMap(this);
+            foreach (var kv in this.MapCharacters)
+            {
+                this.SendCharacterLeaveMap(kv.Value.connection, monster);
             }
         }
 
