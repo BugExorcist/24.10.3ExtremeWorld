@@ -3,6 +3,7 @@ using UnityEngine;
 using SkillBridge.Message;
 using Services;
 using Models;
+using Common.Data;
 
 namespace Managers
 {
@@ -36,16 +37,25 @@ namespace Managers
 
         /// <summary>
         /// 生成掉落物实体
-        /// TODO：制作掉落物profab
         /// </summary>
         private void CreateItemObject(NMapItem item)
         {
             Debug.Log("创建掉落物");
-            GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            go.transform.position = GameObjectTool.LogicToWorld(item.Position);
-            go.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-            go.name = "MapItem_" + item.mapItemId;
-            // TODO: Load item model/icon
+            GameObject go = Resloader.Load<GameObject>("OtherModel/FallingObject/FallingObject");
+            go = GameObject.Instantiate(go);
+            Vector3 pos = GameObjectTool.LogicToWorld(item.Position) + Vector3.up * 0.5f;
+            go.transform.position = pos;
+            go.name = "MapItem_" + item.itemId;
+
+            FallingObjects fallingObject = go.GetComponent<FallingObjects>();
+            if (fallingObject != null)
+            {
+                ItemDefine itemDefine = DataManager.Instance.Items[item.itemId];
+                if (itemDefine != null)
+                {
+                    fallingObject.SetSprite(itemDefine);
+                }
+            }
             
             itemObjects[item.mapItemId] = go;
         }
