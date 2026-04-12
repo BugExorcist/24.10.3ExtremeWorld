@@ -258,6 +258,8 @@ message NetMessageRequest{
 	// 掉落物
 	MapItemPickupRequest mapItemPickup = 33;
 	MapItemSyncRequest mapItemSync = 34;
+	ItemUseRequest itemUse = 35;
+	ItemSplitRequest itemSplit = 36;
 
 	SkillCastRequest skillCast = 50;
 
@@ -314,6 +316,8 @@ message NetMessageResponse{
 	MapItemRemoveNotify mapItemRemove = 34;
 	MapItemPickupResponse mapItemPickup = 35;
 	MapItemSyncResponse mapItemSync = 36;
+	ItemUseResponse itemUse = 37;
+	ItemSplitResponse itemSplit = 38;
 
 	SkillCastResponse skillCast = 50;
 	SkillHitResponse skillHits = 51;
@@ -490,6 +494,34 @@ message ItemEquipRequest
 }
 
 message ItemEquipResponse
+{
+	RESULT result = 1;
+	string errormsg = 2;
+}
+
+// 物品使用
+message ItemUseRequest
+{
+	int32 slotIndex = 1;	// 背包槽位索引
+	int32 count = 2;		// 使用数量（默认1）
+}
+
+message ItemUseResponse
+{
+	RESULT result = 1;
+	string errormsg = 2;
+	int32 itemId = 3;		// 使用的物品ID
+}
+
+// 物品拆分
+message ItemSplitRequest
+{
+	int32 fromSlot = 1;		// 源槽位索引
+	int32 toSlot = 2;		// 目标槽位索引
+	int32 count = 3;		// 拆分数量
+}
+
+message ItemSplitResponse
 {
 	RESULT result = 1;
 	string errormsg = 2;

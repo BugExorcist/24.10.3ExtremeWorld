@@ -137,7 +137,40 @@ namespace Managers
         }
         public void RemoveItem(int itemId, int count)
         {
-            throw new NotImplementedException();
+            int remaining = count;
+
+            for (int i = 0; i < Items.Length && remaining > 0; i++)
+            {
+                if (Items[i].ItemId == itemId && Items[i].Count > 0)
+                {
+                    int remove = Math.Min(Items[i].Count, remaining);
+                    Items[i].Count -= (ushort)remove;
+                    remaining -= remove;
+
+                    if (Items[i].Count == 0)
+                    {
+                        Items[i].ItemId = 0;
+                    }
+                }
+            }
+
+            if (remaining == 0)
+            {
+                OnUpdateItems?.Invoke();
+            }
+        }
+
+        /// <summary>
+        /// 获取第一个空闲槽位索引，返回-1表示背包满
+        /// </summary>
+        public int GetFirstEmptySlot()
+        {
+            for (int i = 0; i < Items.Length; i++)
+            {
+                if (Items[i].ItemId == 0)
+                    return i;
+            }
+            return -1;
         }
     }
 }

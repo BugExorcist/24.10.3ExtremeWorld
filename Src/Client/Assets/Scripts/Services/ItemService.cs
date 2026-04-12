@@ -13,6 +13,8 @@ namespace Services
         {
             MessageDistributer.Instance.Subscribe<ItemBuyResponse>(this.OnItemBuy);
             MessageDistributer.Instance.Subscribe<ItemEquipResponse>(this.OnItemEquip);
+            MessageDistributer.Instance.Subscribe<ItemUseResponse>(this.OnItemUse);
+            MessageDistributer.Instance.Subscribe<ItemSplitResponse>(this.OnItemSplit);
         }
 
         public int CurrentMapId { get; set; }
@@ -21,6 +23,8 @@ namespace Services
         {
             MessageDistributer.Instance.Unsubscribe<ItemBuyResponse>(this.OnItemBuy);
             MessageDistributer.Instance.Unsubscribe<ItemEquipResponse>(this.OnItemEquip);
+            MessageDistributer.Instance.Unsubscribe<ItemUseResponse>(this.OnItemUse);
+            MessageDistributer.Instance.Unsubscribe<ItemSplitResponse>(this.OnItemSplit);
         }
 
         public void SendBuyItem(int shopId, int shopItemId)
@@ -75,6 +79,57 @@ namespace Services
                         EquipManager.Instance.OnUnEquipItem(pendingEquip.EquipInfo.Slot);
                     pendingEquip = null;
                 }
+            }
+        }
+
+        /// <summary>
+        /// 发送使用物品请求
+        /// </summary>
+        public void SendUseItem(int slotIndex, int count = 1)
+        {
+            Debug.LogFormat("SendUseItem: SlotIndex:{0} Count:{1}", slotIndex, count);
+
+            NetMessage message = new NetMessage();
+            message.Request = new NetMessageRequest();
+            message.Request.itemUse = new ItemUseRequest();
+            message.Request.itemUse.SlotIndex = slotIndex;
+            message.Request.itemUse.Count = count;
+            NetClient.Instance.SendMessage(message);
+        }
+
+        private void OnItemUse(object sender, ItemUseResponse message)
+        {
+            if (message.Result == Result.Success)
+            {
+                Debug.LogFormat("ItemUse Success: ItemId:{0}", message.ItemId);
+            }
+            else
+            {
+                MessageBox.Show("使用失败：" + message.Errormsg, "提示");
+            }
+        }
+
+        /// <summary>
+        /// 发送拆分物品请求
+        /// </summary>
+        public void SendSplitItem(int fromSlot, int toSlot, int count)
+        {
+            Debug.LogFormat("SendSplitItem: FromSlot:{0} ToSlot:{1} Count:{2}", fromSlot, toSlot, count);
+
+            NetMessage message = new NetMessage();
+            message.Request = new NetMessageRequest();
+            message.Request.itemSplit = new ItemSplitRequest();
+            message.Request.itemSplit.FromSlot = fromSlot;
+            message.Request.itemSplit.ToSlot = toSlot;
+            message.Request.itemSplit.Count = count;
+            NetClient.Instance.SendMessage(message);
+        }
+
+        private void OnItemSplit(object sender, ItemSplitResponse message)
+        {
+            if (message.Result != Result.Success)
+            {
+                MessageBox.Show("拆分失败：" + message.Errormsg, "提示");
             }
         }
     }
