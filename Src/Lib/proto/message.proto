@@ -260,6 +260,8 @@ message NetMessageRequest{
 	MapItemSyncRequest mapItemSync = 34;
 	ItemUseRequest itemUse = 35;
 	ItemSplitRequest itemSplit = 36;
+	ItemDropRequest itemDrop = 37;
+	BagSaveRequest bagSave = 38;
 
 	SkillCastRequest skillCast = 50;
 
@@ -318,6 +320,8 @@ message NetMessageResponse{
 	MapItemSyncResponse mapItemSync = 36;
 	ItemUseResponse itemUse = 37;
 	ItemSplitResponse itemSplit = 38;
+	ItemDropResponse itemDrop = 39;
+	BagSaveResponse bagSave = 40;
 
 	SkillCastResponse skillCast = 50;
 	SkillHitResponse skillHits = 51;
@@ -525,6 +529,21 @@ message ItemSplitResponse
 {
 	RESULT result = 1;
 	string errormsg = 2;
+}
+
+// 物品丢弃
+message ItemDropRequest
+{
+	int32 slotIndex = 1;
+	int32 count = 2;
+}
+
+message ItemDropResponse
+{
+	RESULT result = 1;
+	string errormsg = 2;
+	int32 itemId = 3;
+	int32 count = 4;
 }
 
 // 任务系统

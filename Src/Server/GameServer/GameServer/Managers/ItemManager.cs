@@ -1,5 +1,6 @@
 ﻿using Common;
 using Common.Data;
+using GameServer.Battle;
 using GameServer.Entities;
 using GameServer.Models;
 using GameServer.Services;
@@ -44,7 +45,8 @@ namespace GameServer.Managers
                     return false;
 
                 // 执行物品效果
-                ExecuteItemEffect(define, count);
+                if (!ExecuteItemEffect(define, count))
+                    return false;
 
                 item.Remove(count);
                 this.Owner.StatusManager.AddItemChange(itemId, count, StatusAction.Delete);
@@ -56,41 +58,51 @@ namespace GameServer.Managers
         /// <summary>
         /// 执行物品效果
         /// </summary>
-        private void ExecuteItemEffect(ItemDefine define, int count)
+        private bool ExecuteItemEffect(ItemDefine define, int count)
         {
             int totalValue = define.Param * count;
 
             switch (define.Function)
             {
                 case ItemFunction.RecoverHP:
-                    // TODO:血量修改
-                    Log.InfoFormat("[{0}]RecoverHP:{1}  目前还未实现！", this.Owner.Data.ID, define.Param);
-                    
-                    break;
+                    this.Owner.Attributes.HP += totalValue;
+                    return true;
                 case ItemFunction.RecoverMP:
-                    // TODO: 法力修改
-                    Log.InfoFormat("[{0}]RecoverMP:{1}  目前还未实现！", this.Owner.Data.ID, define.Param);
-                    
-                    break;
+                    this.Owner.Attributes.MP += totalValue;
+                    return true;
                 case ItemFunction.AddBuff:
-                    // TODO: BuffManager 接入
-                    Log.InfoFormat("[{0}]AddBuff:{1}  目前还未实现！", this.Owner.Data.ID, define.Param);
-                    break;
+                    if (!DataManager.Instance.Buffs.TryGetValue(define.Param, out var buffDefine))
+                    {
+                        Log.WarningFormat("[{0}]AddBuff failed: BuffDefine[{1}] not found", this.Owner.Data.ID, define.Param);
+                        return false;
+                    }
+                    if (this.Owner.Map == null || this.Owner.Map.Battle == null)
+                    {
+                        Log.WarningFormat("[{0}]AddBuff failed: map or battle not ready", this.Owner.Data.ID);
+                        return false;
+                    }
+                    var context = new BattleContext(this.Owner.Map.Battle)
+                    {
+                        Caster = this.Owner,
+                        Target = this.Owner
+                    };
+                    this.Owner.AddBuff(context, buffDefine);
+                    return true;
                 case ItemFunction.AddExp:
                     this.Owner.AddExp(totalValue);
-                    break;
+                    return true;
                 case ItemFunction.AddMoney:
                     this.Owner.Gold += totalValue;
-                    break;
+                    return true;
                 case ItemFunction.AddItem:
-                    // TODO: 随机生成物品
-                    Log.InfoFormat("[{0}]AddItem:{1}  目前还未实现！", this.Owner.Data.ID, define.Param);
-                    break;
+                    Log.WarningFormat("[{0}]AddItem:{1} not implemented", this.Owner.Data.ID, define.Param);
+                    return false;
                 case ItemFunction.AddSkillPoint:
-                    // TODO: 技能点系统
-                    Log.InfoFormat("[{0}]AddSkillPoint:{1}  目前还未实现！", this.Owner.Data.ID, define.Param);
-                    break;
+                    Log.WarningFormat("[{0}]AddSkillPoint:{1} not implemented", this.Owner.Data.ID, define.Param);
+                    return false;
             }
+
+            return false;
         }
 
         public bool HasItem(int itemId)

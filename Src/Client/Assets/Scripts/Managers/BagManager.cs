@@ -1,4 +1,5 @@
 ﻿using Models;
+using Network;
 using SkillBridge.Message;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,8 @@ namespace Managers
                 Info.Items = new byte[sizeof(BagItem) * this.Unlocked];
                 Reset();
             }
+
+            SaveToServer();
         }
 
         public void Reset()//整理背包
@@ -59,6 +62,9 @@ namespace Managers
                 }
                 i++;
             }
+
+            OnUpdateItems?.Invoke();
+            SaveToServer();
         }
 
         unsafe void Analyze(byte[] data)//字节→数组
@@ -134,6 +140,7 @@ namespace Managers
             }
             //通知UI更新
             OnUpdateItems?.Invoke();
+            SaveToServer();
         }
         public void RemoveItem(int itemId, int count)
         {
@@ -157,7 +164,22 @@ namespace Managers
             if (remaining == 0)
             {
                 OnUpdateItems?.Invoke();
+                SaveToServer();
             }
+        }
+
+        private void SaveToServer()
+        {
+            if (this.Info == null)
+                return;
+            if (NetClient.Instance == null || !NetClient.Instance.Connected)
+                return;
+
+            NetMessage message = new NetMessage();
+            message.Request = new NetMessageRequest();
+            message.Request.bagSave = new BagSaveRequest();
+            message.Request.bagSave.BagInfo = this.GetBagInfo();
+            NetClient.Instance.SendMessage(message);
         }
 
         /// <summary>

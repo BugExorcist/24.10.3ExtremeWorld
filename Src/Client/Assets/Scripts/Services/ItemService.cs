@@ -15,6 +15,7 @@ namespace Services
             MessageDistributer.Instance.Subscribe<ItemEquipResponse>(this.OnItemEquip);
             MessageDistributer.Instance.Subscribe<ItemUseResponse>(this.OnItemUse);
             MessageDistributer.Instance.Subscribe<ItemSplitResponse>(this.OnItemSplit);
+            MessageDistributer.Instance.Subscribe<ItemDropResponse>(this.OnItemDrop);
         }
 
         public int CurrentMapId { get; set; }
@@ -25,6 +26,7 @@ namespace Services
             MessageDistributer.Instance.Unsubscribe<ItemEquipResponse>(this.OnItemEquip);
             MessageDistributer.Instance.Unsubscribe<ItemUseResponse>(this.OnItemUse);
             MessageDistributer.Instance.Unsubscribe<ItemSplitResponse>(this.OnItemSplit);
+            MessageDistributer.Instance.Unsubscribe<ItemDropResponse>(this.OnItemDrop);
         }
 
         public void SendBuyItem(int shopId, int shopItemId)
@@ -92,7 +94,7 @@ namespace Services
             NetMessage message = new NetMessage();
             message.Request = new NetMessageRequest();
             message.Request.itemUse = new ItemUseRequest();
-            message.Request.itemUse.SlotIndex = slotIndex;
+            message.Request.itemUse.slotIndex = slotIndex;
             message.Request.itemUse.Count = count;
             NetClient.Instance.SendMessage(message);
         }
@@ -101,7 +103,7 @@ namespace Services
         {
             if (message.Result == Result.Success)
             {
-                Debug.LogFormat("ItemUse Success: ItemId:{0}", message.ItemId);
+                Debug.LogFormat("ItemUse Success: ItemId:{0}", message.itemId);
             }
             else
             {
@@ -119,8 +121,8 @@ namespace Services
             NetMessage message = new NetMessage();
             message.Request = new NetMessageRequest();
             message.Request.itemSplit = new ItemSplitRequest();
-            message.Request.itemSplit.FromSlot = fromSlot;
-            message.Request.itemSplit.ToSlot = toSlot;
+            message.Request.itemSplit.fromSlot = fromSlot;
+            message.Request.itemSplit.toSlot = toSlot;
             message.Request.itemSplit.Count = count;
             NetClient.Instance.SendMessage(message);
         }
@@ -130,6 +132,29 @@ namespace Services
             if (message.Result != Result.Success)
             {
                 MessageBox.Show("拆分失败：" + message.Errormsg, "提示");
+            }
+        }
+
+        /// <summary>
+        /// 发送丢弃物品请求
+        /// </summary>
+        public void SendDropItem(int slotIndex, int count)
+        {
+            Debug.LogFormat("SendDropItem: SlotIndex:{0} Count:{1}", slotIndex, count);
+
+            NetMessage message = new NetMessage();
+            message.Request = new NetMessageRequest();
+            message.Request.itemDrop = new ItemDropRequest();
+            message.Request.itemDrop.slotIndex = slotIndex;
+            message.Request.itemDrop.Count = count;
+            NetClient.Instance.SendMessage(message);
+        }
+
+        private void OnItemDrop(object sender, ItemDropResponse message)
+        {
+            if (message.Result != Result.Success)
+            {
+                MessageBox.Show("丢弃失败：" + message.Errormsg, "提示");
             }
         }
     }

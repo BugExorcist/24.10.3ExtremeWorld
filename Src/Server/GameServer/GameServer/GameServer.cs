@@ -21,6 +21,7 @@ namespace GameServer
             UserService.Instance.Init();
             MapServices.Instance.Init();
             ItemService.Instance.Init();
+            BagService.Instance.Init();
             MapItemService.Instance.Init();
             QuestService.Instance.Init();
             FriendService.Instance.Init();

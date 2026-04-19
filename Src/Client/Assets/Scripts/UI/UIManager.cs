@@ -8,9 +8,9 @@ public class UIManager : Singleton<UIManager>
     //Class
     class UIElement
     {
-        public string Resources;//×ÊÔ´Â·¾¶
-        public bool Cache;//true:UI¹Ø±ÕÊ±²»»á±»Ïú»Ù£¬Ö»»áÒş²Ø  false£º¹Ø±ÕÊ±ºò»á±»Ïú»Ù
-        public GameObject Instance;//Ô¤ÖÆÌå
+        public string Resources;//èµ„æºè·¯å¾„
+        public bool Cache;//true:UIå…³é—­æ—¶ä¸ä¼šè¢«é”€æ¯ï¼Œåªä¼šéšè—  falseï¼šå…³é—­æ—¶å€™ä¼šè¢«é”€æ¯
+        public GameObject Instance;//é¢„åˆ¶ä½“
     }
 
     private Dictionary<Type, UIElement> UIResources = new Dictionary<Type, UIElement>();
@@ -35,6 +35,7 @@ public class UIManager : Singleton<UIManager>
         this.UIResources.Add(typeof(UISystemConfig), new UIElement() { Resources = "UI/UISystemConfig", Cache = false });
         this.UIResources.Add(typeof(UISkill), new UIElement() { Resources = "UI/UISkill", Cache = false });
         this.UIResources.Add(typeof(UIStory), new UIElement() { Resources = "UI/UIStory", Cache = false });
+        this.UIResources.Add(typeof(UIItemPopUp), new UIElement() { Resources = "UI/UIItemPopUp", Cache = true });
     }
 
     ~UIManager()

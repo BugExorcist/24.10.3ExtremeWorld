@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Models
 {
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
-    struct BagItem
+    public struct BagItem
     {
         public ushort ItemId;
         public ushort Count;

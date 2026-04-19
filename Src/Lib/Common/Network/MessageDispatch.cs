@@ -44,6 +44,8 @@ namespace Network
             if (message.mapItemSync != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.mapItemSync); }
             if (message.itemUse != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.itemUse); }
             if (message.itemSplit != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.itemSplit); }
+            if (message.itemDrop != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.itemDrop); }
+            if (message.bagSave != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.bagSave); }
             if (message.skillCast != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.skillCast); }
             if (message.skillHits != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.skillHits); }
             if (message.buffRes != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.buffRes); }
@@ -95,6 +97,8 @@ namespace Network
             if (message.mapItemSync != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.mapItemSync); }
             if (message.itemUse != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.itemUse); }
             if (message.itemSplit != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.itemSplit); }
+            if (message.itemDrop != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.itemDrop); }
+            if (message.bagSave != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.bagSave); }
             if (message.skillCast != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.skillCast); }
             if (message.arenaChallengeReq != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.arenaChallengeReq); }
             if (message.arenaChallengeRes != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.arenaChallengeRes); }

@@ -20,13 +20,24 @@ namespace GameServer.Services
         private void OnBagSave(NetConnection<NetSession> sender, BagSaveRequest request)
         {
             Character character = sender.Session.Character;
+            sender.Session.Response.bagSave = new BagSaveResponse();
+
+            if (character == null || request == null || request.BagInfo == null)
+            {
+                sender.Session.Response.bagSave.Result = Result.Failed;
+                sender.Session.Response.bagSave.Errormsg = "BagSaveRequest invalid";
+                sender.SendResponse();
+                return;
+            }
+
             Log.InfoFormat("DagSaveRequest: character:{0} Unlocked:{1}", character.Id, request.BagInfo.Unlocked);
 
-            if (request.BagInfo != null)
-            {
-                character.Data.Bag.Items = request.BagInfo.Items;
-                DBService.Instance.Save();
-            }
+            character.Data.Bag.Items = request.BagInfo.Items;
+            character.Data.Bag.Unlocked = request.BagInfo.Unlocked;
+            DBService.Instance.Save();
+
+            sender.Session.Response.bagSave.Result = Result.Success;
+            sender.SendResponse();
         }
     }
 }

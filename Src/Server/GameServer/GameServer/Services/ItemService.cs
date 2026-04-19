@@ -20,6 +20,7 @@ namespace GameServer.Services
             MessageDistributer<NetConnection<NetSession>>.Instance.Subscribe<ItemEquipRequest>(this.OnItemEquip);
             MessageDistributer<NetConnection<NetSession>>.Instance.Subscribe<ItemUseRequest>(this.OnItemUse);
             MessageDistributer<NetConnection<NetSession>>.Instance.Subscribe<ItemSplitRequest>(this.OnItemSplit);
+            MessageDistributer<NetConnection<NetSession>>.Instance.Subscribe<ItemDropRequest>(this.OnItemDrop);
         }
 
 
@@ -70,12 +71,62 @@ namespace GameServer.Services
             {
                 sender.Session.Response.itemUse.Result = Result.Success;
                 sender.Session.Response.itemUse.itemId = itemId;
+                DBService.Instance.Save();
             }
             else
             {
                 sender.Session.Response.itemUse.Result = Result.Failed;
                 sender.Session.Response.itemUse.Errormsg = "无法使用该物品";
             }
+            sender.SendResponse();
+        }
+
+        private void OnItemDrop(NetConnection<NetSession> sender, ItemDropRequest request)
+        {
+            Character character = sender.Session.Character;
+            Log.InfoFormat("OnItemDrop: character:{0} SlotIndex:{1} Count:{2}", character.Id, request.slotIndex, request.Count);
+
+            sender.Session.Response.itemDrop = new ItemDropResponse();
+
+            if (request.Count <= 0)
+            {
+                sender.Session.Response.itemDrop.Result = Result.Failed;
+                sender.Session.Response.itemDrop.Errormsg = "数量非法";
+                sender.SendResponse();
+                return;
+            }
+
+            int itemId = GetItemIdFromSlot(character, request.slotIndex);
+            if (itemId == 0)
+            {
+                sender.Session.Response.itemDrop.Result = Result.Failed;
+                sender.Session.Response.itemDrop.Errormsg = "物品不存在";
+                sender.SendResponse();
+                return;
+            }
+
+            int slotCount = GetItemCountFromSlot(character, request.slotIndex);
+            if (slotCount < request.Count)
+            {
+                sender.Session.Response.itemDrop.Result = Result.Failed;
+                sender.Session.Response.itemDrop.Errormsg = "数量不足";
+                sender.SendResponse();
+                return;
+            }
+
+            if (character.ItemManager.RemoveItem(itemId, request.Count))
+            {
+                sender.Session.Response.itemDrop.Result = Result.Success;
+                sender.Session.Response.itemDrop.itemId = itemId;
+                sender.Session.Response.itemDrop.Count = request.Count;
+                DBService.Instance.Save();
+            }
+            else
+            {
+                sender.Session.Response.itemDrop.Result = Result.Failed;
+                sender.Session.Response.itemDrop.Errormsg = "丢弃失败";
+            }
+
             sender.SendResponse();
         }
 
@@ -112,6 +163,17 @@ namespace GameServer.Services
             int offset = slotIndex * 4;
             ushort itemId = BitConverter.ToUInt16(bagItems, offset);
             return itemId;
+        }
+
+        private int GetItemCountFromSlot(Character character, int slotIndex)
+        {
+            var bagItems = character.Data.Bag.Items;
+            if (bagItems == null || bagItems.Length < (slotIndex + 1) * 4)
+                return 0;
+
+            int offset = slotIndex * 4;
+            ushort count = BitConverter.ToUInt16(bagItems, offset + 2);
+            return count;
         }
 
         /// <summary>
